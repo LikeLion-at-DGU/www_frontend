@@ -8,6 +8,9 @@ import {
   LogoImage,
   Text,
   FakeButtonWrapper,
+  StartBtn,
+  SigninTxt,
+  SignLink,
 } from "./LoginStyle";
 
 const Login = () => {
@@ -57,24 +60,40 @@ const Login = () => {
   const handleError = () => {
     console.log("Login Failed");
   };
-
+  // if(로그인을 선택할 경우){
+  // return (
+  //   <Container>
+  //     <WhiteBox>
+  //       <LogoImage src="src/image/logo.png" alt="logo" />
+  //       <Text>
+  //         Welcome Back!
+  //         <br />
+  //         Everybody needs your record!
+  //       </Text>
+  //       <GoogleOAuthProvider clientId={clientId}>
+  //         <FakeButtonWrapper>
+  //           <GoogleLogin onSuccess={handleSuccess} onError={handleError} />
+  //         </FakeButtonWrapper>
+  //       </GoogleOAuthProvider>
+  //     </WhiteBox>
+  //   </Container>
+  // );
+  // }else{
   return (
     <Container>
       <WhiteBox>
         <LogoImage src="src/image/logo.png" alt="logo" />
-        <Text>
-          Welcome Back!
-          <br />
-          Everybody needs your record!
-        </Text>
-        <GoogleOAuthProvider clientId={clientId}>
-          <FakeButtonWrapper>
-            <GoogleLogin onSuccess={handleSuccess} onError={handleError} />
-          </FakeButtonWrapper>
-        </GoogleOAuthProvider>
+        <Text>www.(three w) ID creation</Text>
+        <StartBtn>
+          <i className="fab fa-google"></i> &nbsp;start with google
+        </StartBtn>
+        <SigninTxt>
+          Do you already have an ID? <SignLink>sign in</SignLink>
+        </SigninTxt>
       </WhiteBox>
     </Container>
   );
+  // }
 };
 
 export default Login;
