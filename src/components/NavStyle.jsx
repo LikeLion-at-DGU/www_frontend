@@ -22,13 +22,14 @@ export const NavSection = styled(NavLink)`
     width: 150px;
     display: flex;
     justify-content: center;
+    text-align: center;
 `
 export const LoginBtn = styled.div`
     background-color: ${props=>props.BgColor};
     border: 1px solid black;
     border-radius: 40px;
-    width: 150px;
-    height: 65px;
+    width: 155px;
+    height: 50px;
     font-size: 20px;
     font-weight: 700;
     display: flex;
