@@ -3,7 +3,7 @@
 const Header = () => {
   return (
     <>
-      <p>헤더</p>
+      <p>Header</p>
     </>
   );
 };
