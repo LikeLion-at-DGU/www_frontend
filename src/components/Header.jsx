@@ -1,9 +1,11 @@
+// Header.jsx
+
 const Header = () => {
-    return (
-        <>
-        <p>헤더</p>
-        </>
-    )
-}
+  return (
+    <>
+      <p>헤더</p>
+    </>
+  );
+};
 
 export default Header;

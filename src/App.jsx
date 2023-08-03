@@ -1,20 +1,14 @@
-// app.jsx
-import { Route, Routes } from "react-router-dom";
+//App.jsx
 import { Outlet } from "react-router-dom";
 import Header from "./components/Header";
-import { GoogleLogin } from "@react-oauth/google";
-import LogIn from "./pages/login";
-import Main from "./pages/mainpage";
+import Mainpage from "./pages/mainPage/Mainpage";
 
 function App() {
   return (
     <>
       <Header />
-      <LogIn />
-      <Routes>
-        <Route path="/*" element={<Main />} />
-        <Route path="/login" element={<LogIn />} />
-      </Routes>
+      <Mainpage />
+      {/* <Login /> */}
       <Outlet />
     </>
   );
