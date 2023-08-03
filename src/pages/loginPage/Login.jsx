@@ -1,51 +1,16 @@
+// Login.jsx
+
 import React, { useEffect, useRef } from "react";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
-import styled from "styled-components";
+import {
+  Container,
+  WhiteBox,
+  LogoImage,
+  Text,
+  FakeButtonWrapper,
+} from "./LoginStyle";
 
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: lightgray;
-`;
-
-const WhiteBox = styled.div`
-  display: flex;
-  width: 548px;
-  height: 588px;
-  background-color: white;
-  color: black;
-  border: 2px solid #222222;
-  border-radius: 20px;
-  flex-direction: column;
-  align-items: center;
-  font-weight: bold;
-`;
-
-const LogoImage = styled.img`
-  width: 120px;
-  height: auto;
-  margin-top: 32px;
-  margin-right: 340px;
-`;
-
-const FakeButtonWrapper = styled.div`
-  width: 385px;
-  height: 64px;
-  border: 2px solid #92d3f5;
-  border-radius: 30px;
-  cursor: pointer;
-`;
-
-const Text = styled.p`
-  display: flex;
-  margin-top: 32px;
-  margin-right: 142px;
-  font-size: 24px;
-`;
-
-const LogIn = () => {
+const Login = () => {
   const clientId = import.meta.env.VITE_PUBLIC_GOOGLE_API_KEY;
   const fakeButtonRef = useRef();
 
@@ -112,4 +77,4 @@ const LogIn = () => {
   );
 };
 
-export default LogIn;
+export default Login;
