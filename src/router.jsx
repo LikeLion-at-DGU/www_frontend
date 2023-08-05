@@ -3,7 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import Login from "./pages/loginPage/Login";
 import Join from "./pages/loginPage/Join";
-import Detail from "./pages/loginPage/Detail";
+import Input from "./pages/loginPage/Input";
 
 const Router = createBrowserRouter([
   {
@@ -19,8 +19,8 @@ const Router = createBrowserRouter([
     element: <Join />,
   },
   {
-    path: "detail",
-    element: <Detail />,
+    path: "input",
+    element: <Input />,
   },
 ]);
 

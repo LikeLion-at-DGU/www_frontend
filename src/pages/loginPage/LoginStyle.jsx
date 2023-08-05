@@ -92,23 +92,24 @@ export const JoinWrapper = styled.div`
 export const InputForm = styled.select`
   /* font-family: "Roboto"; */
   display: flex;
+  margin-bottom: 20px;
   background-color: #ffffff;
   border: 3px solid #222222;
   width: 25vw;
-  height: 5vh;
+  height: 7vh;
   text-align: center;
   font-size: 1rem;
 `;
 
 export const InputForm2 = styled.input`
-  margin-top: 15px;
+  /* margin-top: 15px; */
   margin-left: 30px;
   padding-left: 30px;
   background-color: #ffffff;
   font-size: 1rem;
   color: #222222;
   width: 23vw;
-  height: 5vh;
+  height: 7vh;
   display: flex;
   justify-content: start;
   align-items: center;

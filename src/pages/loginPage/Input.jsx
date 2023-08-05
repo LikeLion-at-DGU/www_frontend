@@ -1,4 +1,4 @@
-//Detail.jsx
+//Input.jsx
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -15,7 +15,7 @@ import {
   TopWrapper,
 } from "./LoginStyle";
 
-const Detail = () => {
+const Input = () => {
   const navigate = useNavigate();
   const [nickname, setNickname] = useState("");
   const [city, setCity] = useState("");
@@ -88,16 +88,6 @@ const Detail = () => {
               placeholder="city"
             />
             <JoinTxt>Use only small english letter/No space</JoinTxt>
-            <InputForm
-              name="language"
-              value={language}
-              onChange={languagehandleChange}
-            >
-              <option value="none">Language</option>
-              <option value="rKorea">korea</option>
-              <option value="rKorea">republic of korea</option>
-              <option value="rKorea">republic of korea</option>
-            </InputForm>
             <InputForm2
               type="text"
               name="nickname"
@@ -117,4 +107,4 @@ const Detail = () => {
   );
 };
 
-export default Detail;
+export default Input;

@@ -25,7 +25,7 @@ const Join = () => {
         />
         <Text>www.(three w) ID creation</Text>
         <LoginWrapper>
-          <StartBtn onClick={() => navigate("/detail")}>
+          <StartBtn onClick={() => navigate("/input")}>
             <i className="fab fa-google"></i> &nbsp;start with google
           </StartBtn>
           <SigninTxt>
