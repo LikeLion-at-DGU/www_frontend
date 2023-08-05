@@ -13,17 +13,19 @@ import { Link } from "react-router-dom";
 export const Nav = () => {
   return (
     <NavContainer>
-      <LogoImg src={logo} alt="logo" />
-      <NavSection to={"/"}>
+      <Link to={"/"}>
+        <LogoImg src={logo} alt="logo" />
+      </Link>
+      <NavSection to={"record"}>
         World's<br></br>Daily Record
       </NavSection>
-      <NavSection to={"/"}>
+      <NavSection to={"discussion"}>
         Global<br></br>Discussion
       </NavSection>
-      <NavSection to={"/"}>
+      <NavSection to={"archive"}>
         My<br></br>Archive
       </NavSection>
-      <Link to={"join"}>
+      <Link to={"login"}>
         <LoginBtn bgcolor="rgba(146, 211, 245, 1)">
           sign in!
           <Shadow />
