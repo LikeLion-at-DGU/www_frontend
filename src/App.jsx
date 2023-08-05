@@ -10,7 +10,7 @@ function App() {
     <>
       <GlobalStyle />
       <Nav />
-      <Mainpage />
+      {/* <Mainpage /> */}
       {/* <Login /> */}
       <Outlet />
     </>
