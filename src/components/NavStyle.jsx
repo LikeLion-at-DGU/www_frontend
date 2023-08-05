@@ -25,7 +25,7 @@ export const NavSection = styled(NavLink)`
   text-align: center;
 `;
 export const LoginBtn = styled.div`
-  background-color: ${(props) => props.BgColor};
+  background-color: ${(props) => props.bgcolor};
   border: 1px solid black;
   border-radius: 40px;
   width: 155px;
