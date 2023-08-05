@@ -8,7 +8,7 @@ export const Nav = () => {
   return (
     <NavContainer>
       <LogoImg src={logo} alt="logo" />
-      <NavSection to={"/"}>World's<br />Daily Record</NavSection>
+      <NavSection to={"/record"}>World's<br />Daily Record</NavSection>
       <NavSection to={"/"}>Global<br />Discussion</NavSection>
       <NavSection to={"/"}>My<br />Archive</NavSection>
       <BlueBtn BdRadius={"40px"}>

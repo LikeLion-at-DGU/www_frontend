@@ -4,11 +4,18 @@ import App from "./App";
 import Login from "./pages/loginPage/Login";
 import Join from "./pages/loginPage/Join";
 import Input from "./pages/loginPage/Input";
+import Record from "./pages/recordPage/Record";
 
 const Router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    children: [
+      {
+        path: "record",
+        element: <Record />
+      }
+    ]
   },
   {
     path: "login",
