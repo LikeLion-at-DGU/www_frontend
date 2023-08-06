@@ -69,8 +69,9 @@ const Mainpage = () => {
   };
 
   return (
-    <MainContainer>
+    <>
       <BackgroundImage src={mainbg} alt="background-image" />
+
       <TextImage>
         <img src={maintext} alt="maintext" />
       </TextImage>
