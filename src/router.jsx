@@ -9,6 +9,7 @@ import Discussion from "./pages/discussionPage/Discussion";
 import Archive from "./pages/archivePage/Archive";
 import NotFound from "./pages/NotFound";
 import Mainpage from "./pages/mainPage/Mainpage";
+import { Test } from "./pages/Test";
 
 const Router = createBrowserRouter([
   {
@@ -36,8 +37,8 @@ const Router = createBrowserRouter([
         element: <Archive />,
       },
       {
-        path: "login",
-        element: <Login />,
+        path: "test",
+        element: <Test />,
       },
     ],
     errorElement: <NotFound />,
