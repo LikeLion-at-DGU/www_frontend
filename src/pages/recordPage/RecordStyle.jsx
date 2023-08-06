@@ -94,7 +94,7 @@ export const ProfileImg = styled.div`
     border-radius: 15px;
     background-color: #3EBD6B;
     margin: 0 5px;
-    padding: 4px 10px;
+    padding: 2px 10px;
 `
 export const ProfileImg2 = styled(ProfileImg)`
     padding: 10px;
