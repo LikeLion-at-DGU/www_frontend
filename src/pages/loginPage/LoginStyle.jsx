@@ -143,6 +143,10 @@ export const Profile = styled.div`
   text-align: center;
   font-size: 3rem;
   font-weight: 100;
+  &:hover {
+    background-color: #848484;
+    color: #ffffff;
+  }
 `;
 export const TopWrapper = styled.div`
   display: flex;

@@ -38,6 +38,7 @@ const Input = () => {
     setLanguage(e.target.value);
     console.log(language);
   };
+  const [hover, setHover] = useState(false);
 
   const inputCheck = () => {
     if (
@@ -47,10 +48,8 @@ const Input = () => {
       join.nickname.value === ""
     ) {
       alert("필수 입력 항목을 전부 입력하세요!");
-      console.log("false");
       return false;
     } else {
-      console.log("true");
       alert("회원가입 성공");
       navigate("/");
       return true;
@@ -65,7 +64,16 @@ const Input = () => {
             src="src/image/logo.png"
             alt="logo"
           />
-          <Profile>+</Profile>
+          <Profile
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+          >
+            {hover ? (
+              <span className="material-symbols-outlined">add_a_photo</span>
+            ) : (
+              "+"
+            )}
+          </Profile>
         </TopWrapper>
         <Text>Input your information!</Text>
         <form name="join" onSubmit={inputCheck}>
