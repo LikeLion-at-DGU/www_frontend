@@ -1,3 +1,13 @@
 import { styled } from "styled-components";
 
-// Record Component 관련 styled component
+export const RecordContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 5vw;
+`
+export const RecordBox = styled.div`
+    display: flex;
+    flex-direction: ${props=>props.FlexDirect};
+    border: 1px solid red;
+`
