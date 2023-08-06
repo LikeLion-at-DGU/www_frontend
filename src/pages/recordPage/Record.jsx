@@ -1,6 +1,6 @@
 // Record.jsx
 
-import { Box, Btn, BtnShadow, CardBox, Content, FriendCard, HashTag, Img, ProfileImg, RecordContainer, RecordImage, SubTitle, TagBox, Text, Title, Writer } from "./RecordStyle";
+import { Box, Btn, BtnShadow, RecordContainer, SubTitle } from "./RecordStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenNib, faSearch } from "@fortawesome/free-solid-svg-icons";
 import FriendCards from "./FriendCards";
