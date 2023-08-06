@@ -1,7 +1,7 @@
 // Detail.jsx
 
 import { DetailWrapper } from "./DetailStyle";
-import Card from "../../components/Card";
+import Card from "../../components/card/Card";
 
 const Detail = () => {
   return (
