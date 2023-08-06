@@ -3,9 +3,9 @@
 import styled from 'styled-components';
 
 export const BlueBtn = styled.div`
-    background-color: rgba(146, 211, 245, 1);
+    background-color: #92D3F5;
     border: 1px solid black;
-    border-radius: ${props=>props.BdRadius};
+    border-radius: 30px;
     width: 155px;
     height: 50px;
     font-size: 20px;
