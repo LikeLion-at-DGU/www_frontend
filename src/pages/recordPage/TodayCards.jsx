@@ -1,4 +1,4 @@
-import { BigImage, BigTitle, CardBox, City, Content, FriendCard, HashTag, Img, ProfileImg, ProfileImg2, RecordImage, TagBox, Text, Title, TodayCard, Writer } from "./RecordStyle";
+import { BigImage, BigTitle, City, Img, ProfileImg2, TagBox, TodayCard, Writer } from "./RecordStyle";
 import recordImg from "../../image/record2.jpg"
 
 const TodayCards = () => {
