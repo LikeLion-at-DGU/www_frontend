@@ -32,8 +32,8 @@ export const GlobalStyle = createGlobalStyle`
         font-family: 'Roboto Mono', monospace;
 	}
 	body {
-		background-image : url('image/background.png');
-		background-size: cover;
+		/* background-image : url("./image/mainbg.png");
+		background-size: cover; */
 		background-color: #F2F2F2; 
 		color: #222222;
 	}

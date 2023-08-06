@@ -25,28 +25,30 @@ const data = [
 
 export const Mainpage = () => {
   return (
-    <MainContainer>
+    <>
       <BackgroundImage src={mainbg} alt="background-image" />
-      <TextImage>
-        <img src={maintext} alt="maintext" />
-      </TextImage>
-      <BottomContainer>
-        <OneAndOnlyContainer>
-          <OneAndOnly>
-            <img src={note} alt="note" />
-            <p>One and Only Record</p>
-          </OneAndOnly>
-          {data.map((item) => (
-            <RecordCard key={item.id}>
-              <p>{item.nickname}</p>
-            </RecordCard>
-          ))}
-        </OneAndOnlyContainer>
-        <VoteContainer>
-          <Vote></Vote>
-        </VoteContainer>
-      </BottomContainer>
-    </MainContainer>
+      <MainContainer>
+        <TextImage>
+          <img src={maintext} alt="maintext" />
+        </TextImage>
+        <BottomContainer>
+          <OneAndOnlyContainer>
+            <OneAndOnly>
+              <img src={note} alt="note" />
+              <p>One and Only Record</p>
+            </OneAndOnly>
+            {data.map((item) => (
+              <RecordCard key={item.id}>
+                <p>{item.nickname}</p>
+              </RecordCard>
+            ))}
+          </OneAndOnlyContainer>
+          <VoteContainer>
+            <Vote></Vote>
+          </VoteContainer>
+        </BottomContainer>
+      </MainContainer>
+    </>
   );
 };
 
