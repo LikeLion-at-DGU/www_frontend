@@ -13,17 +13,10 @@ export const BlueBtn = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-`;
-export const Shadow = styled.div`
-  position: absolute;
-  bottom: -5px;
-  left: -5px;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background-color: black;
-  border-radius: 40px;
+  box-shadow: -5px 5px #222222;
+  &:hover {
+    box-shadow: none;
+  }
 `;
 export const BookMarkStyle = styled.div`
   width: ${(props) => (props.handlewidth ? props.handlewidth : "51px")};

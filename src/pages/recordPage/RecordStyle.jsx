@@ -1,7 +1,5 @@
 import { styled } from "styled-components";
-import { BlueBtn, BookMarkStyle, Shadow, ViewsStyle } from "../../components/index/BtnStyle";
-import Views from "../../components/index/Views";
-import BookMark from "../../components/index/BookMark";
+import { BlueBtn, BookMarkStyle } from "../../components/index/BtnStyle";
 
 // Record 메인페이지 스타일
 export const RecordContainer = styled.div`
@@ -15,7 +13,7 @@ export const Box = styled.div`
     flex-direction: ${props => props.flexdirect};
     width: 100%;
     height: ${props => props.height};
-    justify-content: ${props=>props.juscon};
+    justify-content: ${props => props.juscon};
     margin: 10px 0;
     /* border: 1px solid red; */
 `
@@ -30,9 +28,6 @@ export const Btn = styled(BlueBtn)`
     margin: 10px 0;
     font-size: 1.1rem;
     background-color: ${props => props.bgcol};
-`
-export const BtnShadow = styled(Shadow)`
-    border-radius: 10px;
 `
 export const SubTitle = styled.div`
     display: flex;
@@ -63,8 +58,8 @@ export const CardBox = styled.div`
 `
 export const Img = styled.div`
     display: flex;
-    width: ${props=>props.width};
-    height: ${props=>props.height};
+    width: ${props => props.width};
+    height: ${props => props.height};
     object-fit: cover;
     position: relative;
 `
@@ -72,16 +67,16 @@ export const RecordImage = styled.img`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: ${props=>props.radius};
-    border-top-left-radius: ${props=>props.leftradius};
+    border-radius: ${props => props.radius};
+    border-top-left-radius: ${props => props.leftradius};
 `
 export const Text = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: ${props=>props.padding};
-    width: ${props=>props.width};
-    height: ${props=>props.height};
+    padding: ${props => props.padding};
+    width: ${props => props.width};
+    height: ${props => props.height};
     position: relative;
 `
 export const Writer = styled.p`
@@ -93,15 +88,12 @@ export const Writer = styled.p`
     align-items: center;
 `
 export const ProfileImg = styled.div`
-    /* position: absolute; */
-    /* top: -5px; */
     height: 100%;
-    /* width: 15px; */
     border: 1px solid black;
     border-radius: 15px;
     background-color: #3EBD6B;
     margin: 0 5px;
-    padding: 2px 10px;
+    padding: 10px;
 `
 export const City = styled.p`
     font-size: 0.6rem;
@@ -116,16 +108,16 @@ export const Title = styled.p`
     font-weight: 500;
 `
 export const Content = styled.p`
-    font-size: ${props=>props.fontSize};
+    font-size: ${props => props.fontSize};
     font-weight: 400;
-    height: ${props=>props.height};
+    height: ${props => props.height};
 `
 export const TagBox = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: ${props=>props.padding};
-    justify-content: ${props=>props.juscon};
+    padding: ${props => props.padding};
+    justify-content: ${props => props.juscon};
 `
 export const HashTag = styled.div`
     display: flex;
@@ -137,25 +129,43 @@ export const HashTag = styled.div`
     font-weight: 400;
     margin: 5px;
     padding: 5px;
-    /* width: min-content; */
 `
 
 // TodayCards 스타일
 export const TodayCard = styled(FriendCard)`
     width: 548px;
     height: 335px;
+    position: relative;
 `
 export const BigImage = styled(RecordImage)`
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
+    border-bottom-right-radius: ${props=>props.rightradius};
+    border-bottom-left-radius: ${props=>props.leftradius};
 `
 export const TodayTitle = styled.p`
     font-size: 1.5rem;
     /* 24px */
     font-weight: 700;
 `
-export const ProfileImg2 = styled(ProfileImg)`
-    padding: 10px;
+export const TitleBox = styled(TagBox)`
+    opacity: ${props => (props.isHovered ? 0 : 1)};
+`
+export const HoverOverlay = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(242, 242, 242, 0.8);
+    opacity: ${props => (props.isHovered ? 1 : 0)};
+    transition: opacity 0.3s ease;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
 `
 
 // ListCards 스타일
@@ -195,9 +205,18 @@ export const Comment = styled(BookMarkStyle)`
 export const LocalPick = styled.div`
     display: flex;
     flex-direction: row;
+    position: relative;
 `
 export const InTagBox = styled(TagBox)`
     position: absolute;
     top: 15px;
     left: 15px;
+`
+export const HoverOverlay2 = styled(HoverOverlay)`
+    top: 254px;
+    height: 80px;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
 `

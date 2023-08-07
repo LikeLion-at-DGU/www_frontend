@@ -1,6 +1,6 @@
 // Record.jsx
 
-import { Box, Box2, Btn, BtnShadow, RecordContainer, SubTitle } from "./RecordStyle";
+import { Box, Box2, Btn, RecordContainer, SubTitle } from "./RecordStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenNib, faSearch } from "@fortawesome/free-solid-svg-icons";
 import RecordMain from "../../image/record_main.png"
@@ -27,12 +27,10 @@ const Record = () => {
             <Btn bgcol="#92D3F5">
               <FontAwesomeIcon icon={faPenNib} />
               <p style={{ margin: "0 10px" }}>record daily life</p>
-              <BtnShadow />
             </Btn>
             <Btn bgcol="#F2C94C">
               <FontAwesomeIcon icon={faSearch} />
               <p style={{ margin: "0 10px" }}>search daily life</p>
-              <BtnShadow />
             </Btn>
           </Box>
           <SubTitle>My w’s recent record!</SubTitle>
