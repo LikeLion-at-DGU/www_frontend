@@ -190,13 +190,6 @@ export const Comment = styled(BookMarkStyle)`
     height: 100%;
     color: #3ebd6b;
 `
-// export const InBookmark = styled(BookMark)`
-//     width: 50px;
-//     height: 40px;
-//     position: absolute;
-//     top: 15px;
-//     right: 15px;
-// `
 
 // LocalPicks 스타일
 export const LocalPick = styled.div`

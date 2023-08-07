@@ -29,7 +29,6 @@ const ListCards = () => {
                     <Comments handlewidth={"43px"} handleheight={"18px"} handlefsize={"5.4px"} />
                     <Like handlewidth={"43px"} handleheight={"18px"} handlefsize={"5.4px"} />
                 </BtnBox>
-                {/* <InBookmark /> */}
                 <BookMark handleposi={"absolute"} handletop={"15px"} handleright={"15px"} />
             </Text>
             <Img width="140px" height="140px">
