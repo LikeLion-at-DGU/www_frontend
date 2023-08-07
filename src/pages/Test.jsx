@@ -1,4 +1,5 @@
 import Card from "../components/card/Card";
+import FriendMark from "../components/index/FriendMark";
 import Detail from "./recordPage/Detail";
 
 export const Test = () => {
@@ -7,6 +8,7 @@ export const Test = () => {
       <Detail>
         <Card />
       </Detail>
+      <FriendMark />
     </>
   );
 };

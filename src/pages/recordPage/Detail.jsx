@@ -7,20 +7,27 @@ import {
   PostTitle,
 } from "./DetailStyle";
 import Card from "../../components/card/Card";
-import { Wrapper } from "../../components/Wrap";
+import { Wrapper } from "../../components/WrapStyle";
 import { CommentSection } from "../../components/commentSection/CommentSection";
 import BookMark from "../../components/index/BookMark";
 import Comments from "../../components/index/Comments";
 import Like from "../../components/index/Like";
 import Views from "../../components/index/Views";
+import { Writer, ProfileImg, City } from "./RecordStyle";
 
 const Detail = () => {
   return (
     <div style={{ margin: "30px" }}>
       <DetailWrapper>
-        <Wrapper style={{ borderBottom: "1px solid #000" }}>
-          <img src="" alt="프로필" />
-          user1<span>Korea/incheon</span>
+        <Wrapper
+          style={{ borderBottom: "1px solid #000", justifyContent: "center" }}
+        >
+          <Writer>
+            <p>by</p>
+            <ProfileImg></ProfileImg>
+            giogio222
+            <City>Iyaly/milano</City>
+          </Writer>
         </Wrapper>
         <Wrapper style={{ borderBottom: "1px solid #000" }}>
           <Wrapper>
@@ -45,10 +52,10 @@ const Detail = () => {
         <div style={{ display: "flex" }}>
           <Views />
           &nbsp;
-          <Comments open={true} />
+          <Comments open={false} />
         </div>
         <div style={{ display: "flex" }}>
-          <Like />
+          <Like ismini= {false} />
           &nbsp;
           <BookMark />
         </div>
