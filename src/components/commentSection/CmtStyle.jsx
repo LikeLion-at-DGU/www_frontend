@@ -43,27 +43,32 @@ export const CmtBox = styled.div`
   border: 1px solid #848484;
   background: #f2f2f2;
   border-collapse: collapse;
-
+  padding: 12px;
 `;
 export const CmtLabel = styled.div`
-position: absolute;
-right: 10px;
-bottom: 7px;
-`
+  position: absolute;
+  right: 20px;
+  top: 20px;
+`;
 export const CmtProfile = styled.div`
+  margin-bottom: 30px;
   display: flex;
   flex-direction: row;
+  font-weight: 500;
+  font-size: 0.9rem;
   img {
     border-radius: 30px;
     border: 1px solid #222;
-    background-color: green;
+    background-color: #3ebd6b;
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
   }
   p {
     font-family: "Roboto Mono";
-    font-size: 1rem;
-    font-weight: 500;
   }
-  span{
-    color: #8E44AD
+  span {
+    color: #8e44ad;
+    font-size: 0.9em;
   }
 `;

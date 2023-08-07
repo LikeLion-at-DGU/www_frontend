@@ -1,7 +1,7 @@
 // Detail.jsx
 
 import {
-  DetailWrapper,BorderBottom,
+  DetailWrapper,BorderBottom,BtnWrapper,
   PostWrapper,
   PostSubTitle,
   PostTitle,
@@ -14,8 +14,12 @@ import Comments from "../../components/index/Comments";
 import Like from "../../components/index/Like";
 import Views from "../../components/index/Views";
 import { Writer, ProfileImg, City } from "./RecordStyle";
+import { useState } from "react";
 
 const Detail = () => {
+
+  const [commentFold,setCommentFold] = useState(true);
+
   return (
     <div style={{ margin: "30px" }}>
       <DetailWrapper>
@@ -27,15 +31,15 @@ const Detail = () => {
             <City>Iyaly/milano</City>
           </Writer>
         </BorderBottom>
-        <Wrapper style={{ borderBottom: "1px solid #000" }}>
+        <BorderBottom>
           <Wrapper>
             <PostSubTitle>Date: 2023,3,August</PostSubTitle>{" "}
             <PostSubTitle>Weather: 너무 더워</PostSubTitle>
           </Wrapper>
-        </Wrapper>
-        <Wrapper style={{ borderBottom: "1px solid #000" }}>
+        </BorderBottom>
+        <BorderBottom>
           <PostTitle>Title: 리스펙트 어짜구</PostTitle>
-        </Wrapper>
+        </BorderBottom>
         <Card />
         {/* -------본문------ */}
         🎶1일차(2022.08.27) ​바뀐 mbti검사를 해보니 esfj가 나왔다 s랑 f는
@@ -47,18 +51,20 @@ const Detail = () => {
         높은 지분을 차지한 콜드 형님 라이브 잘하시는걸?!?!!
       </DetailWrapper>
       <PostWrapper>
-        <div style={{ display: "flex" }}>
+        <BtnWrapper>
           <Views />
           &nbsp;
-          <Comments open={false} />
-        </div>
-        <div style={{ display: "flex" }}>
+          <div onClick={() => setCommentFold(commentFold ? false : true)}>
+            <Comments open={commentFold} />
+          </div>
+        </BtnWrapper>
+        <BtnWrapper>
           <Like />
           &nbsp;
           <BookMark />
-        </div>
+        </BtnWrapper>
       </PostWrapper>
-      <CommentSection />
+      {commentFold ? <CommentSection /> : ""}
     </div>
   );
 };
