@@ -5,10 +5,10 @@ const FriendCards = () => {
     return (
         <FriendCard>
             <CardBox>
-                <Img Width="122px" Height="100%">
-                    <RecordImage LeftRadius="20px" src={recordImg} />
+                <Img width="122px" height="100%">
+                    <RecordImage leftradius="20px" src={recordImg} />
                 </Img>
-                <Text Padding="14px" Width="331px">
+                <Text padding="14px" width="331px">
                     <Writer>
                         <p>by</p>
                         <ProfileImg></ProfileImg>
@@ -16,7 +16,7 @@ const FriendCards = () => {
                         <City>Iyaly/milano</City>
                     </Writer>
                     <Title>Unexpected luck!!!</Title>
-                    <Content FontSize="0.75rem">
+                    <Content fontSize="0.75rem">
                         The definition of friendships between opposite genders becomes somewhat ambiguous depending on how we..
                     </Content>
                 </Text>
