@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 export const CardWrapper = styled.div`
   font-family: "Roboto";
   display: flex;
+  margin: 30px;
   width: 70%;
   font-size: 1.1rem;
   font-weight: 500;
@@ -20,6 +21,7 @@ export const CardText = styled.div`
 `;
 
 export const CardWWW = styled.div`
+  padding: 10px 0;
   color: #000;
   font-family: "Bungee";
   font-size: 1.2rem;

@@ -1,6 +1,6 @@
 // Card.jsx
 
-import { Wrapper } from "../Wrap";
+import { Wrapper } from "../WrapStyle";
 import { useState } from "react";
 import TestIMG from "../../image/test.jpg";
 import PenIMG from "../../image/pen.png";

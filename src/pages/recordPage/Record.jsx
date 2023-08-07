@@ -42,13 +42,19 @@ const Record = () => {
         <Box FlexDirect="column">
           <SubTitle>
             World of today!
-            <p style={
-              {
+            <p
+              style={{
                 color: "#848484",
                 margin: "0 15px",
+<<<<<<< HEAD
                 fontSize: "1.25rem"
               }
             }>
+=======
+                fontSize: "20px",
+              }}
+            >
+>>>>>>> 910bb16d9e411edda372f1d54c62920826d3e53d
               + view more
             </p>
           </SubTitle>

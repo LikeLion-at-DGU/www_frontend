@@ -1,9 +1,6 @@
 import Card from "../components/card/Card";
-import Like from "../components//index/Like";
-import Views from "../components/index/Views";
-import Comments from "../components/index/Comments";
+import FriendMark from "../components/index/FriendMark";
 import Detail from "./recordPage/Detail";
-import BookMark from "../components/index/BookMark";
 
 export const Test = () => {
   return (
@@ -11,10 +8,7 @@ export const Test = () => {
       <Detail>
         <Card />
       </Detail>
-      <BookMark />
-      <Like />
-      <Views />
-      <Comments />
+      <FriendMark />
     </>
   );
 };

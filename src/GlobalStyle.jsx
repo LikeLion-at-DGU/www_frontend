@@ -30,6 +30,7 @@ export const GlobalStyle = createGlobalStyle`
 	}
 	*{
         font-family: 'Roboto Mono', monospace;
+		box-sizing: border-box;
 	}
 	body {
 		/* background-image : url("./image/mainbg.png");
