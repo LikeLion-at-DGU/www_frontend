@@ -28,6 +28,7 @@ export const Shadow = styled.div`
 export const BookMarkStyle = styled.div`
   width: ${(props) => (props.handlewidth ? props.handlewidth : "51px")};
   height: ${(props) => (props.handleheight ? props.handleheight : "40px")};
+  font-size: ${(props) => (props.handlefsize ? props.handlefsize : "")};
   /* width: 51px;
   height: 40px; */
   border-radius: 20px;
@@ -41,6 +42,7 @@ export const BookMarkStyle = styled.div`
 export const LikeStyle = styled(BookMarkStyle)`
   width: ${(props) => (props.handlewidth ? props.handlewidth : "80px")};
   height: ${(props) => (props.handleheight ? props.handleheight : "40px")};
+  font-size: ${(props) => (props.handlefsize ? props.handlefsize : "")};
   /* width: 80px;
   height: 40px; */
   color: #f23a3a;
@@ -48,6 +50,7 @@ export const LikeStyle = styled(BookMarkStyle)`
 export const ViewsStyle = styled(BookMarkStyle)`
   width: ${(props) => (props.handlewidth ? props.handlewidth : "95px")};
   height: ${(props) => (props.handleheight ? props.handleheight : "40px")};
+  font-size: ${(props) => (props.handlefsize ? props.handlefsize : "")};
   /* width: 95px;
   height: 40px; */
   color: #2e74b5;
@@ -55,6 +58,7 @@ export const ViewsStyle = styled(BookMarkStyle)`
 export const CommentStyle = styled(BookMarkStyle)`
   width: ${(props) => (props.handlewidth ? props.handlewidth : "119px")};
   height: ${(props) => (props.handleheight ? props.handleheight : "40px")};
+  font-size: ${(props) => (props.handlefsize ? props.handlefsize : "")};
   /* width: 119px;
   height: 40px; */
   color: #3ebd6b;
@@ -62,6 +66,7 @@ export const CommentStyle = styled(BookMarkStyle)`
 export const FriendMarkStyle = styled(BookMarkStyle)`
   width: ${(props) => (props.handlewidth ? props.handlewidth : "69px")};
   height: ${(props) => (props.handleheight ? props.handleheight : "32px")};
+  font-size: ${(props) => (props.handlefsize ? props.handlefsize : "")};
   /* width: 69px;
   height: 32px; */
   background: #92d3f5;
@@ -73,6 +78,7 @@ export const FriendMarkStyle = styled(BookMarkStyle)`
 export const MineStyle = styled(BookMarkStyle)`
   width: ${(props) => (props.handlewidth ? props.handlewidth : "69px")};
   height: ${(props) => (props.handleheight ? props.handleheight : "32px")};
+  font-size: ${(props) => (props.handlefsize ? props.handlefsize : "")};
   background-color: #f2c94c;
   color: #222;
   font-weight: 700;

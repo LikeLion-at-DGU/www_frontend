@@ -9,6 +9,7 @@ const Comments = (props) => {
     <CommentStyle
       handlewidth={props.handlewidth}
       handleheight={props.handleheight}
+      handlefsize={props.handlefsize}
       onClick={() => setFold(fold ? false : true)}
     >
       <i className="fas fa-comment-alt"></i> &nbsp;

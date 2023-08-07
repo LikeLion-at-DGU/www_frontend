@@ -8,6 +8,7 @@ const FriendMark = (props) => {
     <FriendMarkStyle
       handlewidth={props.handlewidth}
       handleheight={props.handleheight}
+      handlefsize={props.handlefsize}
       onClick={() => setFMark(fMark ? false : true)}
     >
       {fMark ? "+ W" : "✓ W"}

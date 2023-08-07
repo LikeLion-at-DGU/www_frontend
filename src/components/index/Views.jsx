@@ -8,6 +8,7 @@ const Views = (props) => {
     <ViewsStyle
       handlewidth={props.handlewidth}
       handleheight={props.handleheight}
+      handlefsize={props.handlefsize}
     >
       <i className="far fa-eye"></i> &nbsp;
       <BtnText>{views}</BtnText>
