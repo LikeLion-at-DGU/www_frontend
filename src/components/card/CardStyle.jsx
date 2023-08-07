@@ -4,7 +4,7 @@ export const CardWrapper = styled.div`
   font-family: "Roboto";
   display: flex;
   margin: 30px;
-  width: 70%;
+  width: 600px;
   font-size: 1.1rem;
   font-weight: 500;
   padding: 23px 30px;

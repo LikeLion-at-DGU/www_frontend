@@ -9,6 +9,7 @@ const Like = (props) => {
     <LikeStyle
       handlewidth={props.handlewidth}
       handleheight={props.handleheight}
+      handlefsize={props.handlefsize}
       onClick={() => setMylike(mylike ? false : true)}
     >
       {mylike ? (

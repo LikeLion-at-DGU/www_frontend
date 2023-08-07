@@ -1,7 +1,7 @@
 // Detail.jsx
 
 import {
-  DetailWrapper,
+  DetailWrapper,BorderBottom,
   PostWrapper,
   PostSubTitle,
   PostTitle,
@@ -19,16 +19,14 @@ const Detail = () => {
   return (
     <div style={{ margin: "30px" }}>
       <DetailWrapper>
-        <Wrapper
-          style={{ borderBottom: "1px solid #000", justifyContent: "center" }}
-        >
+        <BorderBottom>
           <Writer>
             <p>by</p>
             <ProfileImg></ProfileImg>
             giogio222
             <City>Iyaly/milano</City>
           </Writer>
-        </Wrapper>
+        </BorderBottom>
         <Wrapper style={{ borderBottom: "1px solid #000" }}>
           <Wrapper>
             <PostSubTitle>Date: 2023,3,August</PostSubTitle>{" "}
@@ -55,7 +53,7 @@ const Detail = () => {
           <Comments open={false} />
         </div>
         <div style={{ display: "flex" }}>
-          <Like ismini= {false} />
+          <Like />
           &nbsp;
           <BookMark />
         </div>

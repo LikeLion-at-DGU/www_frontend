@@ -5,6 +5,7 @@ const Mine = (props) => {
     <MineStyle
       handlewidth={props.handlewidth}
       handleheight={props.handleheight}
+      handlefsize={props.handlefsize}
     >
       mine
     </MineStyle>

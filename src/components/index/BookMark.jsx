@@ -8,6 +8,7 @@ const BookMark = (props) => {
     <BookMarkStyle
       handlewidth={props.handlewidth}
       handleheight={props.handleheight}
+      handlefsize={props.handlefsize}
       onClick={() => setMark(mark ? false : true)}
     >
       {mark ? (
