@@ -139,7 +139,7 @@ const Mainpage = () => {
           </Vote>
         </VoteContainer>
       </BottomContainer>
-    </MainContainer>
+    </>
   );
 };
 

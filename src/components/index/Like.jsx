@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { LikeStyle } from "./BtnStyle";
 
-const Like = () => {
+const Like = (props) => {
   const [like, setLike] = useState(0); //백에서 받을 데이터 - 좋아요수
   const [mylike, setMylike] = useState(false);
 
   return (
-    <LikeStyle onClick={() => setMylike(mylike ? false : true)}>
+    <LikeStyle
+      handlewidth={props.handlewidth}
+      handleheight={props.handleheight}
+      onClick={() => setMylike(mylike ? false : true)}
+    >
       {mylike ? (
         <i className="fas fa-heart"></i>
       ) : (

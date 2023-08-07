@@ -26,8 +26,10 @@ export const Shadow = styled.div`
   border-radius: 40px;
 `;
 export const BookMarkStyle = styled.div`
-  width: 51px;
-  height: 40px;
+  width: ${(props) => (props.handlewidth ? props.handlewidth : "51px")};
+  height: ${(props) => (props.handleheight ? props.handleheight : "40px")};
+  /* width: 51px;
+  height: 40px; */
   border-radius: 20px;
   border: 2px solid #222;
   background: #fff;
@@ -37,20 +39,46 @@ export const BookMarkStyle = styled.div`
   justify-content: center;
 `;
 export const LikeStyle = styled(BookMarkStyle)`
-  width: 80px;
-  height: 40px;
+  width: ${(props) => (props.handlewidth ? props.handlewidth : "80px")};
+  height: ${(props) => (props.handleheight ? props.handleheight : "40px")};
+  /* width: 80px;
+  height: 40px; */
   color: #f23a3a;
 `;
 export const ViewsStyle = styled(BookMarkStyle)`
-  width: 95px;
-  height: 40px;
+  width: ${(props) => (props.handlewidth ? props.handlewidth : "95px")};
+  height: ${(props) => (props.handleheight ? props.handleheight : "40px")};
+  /* width: 95px;
+  height: 40px; */
   color: #2e74b5;
 `;
 export const CommentStyle = styled(BookMarkStyle)`
-  width: 119px;
-  height: 40px;
+  width: ${(props) => (props.handlewidth ? props.handlewidth : "119px")};
+  height: ${(props) => (props.handleheight ? props.handleheight : "40px")};
+  /* width: 119px;
+  height: 40px; */
   color: #3ebd6b;
 `;
+export const FriendMarkStyle = styled(BookMarkStyle)`
+  width: ${(props) => (props.handlewidth ? props.handlewidth : "69px")};
+  height: ${(props) => (props.handleheight ? props.handleheight : "32px")};
+  /* width: 69px;
+  height: 32px; */
+  background: #92d3f5;
+  color: #222;
+  font-family: "Bungee Shade";
+  font-weight: 400;
+  margin-bottom: 10px;
+`;
+export const MineStyle = styled(BookMarkStyle)`
+  width: ${(props) => (props.handlewidth ? props.handlewidth : "69px")};
+  height: ${(props) => (props.handleheight ? props.handleheight : "32px")};
+  background-color: #f2c94c;
+  color: #222;
+  font-weight: 700;
+  margin-bottom: 10px;
+`;
+
 export const BtnText = styled.span`
   color: #222;
 `;
