@@ -38,6 +38,10 @@ export const BookMarkStyle = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  position: ${(props) => (props.handleposi ? props.handleposi : "")};
+  top: ${(props) => (props.handletop ? props.handletop : "")};
+  right: ${(props) => (props.handleright ? props.handleright : "")};
 `;
 export const LikeStyle = styled(BookMarkStyle)`
   width: ${(props) => (props.handlewidth ? props.handlewidth : "80px")};

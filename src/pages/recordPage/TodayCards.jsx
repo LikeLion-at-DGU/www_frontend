@@ -4,10 +4,10 @@ import recordImg from "../../image/record2.jpg"
 const TodayCards = () => {
     return (
         <TodayCard>
-            <Img Width="100%" Height="262px">
+            <Img width="100%" height="262px">
                 <BigImage src={recordImg} />
             </Img>
-            <TagBox Padding="18px" JusCon="space-between">
+            <TagBox padding="18px" juscon="space-between">
                 <TodayTitle>London life</TodayTitle>
                 <Writer>
                     <p>by</p>

@@ -6,8 +6,8 @@ import recordImg from "../../image/record3.png"
 const LocalPicks = () => {
     return (
         <LocalPick>
-            <Img Width="357px" Height="334px">
-                <RecordImage Radius="20px" src={recordImg} />
+            <Img width="357px" height="334px">
+                <RecordImage radius="20px" src={recordImg} />
                 <InTagBox>
                     <HashTag>#london_restaurant</HashTag>
                 </InTagBox>

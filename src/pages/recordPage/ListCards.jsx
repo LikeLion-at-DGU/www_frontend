@@ -1,34 +1,38 @@
 // import Comments from "../../components/index/Comments";
 // import Like from "../../components/index/Like";
 // import Views from "../../components/index/Views";
-import { Bookmark, BtnBox, Comment, Content, HashTag, Img, ListCard, ListTitle, RecordImage, TagBox, Text, View } from "./RecordStyle";
+import { BtnBox, Content, HashTag, Img, ListCard, ListTitle, RecordImage, TagBox, Text } from "./RecordStyle";
 import recordImg from "../../image/record1.jpg"
+import Like from "../../components/index/Like";
+import Comments from "../../components/index/Comments";
+import Views from "../../components/index/Views";
+import BookMark from "../../components/index/BookMark";
 
 const ListCards = () => {
     return (
         <ListCard>
-            <Text Padding="10px 25px" Height="125px" Width="980px">
+            <Text padding="10px 25px" height="142px" width="980px">
                 <ListTitle>
                     Unexpected luck!!
-                    <TagBox Padding="0 18px">
+                    <TagBox padding="0 18px">
                         <HashTag>#milano_restaurant</HashTag>
                         <HashTag>#milano_cafe</HashTag>
                     </TagBox>
                 </ListTitle>
-                <Content FontSize="1rem">
+                <Content fontSize="1rem">
                 The definition of friendships between opposite genders becomes somewhat ambiguous<br />
                 depending on how we interpret the term “friend”. <br />
                 It is entirely possible to be friends on a casual level, engaging in common hobbies...
                 </Content>
-                <BtnBox JusCon="space-between">
-                    <View />
-                    <Comment />
-                    <Comment />
-                    {/* <Like /> */}
+                <BtnBox juscon="space-between">
+                    <Views handlewidth={"43px"} handleheight={"18px"} handlefsize={"5.4px"} />
+                    <Comments handlewidth={"43px"} handleheight={"18px"} handlefsize={"5.4px"} />
+                    <Like handlewidth={"43px"} handleheight={"18px"} handlefsize={"5.4px"} />
                 </BtnBox>
-                <Bookmark />
+                {/* <InBookmark /> */}
+                <BookMark handleposi={"absolute"} handletop={"15px"} handleright={"15px"} />
             </Text>
-            <Img Width="140px" Height="140px">
+            <Img width="140px" height="140px">
                 <RecordImage src={recordImg} />
             </Img>
         </ListCard>

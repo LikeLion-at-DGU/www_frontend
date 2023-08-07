@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 import { BlueBtn, BookMarkStyle, Shadow, ViewsStyle } from "../../components/index/BtnStyle";
 import Views from "../../components/index/Views";
+import BookMark from "../../components/index/BookMark";
 
 // Record 메인페이지 스타일
 export const RecordContainer = styled.div`
@@ -11,10 +12,10 @@ export const RecordContainer = styled.div`
 `
 export const Box = styled.div`
     display: flex;
-    flex-direction: ${props => props.FlexDirect};
+    flex-direction: ${props => props.flexdirect};
     width: 100%;
-    height: ${props => props.Height};
-    justify-content: ${props=>props.JusCon};
+    height: ${props => props.height};
+    justify-content: ${props=>props.juscon};
     margin: 10px 0;
     /* border: 1px solid red; */
 `
@@ -28,7 +29,7 @@ export const Btn = styled(BlueBtn)`
     height: 51px;
     margin: 10px 0;
     font-size: 1.1rem;
-    background-color: ${props => props.BgColor};
+    background-color: ${props => props.bgcol};
 `
 export const BtnShadow = styled(Shadow)`
     border-radius: 10px;
@@ -62,8 +63,8 @@ export const CardBox = styled.div`
 `
 export const Img = styled.div`
     display: flex;
-    width: ${props=>props.Width};
-    height: ${props=>props.Height};
+    width: ${props=>props.width};
+    height: ${props=>props.height};
     object-fit: cover;
     position: relative;
 `
@@ -71,16 +72,16 @@ export const RecordImage = styled.img`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: ${props=>props.Radius};
-    border-top-left-radius: ${props=>props.LeftRadius};
+    border-radius: ${props=>props.radius};
+    border-top-left-radius: ${props=>props.leftradius};
 `
 export const Text = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: ${props=>props.Padding};
-    width: ${props=>props.Width};
-    height: ${props=>props.Height};
+    padding: ${props=>props.padding};
+    width: ${props=>props.width};
+    height: ${props=>props.height};
     position: relative;
 `
 export const Writer = styled.p`
@@ -115,16 +116,16 @@ export const Title = styled.p`
     font-weight: 500;
 `
 export const Content = styled.p`
-    font-size: ${props=>props.FontSize};
+    font-size: ${props=>props.fontSize};
     font-weight: 400;
-    height: ${props=>props.Height};
+    height: ${props=>props.height};
 `
 export const TagBox = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: ${props=>props.Padding};
-    justify-content: ${props=>props.JusCon};
+    padding: ${props=>props.padding};
+    justify-content: ${props=>props.juscon};
 `
 export const HashTag = styled.div`
     display: flex;
@@ -174,8 +175,8 @@ export const ListTitle = styled.p`
     height: 25px;
 `
 export const BtnBox = styled(TagBox)`
-    height: 20px;
-    width: 20%;
+    /* height: 20px; */
+    width: 150px;
 `
 export const View = styled(BookMarkStyle)`
     width: 30%;
@@ -189,13 +190,13 @@ export const Comment = styled(BookMarkStyle)`
     height: 100%;
     color: #3ebd6b;
 `
-export const Bookmark = styled(BookMarkStyle)`
-    width: 50px;
-    height: 40px;
-    position: absolute;
-    top: 15px;
-    right: 15px;
-`
+// export const InBookmark = styled(BookMark)`
+//     width: 50px;
+//     height: 40px;
+//     position: absolute;
+//     top: 15px;
+//     right: 15px;
+// `
 
 // LocalPicks 스타일
 export const LocalPick = styled.div`
