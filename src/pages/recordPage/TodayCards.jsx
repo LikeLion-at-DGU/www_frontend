@@ -1,4 +1,4 @@
-import { BigImage, BigTitle, City, Img, ProfileImg2, TagBox, TodayCard, Writer } from "./RecordStyle";
+import { BigImage, City, Img, ProfileImg2, TagBox, TodayCard, TodayTitle, Writer } from "./RecordStyle";
 import recordImg from "../../image/record2.jpg"
 
 const TodayCards = () => {
@@ -8,7 +8,7 @@ const TodayCards = () => {
                 <BigImage src={recordImg} />
             </Img>
             <TagBox Padding="15px" JusCon="space-between">
-                <BigTitle>London life</BigTitle>
+                <TodayTitle>London life</TodayTitle>
                 <Writer>
                     <p>by</p>
                     <ProfileImg2></ProfileImg2>
