@@ -82,6 +82,42 @@ export const MineStyle = styled(BookMarkStyle)`
   margin-bottom: 10px;
 `;
 
+export const CountryStyle = styled(BookMarkStyle)`
+  width: fit-content;
+  height: ${(props) => (props.handleheight ? props.handleheight : "24px")};
+  font-size: ${(props) => (props.handlefsize ? props.handlefsize : "")};
+  background-color: #2e74b5;
+  border-radius: 20px;
+  border: 2px solid #222;
+  color: #ffffff;
+  font-weight: 400;
+  padding: 8px;
+`;
+
+export const CityStyle = styled(BookMarkStyle)`
+  width: fit-content;
+  height: ${(props) => (props.handleheight ? props.handleheight : "24px")};
+  font-size: ${(props) => (props.handlefsize ? props.handlefsize : "")};
+  background-color: #3ebd6b;
+  border-radius: 20px;
+  border: 2px solid #222;
+  color: #ffffff;
+  font-weight: 400;
+  padding: 8px;
+`;
+
+export const DateStyle = styled(BookMarkStyle)`
+  width: fit-content;
+  height: ${(props) => (props.handleheight ? props.handleheight : "24px")};
+  font-size: ${(props) => (props.handlefsize ? props.handlefsize : "")};
+  background-color: #8e44ad;
+  border-radius: 20px;
+  border: 2px solid #222;
+  color: #ffffff;
+  font-weight: 400;
+  padding: 8px;
+`;
+
 export const BtnText = styled.span`
   color: #222;
 `;

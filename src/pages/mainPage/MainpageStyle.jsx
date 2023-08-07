@@ -1,7 +1,6 @@
 // MainpageStyle.jsx
 
-import { styled } from "styled-components";
-import example from "../../image/example.png";
+import { styled, keyframes, css } from "styled-components";
 
 export const MainContainer = styled.nav`
   display: flex;
@@ -11,7 +10,6 @@ export const MainContainer = styled.nav`
   flex-direction: column;
   margin-left: 5%;
   margin-right: 5%;
-  border: 3px solid;
 `;
 
 export const BackgroundImage = styled.img`
@@ -20,8 +18,21 @@ export const BackgroundImage = styled.img`
   height: 100%;
   top: 90px;
   object-fit: contain;
-  opacity: 60%;
+  opacity: 50%;
   z-index: -2;
+`;
+
+const fadeOut = keyframes`
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+`;
+
+const fadeOutAnimation = css`
+  animation: ${fadeOut} 3s ease-in-out;
 `;
 
 export const TextImage = styled.div`
@@ -31,6 +42,7 @@ export const TextImage = styled.div`
   margin-top: 5%;
   margin-left: 5%;
   margin-right: 5%;
+  ${(props) => (props.fadeOut ? fadeOutAnimation : "")}
   img {
     width: 100%;
     height: auto;
@@ -41,10 +53,15 @@ export const BottomContainer = styled.div`
   position: relative;
   display: flex;
   width: 100%;
-  margin-bottom: 3%;
+  height: 100%;
   justify-content: space-around;
   padding: 3%;
   /* border: 3px solid blue; */
+`;
+
+export const RecordBuddy = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 export const OneAndOnlyContainer = styled.div`
@@ -54,7 +71,6 @@ export const OneAndOnlyContainer = styled.div`
   width: 500px;
   height: 30rem;
   flex-wrap: wrap;
-  /* border: 3px solid red; */
 `;
 
 export const OneAndOnly = styled.div`
@@ -81,6 +97,58 @@ export const OneAndOnly = styled.div`
     width: 40rem;
     height: 44px;
   }
+`;
+
+export const TravelContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  /* border: 3px solid yellow; */
+  margin-top: 4%;
+  width: 500px;
+  height: 200px;
+  p {
+    font-family: Roboto Mono;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-left: 11%;
+  }
+  span {
+    font-family: Roboto Mono;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 26px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-left: 5%;
+    margin-top: 3%;
+  }
+`;
+
+export const TravelBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 110px;
+  border-radius: 30px 30px 0px 30px;
+  background-color: #92d3f5;
+  margin-left: 15%;
+  margin-top: 5%;
+`;
+
+export const IndexBox = styled.div`
+  display: flex;
+  /* border: 3px solid red; */
+  justify-content: space-between;
+  padding: 10px;
+`;
+
+export const WwwBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 220px;
 `;
 
 export const RecordCard = styled.div`
@@ -244,6 +312,7 @@ export const CheckProperty = styled.div`
   p {
     display: flex;
     position: relative;
+    justify-content: space-between;
     font-family: Roboto Mono;
     font-size: 20px;
     font-weight: 700;
@@ -251,7 +320,7 @@ export const CheckProperty = styled.div`
     letter-spacing: 0em;
     text-align: left;
     padding: 1rem;
-    height: 40px;
+    height: 80px;
     width: 360px;
     margin-top: 5px;
     left: 18px;
@@ -259,5 +328,27 @@ export const CheckProperty = styled.div`
     background-color: #ffffff;
     border-radius: 8px;
     border: 2px solid black;
+  }
+`;
+
+//Local pick 스타일
+export const Local = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  p {
+    font-family: Roboto Mono;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-left: 5%;
+  }
+  span {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 2%;
   }
 `;
