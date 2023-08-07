@@ -3,6 +3,8 @@
 import { Box, Box2, Btn, BtnShadow, RecordContainer, SubTitle } from "./RecordStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenNib, faSearch } from "@fortawesome/free-solid-svg-icons";
+import RecordMain from "../../image/record_main.png"
+import RecordSub from "../../image/record_sub.png"
 import FriendCards from "./FriendCards";
 import TodayCards from "./TodayCards";
 import ListCards from "./ListCards";
@@ -13,24 +15,26 @@ const Record = () => {
     <RecordContainer>
 
       <p>
-        Title
+        <img style={{ margin: "15px 0" }} src={RecordMain} />
         <br />
-        설명글
+        <img src={RecordSub} />
       </p>
 
-      <Box FlexDirect="row" Height="388px">
+      <Box FlexDirect="row" Height="450px">
 
         <Box FlexDirect="column">
-          <Btn BgColor="#92D3F5">
-            <FontAwesomeIcon icon={faPenNib} />
-            <p style={{ margin: "0 10px" }}>record daily life</p>
-            <BtnShadow />
-          </Btn>
-          <Btn BgColor="#F2C94C">
-            <FontAwesomeIcon icon={faSearch} />
-            <p style={{ margin: "0 10px" }}>search daily life</p>
-            <BtnShadow />
-          </Btn>
+          <Box FlexDirect="column" Height="155px">
+            <Btn BgColor="#92D3F5">
+              <FontAwesomeIcon icon={faPenNib} />
+              <p style={{ margin: "0 10px" }}>record daily life</p>
+              <BtnShadow />
+            </Btn>
+            <Btn BgColor="#F2C94C">
+              <FontAwesomeIcon icon={faSearch} />
+              <p style={{ margin: "0 10px" }}>search daily life</p>
+              <BtnShadow />
+            </Btn>
+          </Box>
           <SubTitle>My w’s recent record!</SubTitle>
           <FriendCards />
         </Box>
@@ -42,9 +46,15 @@ const Record = () => {
               style={{
                 color: "#848484",
                 margin: "0 15px",
+<<<<<<< HEAD
+                fontSize: "1.25rem"
+              }
+            }>
+=======
                 fontSize: "20px",
               }}
             >
+>>>>>>> 910bb16d9e411edda372f1d54c62920826d3e53d
               + view more
             </p>
           </SubTitle>
@@ -61,9 +71,16 @@ const Record = () => {
         <ListCards />
       </Box2>
 
-      <Box FlexDirect="column">
+      <Box FlexDirect="column" Height="832px">
         <SubTitle>The secret of locals!</SubTitle>
-        <LocalPicks />
+        <Box style={{flexWrap: "wrap"}} Height="750px" JusCon="space-between">
+          <LocalPicks />
+          <LocalPicks />
+          <LocalPicks />
+          <LocalPicks />
+          <LocalPicks />
+          <LocalPicks />
+        </Box>
       </Box>
     </RecordContainer>
   );
