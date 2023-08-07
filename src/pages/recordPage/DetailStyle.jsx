@@ -36,3 +36,6 @@ export const PostSubTitle = styled.p`
 export const PostTitle = styled(PostSubTitle)`
   font-size: 1.3rem;
 `;
+export const BtnWrapper = styled.div`
+  display: flex;
+`
