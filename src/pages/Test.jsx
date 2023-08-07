@@ -5,10 +5,8 @@ import Detail from "./recordPage/Detail";
 export const Test = () => {
   return (
     <>
-      <Detail>
-        <Card />
-      </Detail>
-      <FriendMark />
+      <Detail />
+        {/* <Card /> */}
     </>
   );
 };

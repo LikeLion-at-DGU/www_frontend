@@ -16,6 +16,17 @@ export const CardWrapper = styled.div`
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `;
 
+export const CardBorder = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  border-bottom: 1px solid #000;
+`;
+
+export const ImgCardBorder = styled(CardBorder)`
+  justify-content: center;
+`;
+
 export const CardText = styled.div`
   padding: 10px 15px;
 `;
@@ -31,6 +42,16 @@ export const CardImg = styled.img`
   max-width: 100%;
   max-height: 100%;
   padding: 15px;
+`;
+export const CardInfo = styled.div`
+  width: 100%;
+  display: flex;
+  padding-top: 20px;
+  justify-content: space-between;
+`;
+export const PenImg = styled.img`
+  width :30px;
+  height:30px;
 `;
 export const HashTag = styled.input`
   height: 90%;

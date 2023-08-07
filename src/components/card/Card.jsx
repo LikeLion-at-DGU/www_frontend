@@ -5,7 +5,16 @@ import { useState } from "react";
 import TestIMG from "../../image/test.jpg";
 import PenIMG from "../../image/pen.png";
 import BookMark from "../index/BookMark";
-import { CardWrapper, CardWWW, CardText, CardImg, HashTag } from "./CardStyle";
+import {
+  CardWrapper,
+  CardBorder,
+  CardWWW,
+  ImgCardBorder,CardInfo,
+  CardText,
+  CardImg,
+  HashTag,
+  PenImg,
+} from "./CardStyle";
 
 const Card = () => {
   const [tag, setTag] = useState("");
@@ -15,29 +24,24 @@ const Card = () => {
   return (
     <>
       <CardWrapper>
-        <Wrapper style={{ borderBottom: "1px solid #000" }}>
+        <CardBorder>
           <CardWWW>WHERE: &nbsp; </CardWWW>
           <CardText>포케 올 데이 잠실점</CardText>
-        </Wrapper>
-        <Wrapper style={{ borderBottom: "1px solid #000" }}>
+        </CardBorder>
+        <CardBorder>
           <CardWWW>WHAT: &nbsp; </CardWWW>
           <CardText>포케를 먹을 수 있는 식당</CardText>
-        </Wrapper>
-        <Wrapper style={{ borderBottom: "1px solid #000" }}>
+        </CardBorder>
+        <CardBorder>
           <CardWWW>HOW(TIPS!): &nbsp; </CardWWW>
           <CardText>연어 먹고싶다 리뷰이벤트도 된다 무료로 받으세요</CardText>
-        </Wrapper>
-        <Wrapper
-          style={{ borderBottom: "1px solid #000", justifyContent: "center" }}
-        >
-          {/* <img src={`${process.env.PUBLIC_URL}/imgData/test.jpg`} /> */}
+        </CardBorder>
+        <ImgCardBorder>
           <CardImg src={TestIMG} alt="post img" />
-        </Wrapper>
-        <Wrapper
-          style={{ paddingTop: "20px", justifyContent: "space-between" }}
-        >
+        </ImgCardBorder>
+        <CardInfo>
           <Wrapper>
-            <img src={PenIMG} alt="pen" width={"35px"} height={"35px"} />
+            <PenImg src={PenIMG} alt="pen" />
             <HashTag
               type="text"
               value={tag}
@@ -46,7 +50,7 @@ const Card = () => {
             ></HashTag>
           </Wrapper>
           <BookMark />
-        </Wrapper>
+        </CardInfo>
       </CardWrapper>
     </>
   );
