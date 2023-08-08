@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound";
 import Mainpage from "./pages/mainPage/Mainpage";
 import { Test } from "./pages/Test";
 import Write from "./pages/writePage/Write";
+import Search from "./pages/searchPage/Search";
 
 const Router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const Router = createBrowserRouter([
       {
         path: "record/:detailId",
         element: <Detail />,
+      },
+      {
+        path: "record/search",
+        element: <Search />,
       },
       {
         path: "record",
