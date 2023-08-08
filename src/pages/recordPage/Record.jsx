@@ -16,11 +16,11 @@ const Record = () => {
 
   return (
     <RecordContainer>
-      <p>
+      <div style={{width: "1122px"}}>
         <img style={{ margin: "56px 0 21px 0" }} src={RecordMain} />
         <br />
         <img src={RecordSub} />
-      </p>
+      </div>
 
       <Box flexdirect="row" margin="20px 0 50px 0" width="1122px">
         <Box flexdirect="column" width="561px">
@@ -47,6 +47,7 @@ const Record = () => {
                 margin: "0 15px",
                 fontSize: "1.25rem",
               }}
+              onClick={() => navigate("/record/search")}
             >
               + view more
             </p>

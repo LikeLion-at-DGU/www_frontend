@@ -28,6 +28,7 @@ export const NavSection = styled(NavLink)`
     display: flex;
     justify-content: center;
     text-align: center;
+    /* color: #2E74B5; */
 `
 // export const LoginBtn = styled.div`
 //     background-color: ${props=>props.BgColor};
