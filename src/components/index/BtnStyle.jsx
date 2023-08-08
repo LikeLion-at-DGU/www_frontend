@@ -16,6 +16,9 @@ export const BlueBtn = styled.div`
   box-shadow: -5px 5px #222222;
   &:hover {
     box-shadow: none;
+    position: relative;
+    right: 5px;
+    top: 5px;
   }
 `;
 export const BookMarkStyle = styled.div`
