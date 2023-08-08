@@ -23,13 +23,16 @@ const RecordSearch = () => {
       )}
       {searchResults.length > 0 ? (
         <div>
-          <p>검색결과 있음</p>
+          <SubTitle>record with "{searchTerm}"</SubTitle>
           {searchResults.map((result, index) => (
             <p key={index}>{result}</p>
           ))}
         </div>
       ) : (
-        <p>검색결과 없음</p>
+        <div>
+          <SubTitle>record with "{searchTerm}"</SubTitle>
+          Sorry. No search results found.
+        </div>
       )}
       <Box2 flexdirect="column" height="832px">
         <SubTitle>Records around the world!</SubTitle>

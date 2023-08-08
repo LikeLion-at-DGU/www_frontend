@@ -26,7 +26,7 @@ const SearchBar = ({ onSearch }) => {
             </SelectType>
             <SearchInput
                 type="text"
-                placeholder={searchType === "word" ? "type a words." : "#napoli_store"}
+                placeholder={searchType === "word" ? "type a words." : "#city_keyword  please use this form!"}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
             />

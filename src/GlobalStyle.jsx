@@ -37,6 +37,8 @@ export const GlobalStyle = createGlobalStyle`
 		background-size: cover; */
 		background-color: #F2F2F2; 
 		color: #222222;
+		/* nav바 높이만큼 내림 */
+		margin-top: 97px;
 	}
 	ol, ul {
 		list-style: none;

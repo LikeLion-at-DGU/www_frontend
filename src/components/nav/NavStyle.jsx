@@ -4,22 +4,27 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const NavContainer = styled.nav`
+    position: fixed;
+    top: 0;
     width: 100%;
-    height: 121px;
-    /* z-index: 1; */
+    height: 97px;
+    z-index: 1;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    background-color: #F2F2F2;
 `
 export const LogoImg = styled.img`
-    height: 81.6px;
+    height: 65px;
 `
 export const NavSection = styled(NavLink)`
     text-decoration: none;
     color: black;
-    font-size: 20px;
+    font-size: 1rem;
+    /* 16px */
     font-weight: 700;
     width: 150px;
+    height: 42px;
     display: flex;
     justify-content: center;
     text-align: center;

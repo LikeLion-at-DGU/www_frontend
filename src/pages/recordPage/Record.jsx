@@ -17,12 +17,12 @@ const Record = () => {
   return (
     <RecordContainer>
       <p>
-        <img style={{ margin: "15px 0" }} src={RecordMain} />
+        <img style={{ margin: "56px 0 21px 0" }} src={RecordMain} />
         <br />
         <img src={RecordSub} />
       </p>
 
-      <Box flexdirect="row" height="450px">
+      <Box flexdirect="row" margin="20px 0 50px 0">
         <Box flexdirect="column">
           <Box flexdirect="column" height="155px">
             <Btn onClick={() => navigate("/record/write")} bgcol="#92D3F5">

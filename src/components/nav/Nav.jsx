@@ -17,9 +17,9 @@ export const Nav = () => {
         Daily Record
       </NavSection>
       <NavSection to={"discussion"}>
-        Global
+        Find
         <br />
-        Discussion
+        My Companion
       </NavSection>
       <NavSection to={"archive"}>
         My
