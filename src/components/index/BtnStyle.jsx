@@ -13,17 +13,10 @@ export const BlueBtn = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-`;
-export const Shadow = styled.div`
-  position: absolute;
-  bottom: -5px;
-  left: -5px;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background-color: black;
-  border-radius: 40px;
+  box-shadow: -5px 5px #222222;
+  &:hover {
+    box-shadow: none;
+  }
 `;
 export const BookMarkStyle = styled.div`
   width: ${(props) => (props.handlewidth ? props.handlewidth : "51px")};
@@ -38,6 +31,10 @@ export const BookMarkStyle = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  position: ${(props) => (props.handleposi ? props.handleposi : "")};
+  top: ${(props) => (props.handletop ? props.handletop : "")};
+  right: ${(props) => (props.handleright ? props.handleright : "")};
 `;
 export const LikeStyle = styled(BookMarkStyle)`
   width: ${(props) => (props.handlewidth ? props.handlewidth : "80px")};
@@ -83,6 +80,42 @@ export const MineStyle = styled(BookMarkStyle)`
   color: #222;
   font-weight: 700;
   margin-bottom: 10px;
+`;
+
+export const CountryStyle = styled(BookMarkStyle)`
+  width: fit-content;
+  height: ${(props) => (props.handleheight ? props.handleheight : "24px")};
+  font-size: ${(props) => (props.handlefsize ? props.handlefsize : "")};
+  background-color: #2e74b5;
+  border-radius: 20px;
+  border: 2px solid #222;
+  color: #ffffff;
+  font-weight: 400;
+  padding: 8px;
+`;
+
+export const CityStyle = styled(BookMarkStyle)`
+  width: fit-content;
+  height: ${(props) => (props.handleheight ? props.handleheight : "24px")};
+  font-size: ${(props) => (props.handlefsize ? props.handlefsize : "")};
+  background-color: #3ebd6b;
+  border-radius: 20px;
+  border: 2px solid #222;
+  color: #ffffff;
+  font-weight: 400;
+  padding: 8px;
+`;
+
+export const DateStyle = styled(BookMarkStyle)`
+  width: fit-content;
+  height: ${(props) => (props.handleheight ? props.handleheight : "24px")};
+  font-size: ${(props) => (props.handlefsize ? props.handlefsize : "")};
+  background-color: #8e44ad;
+  border-radius: 20px;
+  border: 2px solid #222;
+  color: #ffffff;
+  font-weight: 400;
+  padding: 8px;
 `;
 
 export const BtnText = styled.span`

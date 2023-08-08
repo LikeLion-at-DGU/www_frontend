@@ -1,21 +1,49 @@
-import { BigImage, City, Img, ProfileImg2, TagBox, TodayCard, TodayTitle, Writer } from "./RecordStyle";
+import React, { useState } from "react";
+import { BigImage, City, HoverOverlay, Img, ProfileImg, TitleBox, TodayCard, TodayTitle, Writer } from "./RecordStyle";
 import recordImg from "../../image/record2.jpg"
 
 const TodayCards = () => {
+    const [isHovered, setIsHovered] = useState(false);
+
+    const handleMouseEnter = () => {
+        setIsHovered(true);
+    };
+
+    const handleMouseLeave = () => {
+        setIsHovered(false);
+    };
+
     return (
-        <TodayCard>
-            <Img Width="100%" Height="262px">
-                <BigImage src={recordImg} />
+        <TodayCard onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <Img width="100%" height={isHovered ? "335px" : "262px"}>
+                <BigImage 
+                src={recordImg} 
+                rightradius={isHovered ? "20px" : ""}
+                leftradius={isHovered ? "20px" : ""} />
             </Img>
-            <TagBox Padding="18px" JusCon="space-between">
+            <TitleBox padding="18px" juscon="space-between" isHovered={isHovered}>
                 <TodayTitle>London life</TodayTitle>
                 <Writer>
                     <p>by</p>
-                    <ProfileImg2></ProfileImg2>
+                    <ProfileImg></ProfileImg>
                     harry.lena
                     <City>England/london</City>
                 </Writer>
-            </TagBox>
+            </TitleBox>
+            <HoverOverlay isHovered={isHovered}>
+                <TodayTitle>London life</TodayTitle>
+                <Writer>
+                    <p>by</p>
+                    <ProfileImg></ProfileImg>
+                    harry.lena
+                    <City>England/london</City>
+                </Writer>
+                <div>
+                The definition of friendships between opposite genders becomes somewhat ambiguous depending on how we interpret the term “friend”. 
+                It is entirely possible to be friends on a casual level, engaging in common hobbies, academic pursuits, or daily activities. 
+                However, as the level of intimacy deepens, it may become increasingly difficult to distinguish between platonic feelings and romantic emotions, and ...
+                </div>
+            </HoverOverlay>
         </TodayCard>
     );
 };

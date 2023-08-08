@@ -9,6 +9,9 @@ const BookMark = (props) => {
       handlewidth={props.handlewidth}
       handleheight={props.handleheight}
       handlefsize={props.handlefsize}
+      handleposi={props.handleposi}
+      handletop={props.handletop}
+      handleright={props.handleright}
       onClick={() => setMark(mark ? false : true)}
     >
       {mark ? (

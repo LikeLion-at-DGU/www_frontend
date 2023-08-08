@@ -2,7 +2,7 @@
 
 import { LogoImg, NavContainer, NavSection } from "./NavStyle";
 import logo from "../../image/logo.png";
-import { BlueBtn, Shadow } from "../index/BtnStyle";
+import { BlueBtn } from "../index/BtnStyle";
 import { Link } from "react-router-dom";
 
 export const Nav = () => {
@@ -29,7 +29,7 @@ export const Nav = () => {
       <Link to={"login"}>
         <BlueBtn bdradius={"40px"}>
           sign in!
-          <Shadow />
+          {/* <Shadow /> */}
         </BlueBtn>
       </Link>
     </NavContainer>

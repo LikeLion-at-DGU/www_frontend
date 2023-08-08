@@ -1,6 +1,6 @@
 // Record.jsx
 
-import { Box, Box2, Btn, BtnShadow, RecordContainer, SubTitle } from "./RecordStyle";
+import { Box, Box2, Btn, RecordContainer, SubTitle } from "./RecordStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenNib, faSearch } from "@fortawesome/free-solid-svg-icons";
 import RecordMain from "../../image/record_main.png"
@@ -20,26 +20,24 @@ const Record = () => {
         <img src={RecordSub} />
       </p>
 
-      <Box FlexDirect="row" Height="450px">
+      <Box flexdirect="row" height="450px">
 
-        <Box FlexDirect="column">
-          <Box FlexDirect="column" Height="155px">
-            <Btn BgColor="#92D3F5">
+        <Box flexdirect="column">
+          <Box flexdirect="column" height="155px">
+            <Btn bgcol="#92D3F5">
               <FontAwesomeIcon icon={faPenNib} />
               <p style={{ margin: "0 10px" }}>record daily life</p>
-              <BtnShadow />
             </Btn>
-            <Btn BgColor="#F2C94C">
+            <Btn bgcol="#F2C94C">
               <FontAwesomeIcon icon={faSearch} />
               <p style={{ margin: "0 10px" }}>search daily life</p>
-              <BtnShadow />
             </Btn>
           </Box>
           <SubTitle>My w’s recent record!</SubTitle>
           <FriendCards />
         </Box>
 
-        <Box FlexDirect="column">
+        <Box flexdirect="column">
           <SubTitle>
             World of today!
             <p
@@ -57,7 +55,7 @@ const Record = () => {
 
       </Box>
 
-      <Box2 FlexDirect="column" Height="832px">
+      <Box2 flexdirect="column" height="832px">
         <ListCards />
         <ListCards />
         <ListCards />
@@ -65,9 +63,9 @@ const Record = () => {
         <ListCards />
       </Box2>
 
-      <Box FlexDirect="column" Height="832px">
+      <Box flexdirect="column" height="832px">
         <SubTitle>The secret of locals!</SubTitle>
-        <Box style={{flexWrap: "wrap"}} Height="750px" JusCon="space-between">
+        <Box style={{flexWrap: "wrap"}} height="750px" juscon="space-between">
           <LocalPicks />
           <LocalPicks />
           <LocalPicks />
