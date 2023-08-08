@@ -1,8 +1,11 @@
 import { styled } from "styled-components";
 import { BlueBtn } from "../../components/index/BtnStyle";
 import { PenImg } from "../../components/card/CardStyle";
-import { PostWrapper } from "../recordPage/DetailStyle";
+import { DetailWrapper, PostWrapper } from "../recordPage/DetailStyle";
 
+export const TopWriteWrapper =styled(DetailWrapper)`
+  margin: 30px auto;
+`
 export const WriteWrapper = styled(PostWrapper)`
   border-bottom: 1px solid #222;
   padding: 15px 0;

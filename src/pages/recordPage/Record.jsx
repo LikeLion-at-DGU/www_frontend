@@ -9,11 +9,13 @@ import FriendCards from "./FriendCards";
 import TodayCards from "./TodayCards";
 import ListCards from "./ListCards";
 import LocalPicks from "./LocalPicks";
+import { useNavigate } from "react-router-dom";
 
 const Record = () => {
+    const navigate = useNavigate();
+
   return (
     <RecordContainer>
-
       <p>
         <img style={{ margin: "15px 0" }} src={RecordMain} />
         <br />
@@ -21,10 +23,9 @@ const Record = () => {
       </p>
 
       <Box flexdirect="row" height="450px">
-
         <Box flexdirect="column">
           <Box flexdirect="column" height="155px">
-            <Btn bgcol="#92D3F5">
+            <Btn onClick={() => navigate("/record/write")} bgcol="#92D3F5">
               <FontAwesomeIcon icon={faPenNib} />
               <p style={{ margin: "0 10px" }}>record daily life</p>
             </Btn>
@@ -44,15 +45,14 @@ const Record = () => {
               style={{
                 color: "#848484",
                 margin: "0 15px",
-                fontSize: "1.25rem"
-              }
-            }>
+                fontSize: "1.25rem",
+              }}
+            >
               + view more
             </p>
           </SubTitle>
           <TodayCards />
         </Box>
-
       </Box>
 
       <Box2 flexdirect="column" height="832px">
@@ -65,7 +65,7 @@ const Record = () => {
 
       <Box flexdirect="column" height="832px">
         <SubTitle>The secret of locals!</SubTitle>
-        <Box style={{flexWrap: "wrap"}} height="750px" juscon="space-between">
+        <Box style={{ flexWrap: "wrap" }} height="750px" juscon="space-between">
           <LocalPicks />
           <LocalPicks />
           <LocalPicks />

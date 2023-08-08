@@ -1,13 +1,11 @@
 // Write.jsx
 
 import { PenImg } from "../../components/card/CardStyle";
-import { BlueBtn, Shadow } from "../../components/index/BtnStyle";
 import {
   PostWrapper,
   DetailWrapper,
   BtnWrapper,
 } from "../recordPage/DetailStyle";
-import { Writer, ProfileImg, City, BtnShadow } from "../recordPage/RecordStyle";
 import {
   RegisterBtn,
   SaveBtn,
@@ -19,6 +17,7 @@ import {
   WriteBody,
   UproadImg,
   AddCardBtn,
+  TopWriteWrapper,
 } from "./WriteStyle";
 import PenIMG from "../../image/pen.png";
 import { Wrapper } from "../../components/WrapStyle";
@@ -26,7 +25,7 @@ import { Wrapper } from "../../components/WrapStyle";
 const Write = () => {
   return (
     <>
-      <DetailWrapper>
+      <TopWriteWrapper>
         <form style={{ width: "100%" }}>
           <WriteWrapper>
             <PostWriter>
@@ -35,10 +34,7 @@ const Write = () => {
               <span>Korea/incheon</span>
             </PostWriter>
             <BtnWrapper>
-              <SaveBtn>
-                save
-                <BtnShadow />
-              </SaveBtn>
+              <SaveBtn>save</SaveBtn>
               <RegisterBtn>
                 <RegisterImg src={PenIMG} alt="pen" />
                 &nbsp;register
@@ -65,7 +61,7 @@ const Write = () => {
           </Wrapper>
           <WriteBody placeholder="Please enter the main content."></WriteBody>
         </form>
-      </DetailWrapper>
+      </TopWriteWrapper>
     </>
   );
 };

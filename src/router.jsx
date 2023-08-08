@@ -10,6 +10,7 @@ import Archive from "./pages/archivePage/Archive";
 import NotFound from "./pages/NotFound";
 import Mainpage from "./pages/mainPage/Mainpage";
 import { Test } from "./pages/Test";
+import Write from "./pages/writePage/Write";
 
 const Router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const Router = createBrowserRouter([
       {
         path: "",
         element: <Mainpage />,
+      },
+      {
+        path: "record/write",
+        element: <Write />,
       },
       {
         path: "record/:detailId",
