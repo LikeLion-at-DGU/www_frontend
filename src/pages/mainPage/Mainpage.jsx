@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import mainbg from "../../image/mainbg.png";
 import maintext from "../../image/maintext.png";
 import note from "../../image/note.png";
-import FriendCards from "../recordPage/ListCards";
+import FriendCards from "../recordPage/FriendCards";
 import LocalPicks from "../recordPage/LocalPicks";
 import Like from "../../components/index/Like";
 import CountryName from "../../components/index/Country";
@@ -145,9 +145,10 @@ const Mainpage = () => {
               <img src={note} alt="note" />
               <p>One and Only Record</p>
             </OneAndOnly>
-            {data.map((item) => (
+            <FriendCards />
+            {/* {data.map((item) => (
               <RecordCard key={item.id} item={item}></RecordCard>
-            ))}
+            ))} */}
           </OneAndOnlyContainer>
           <TravelContainer>
             <p>Travel buddy?</p>
