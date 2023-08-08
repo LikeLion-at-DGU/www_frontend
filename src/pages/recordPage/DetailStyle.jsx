@@ -19,6 +19,7 @@ width: 100%;
 `;
 export const PostWrapper = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: row;
   justify-content: space-between;
   margin: 30px 0;
