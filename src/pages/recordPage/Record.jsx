@@ -16,14 +16,14 @@ const Record = () => {
 
   return (
     <RecordContainer>
-      <p>
-        <img style={{ margin: "15px 0" }} src={RecordMain} />
+      <div style={{width: "1122px"}}>
+        <img style={{ margin: "56px 0 21px 0" }} src={RecordMain} />
         <br />
         <img src={RecordSub} />
-      </p>
+      </div>
 
-      <Box flexdirect="row" height="450px">
-        <Box flexdirect="column">
+      <Box flexdirect="row" margin="20px 0 50px 0" width="1122px">
+        <Box flexdirect="column" width="561px">
           <Box flexdirect="column" height="155px">
             <Btn onClick={() => navigate("/record/write")} bgcol="#92D3F5">
               <FontAwesomeIcon icon={faPenNib} />
@@ -38,7 +38,7 @@ const Record = () => {
           <FriendCards />
         </Box>
 
-        <Box flexdirect="column">
+        <Box flexdirect="column" width="561px">
           <SubTitle>
             World of today!
             <p
@@ -47,6 +47,7 @@ const Record = () => {
                 margin: "0 15px",
                 fontSize: "1.25rem",
               }}
+              onClick={() => navigate("/record/search")}
             >
               + view more
             </p>
@@ -55,7 +56,7 @@ const Record = () => {
         </Box>
       </Box>
 
-      <Box2 flexdirect="column" height="832px">
+      <Box2 flexdirect="column" height="832px" >
         <ListCards />
         <ListCards />
         <ListCards />
@@ -63,7 +64,7 @@ const Record = () => {
         <ListCards />
       </Box2>
 
-      <Box flexdirect="column" height="832px">
+      <Box flexdirect="column" height="832px" width="1122px">
         <SubTitle>The secret of locals!</SubTitle>
         <Box style={{ flexWrap: "wrap" }} height="750px" juscon="space-between">
           <LocalPicks />

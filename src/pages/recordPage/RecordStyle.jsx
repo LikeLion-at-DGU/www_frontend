@@ -6,12 +6,14 @@ export const RecordContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 0 5vw;
+    align-items: center;
+    padding: 0 5vw;
+    margin: 0 auto;
 `
 export const Box = styled.div`
     display: flex;
     flex-direction: ${props => props.flexdirect};
-    width: 100%;
+    width: ${(props)=>(props.width ? props.width : "100%")};
     height: ${props => props.height};
     justify-content: ${props => props.juscon};
     margin: 10px 0;
@@ -19,6 +21,7 @@ export const Box = styled.div`
 `
 export const Box2 = styled(Box)`
     justify-content: space-evenly;
+    width: 1122px;
 `
 export const Btn = styled(BlueBtn)`
     display: flex;

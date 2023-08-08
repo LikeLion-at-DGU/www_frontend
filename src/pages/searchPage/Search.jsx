@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import SearchBar from "./SearchBar";
-import { Box2, SubTitle } from "../recordPage/RecordStyle";
+import { Box, Box2, SubTitle } from "../recordPage/RecordStyle";
 import ListCards from "../recordPage/ListCards";
 import { SearchContainer } from "./SearchStyle";
 
@@ -23,13 +23,16 @@ const RecordSearch = () => {
       )}
       {searchResults.length > 0 ? (
         <div>
-          <p>검색결과 있음</p>
+          <SubTitle>record with "{searchTerm}"</SubTitle>
           {searchResults.map((result, index) => (
             <p key={index}>{result}</p>
           ))}
         </div>
       ) : (
-        <p>검색결과 없음</p>
+        <div style={{width: "1122px"}}>
+          <SubTitle>record with "{searchTerm}"</SubTitle>
+          <p>Sorry. No search results found.</p>
+        </div>
       )}
       <Box2 flexdirect="column" height="832px">
         <SubTitle>Records around the world!</SubTitle>
