@@ -22,8 +22,8 @@ const Record = () => {
         <img src={RecordSub} />
       </p>
 
-      <Box flexdirect="row" margin="20px 0 50px 0">
-        <Box flexdirect="column">
+      <Box flexdirect="row" margin="20px 0 50px 0" width="1122px">
+        <Box flexdirect="column" width="561px">
           <Box flexdirect="column" height="155px">
             <Btn onClick={() => navigate("/record/write")} bgcol="#92D3F5">
               <FontAwesomeIcon icon={faPenNib} />
@@ -38,7 +38,7 @@ const Record = () => {
           <FriendCards />
         </Box>
 
-        <Box flexdirect="column">
+        <Box flexdirect="column" width="561px">
           <SubTitle>
             World of today!
             <p
@@ -55,7 +55,7 @@ const Record = () => {
         </Box>
       </Box>
 
-      <Box2 flexdirect="column" height="832px">
+      <Box2 flexdirect="column" height="832px" >
         <ListCards />
         <ListCards />
         <ListCards />
@@ -63,7 +63,7 @@ const Record = () => {
         <ListCards />
       </Box2>
 
-      <Box flexdirect="column" height="832px">
+      <Box flexdirect="column" height="832px" width="1122px">
         <SubTitle>The secret of locals!</SubTitle>
         <Box style={{ flexWrap: "wrap" }} height="750px" juscon="space-between">
           <LocalPicks />
