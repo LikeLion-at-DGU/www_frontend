@@ -5,17 +5,20 @@ import { DetailWrapper, PostWrapper } from "../recordPage/DetailStyle";
 
 export const TopWriteWrapper =styled(DetailWrapper)`
   margin: 30px auto;
+  width: 1122px;
 `
 export const WriteWrapper = styled(PostWrapper)`
   border-bottom: 1px solid #222;
   padding: 15px 0;
   margin: 0;
+  width: 760px;
 `;
 export const SaveBtn = styled(BlueBtn)`
   border-radius: 10px;
   width: 100px;
   height: 40px;
   font-size: 1rem;
+  color: #222;
   margin: 0 10px;
 `;
 export const RegisterBtn = styled(SaveBtn)`

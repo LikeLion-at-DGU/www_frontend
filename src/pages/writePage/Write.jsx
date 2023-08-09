@@ -48,7 +48,7 @@ const Write = () => {
           <TitleInput placeholder="Title" />
           <Wrapper>
             <UproadImg>
-              추가
+              <span className="material-symbols-outlined">add_a_photo</span>
               <input
                 type="file"
                 name="chooseFile"
@@ -57,7 +57,10 @@ const Write = () => {
                 style={{ visibility: "hidden" }}
               />
             </UproadImg>
-            <AddCardBtn>add card</AddCardBtn>
+            <AddCardBtn>
+              <span className="material-symbols-outlined">library_add</span>
+              add card
+            </AddCardBtn>
           </Wrapper>
           <WriteBody placeholder="Please enter the main content."></WriteBody>
         </form>

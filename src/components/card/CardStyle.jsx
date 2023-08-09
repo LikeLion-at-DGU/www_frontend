@@ -19,6 +19,7 @@ export const CardWrapper = styled.div`
 export const CardBorder = styled.div`
   display: flex;
   width: 100%;
+  min-height: 70px;
   flex-direction: row;
   border-bottom: 1px solid #000;
 `;
@@ -29,6 +30,11 @@ export const ImgCardBorder = styled(CardBorder)`
 
 export const CardText = styled.div`
   padding: 10px 15px;
+`;
+export const CardInput = styled.input`
+  padding: 10px 15px;
+  border: 0;
+  width: 70%;
 `;
 
 export const CardWWW = styled.div`

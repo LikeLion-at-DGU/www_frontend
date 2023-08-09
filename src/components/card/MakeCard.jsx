@@ -9,13 +9,14 @@ import {
   CardWrapper,
   CardBorder,
   CardWWW,
-  ImgCardBorder,
+  ImgCardBorder,CardInput,
   CardInfo,
   CardText,
   CardImg,
   HashTag,
   PenImg,
 } from "./CardStyle";
+import { SaveBtn } from "../../pages/writePage/WriteStyle";
 
 const MakeCard = () => {
   const [tag, setTag] = useState("");
@@ -27,15 +28,15 @@ const MakeCard = () => {
       <CardWrapper>
         <CardBorder>
           <CardWWW>WHERE: &nbsp; </CardWWW>
-          <CardText>포케 올 데이 잠실점</CardText>
+          <CardInput type="text" />
         </CardBorder>
         <CardBorder>
           <CardWWW>WHAT: &nbsp; </CardWWW>
-          <CardText>포케를 먹을 수 있는 식당</CardText>
+          <CardInput type="text" />
         </CardBorder>
         <CardBorder>
           <CardWWW>HOW(TIPS!): &nbsp; </CardWWW>
-          <CardText>연어 먹고싶다 리뷰이벤트도 된다 무료로 받으세요</CardText>
+          <CardInput type="text" />
         </CardBorder>
         <ImgCardBorder>
           <CardImg src={TestIMG} alt="post img" />
@@ -50,7 +51,7 @@ const MakeCard = () => {
               placeholder="#seoul_restaurant"
             ></HashTag>
           </Wrapper>
-          <BookMark />
+          <SaveBtn>save</SaveBtn>
         </CardInfo>
       </CardWrapper>
     </>

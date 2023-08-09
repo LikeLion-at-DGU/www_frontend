@@ -21,7 +21,7 @@ const Detail = () => {
   const [commentFold,setCommentFold] = useState(true);
 
   return (
-    <div style={{ margin: "30px" }}>
+    <div style={{ margin: "0 auto", width: "1122px"}}>
       <DetailWrapper>
         <BorderBottom>
           <Writer>
