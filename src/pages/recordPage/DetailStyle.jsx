@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import { Writer } from "./RecordStyle";
 
 export const DetailWrapper = styled.div`
   font-family: "Roboto Flex";
@@ -13,7 +14,7 @@ export const DetailWrapper = styled.div`
   border-radius: 20px;
 `;
 export const BorderBottom = styled.div`
-width: 100%;
+  width: 100%;
   border-bottom: 1px solid #000;
   justify-content: center; 
 `;
@@ -39,4 +40,13 @@ export const PostTitle = styled(PostSubTitle)`
 `;
 export const BtnWrapper = styled.div`
   display: flex;
+  align-items: center;
+  /* justify-content: center; */
+`
+export const CenterWriter = styled(Writer)`
+  justify-content: center;
+  padding-bottom: 10px;
+`
+export const Margin = styled.div`
+  height: 100px;
 `
