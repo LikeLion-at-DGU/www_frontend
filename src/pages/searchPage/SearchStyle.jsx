@@ -48,3 +48,10 @@ export const SearchBtn = styled.button`
     font-weight: 700;
     padding-right: 20px;
 `
+export const NoResult = styled.div`
+    display: flex;
+    flex-direction: column;
+    font-size: 1.1rem;
+    font-weight: 700;
+    align-items: center;
+`
