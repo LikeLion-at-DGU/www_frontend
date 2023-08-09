@@ -5,7 +5,7 @@ import Login from "./pages/loginPage/Login";
 import Input from "./pages/loginPage/Input";
 import Record from "./pages/recordPage/Record";
 import Detail from "./pages/recordPage/Detail";
-import Discussion from "./pages/discussionPage/Discussion";
+import Companion from "./pages/companionPage/Companion";
 import Archive from "./pages/archivePage/Archive";
 import NotFound from "./pages/NotFound";
 import Mainpage from "./pages/mainPage/Mainpage";
@@ -39,8 +39,8 @@ const Router = createBrowserRouter([
         element: <Record />,
       },
       {
-        path: "discussion",
-        element: <Discussion />,
+        path: "companion",
+        element: <Companion />,
       },
       {
         path: "archive",

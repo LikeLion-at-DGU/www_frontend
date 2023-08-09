@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import mainbg from "../../image/mainbg.png";
 import maintext from "../../image/maintext.png";
 import note from "../../image/note.png";
+import bird from "../../image/bird.png";
 import FriendCards from "../recordPage/FriendCards";
 import LocalPicks from "../recordPage/LocalPicks";
 import {
@@ -13,11 +13,11 @@ import {
   OneAndOnly,
   FriendData,
   TravelContainer,
+  TravelTitle,
   Vote,
   VoteTitle,
   ExampleImage,
   VoteSubject,
-  BackgroundImage,
   SignUp,
   CheckBox,
   CheckProperty,
@@ -82,7 +82,7 @@ const Mainpage = () => {
 
   return (
     <MainContainer>
-      <BackgroundImage src={mainbg} alt="background-image" />
+      {/* <BackgroundImage src={mainbg} alt="background-image" /> */}
       <TextImage>
         <img src={maintext} alt="maintext" />
       </TextImage>
@@ -175,7 +175,10 @@ const Mainpage = () => {
         </OneAndVote>
 
         <TravelContainer>
-          <p>Finding Travel buddy</p>
+          <TravelTitle>
+            <img src={bird} alt="bird" />
+            <p>Finding Travel buddy</p>
+          </TravelTitle>
           {buddyDataArray.map((item, index) => (
             <Buddy
               key={item.id}
@@ -188,9 +191,9 @@ const Mainpage = () => {
         <Local>
           <p>The secret of locals!</p>
           <span>
-            <LocalPicks style={{ width: "300px", height: "300px" }} />
-            <LocalPicks />
-            <LocalPicks />
+            <LocalPicks width="262px" height="245px" />
+            <LocalPicks width="262px" height="245px" />
+            <LocalPicks width="262px" height="245px" />
           </span>
         </Local>
       </Contents>
