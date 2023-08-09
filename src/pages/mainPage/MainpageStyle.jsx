@@ -12,15 +12,16 @@ export const MainContainer = styled.nav`
   /* border: 3px solid; */
 `;
 
-// export const BackgroundImage = styled.img`
-//   position: fixed;
-//   width: 100%;
-//   height: 100%;
-//   top: 90px;
-//   object-fit: contain;
-//   opacity: 50%;
-//   z-index: -2;
-// `;
+const frameInAnimation = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100%{
+    opacity: 1;
+    transform: translateX(0%);
+  }
+`;
 
 export const TextImage = styled.div`
   display: flex;
@@ -36,14 +37,16 @@ export const TextImage = styled.div`
     width: 1100px;
     height: 380px;
   }
+  &.frame-in {
+    animation: ${frameInAnimation} 2s forwards;
+  }
 `;
 
 export const Contents = styled.div`
   display: flex;
   width: 1200px;
   flex-direction: column;
-  border: 3px solid blue;
-  border: 3px solid blue;
+  /* border: 3px solid blue; */
 `;
 
 export const OneAndVote = styled.div`
@@ -59,7 +62,7 @@ export const OneAndVote = styled.div`
   padding-right: 6%;
   margin-bottom: 60px;
   margin-top: 100px;
-  border: 3px solid orange;
+  /* border: 3px solid orange; */
 `;
 
 export const OneAndOnlyContainer = styled.div`
@@ -76,7 +79,7 @@ export const OneAndOnly = styled.div`
   display: flex;
   width: 100%;
   height: 3rem;
-  border: 3px solid green;
+  /* border: 3px solid green; */
   img {
     display: flex;
     width: 44px;
@@ -269,7 +272,7 @@ export const SignUp = styled.div`
 export const TravelContainer = styled.div`
   display: flex;
   flex-direction: column;
-  border: 3px solid brown;
+  /* border: 3px solid brown; */
   padding-top: 0%;
   padding-left: 6%;
   padding-right: 6%;
@@ -290,7 +293,7 @@ export const TravelContainer = styled.div`
 export const TravelTitle = styled.div`
   display: flex;
   flex-direction: row;
-  border: 3px solid red;
+  /* border: 3px solid red; */
   img {
     display: flex;
     width: 44px;
@@ -298,7 +301,7 @@ export const TravelTitle = styled.div`
   }
   p {
     display: flex;
-    margin-left: 3%;
+    margin-left: 1.5%;
     align-items: center;
     font-family: Roboto Mono;
     font-size: 24px;
@@ -368,15 +371,6 @@ export const RecordCard = styled.div`
   /* border: 3px solid yellow; */
 `;
 
-// export const VoteContainer = styled.div`
-//   position: relative;
-//   display: flex;
-//   width: 500px;
-//   flex-wrap: wrap;
-//   justify-content: space-between;
-//   border: 3px solid pink;
-// `;
-
 //Local pick 스타일
 export const Local = styled.div`
   display: flex;
@@ -400,5 +394,27 @@ export const Local = styled.div`
     flex-direction: row;
     justify-content: space-evenly;
     padding: 2%;
+  }
+`;
+
+export const LocalTitle = styled.div`
+  display: flex;
+  img {
+    display: flex;
+    width: 44px;
+    height: 44px;
+  }
+  p {
+    display: flex;
+    margin-left: 1.5%;
+    align-items: center;
+    font-family: Roboto Mono;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    letter-spacing: 0em;
+    text-align: left;
+    width: 40rem;
+    height: 44px;
   }
 `;

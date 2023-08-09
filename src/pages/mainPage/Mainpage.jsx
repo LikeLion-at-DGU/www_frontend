@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import maintext from "../../image/maintext.png";
 import note from "../../image/note.png";
 import bird from "../../image/bird.png";
@@ -22,16 +22,16 @@ import {
   CheckBox,
   CheckProperty,
   Local,
+  LocalTitle,
 } from "./MainpageStyle";
 import Buddy from "./Buddy";
+import { Link } from "react-router-dom";
 
-//OneAndOnly 데이터 -- 백에서 조회수나 좋아요 수 등에 따라 두개를 불러오게 해야 함
 const data = [
   { id: 1, nickname: "User1" },
   { id: 2, nickname: "User2" },
 ];
 
-//임의 퍼센트 데이터 - 백에서 입력받은 % 데이터 값
 const mockData = [
   { option: 1, count: 32 },
   { option: 2, count: 68 },
@@ -47,7 +47,7 @@ const Mainpage = () => {
   const getPercentage = (count) => {
     const totalVotes = mockData.reduce((total, data) => total + data.count, 0);
     const percentage = totalVotes === 0 ? 0 : (count / totalVotes) * 100;
-    return Math.floor(percentage); //정수만 반환하게 하는 코드인데 적용이 안됨. 데이터 불러와서 다시 수정할 것
+    return Math.floor(percentage);
   };
 
   const getBackgroundColor = (option) => {
@@ -80,10 +80,34 @@ const Mainpage = () => {
     { id: 4, text: "Data for Buddy 4" },
   ];
 
+  const [isInViewport, setIsInViewport] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (!ref.current) return;
+
+    const callback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setIsInViewport(true);
+        } else {
+          setIsInViewport(false);
+        }
+      });
+    };
+
+    const options = { root: null, rootMargin: "290px", threshold: 0 };
+    const observer = new IntersectionObserver(callback, options);
+    observer.observe(ref.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <MainContainer>
-      {/* <BackgroundImage src={mainbg} alt="background-image" /> */}
-      <TextImage>
+      <TextImage className={isInViewport ? "frame-in" : ""} ref={ref}>
         <img src={maintext} alt="maintext" />
       </TextImage>
       <Contents>
@@ -110,11 +134,9 @@ const Mainpage = () => {
             <VoteTitle># What do you think?</VoteTitle>
             <ExampleImage></ExampleImage>
             <VoteSubject>
-              {/* 주제에 따라 다르게 수정할 것 */}
               <p>Can men and women be friends?</p>
             </VoteSubject>
             <CheckBox>
-              {/* 2지선다 중 첫번째 */}
               <CheckProperty>
                 <input
                   type="radio"
@@ -138,7 +160,6 @@ const Mainpage = () => {
                   </span>
                 </p>
               </CheckProperty>
-              {/* 2지 선다 중 2번째 */}
               <CheckProperty>
                 <input
                   type="radio"
@@ -167,8 +188,9 @@ const Mainpage = () => {
               <p>
                 This content is only available to members.
                 <br />
-                {/* 링크 연결 해야 함! */}
-                <span>sign up!</span>
+                <Link to={"/login"}>
+                  <span>sign up!</span>
+                </Link>
               </p>
             </SignUp>
           </Vote>
@@ -189,11 +211,14 @@ const Mainpage = () => {
         </TravelContainer>
 
         <Local>
-          <p>The secret of locals!</p>
+          <LocalTitle>
+            <img src={bird} alt="bird" />
+            <p>The secret of locals!</p>
+          </LocalTitle>
           <span>
-            <LocalPicks width="262px" height="245px" />
-            <LocalPicks width="262px" height="245px" />
-            <LocalPicks width="262px" height="245px" />
+            <LocalPicks />
+            <LocalPicks />
+            <LocalPicks />
           </span>
         </Local>
       </Contents>
