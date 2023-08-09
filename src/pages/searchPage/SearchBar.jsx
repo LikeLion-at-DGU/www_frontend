@@ -1,7 +1,7 @@
 // SearchBar.jsx
 
 import React, { useState } from "react";
-import { SearchBox, SearchBtn, SearchContainer, SearchInput, SelectType } from "./SearchStyle";
+import { SearchBox, SearchBtn, SearchInput, SelectType } from "./SearchStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 

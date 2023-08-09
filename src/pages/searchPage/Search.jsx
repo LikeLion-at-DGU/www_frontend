@@ -4,7 +4,8 @@ import React, { useState } from "react";
 import SearchBar from "./SearchBar";
 import { Box, Box2, SubTitle } from "../recordPage/RecordStyle";
 import ListCards from "../recordPage/ListCards";
-import { SearchContainer } from "./SearchStyle";
+import { NoResult, SearchContainer } from "./SearchStyle";
+import logo from "../../image/noresult_logo.png";
 // import axios from "axios";
 
 const RecordSearch = () => {
@@ -62,9 +63,10 @@ const RecordSearch = () => {
         )}
         <ul>
           {(searchTerm) && (searchResults.length === 0) ? (
-            <SubTitle style={{ fontSize: "17px" }}>
+            <NoResult>
+              <img style={{width: "120px", marginBottom: "20px"}} src={logo} />
               Sorry. No search results found.
-            </SubTitle>
+            </NoResult>
           ) : (
             searchResults.map((result, index) => (
               <div key={index}>
