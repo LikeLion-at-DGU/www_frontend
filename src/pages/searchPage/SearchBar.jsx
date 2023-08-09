@@ -18,7 +18,7 @@ const SearchBar = ({onClick}) => {
         <SearchBox>
             <SelectType value={searchType} onChange={(e) => handleSearchType(e.target.value)}>
                 <option value="word">words</option>
-                <option value="hashtag">hastag</option>
+                <option value="hashtag">hashtag</option>
             </SelectType>
             <SearchInput
                 type="text"

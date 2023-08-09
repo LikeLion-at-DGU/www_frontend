@@ -70,6 +70,8 @@ const Record = () => {
           <LocalPicks />
           <LocalPicks />
           <LocalPicks />
+        </Box>
+        <Box style={{ flexWrap: "wrap" }} height="750px" juscon="space-between">
           <LocalPicks />
           <LocalPicks />
           <LocalPicks />
