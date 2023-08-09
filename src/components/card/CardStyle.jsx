@@ -90,3 +90,25 @@ export const ModalContainer = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+
+export const CardSubmit = styled.button`
+  border-radius: 10px;
+  width: 100px;
+  height: 40px;
+  color: #222;
+  margin: 0 10px;
+  background-color: rgba(146, 211, 245, 1);
+  border: 1px solid black;
+  font-size: 1rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: -5px 5px #222222;
+  &:hover {
+    box-shadow: none;
+    position: relative;
+    right: 5px;
+    top: 5px;
+  }
+`;
