@@ -7,6 +7,7 @@ import LocalPicks from "../recordPage/LocalPicks";
 import {
   MainContainer,
   TextImage,
+  Contents,
   OneAndVote,
   OneAndOnlyContainer,
   OneAndOnly,
@@ -85,113 +86,114 @@ const Mainpage = () => {
       <TextImage>
         <img src={maintext} alt="maintext" />
       </TextImage>
+      <Contents>
+        <OneAndVote>
+          <OneAndOnlyContainer>
+            <OneAndOnly>
+              <img src={note} alt="note" />
+              <p>One and Only Record</p>
+            </OneAndOnly>
+            <FriendData>
+              {data.map((item) => (
+                <FriendCards
+                  key={item.id}
+                  item={item}
+                  style={{
+                    marginLeft: "50px",
+                  }}
+                />
+              ))}
+            </FriendData>
+          </OneAndOnlyContainer>
 
-      <OneAndVote>
-        <OneAndOnlyContainer>
-          <OneAndOnly>
-            <img src={note} alt="note" />
-            <p>One and Only Record</p>
-          </OneAndOnly>
-          <FriendData>
-            {data.map((item) => (
-              <FriendCards
-                key={item.id}
-                item={item}
-                style={{
-                  marginLeft: "50px",
-                }}
-              />
-            ))}
-          </FriendData>
-        </OneAndOnlyContainer>
-
-        <Vote>
-          <VoteTitle># What do you think?</VoteTitle>
-          <ExampleImage></ExampleImage>
-          <VoteSubject>
-            {/* 주제에 따라 다르게 수정할 것 */}
-            <p>Can men and women be friends?</p>
-          </VoteSubject>
-          <CheckBox>
-            {/* 2지선다 중 첫번째 */}
-            <CheckProperty>
-              <input
-                type="radio"
-                name="voteOption"
-                value={1}
-                checked={selectedOption === 1}
-                onChange={() => handleOptionChange(1)}
-              />
-              <p
-                style={{
-                  ...getBackgroundStyle(1),
-                  color: selectedOption === 1 ? "#2E74B5" : "inherit",
-                }}
-              >
-                Absolutely, why not?
-                <span>
-                  {selectedOption === 1 &&
-                    ` ${getPercentage(mockData[0].count).toFixed(2)}%`}
-                  {selectedOption === 2 &&
-                    `${getPercentage(mockData[0].count).toFixed(2)}%`}
-                </span>
+          <Vote>
+            <VoteTitle># What do you think?</VoteTitle>
+            <ExampleImage></ExampleImage>
+            <VoteSubject>
+              {/* 주제에 따라 다르게 수정할 것 */}
+              <p>Can men and women be friends?</p>
+            </VoteSubject>
+            <CheckBox>
+              {/* 2지선다 중 첫번째 */}
+              <CheckProperty>
+                <input
+                  type="radio"
+                  name="voteOption"
+                  value={1}
+                  checked={selectedOption === 1}
+                  onChange={() => handleOptionChange(1)}
+                />
+                <p
+                  style={{
+                    ...getBackgroundStyle(1),
+                    color: selectedOption === 1 ? "#2E74B5" : "inherit",
+                  }}
+                >
+                  Absolutely, why not?
+                  <span>
+                    {selectedOption === 1 &&
+                      ` ${getPercentage(mockData[0].count).toFixed(2)}%`}
+                    {selectedOption === 2 &&
+                      `${getPercentage(mockData[0].count).toFixed(2)}%`}
+                  </span>
+                </p>
+              </CheckProperty>
+              {/* 2지 선다 중 2번째 */}
+              <CheckProperty>
+                <input
+                  type="radio"
+                  name="voteOption"
+                  value={2}
+                  checked={selectedOption === 2}
+                  onChange={() => handleOptionChange(2)}
+                />
+                <p
+                  style={{
+                    ...getBackgroundStyle(2),
+                    color: selectedOption === 2 ? "#2E74B5" : "inherit",
+                  }}
+                >
+                  Never, impossible!
+                  <span>
+                    {selectedOption === 2 &&
+                      `${getPercentage(mockData[1].count).toFixed(2)}%`}
+                    {selectedOption === 1 &&
+                      `${getPercentage(mockData[1].count).toFixed(2)}%`}
+                  </span>
+                </p>
+              </CheckProperty>
+            </CheckBox>
+            <SignUp>
+              <p>
+                This content is only available to members.
+                <br />
+                {/* 링크 연결 해야 함! */}
+                <span>sign up!</span>
               </p>
-            </CheckProperty>
-            {/* 2지 선다 중 2번째 */}
-            <CheckProperty>
-              <input
-                type="radio"
-                name="voteOption"
-                value={2}
-                checked={selectedOption === 2}
-                onChange={() => handleOptionChange(2)}
-              />
-              <p
-                style={{
-                  ...getBackgroundStyle(2),
-                  color: selectedOption === 2 ? "#2E74B5" : "inherit",
-                }}
-              >
-                Never, impossible!
-                <span>
-                  {selectedOption === 2 &&
-                    `${getPercentage(mockData[1].count).toFixed(2)}%`}
-                  {selectedOption === 1 &&
-                    `${getPercentage(mockData[1].count).toFixed(2)}%`}
-                </span>
-              </p>
-            </CheckProperty>
-          </CheckBox>
-          <SignUp>
-            <p>
-              This content is only available to members.
-              <br />
-              {/* 링크 연결 해야 함! */}
-              <span>sign up!</span>
-            </p>
-          </SignUp>
-        </Vote>
-      </OneAndVote>
+            </SignUp>
+          </Vote>
+        </OneAndVote>
 
-      <TravelContainer>
-        <p>Finding Travel buddy</p>
-        {buddyDataArray.map((item, index) => (
-          <Buddy
-            key={item.id}
-            data={item.text}
-            isEven={index === 1 || index === 3}
-          />
-        ))}
-      </TravelContainer>
+        <TravelContainer>
+          <p>Finding Travel buddy</p>
+          {buddyDataArray.map((item, index) => (
+            <Buddy
+              key={item.id}
+              data={item.text}
+              isEven={index === 1 || index === 3}
+            />
+          ))}
+        </TravelContainer>
 
-      <Local>
-        <p>The secret of locals!</p>
-        <span>
-          <LocalPicks />
-          <LocalPicks />
-          <LocalPicks />
-        </span>
-      </Local>
+        <Local>
+          <p>The secret of locals!</p>
+          <span>
+            <LocalPicks style={{ width: "300px", height: "300px" }} />
+            <LocalPicks />
+            <LocalPicks />
+          </span>
+        </Local>
+      </Contents>
     </MainContainer>
   );
 };

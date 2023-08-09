@@ -9,7 +9,7 @@ export const MainContainer = styled.nav`
   align-items: center;
   flex-direction: column;
   margin: 0 60px;
-  border: 3px solid;
+  /* border: 3px solid; */
 `;
 
 export const BackgroundImage = styled.img`
@@ -30,7 +30,7 @@ export const TextImage = styled.div`
   margin-top: 5%;
   margin-left: 5%;
   margin-right: 5%;
-  border: 3px solid red;
+  /* border: 3px solid red; */
   ${(props) => (props.fadeOut ? fadeOutAnimation : "")}
   img {
     width: 1100px;
@@ -38,14 +38,15 @@ export const TextImage = styled.div`
   }
 `;
 
-// export const BottomContainer = styled.div`
-//   position: relative;
-//   display: flex;
-//   width: 100%;
-//   height: 100%;
-//   justify-content: space-around;
-//   border: 3px solid blue;
-// `;
+export const Contents = styled.div`
+  //   position: relative;
+  display: flex;
+  flex-direction: column;
+  //   width: 100%;
+  //   height: 100%;
+  //   justify-content: space-around;
+  /* border: 3px solid blue; */
+`;
 
 export const OneAndVote = styled.div`
   display: flex;
@@ -55,8 +56,10 @@ export const OneAndVote = styled.div`
   width: 100%;
   height: 100%;
   justify-content: space-between;
-  padding: 6%;
-  border: 3px solid orange;
+  padding-top: 0%;
+  margin-bottom: 60px;
+  margin-top: 100px;
+  /* border: 3px solid orange; */
 `;
 
 export const OneAndOnlyContainer = styled.div`
@@ -66,14 +69,14 @@ export const OneAndOnlyContainer = styled.div`
   width: 510px;
   height: 455px;
   flex-wrap: wrap;
-  border: 3px solid yellow;
+  /* border: 3px solid yellow; */
 `;
 
 export const OneAndOnly = styled.div`
   display: flex;
   width: 100%;
   height: 3rem;
-  border: 3px solid green;
+  /* border: 3px solid green; */
   img {
     display: flex;
     width: 44px;
@@ -111,7 +114,7 @@ export const Vote = styled.div`
   position: relative;
   box-shadow: 0px 4px 4px 0px #00000040;
   flex-direction: column;
-  border: 3px solid purple;
+  /* border: 3px solid purple; */
 `;
 
 export const ExampleImage = styled.div`
@@ -267,8 +270,11 @@ export const SignUp = styled.div`
 export const TravelContainer = styled.div`
   display: flex;
   flex-direction: column;
-  border: 3px solid brown;
-  padding: 6%;
+  /* border: 3px solid brown; */
+  padding-top: 0%;
+  padding-left: 6%;
+  padding-right: 6%;
+  margin-bottom: 60px;
   width: 100%;
   p {
     font-family: Roboto Mono;
@@ -277,7 +283,7 @@ export const TravelContainer = styled.div`
     line-height: 32px;
     letter-spacing: 0em;
     text-align: left;
-    border: 3px solid gray;
+    /* border: 3px solid gray; */
     margin-bottom: 30px;
   }
 `;
@@ -291,12 +297,12 @@ export const BuddyTitle = styled.div`
   text-align: left;
   margin-left: 5%;
   margin-top: 3%;
-  border: 3px solid pink;
+  /* border: 3px solid pink; */
 `;
 
 export const Test = styled.div`
   display: flex;
-  border: 3px solid yellow;
+  /* border: 3px solid yellow; */
   ${(props) =>
     props.isEven &&
     css`
@@ -311,14 +317,15 @@ export const TravelBox = styled.div`
   height: 110px;
   border-radius: 30px;
   background-color: #92d3f5;
-  border: 3px solid red;
+  box-shadow: 0px 5px 5px 0px #00000040;
+  /* border: 3px solid red; */
 `;
 
 export const IndexBox = styled.div`
   display: flex;
   /* border: 3px solid red; */
   justify-content: space-between;
-  padding: 10px;
+  padding: 15px 20px 0px 20px;
 `;
 
 export const WwwBox = styled.div`
@@ -352,8 +359,10 @@ export const Local = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 6%;
-  border: 3px solid yellow;
+  padding-top: 0%;
+  padding-left: 6%;
+  padding-right: 6%;
+  /* border: 3px solid yellow; */
   p {
     font-family: Roboto Mono;
     font-size: 24px;
@@ -361,7 +370,7 @@ export const Local = styled.div`
     line-height: 32px;
     letter-spacing: 0em;
     text-align: left;
-    border: 3px solid gray;
+    /* border: 3px solid gray; */
   }
   span {
     display: flex;

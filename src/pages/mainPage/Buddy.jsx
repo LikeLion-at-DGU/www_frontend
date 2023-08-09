@@ -1,28 +1,11 @@
 import React, { useState, useEffect } from "react";
-import styled, { css, keyframes } from "styled-components";
-import {
-  TravelContainer,
-  Test,
-  TravelBox,
-  IndexBox,
-  WwwBox,
-  BuddyTitle,
-} from "./MainpageStyle";
+import styled, { css } from "styled-components";
+import { Test, TravelBox, IndexBox, WwwBox, BuddyTitle } from "./MainpageStyle";
 import Like from "../../components/index/Like";
 import CountryName from "../../components/index/Country";
 import CityName from "../../components/index/CityName";
 import DateName from "../../components/index/DateName";
-
-const fadeAndSlide = keyframes`
-  0% {
-    opacity: 0;
-    transform: translate3d(0, 20px, 0);
-  }
-  100% {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-`;
+import useScrollFadeIn from "./useScroll";
 
 const BuddyStyle = styled(Test)`
   ${(props) =>
@@ -38,6 +21,8 @@ const Buddy = ({ data, isEven }) => {
   const truncatedText =
     data && data.length > 30 ? data.slice(0, 30) + "..." : data;
 
+  const fadeIn = useScrollFadeIn(); // useScrollFadeIn 훅 호출
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -48,7 +33,7 @@ const Buddy = ({ data, isEven }) => {
         });
       },
       {
-        threshold: 0.7, // 70% 이상 보일 때 실행
+        threshold: 0.9, // 70% 이상 보일 때 실행
       }
     );
 
@@ -61,8 +46,12 @@ const Buddy = ({ data, isEven }) => {
   }, []);
 
   return (
-    <BuddyStyle isEven={isEven} className={isVisible ? "visible" : ""}>
-      <Test className={`visible-trigger ${isVisible ? "visible" : ""}`}>
+    <BuddyStyle isEven={isEven}>
+      <Test
+        className={`visible-trigger ${isVisible ? "visible" : ""}`}
+        ref={fadeIn.ref}
+        style={fadeIn.style}
+      >
         <TravelBox>
           <IndexBox>
             <WwwBox>
