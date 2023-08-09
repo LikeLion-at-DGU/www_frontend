@@ -26,6 +26,7 @@ export const CardBorder = styled.div`
 
 export const ImgCardBorder = styled(CardBorder)`
   justify-content: center;
+  align-items: center;
 `;
 
 export const CardText = styled.div`
@@ -70,4 +71,22 @@ export const HashTag = styled.input`
   ::placeholder {
     color: #848484;
   }
+`;
+export const CardModal = styled(CardWrapper)`
+  position: fixed;
+  top: 100px;
+  left: 28%;
+`
+export const ModalContainer = styled.div`
+  position: fixed;
+  z-index: 1200;
+  top: 0;
+  min-height: 100vh;
+  width: 100vw;
+  padding: 0 25%;
+  background-color: rgb(0 0 0 / 71%);
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;

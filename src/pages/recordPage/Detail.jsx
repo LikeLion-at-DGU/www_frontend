@@ -1,10 +1,14 @@
 // Detail.jsx
 
 import {
-  DetailWrapper,BorderBottom,BtnWrapper,
+  DetailWrapper,
+  BorderBottom,
+  BtnWrapper,
   PostWrapper,
   PostSubTitle,
   PostTitle,
+  CenterWriter,
+  Margin,
 } from "./DetailStyle";
 import Card from "../../components/card/Card";
 import { Wrapper } from "../../components/WrapStyle";
@@ -13,23 +17,25 @@ import BookMark from "../../components/index/BookMark";
 import Comments from "../../components/index/Comments";
 import Like from "../../components/index/Like";
 import Views from "../../components/index/Views";
-import { Writer, ProfileImg, City } from "./RecordStyle";
+import { Writer, ProfileImg, City, Box2 } from "./RecordStyle";
 import { useState } from "react";
+import ListCards from "./ListCards";
+import { PostWriter } from "../writePage/WriteStyle";
 
 const Detail = () => {
 
   const [commentFold,setCommentFold] = useState(true);
 
   return (
-    <div style={{ margin: "0 auto", width: "1122px"}}>
+    <div style={{ margin: "0 auto", width: "1122px" }}>
       <DetailWrapper>
         <BorderBottom>
-          <Writer>
+          <CenterWriter>
             <p>by</p>
             <ProfileImg></ProfileImg>
             giogio222
             <City>Iyaly/milano</City>
-          </Writer>
+          </CenterWriter>
         </BorderBottom>
         <BorderBottom>
           <Wrapper>
@@ -65,6 +71,18 @@ const Detail = () => {
         </BtnWrapper>
       </PostWrapper>
       {commentFold ? <CommentSection /> : ""}
+      <Margin />
+      <PostWriter>
+        <img src="" alt="profile" />
+        <p>smile.kmk</p>&nbsp;
+        <span>Korea/incheon</span>
+        <p>'s recent record!</p>
+      </PostWriter>
+      <Box2 flexdirect="column" height="460px">
+        <ListCards />
+        <ListCards />
+        <ListCards />
+      </Box2>
     </div>
   );
 };

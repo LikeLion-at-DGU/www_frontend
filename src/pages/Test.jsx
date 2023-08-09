@@ -8,8 +8,10 @@ export const Test = () => {
   return (
     <>
       {/* <Detail /> */}
-      <Write />
+      {/* <Write />
       <MakeCard />
+       */}
+       {/* <TextAndImageOrder /> */}
     </>
   );
 };
