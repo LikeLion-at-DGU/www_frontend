@@ -29,7 +29,7 @@ const Record = () => {
               <FontAwesomeIcon icon={faPenNib} />
               <p style={{ margin: "0 10px" }}>record daily life</p>
             </Btn>
-            <Btn onClick={() => navigate("/record/search")} bgcol="#F2C94C">
+            <Btn onClick={() => navigate("/record/search/result")} bgcol="#F2C94C">
               <FontAwesomeIcon icon={faSearch} />
               <p style={{ margin: "0 10px" }}>search daily life</p>
             </Btn>
