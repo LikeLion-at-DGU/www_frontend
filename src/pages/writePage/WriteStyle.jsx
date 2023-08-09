@@ -3,19 +3,21 @@ import { BlueBtn } from "../../components/index/BtnStyle";
 import { PenImg } from "../../components/card/CardStyle";
 import { DetailWrapper, PostWrapper } from "../recordPage/DetailStyle";
 
-export const TopWriteWrapper =styled(DetailWrapper)`
+export const TopWriteWrapper = styled(DetailWrapper)`
   margin: 30px auto;
-`
+`;
 export const WriteWrapper = styled(PostWrapper)`
   border-bottom: 1px solid #222;
   padding: 15px 0;
   margin: 0;
+  width: 100%;
 `;
 export const SaveBtn = styled(BlueBtn)`
   border-radius: 10px;
   width: 100px;
   height: 40px;
   font-size: 1rem;
+  color: #222;
   margin: 0 10px;
 `;
 export const RegisterBtn = styled(SaveBtn)`
@@ -62,19 +64,28 @@ export const TitleInput = styled.input`
 `;
 export const WriteBody = styled.textarea`
     width: 100%;
-    min-height: 500px;
+    /* min-height: 500px; */
     border: 0;
     resize: none;
 `
-export const UproadImg = styled.div`
+export const AddCardBtn = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #2e74b5;
   color: #fff;
-  width: 31px;
+  width: 125px;
   height: 31px;
   border-radius: 5px;
   border: 1px solid #222;
+  `;
+export const UproadImg = styled(AddCardBtn)`
+  width: 34px;
+  margin-right: 5px;
+  span {
+    padding-left: 5px;
+  }
 `;
-export const AddCardBtn = styled(UproadImg)`
-  width: 31px;
-  width: 115px;
-`;
+export const BodySection = styled.div`
+  min-height: 500px;
+`

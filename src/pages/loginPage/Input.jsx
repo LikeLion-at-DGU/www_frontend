@@ -44,7 +44,6 @@ const Input = () => {
     if (
       join.country.value === "none" ||
       join.city.value === "" ||
-      join.language.value === "none" ||
       join.nickname.value === ""
     ) {
       alert("필수 입력 항목을 전부 입력하세요!");
@@ -76,7 +75,7 @@ const Input = () => {
           </Profile>
         </TopWrapper>
         <Text>Input your information!</Text>
-        <form name="join" onSubmit={inputCheck}>
+        <form name="join" onSubmit={(e)=>e.preventDefault()}>
           <JoinWrapper>
             <InputForm
               name="country"
@@ -107,7 +106,9 @@ const Input = () => {
               Use only small english letter/Up to 17 letters
               <br /> No space/ only (.)and(_) available
             </JoinTxt>
-            <SigninBtn type="submit">sign up!</SigninBtn>
+            <SigninBtn onClick={ inputCheck }>
+              sign up!
+            </SigninBtn>
           </JoinWrapper>
         </form>
       </WhiteBox>

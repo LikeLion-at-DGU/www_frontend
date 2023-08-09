@@ -1,44 +1,78 @@
 // Card.jsx
 
 import { Wrapper } from "../WrapStyle";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import TestIMG from "../../image/test.jpg";
 import PenIMG from "../../image/pen.png";
 import BookMark from "../index/BookMark";
 import {
-  CardWrapper,
   CardBorder,
   CardWWW,
   ImgCardBorder,
+  CardInput,
   CardInfo,
-  CardText,
+  CardModal,
   CardImg,
   HashTag,
   PenImg,
+  ModalContainer,
 } from "./CardStyle";
+import { SaveBtn, UproadImg } from "../../pages/writePage/WriteStyle";
 
-const MakeCard = () => {
+const MakeCard = ({setModalOpen}) => {
   const [tag, setTag] = useState("");
+  const [images, setImages] = useState([]);
+  const modal = useRef();
+
+  const handleCloseModal = (event) => {
+    if (modal.current && !modal.current.contains(event.target)) {
+      setModalOpen(false);
+    }
+  };
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const imageURL = URL.createObjectURL(file);
+      setImages([...images, imageURL]);
+    }
+  };
+  const openFilePicker = () => {
+    document.querySelector('input[type="file"]').click();
+    pushdata();
+  };
   const tagHandleChange = (e) => {
     setTag(e.target.value);
   };
   return (
-    <>
-      <CardWrapper>
+    <ModalContainer onClick={handleCloseModal}>
+      <CardModal ref={modal}>
         <CardBorder>
           <CardWWW>WHERE: &nbsp; </CardWWW>
-          <CardText>포케 올 데이 잠실점</CardText>
+          <CardInput type="text" />
         </CardBorder>
         <CardBorder>
           <CardWWW>WHAT: &nbsp; </CardWWW>
-          <CardText>포케를 먹을 수 있는 식당</CardText>
+          <CardInput type="text" />
         </CardBorder>
         <CardBorder>
           <CardWWW>HOW(TIPS!): &nbsp; </CardWWW>
-          <CardText>연어 먹고싶다 리뷰이벤트도 된다 무료로 받으세요</CardText>
+          <CardInput type="text" />
         </CardBorder>
         <ImgCardBorder>
-          <CardImg src={TestIMG} alt="post img" />
+          <UproadImg onClick={openFilePicker}>
+            <span className="material-symbols-outlined">add_a_photo</span>
+            <input
+              type="file"
+              name="chooseFile"
+              accept="image/*"
+              onChange={handleImageChange}
+              style={{ visibility: "hidden" }}
+            />
+          </UproadImg>
+          {images.map((imageURL, index) => (
+            <CardImg key={index} src={imageURL} alt="post img" />
+          ))}
         </ImgCardBorder>
         <CardInfo>
           <Wrapper>
@@ -50,10 +84,10 @@ const MakeCard = () => {
               placeholder="#seoul_restaurant"
             ></HashTag>
           </Wrapper>
-          <BookMark />
+          <SaveBtn>save</SaveBtn>
         </CardInfo>
-      </CardWrapper>
-    </>
+      </CardModal>
+    </ModalContainer>
   );
 };
 export default MakeCard;
