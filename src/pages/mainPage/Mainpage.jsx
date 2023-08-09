@@ -4,23 +4,15 @@ import maintext from "../../image/maintext.png";
 import note from "../../image/note.png";
 import FriendCards from "../recordPage/FriendCards";
 import LocalPicks from "../recordPage/LocalPicks";
-import Like from "../../components/index/Like";
-import CountryName from "../../components/index/Country";
-import CityName from "../../components/index/CityName";
-import DateName from "../../components/index/DateName";
 import {
   MainContainer,
   TextImage,
-  BottomContainer,
-  RecordBuddy,
+  Contents,
+  OneAndVote,
   OneAndOnlyContainer,
   OneAndOnly,
+  FriendData,
   TravelContainer,
-  TravelBox,
-  IndexBox,
-  WwwBox,
-  RecordCard,
-  VoteContainer,
   Vote,
   VoteTitle,
   ExampleImage,
@@ -31,7 +23,7 @@ import {
   CheckProperty,
   Local,
 } from "./MainpageStyle";
-import Date from "../../components/index/DateName";
+import Buddy from "./Buddy";
 
 //OneAndOnly 데이터 -- 백에서 조회수나 좋아요 수 등에 따라 두개를 불러오게 해야 함
 const data = [
@@ -46,58 +38,7 @@ const mockData = [
 ];
 
 const Mainpage = () => {
-  const [fadeOut, setFadeOut] = useState(true); // 초기값을 true로 설정
-  let textImageRef = null; // textImageRef 상태 추가
   const [selectedOption, setSelectedOption] = useState(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const textImage = document.querySelector(".text-image"); // 이미지의 클래스명이 .text-image인 것으로 가정
-
-      if (textImage) {
-        const textImageTop = textImage.getBoundingClientRect().top;
-        const triggerPosition = window.innerHeight * 0.4; // 뷰포트의 40%
-
-        if (textImageTop < triggerPosition) {
-          setFadeOut(false); // Fade in
-        } else {
-          setFadeOut(true); // Fade out
-        }
-      }
-    };
-
-    const options = {
-      threshold: 0.5,
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const textImageTop = entry.boundingClientRect.top;
-          const triggerPosition = window.innerHeight * 0.4; // 뷰포트의 40%
-
-          if (textImageTop < triggerPosition) {
-            setFadeOut(false); // Fade in
-          } else {
-            setFadeOut(true); // Fade out
-          }
-        }
-      });
-    }, options);
-
-    if (textImageRef) {
-      observer.observe(textImageRef);
-    }
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      if (textImageRef) {
-        observer.unobserve(textImageRef);
-      }
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [textImageRef]); // textImageRef를 의존성 배열로 추가
 
   const handleOptionChange = (optionId) => {
     setSelectedOption(optionId);
@@ -132,44 +73,39 @@ const Mainpage = () => {
     }
   };
 
+  const buddyDataArray = [
+    { id: 1, text: "Data for Buddy 1" },
+    { id: 2, text: "Data for Buddy 2" },
+    { id: 3, text: "Data for Buddy 3" },
+    { id: 4, text: "Data for Buddy 4" },
+  ];
+
   return (
     <MainContainer>
       <BackgroundImage src={mainbg} alt="background-image" />
-      <TextImage className="text-image" fadeOut={fadeOut}>
+      <TextImage>
         <img src={maintext} alt="maintext" />
       </TextImage>
-      <BottomContainer>
-        <RecordBuddy>
+      <Contents>
+        <OneAndVote>
           <OneAndOnlyContainer>
             <OneAndOnly>
               <img src={note} alt="note" />
               <p>One and Only Record</p>
             </OneAndOnly>
-            <FriendCards />
-            {/* {data.map((item) => (
-              <RecordCard key={item.id} item={item}></RecordCard>
-            ))} */}
-          </OneAndOnlyContainer>
-          <TravelContainer>
-            <p>Travel buddy?</p>
-            <TravelBox>
-              <IndexBox>
-                <WwwBox>
-                  <DateName handlefsize={"14px"} />
-                  <CountryName handlefsize={"14px"} />
-                  <CityName handlefsize={"14px"} />
-                </WwwBox>
-                <Like
-                  handlewidth={"43px"}
-                  handleheight={"24px"}
-                  handlefsize={"14px"}
+            <FriendData>
+              {data.map((item) => (
+                <FriendCards
+                  key={item.id}
+                  item={item}
+                  style={{
+                    marginLeft: "50px",
+                  }}
                 />
-              </IndexBox>
-              <span>Today Hanoi nightscape!!</span>
-            </TravelBox>
-          </TravelContainer>
-        </RecordBuddy>
-        <VoteContainer>
+              ))}
+            </FriendData>
+          </OneAndOnlyContainer>
+
           <Vote>
             <VoteTitle># What do you think?</VoteTitle>
             <ExampleImage></ExampleImage>
@@ -236,16 +172,28 @@ const Mainpage = () => {
               </p>
             </SignUp>
           </Vote>
-        </VoteContainer>
-      </BottomContainer>
-      <Local>
-        <p>The secret of locals!</p>
-        <span>
-          <LocalPicks />
-          <LocalPicks />
-          <LocalPicks />
-        </span>
-      </Local>
+        </OneAndVote>
+
+        <TravelContainer>
+          <p>Finding Travel buddy</p>
+          {buddyDataArray.map((item, index) => (
+            <Buddy
+              key={item.id}
+              data={item.text}
+              isEven={index === 1 || index === 3}
+            />
+          ))}
+        </TravelContainer>
+
+        <Local>
+          <p>The secret of locals!</p>
+          <span>
+            <LocalPicks style={{ width: "300px", height: "300px" }} />
+            <LocalPicks />
+            <LocalPicks />
+          </span>
+        </Local>
+      </Contents>
     </MainContainer>
   );
 };
