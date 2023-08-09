@@ -6,6 +6,7 @@ import CountryName from "../../components/index/Country";
 import CityName from "../../components/index/CityName";
 import DateName from "../../components/index/DateName";
 import useScrollFadeIn from "./useScroll";
+import { Link } from "react-router-dom";
 
 const BuddyStyle = styled(Test)`
   ${(props) =>
@@ -52,21 +53,25 @@ const Buddy = ({ data, isEven }) => {
         ref={fadeIn.ref}
         style={fadeIn.style}
       >
-        <TravelBox>
-          <IndexBox>
-            <WwwBox>
-              <DateName handlefsize={"14px"} />
-              <CountryName handlefsize={"14px"} />
-              <CityName handlefsize={"14px"} />
-            </WwwBox>
-            <Like
-              handlewidth={"43px"}
-              handleheight={"24px"}
-              handlefsize={"14px"}
-            />
-          </IndexBox>
-          <BuddyTitle>{truncatedText || "Today Hanoi nightscape!!"}</BuddyTitle>
-        </TravelBox>
+        <Link to={"companion"}>
+          <TravelBox>
+            <IndexBox>
+              <WwwBox>
+                <DateName handlefsize={"14px"} />
+                <CountryName handlefsize={"14px"} />
+                <CityName handlefsize={"14px"} />
+              </WwwBox>
+              <Like
+                handlewidth={"43px"}
+                handleheight={"24px"}
+                handlefsize={"14px"}
+              />
+            </IndexBox>
+            <BuddyTitle>
+              {truncatedText || "Today Hanoi nightscape!!"}
+            </BuddyTitle>
+          </TravelBox>
+        </Link>
       </Test>
     </BuddyStyle>
   );
