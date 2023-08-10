@@ -16,12 +16,15 @@ import {
   HashTag,
   PenImg,
   ModalContainer,
+  CardSubmit,
 } from "./CardStyle";
 import { SaveBtn, UproadImg } from "../../pages/writePage/WriteStyle";
+import { useNavigate } from "react-router-dom";
 
 const MakeCard = ({setModalOpen}) => {
   const [tag, setTag] = useState("");
   const [images, setImages] = useState([]);
+  const navigate = useNavigate();
   const modal = useRef();
 
   const handleCloseModal = (event) => {
@@ -84,7 +87,9 @@ const MakeCard = ({setModalOpen}) => {
               placeholder="#seoul_restaurant"
             ></HashTag>
           </Wrapper>
-          <SaveBtn>save</SaveBtn>
+          <CardSubmit type="submit" onClick={() => setModalOpen(false)}>
+            save
+          </CardSubmit>
         </CardInfo>
       </CardModal>
     </ModalContainer>

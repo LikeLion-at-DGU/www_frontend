@@ -1,7 +1,7 @@
 // Write.jsx
 
 import { PenImg } from "../../components/card/CardStyle";
-import { BtnWrapper } from "../recordPage/DetailStyle";
+import { BtnWrapper } from "../detailPage/DetailStyle";
 import {
   RegisterBtn,
   RegisterImg,
