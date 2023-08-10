@@ -1,13 +1,15 @@
 // Companion.jsx
 
 import React, { useEffect, useState } from "react";
-import { ArrayChoice, ArrayChoices, CompanionContainer, CompanionList, Continent, Continents } from "./CompanionStyle";
+import { ArrayChoice, ArrayChoices, CompanionContainer, CompanionList, Continent, Continents, FixedBtnBox } from "./CompanionStyle";
 import SearchBar from "./SearchBar";
 import { useNavigate } from "react-router-dom";
 import { NoResult } from "../searchPage/SearchStyle";
 import logo from "../../image/noresult_logo.png";
 import { Box2 } from "../recordPage/RecordStyle";
 import CompanionCards from "./CompanionCards";
+import { RegisterBtn, RegisterImg } from "../writePage/WriteStyle";
+import PenIMG from "../../image/pen.png";
 
 const Companion = () => {
 
@@ -130,7 +132,15 @@ const Companion = () => {
           South America
         </Continent>
       </Continents>
-      
+
+      {/* 화면고정 버튼 */}
+      <FixedBtnBox>
+        <RegisterBtn>
+          <RegisterImg src={PenIMG} alt="pen" />
+          register
+        </RegisterBtn>
+      </FixedBtnBox>
+
       <CompanionList>
         <SearchBar onClick={handleSearch} onReset={handleReset} />
         <ArrayChoices>
