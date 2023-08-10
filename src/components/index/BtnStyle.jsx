@@ -125,3 +125,4 @@ export const DateStyle = styled(BookMarkStyle)`
 export const BtnText = styled.span`
   color: #222;
 `;
+

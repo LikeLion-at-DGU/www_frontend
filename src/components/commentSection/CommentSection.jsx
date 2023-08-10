@@ -13,7 +13,7 @@ import { Wrapper } from "../WrapStyle";
 import Like from "../index/Like";
 import FriendMark from "../index/FriendMark";
 import Mine from "../index/Mine";
-import { BtnWrapper } from "../../pages/recordPage/DetailStyle";
+import { BtnWrapper } from "../../pages/detailPage/DetailStyle";
 
 export const CommentSection = () => {
   const [cmt, setCmt] = useState("");

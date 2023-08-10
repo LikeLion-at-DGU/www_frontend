@@ -59,3 +59,4 @@ export const SearchType = styled.div`
     align-items: center;
     background-color: white;
 `
+
