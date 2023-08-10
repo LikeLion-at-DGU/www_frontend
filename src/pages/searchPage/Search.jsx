@@ -10,7 +10,9 @@ import logo from "../../image/noresult_logo.png";
 
 const RecordSearch = () => {
 
+  // 검색결과
   const [searchResults, setSearchResults] = useState([]);
+  // 검색어
   const [searchTerm, setSearchTerm] = useState("");
 
   // // YOUR_API_URL -> 나중에 백엔드 API 입력해줄것
@@ -45,9 +47,9 @@ const RecordSearch = () => {
       result.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    // 검색결과 저장
+    // 검색결과
     setSearchResults(filteredResults);
-    // 검색어 저장
+    // 검색어
     setSearchTerm(searchTerm);
   };
 

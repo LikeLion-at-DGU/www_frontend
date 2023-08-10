@@ -66,7 +66,7 @@ export const Img = styled.div`
   object-fit: cover;
   position: relative;
 `;
-export const RecordImage = styled.img`
+export const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -140,7 +140,7 @@ export const TodayCard = styled(FriendCard)`
   height: 335px;
   position: relative;
 `;
-export const BigImage = styled(RecordImage)`
+export const BigImage = styled(Image)`
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
   border-bottom-right-radius: ${(props) => props.rightradius};
@@ -179,6 +179,7 @@ export const ListCard = styled.div`
   height: 142px;
   background-color: #fbfbfb;
   justify-content: space-between;
+  align-items: center;
 `;
 export const ListTitle = styled.p`
   display: flex;

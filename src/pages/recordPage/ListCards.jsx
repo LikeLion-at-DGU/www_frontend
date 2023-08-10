@@ -1,7 +1,7 @@
 // import Comments from "../../components/index/Comments";
 // import Like from "../../components/index/Like";
 // import Views from "../../components/index/Views";
-import { BtnBox, Content, HashTag, Img, ListCard, ListTitle, RecordImage, TagBox, Text } from "./RecordStyle";
+import { BtnBox, Content, HashTag, Image, Img, ListCard, ListTitle, TagBox, Text } from "./RecordStyle";
 import recordImg from "../../image/record1.jpg"
 import Like from "../../components/index/Like";
 import Comments from "../../components/index/Comments";
@@ -16,7 +16,7 @@ const ListCards = () => {
       <ListCard onClick={() => navigate("/record/1")}>
         <Text padding="10px 25px" height="142px" width="980px">
           <ListTitle>
-            Unexpected luck!!
+            <p>Unexpected luck!!</p>
             <TagBox padding="0 18px">
               <HashTag>#milano_restaurant</HashTag>
               <HashTag>#milano_cafe</HashTag>
@@ -54,7 +54,7 @@ const ListCards = () => {
           />
         </Text>
         <Img width="140px" height="140px">
-          <RecordImage src={recordImg} />
+          <Image src={recordImg} />
         </Img>
       </ListCard>
     );
