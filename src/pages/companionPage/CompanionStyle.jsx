@@ -1,5 +1,6 @@
 import { styled } from "styled-components";
 import { ListTitle, Text } from "../recordPage/RecordStyle";
+import { RegisterBtn } from "../writePage/WriteStyle";
 
 export const CompanionContainer = styled.div`
     display: flex;
@@ -76,6 +77,13 @@ export const SearchType = styled.div`
     background-color: white;
 `
 
+// Register 버튼
+export const FixedBtnBox = styled.div`
+    position: fixed;
+    bottom: 50px;
+    left: 154px;
+`
+
 // CompanionCard
 export const CompanionCard = styled.div`
     display: flex;
@@ -93,4 +101,5 @@ export const CompanionText = styled(Text)`
 export const CompanionTitle = styled(ListTitle)`
     font-size: 1.3rem;
     font-weight: 700;
+    justify-content: space-between;
 `

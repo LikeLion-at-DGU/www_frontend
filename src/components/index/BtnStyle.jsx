@@ -15,6 +15,7 @@ export const BlueBtn = styled.div`
   justify-content: center;
   align-items: center;
   box-shadow: -5px 5px #222222;
+  
   &:hover {
     box-shadow: none;
     position: relative;

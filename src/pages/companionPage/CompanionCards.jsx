@@ -15,14 +15,18 @@ function CompanionCards() {
   return (
     <CompanionCard>
       <CompanionText width="626px" height="124px" padding="10px 20px">
-        <CompanionTitle>Today Hanoi nightscape!!</CompanionTitle>
+        <CompanionTitle>
+          <p>Today Hanoi nightscape!!</p>
+          <p style={{color: "#848484", fontSize: "0.8rem"}}>23m ago</p>
+        </CompanionTitle>
+
         <WwwBox>
           <CountryName handleheight="20px" handlefsize="0.8rem" />
           <CityName handleheight="20px" handlefsize="0.8rem" />
           <DateName handleheight="20px" handlefsize="0.8rem" />
         </WwwBox>
         <Content>
-          Let’s play together in Hanoi nightscape festival!
+          <p>Let’s play together in Hanoi nightscape festival!</p>
         </Content>
         <BtnBox juscon="space-between">
           <Views

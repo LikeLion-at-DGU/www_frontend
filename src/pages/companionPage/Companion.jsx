@@ -1,13 +1,15 @@
 // Companion.jsx
 
 import React, { useEffect, useState } from "react";
-import { ArrayChoice, ArrayChoices, CompanionContainer, CompanionList, Continent, Continents } from "./CompanionStyle";
+import { ArrayChoice, ArrayChoices, CompanionContainer, CompanionList, Continent, Continents, FixedBtnBox } from "./CompanionStyle";
 import SearchBar from "./SearchBar";
 import { useNavigate } from "react-router-dom";
 import { NoResult } from "../searchPage/SearchStyle";
 import logo from "../../image/noresult_logo.png";
 import { Box2 } from "../recordPage/RecordStyle";
 import CompanionCards from "./CompanionCards";
+import { RegisterBtn, RegisterImg } from "../writePage/WriteStyle";
+import PenIMG from "../../image/pen.png";
 
 const Companion = () => {
 
@@ -90,7 +92,7 @@ const Companion = () => {
 
       {/* 반응형으로 떠있는 nav */}
       {/* style={{ top: `${258 + scrollY * 0.5}px` }} */}
-      <Continents style={{ top: `${258 + scrollY * 0.5}px` }}>
+      <Continents style={{ top: `${258 + scrollY * 0.3}px` }}>
         {/* 지역별 대기환경 ~~ 했던 거처럼 params 이용 ... 하면 될 듯 ... */}
         {/* <Continent onClick={() => navigate(`/companion/${}`)}>대륙명</Continent> */}
         <Continent
@@ -130,7 +132,15 @@ const Companion = () => {
           South America
         </Continent>
       </Continents>
-      
+
+      {/* 화면고정 버튼 */}
+      <FixedBtnBox>
+        <RegisterBtn>
+          <RegisterImg src={PenIMG} alt="pen" />
+          register
+        </RegisterBtn>
+      </FixedBtnBox>
+
       <CompanionList>
         <SearchBar onClick={handleSearch} onReset={handleReset} />
         <ArrayChoices>
