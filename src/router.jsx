@@ -12,7 +12,6 @@ import Mainpage from "./pages/mainPage/Mainpage";
 import { Test } from "./pages/Test";
 import Write from "./pages/writePage/Write";
 import Search from "./pages/searchPage/Search";
-import BeforeSearch from "./pages/searchPage/BeforeSearch"
 
 const Router = createBrowserRouter([
   {
@@ -32,11 +31,7 @@ const Router = createBrowserRouter([
         element: <Detail />,
       },
       {
-        path: "record/search/before",
-        element: <BeforeSearch />,
-      },
-      {
-        path: "record/search/result",
+        path: "record/search",
         element: <Search />,
       },
       {

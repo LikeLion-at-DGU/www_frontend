@@ -16,7 +16,7 @@ import {
   BodySection,
 } from "./WriteStyle";
 import PenIMG from "../../image/pen.png";
-import axios from 'axios';
+// import axios from 'axios';
 import { useState, useEffect, useRef } from "react";
 import MakeCard from "../../components/card/MakeCard";
 

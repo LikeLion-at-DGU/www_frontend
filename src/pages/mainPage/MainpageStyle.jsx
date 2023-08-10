@@ -392,7 +392,7 @@ export const Local = styled.div`
   span {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     padding: 2%;
   }
 `;
