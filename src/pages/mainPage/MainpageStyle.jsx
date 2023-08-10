@@ -248,6 +248,8 @@ export const SignUp = styled.div`
   bottom: 0;
   width: 100%;
   justify-content: center;
+  background-color: white;
+  border-radius: 0 0 20px 20px;
   p {
     display: flex;
     flex-direction: column;
@@ -259,7 +261,7 @@ export const SignUp = styled.div`
     line-height: 29px;
     letter-spacing: 0em;
     text-align: center;
-    margin-bottom: 10px;
+    margin: 5px;
   }
   span {
     font-size: 15px;
