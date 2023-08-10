@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import {
   HashTag,
   HoverOverlay2,
+  Image,
   Img,
   InTagBox,
   LocalPick,
-  RecordImage,
-  TagBox,
 } from "./RecordStyle";
 import recordImg from "../../image/record3.png";
 import { useNavigate } from "react-router-dom";
@@ -30,7 +29,7 @@ const LocalPicks = () => {
       onMouseLeave={handleMouseLeave}
     >
       <Img width="262px" height="245px">
-        <RecordImage radius="20px" src={recordImg} />
+        <Image radius="20px" src={recordImg} />
         <InTagBox>
           <HashTag>#london_restaurant</HashTag>
         </InTagBox>

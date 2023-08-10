@@ -1,4 +1,4 @@
-import { CardBox, City, Content, FriendCard, HashTag, Img, ProfileImg, RecordImage, TagBox, Text, Title, Writer } from "./RecordStyle";
+import { CardBox, City, Content, FriendCard, HashTag, Image, Img, ProfileImg, TagBox, Text, Title, Writer } from "./RecordStyle";
 import recordImg from "../../image/record1.jpg"
 import { useNavigate } from "react-router-dom";
 
@@ -10,7 +10,7 @@ const FriendCards = () => {
       <FriendCard onClick={() => navigate("/record/1")}>
         <CardBox>
           <Img width="122px" height="100%">
-            <RecordImage leftradius="20px" src={recordImg} />
+            <Image leftradius="20px" src={recordImg} />
           </Img>
           <Text padding="14px" width="331px">
             <Writer>
