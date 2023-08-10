@@ -76,7 +76,6 @@ export const SearchType = styled.div`
     background-color: white;
 `
 
-<<<<<<< HEAD
 // CompanionCard
 export const CompanionCard = styled.div`
     display: flex;
@@ -95,5 +94,3 @@ export const CompanionTitle = styled(ListTitle)`
     font-size: 1.3rem;
     font-weight: 700;
 `
-=======
->>>>>>> 58d11ce10a55fd99a35a721bea462371ecabf762
