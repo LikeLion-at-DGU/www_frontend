@@ -9,6 +9,7 @@ import {
   PostTitle,
   CenterWriter,
   Margin,
+  TopWrapper,
 } from "./DetailStyle";
 import Card from "../../components/card/Card";
 import { Wrapper } from "../../components/WrapStyle";
@@ -17,26 +18,25 @@ import BookMark from "../../components/index/BookMark";
 import Comments from "../../components/index/Comments";
 import Like from "../../components/index/Like";
 import Views from "../../components/index/Views";
-import { Writer, ProfileImg, City, Box2 } from "./RecordStyle";
+import { Writer, ProfileImg, City, Box2 } from "../recordPage/RecordStyle";
 import { useState } from "react";
-import ListCards from "./ListCards";
+import ListCards from "../recordPage/ListCards";
 import { PostWriter } from "../writePage/WriteStyle";
+import Reaction from "../../components/commentSection/Reaction";
 
 const Detail = () => {
 
-  const [commentFold,setCommentFold] = useState(true);
+  const [commentFold, setCommentFold] = useState(true);
 
   return (
-    <div style={{ margin: "0 auto", width: "1122px" }}>
+    <TopWrapper>
       <DetailWrapper>
-        <BorderBottom>
-          <CenterWriter>
-            <p>by</p>
-            <ProfileImg></ProfileImg>
-            giogio222
-            <City>Iyaly/milano</City>
-          </CenterWriter>
-        </BorderBottom>
+        <CenterWriter>
+          <p>by</p>
+          <ProfileImg></ProfileImg>
+          giogio222
+          <City>Iyaly/milano</City>
+        </CenterWriter>
         <BorderBottom>
           <Wrapper>
             <PostSubTitle>Date: 2023,3,August</PostSubTitle>{" "}
@@ -56,22 +56,8 @@ const Detail = () => {
         요새 샐러드랑 포케에 빠졌다.. 맛있어 대망의 콜드.. 난 콜드 빠돌이다.
         높은 지분을 차지한 콜드 형님 라이브 잘하시는걸?!?!!
       </DetailWrapper>
-      <PostWrapper>
-        <BtnWrapper>
-          <Views />
-          &nbsp;
-          <div onClick={() => setCommentFold(commentFold ? false : true)}>
-            <Comments open={commentFold} />
-          </div>
-        </BtnWrapper>
-        <BtnWrapper>
-          <Like />
-          &nbsp;
-          <BookMark />
-        </BtnWrapper>
-      </PostWrapper>
-      {commentFold ? <CommentSection /> : ""}
-      <Margin />
+      {commentFold && <Reaction setCommentFold={setCommentFold} />}
+      
       <PostWriter>
         <img src="" alt="profile" />
         <p>smile.kmk</p>&nbsp;
@@ -83,7 +69,7 @@ const Detail = () => {
         <ListCards />
         <ListCards />
       </Box2>
-    </div>
+    </TopWrapper>
   );
 };
 
