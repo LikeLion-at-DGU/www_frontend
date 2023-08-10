@@ -216,10 +216,11 @@ export const InTagBox = styled(TagBox)`
   left: 15px;
 `;
 export const HoverOverlay2 = styled(HoverOverlay)`
-  top: 254px;
-  height: 80px;
+  top: 186px;
+  height: 60px;
   border-top-right-radius: 0;
   border-top-left-radius: 0;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   font-weight: 700;
+  padding: 18px 14px;
 `;

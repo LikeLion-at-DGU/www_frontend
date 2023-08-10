@@ -4,7 +4,7 @@ import App from "./App";
 import Login from "./pages/loginPage/Login";
 import Input from "./pages/loginPage/Input";
 import Record from "./pages/recordPage/Record";
-import Detail from "./pages/recordPage/Detail";
+import Detail from "./pages/detailPage/Detail";
 import Companion from "./pages/companionPage/Companion";
 import Archive from "./pages/archivePage/Archive";
 import NotFound from "./pages/NotFound";
@@ -12,7 +12,8 @@ import Mainpage from "./pages/mainPage/Mainpage";
 import { Test } from "./pages/Test";
 import Write from "./pages/writePage/Write";
 import Search from "./pages/searchPage/Search";
-import BeforeSearch from "./pages/searchPage/BeforeSearch"
+import CompanionDetail from "./pages/detailPage/CompanionDetail";
+import CompanionWrite from "./pages/writePage/CompanionWrite";
 
 const Router = createBrowserRouter([
   {
@@ -32,16 +33,20 @@ const Router = createBrowserRouter([
         element: <Detail />,
       },
       {
-        path: "record/search/before",
-        element: <BeforeSearch />,
-      },
-      {
-        path: "record/search/result",
+        path: "record/search",
         element: <Search />,
       },
       {
         path: "record",
         element: <Record />,
+      },
+      {
+        path: "companion/write",
+        element: <CompanionWrite />,
+      },
+      {
+        path: "companion/:detailId",
+        element: <CompanionDetail />,
       },
       {
         path: "companion",

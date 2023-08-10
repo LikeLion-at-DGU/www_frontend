@@ -29,7 +29,7 @@ const LocalPicks = () => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <Img width="357px" height="334px">
+      <Img width="262px" height="245px">
         <RecordImage radius="20px" src={recordImg} />
         <InTagBox>
           <HashTag>#london_restaurant</HashTag>

@@ -74,7 +74,6 @@ const Mainpage = () => {
             />
           ))}
         </TravelContainer>
-
         <Local>
           <LocalTitle>
             <img src={flag} alt="flag" />

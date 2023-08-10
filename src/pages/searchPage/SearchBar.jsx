@@ -1,7 +1,7 @@
 // SearchBar.jsx
 
 import React, { useState } from "react";
-import { SearchBox, SearchBtn, SearchContainer, SearchInput, SelectType } from "./SearchStyle";
+import { SearchBox, SearchBtn, SearchInput, SelectType } from "./SearchStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
@@ -18,7 +18,7 @@ const SearchBar = ({onClick}) => {
         <SearchBox>
             <SelectType value={searchType} onChange={(e) => handleSearchType(e.target.value)}>
                 <option value="word">words</option>
-                <option value="hashtag">hastag</option>
+                <option value="hashtag">hashtag</option>
             </SelectType>
             <SearchInput
                 type="text"

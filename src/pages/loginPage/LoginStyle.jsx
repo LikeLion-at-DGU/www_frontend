@@ -12,8 +12,8 @@ export const Container = styled.div`
 
 export const WhiteBox = styled.div`
   display: flex;
-  width: 548px;
-  height: 588px;
+  width: 600px;
+  height: 650px;
   /* 로그인 창은 크기 고정했음(상대크기X) */
   background-color: white;
   color: black;
@@ -41,8 +41,7 @@ export const FakeButtonWrapper = styled.div`
 export const Text = styled.p`
   font-family: "Roboto Mono";
   display: flex;
-  margin-top: 32px;
-  margin-left: 40px;
+  margin: 32px 0 50px 40px;
   font-size: 1.5rem;
 `;
 
@@ -64,9 +63,15 @@ export const StartBtn = styled.button`
   color: #222222;
   border-radius: 30px;
   border: 1px solid #222222;
-  box-shadow: -5px 8px #222222;
+  box-shadow: -5px 5px #222222;
   font-size: 1.2rem;
   font-weight: 700;
+  &:hover {
+    box-shadow: none;
+    position: relative;
+    right: 5px;
+    top: 5px;
+  }
 `;
 
 export const SigninTxt = styled.p`
@@ -95,7 +100,7 @@ export const InputForm = styled.select`
   margin-bottom: 20px;
   background-color: #ffffff;
   border: 3px solid #222222;
-  width: 25vw;
+  width: 350px;
   height: 7vh;
   text-align: center;
   font-size: 1rem;
@@ -108,7 +113,7 @@ export const InputForm2 = styled.input`
   background-color: #ffffff;
   font-size: 1rem;
   color: #222222;
-  width: 23vw;
+  width: 300px;
   height: 7vh;
   display: flex;
   justify-content: start;

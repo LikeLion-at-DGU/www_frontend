@@ -19,16 +19,23 @@ export const CardWrapper = styled.div`
 export const CardBorder = styled.div`
   display: flex;
   width: 100%;
+  min-height: 70px;
   flex-direction: row;
   border-bottom: 1px solid #000;
 `;
 
 export const ImgCardBorder = styled(CardBorder)`
   justify-content: center;
+  align-items: center;
 `;
 
 export const CardText = styled.div`
   padding: 10px 15px;
+`;
+export const CardInput = styled.input`
+  padding: 10px 15px;
+  border: 0;
+  width: 70%;
 `;
 
 export const CardWWW = styled.div`
@@ -63,5 +70,45 @@ export const HashTag = styled.input`
   margin-left: 20px;
   ::placeholder {
     color: #848484;
+  }
+`;
+export const CardModal = styled(CardWrapper)`
+  position: fixed;
+  top: 100px;
+  left: 28%;
+`
+export const ModalContainer = styled.div`
+  position: fixed;
+  z-index: 1200;
+  top: 0;
+  min-height: 100vh;
+  width: 100vw;
+  padding: 0 25%;
+  background-color: rgb(0 0 0 / 71%);
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const CardSubmit = styled.button`
+  border-radius: 10px;
+  width: 100px;
+  height: 40px;
+  color: #222;
+  margin: 0 10px;
+  background-color: rgba(146, 211, 245, 1);
+  border: 1px solid black;
+  font-size: 1rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: -5px 5px #222222;
+  &:hover {
+    box-shadow: none;
+    position: relative;
+    right: 5px;
+    top: 5px;
   }
 `;
