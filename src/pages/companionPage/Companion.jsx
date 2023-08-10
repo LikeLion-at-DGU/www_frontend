@@ -90,7 +90,7 @@ const Companion = () => {
 
       {/* 반응형으로 떠있는 nav */}
       {/* style={{ top: `${258 + scrollY * 0.5}px` }} */}
-      <Continents style={{ top: `${258 + scrollY * 0.5}px` }}>
+      <Continents style={{ top: `${258 + scrollY * 0.3}px` }}>
         {/* 지역별 대기환경 ~~ 했던 거처럼 params 이용 ... 하면 될 듯 ... */}
         {/* <Continent onClick={() => navigate(`/companion/${}`)}>대륙명</Continent> */}
         <Continent
