@@ -6,8 +6,13 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { SearchBox, SearchBtn, SearchInput } from "../searchPage/SearchStyle";
 import { SearchType } from "./CompanionStyle";
 
-const SearchBar = ({onClick}) => {
+const SearchBar = ({onClick, onReset}) => {
     const [searchTerm, setSearchTerm] = useState("");
+
+    const handleReset = () => {
+        // setSearchTerm("");
+        onReset();
+    }
 
     return (
         <SearchBox>
@@ -18,7 +23,7 @@ const SearchBar = ({onClick}) => {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <SearchBtn onClick={() => onClick(searchTerm)} >
+            <SearchBtn onClick={() => {onClick(searchTerm); handleReset();}} >
                 <FontAwesomeIcon icon={faSearch} />
             </SearchBtn>
         </SearchBox>
