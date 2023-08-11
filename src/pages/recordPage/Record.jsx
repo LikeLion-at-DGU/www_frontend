@@ -40,7 +40,7 @@ const Record = () => {
 
         <Box flexdirect="column" width="561px">
           <SubTitle>
-            World of today!
+            <p>World of today!</p>
             <p
               style={{
                 color: "#848484",

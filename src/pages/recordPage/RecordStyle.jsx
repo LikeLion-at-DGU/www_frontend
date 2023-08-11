@@ -82,7 +82,7 @@ export const Text = styled.div`
   height: ${(props) => props.height};
   position: relative;
 `;
-export const Writer = styled.p`
+export const Writer = styled.div`
   /* position: relative; */
   font-size: 0.75rem;
   font-weight: 500;
@@ -181,7 +181,7 @@ export const ListCard = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-export const ListTitle = styled.p`
+export const ListTitle = styled.div`
   display: flex;
   flex-direction: row;
   font-size: 1.5rem;
