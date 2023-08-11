@@ -49,49 +49,56 @@ const MakeCard = ({setModalOpen}) => {
   };
   return (
     <ModalContainer onClick={handleCloseModal}>
-      <CardModal ref={modal}>
-        <CardBorder>
-          <CardWWW>WHERE: &nbsp; </CardWWW>
-          <CardInput type="text" />
-        </CardBorder>
-        <CardBorder>
-          <CardWWW>WHAT: &nbsp; </CardWWW>
-          <CardInput type="text" />
-        </CardBorder>
-        <CardBorder>
-          <CardWWW>HOW(TIPS!): &nbsp; </CardWWW>
-          <CardInput type="text" />
-        </CardBorder>
-        <ImgCardBorder>
-          <UproadImg onClick={openFilePicker}>
-            <span className="material-symbols-outlined">add_a_photo</span>
-            <input
-              type="file"
-              name="chooseFile"
-              accept="image/*"
-              onChange={handleImageChange}
-              style={{ visibility: "hidden" }}
-            />
-          </UproadImg>
-          {images.map((imageURL, index) => (
-            <CardImg key={index} src={imageURL} alt="post img" />
-          ))}
-        </ImgCardBorder>
-        <CardInfo>
-          <Wrapper>
-            <PenImg src={PenIMG} alt="pen" />
-            <HashTag
-              type="text"
-              value={tag}
-              onChange={tagHandleChange}
-              placeholder="#seoul_restaurant"
-            ></HashTag>
-          </Wrapper>
-          <CardSubmit type="submit" onClick={() => setModalOpen(false)}>
-            save
-          </CardSubmit>
-        </CardInfo>
-      </CardModal>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
+        <CardModal ref={modal}>
+          <CardBorder>
+            <CardWWW>WHERE: &nbsp; </CardWWW>
+            <CardInput type="text" name="where" />
+          </CardBorder>
+          <CardBorder>
+            <CardWWW>WHAT: &nbsp; </CardWWW>
+            <CardInput type="text" name="what" />
+          </CardBorder>
+          <CardBorder>
+            <CardWWW>HOW(TIPS!): &nbsp; </CardWWW>
+            <CardInput type="text" name="how" />
+          </CardBorder>
+          <ImgCardBorder>
+            <UproadImg onClick={openFilePicker}>
+              <span className="material-symbols-outlined">add_a_photo</span>
+              <input
+                type="file"
+                name="image"
+                accept="image/*"
+                onChange={handleImageChange}
+                style={{ visibility: "hidden" }}
+              />
+            </UproadImg>
+            {images.map((imageURL, index) => (
+              <CardImg key={index} src={imageURL} alt="post img" />
+            ))}
+          </ImgCardBorder>
+          <CardInfo>
+            <Wrapper>
+              <PenImg src={PenIMG} alt="pen" />
+              <HashTag
+                type="text"
+                name="tag"
+                value={tag}
+                onChange={tagHandleChange}
+                placeholder="#seoul_restaurant"
+              ></HashTag>
+            </Wrapper>
+            <CardSubmit type="submit" onClick={() => setModalOpen(false)}>
+              save
+            </CardSubmit>
+          </CardInfo>
+        </CardModal>
+      </form>
     </ModalContainer>
   );
 };
