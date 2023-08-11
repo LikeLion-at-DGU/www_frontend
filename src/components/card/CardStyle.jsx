@@ -72,6 +72,15 @@ export const HashTag = styled.input`
     color: #848484;
   }
 `;
+export const TagName = styled.div`
+  height: 90%;
+  border-radius: 20px;
+  background: #f2f2f2;
+  text-align: center;
+  border: 0;
+  color: #2e74b5;
+  margin-left: 20px;
+`
 export const CardModal = styled(CardWrapper)`
   position: fixed;
   top: 100px;

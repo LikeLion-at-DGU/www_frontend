@@ -9,11 +9,11 @@ import Companion from "./pages/companionPage/Companion";
 import Archive from "./pages/archivePage/Archive";
 import NotFound from "./pages/NotFound";
 import Mainpage from "./pages/mainPage/Mainpage";
-import { Test } from "./pages/Test";
 import Write from "./pages/writePage/Write";
 import Search from "./pages/searchPage/Search";
 import CompanionDetail from "./pages/detailPage/CompanionDetail";
 import CompanionWrite from "./pages/writePage/CompanionWrite";
+import Test from "./pages/Test";
 
 const Router = createBrowserRouter([
   {
