@@ -19,14 +19,27 @@ import Comments from "../../components/index/Comments";
 import Like from "../../components/index/Like";
 import Views from "../../components/index/Views";
 import { Writer, ProfileImg, City, Box2 } from "../recordPage/RecordStyle";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ListCards from "../recordPage/ListCards";
 import { PostWriter } from "../writePage/WriteStyle";
 import Reaction from "../../components/commentSection/Reaction";
+import axios from "axios";
 
 const Detail = () => {
-
   const [commentFold, setCommentFold] = useState(true);
+  const [posts,setPosts] = useState([]);
+
+  useEffect(() => {
+    // API 요청을 수행하는 부분
+    axios
+      .get("/api/records") // 레코드 GET URL
+      .then((response) => {
+        setPosts(response.data); // 받아온 데이터를 상태에 저장
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []); // 빈 배열을 넣어 처음 한 번만 실행되도록 설정
 
   return (
     <TopWrapper>
@@ -57,7 +70,7 @@ const Detail = () => {
         높은 지분을 차지한 콜드 형님 라이브 잘하시는걸?!?!!
       </DetailWrapper>
       {commentFold && <Reaction setCommentFold={setCommentFold} />}
-      
+
       <PostWriter>
         <img src="" alt="profile" />
         <p>smile.kmk</p>&nbsp;

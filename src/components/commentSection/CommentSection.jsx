@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -14,8 +14,10 @@ import Like from "../index/Like";
 import FriendMark from "../index/FriendMark";
 import Mine from "../index/Mine";
 import { BtnWrapper } from "../../pages/detailPage/DetailStyle";
+import axios from "axios";
 
-export const CommentSection = () => {
+
+export const CommentSection = ({ record_id }) => {
   const [cmt, setCmt] = useState("");
   const [cmtList, setCmtList] = useState([
     {
@@ -32,10 +34,42 @@ export const CommentSection = () => {
     },
   ]);
 
+  //댓글 리스트 GET
+  useEffect(() => {
+    // API 요청을 수행하는 부분
+    axios
+      .get(`/api/records/${record_id}/rcomments`) // 댓글 리스트 GET URL
+      .then((response) => {
+        setCmtList(...cmtList, response.data); // 받아온 데이터를 상태에 저장
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, [cmtList]); // cmtList 값이 변경될 때마다 실행(댓글 추가 될 때마다)
+
+  //댓글 리스트 POST
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await axios.post(
+        `/api/records/${record_id}/rcomments`, // 댓글 리스트 POST__ API 확정 안됨
+        {
+          cmt,
+        }
+      );
+      console.log("Post created:", response.data);
+      // 추가 동작
+    } catch (error) {
+      console.error("Error creating post:", error);
+    }
+  };
+
   const cmtHandleChange = (e) => {
     setCmt(e.target.value);
   };
-  const addCmtList = () =>{
+  /* 백연결
+  const addCmtList = () => {
     setCmtList(() => [
       ...cmtList,
       {
@@ -45,15 +79,12 @@ export const CommentSection = () => {
         comment: cmt,
       },
     ]);
-  }
+  };
+*/
 
   return (
     <>
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-        }}
-      >
+      <form onSubmit={handleSubmit}>
         <Label>
           <ApplyInput
             type="text"
@@ -61,7 +92,8 @@ export const CommentSection = () => {
             value={cmt}
             onChange={cmtHandleChange}
           />
-          <ApplyBtn onClick={addCmtList}>apply</ApplyBtn>
+          <ApplyBtn type="submit">apply</ApplyBtn>
+          {/* <ApplyBtn onClick={addCmtList}>apply</ApplyBtn> */}
         </Label>
       </form>
       <p>
@@ -72,13 +104,16 @@ export const CommentSection = () => {
       {cmtList.map((comment, idx) => (
         <CmtBox key={idx}>
           <CmtLabel>
-            <Wrapper style={{alignItems: "end"}}>
+            <Wrapper style={{ alignItems: "end" }}>
               {comment.userNmae === "smaile.kmk" ? (
                 <BtnWrapper>
                   <Mine />
-                  <FontAwesomeIcon icon={faEllipsisV} style={{padding: "10px"}} />
+                  <FontAwesomeIcon
+                    icon={faEllipsisV}
+                    style={{ padding: "10px" }}
+                  />
                 </BtnWrapper>
-                ) : (
+              ) : (
                 <FriendMark />
               )}
             </Wrapper>
@@ -94,7 +129,6 @@ export const CommentSection = () => {
           {comment.comment}
         </CmtBox>
       ))}
-
     </>
   );
 };

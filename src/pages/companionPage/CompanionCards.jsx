@@ -12,11 +12,15 @@ import Like from '../../components/index/Like'
 import { useNavigate } from 'react-router-dom'
 
 
-function CompanionCards() {
+function CompanionCards(handlewidth, handleheight) {
   const navigate = useNavigate();
 
   return (
-    <CompanionCard onClick={() => navigate("/companion/1")}>
+    <CompanionCard
+      handlewidth=""
+      handleheight=""
+      onClick={() => navigate("/companion/1")}
+    >
       <CompanionText width="626px" height="124px" padding="10px 20px">
         <CompanionTitle>
           <p>Today Hanoi nightscape!!</p>

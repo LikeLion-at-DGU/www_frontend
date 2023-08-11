@@ -17,10 +17,11 @@ import {
 
 const Input = () => {
   const navigate = useNavigate();
+  const [image, setImage] = useState(null);
+  const [hover, setHover] = useState(false);
   const [nickname, setNickname] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
-  const [language, setLanguage] = useState("");
 
   const cityHandleChange = (e) => {
     setCity(e.target.value);
@@ -34,12 +35,8 @@ const Input = () => {
     setCountry(e.target.value);
     console.log(country);
   };
-  const languagehandleChange = (e) => {
-    setLanguage(e.target.value);
-    console.log(language);
-  };
-  const [hover, setHover] = useState(false);
 
+// 필수요소 체크
   const inputCheck = () => {
     if (
       join.country.value === "none" ||
@@ -49,11 +46,22 @@ const Input = () => {
       alert("필수 입력 항목을 전부 입력하세요!");
       return false;
     } else {
-      alert("회원가입 성공");
+      // alert("회원가입 성공");
       navigate("/");
       return true;
     }
   };
+  // 프로필 이미지 변경
+    const handleImageChange = (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        const imageURL = URL.createObjectURL(file);
+        setImage(imageURL);
+      }
+    };
+    const openFilePicker = () => {
+      document.querySelector('input[type="file"]').click();
+    };
   return (
     <Container>
       <WhiteBox>
@@ -63,19 +71,40 @@ const Input = () => {
             src="src/image/logo.png"
             alt="logo"
           />
-          <Profile
-            onMouseEnter={() => setHover(true)}
-            onMouseLeave={() => setHover(false)}
-          >
-            {hover ? (
-              <span className="material-symbols-outlined">add_a_photo</span>
-            ) : (
-              "+"
-            )}
-          </Profile>
+          {image ? (
+            <Profile
+              onClick={openFilePicker}
+              onMouseEnter={() => setHover(true)}
+              onMouseLeave={() => setHover(false)}
+            >
+              {hover ? (
+                <span className="material-symbols-outlined">add_a_photo</span>
+              ) : (
+                "+"
+              )}
+              <input
+                type="file"
+                name="image"
+                accept="image/*"
+                onChange={handleImageChange}
+                style={{ visibility: "hidden" }}
+              />
+            </Profile>
+          ) : (
+            <Profile>
+              <img src="" alt="선택한 프로필사진" />
+              <input
+                type="file"
+                name="image"
+                accept="image/*"
+                onChange={handleImageChange}
+                style={{ visibility: "hidden" }}
+              />
+            </Profile>
+          )}
         </TopWrapper>
         <Text>Input your information!</Text>
-        <form name="join" onSubmit={(e)=>e.preventDefault()}>
+        <form name="join" onSubmit={(e) => e.preventDefault()}>
           <JoinWrapper>
             <InputForm
               name="country"
@@ -106,9 +135,7 @@ const Input = () => {
               Use only small english letter/Up to 17 letters
               <br /> No space/ only (.)and(_) available
             </JoinTxt>
-            <SigninBtn onClick={ inputCheck }>
-              sign up!
-            </SigninBtn>
+            <SigninBtn onClick={inputCheck}>sign up!</SigninBtn>
           </JoinWrapper>
         </form>
       </WhiteBox>

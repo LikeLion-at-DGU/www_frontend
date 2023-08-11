@@ -7,27 +7,32 @@ import Comments from '../index/Comments';
 import Like from '../index/Like';
 import BookMark from '../index/BookMark';
 
-const Reaction = ({ setCommentFold }) => {
+// 조회수, 댓글, 좋아요, 북마크 컴포넌트
+const Reaction = ({record_id}) => { 
   const [isClicked,setisClicked] = useState(true);
 
   return (
     <>
       <PostWrapper>
         <BtnWrapper>
-          <Views />
+          <Views record_id={record_id} />
           &nbsp;
           <div onClick={() => setisClicked(isClicked ? false : true)}>
-            <Comments open={isClicked} />
+            <Comments record_id={record_id} open={isClicked} />
           </div>
         </BtnWrapper>
         <BtnWrapper>
-          <Like />
+          <Like record_id={record_id} />
           &nbsp;
-          <BookMark />
+          <BookMark record_id={record_id} />
         </BtnWrapper>
       </PostWrapper>
-      {isClicked && <><CommentSection /><Margin /></>}
-      
+      {isClicked && (
+        <>
+          <CommentSection record_id={record_id} />
+          <Margin />
+        </>
+      )}
     </>
   );
 };

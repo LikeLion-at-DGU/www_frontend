@@ -18,11 +18,14 @@ import PenIMG from "../../image/pen.png";
 import { useState, useRef, useMemo } from "react";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
+import axios from "axios";
 
 const CompanionWrite = () => {
-
   const dateRef = useRef();
+  const quillRef = useRef();
 
+  const [user, setUser] = useState("user");
+  const [userInfo, setUserInfo] = useState("user info(Korea/incheon)");
   const [date, setDate] = useState("");
   const [continent, setContinent] = useState("");
   const [country, setCountry] = useState("");
@@ -46,20 +49,28 @@ const CompanionWrite = () => {
     setCity(event.target.value);
   };
 
-/*
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const imageURL = URL.createObjectURL(file);
-      setImages([...images, imageURL]);
+  // 동행 글 POST
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await axios.post("/api/records", {
+        //동행글 POST URL __확정 안됨
+        user,
+        userInfo,
+        date,
+        continent,
+        country,
+        city,
+        content,
+      });
+
+      console.log("Post created:", response.data);
+      // 새로운 레코드 생성된 후의 동작을 수행
+    } catch (error) {
+      console.error("Error creating post:", error);
     }
   };
-  const openFilePicker = () => {
-    document.querySelector('input[type="file"]').click();
-  };
-*/
-
-  const quillRef = useRef();
 
   // quill에서 사용할 모듈
   // useMemo를 사용하여 modules가 렌더링 시 에디터가 사라지는 버그를 방지
@@ -81,7 +92,7 @@ const CompanionWrite = () => {
   return (
     <>
       <TopWriteWrapper>
-        <form style={{ width: "100%" }} onSubmit={(e) => e.preventDefault()}>
+        <form style={{ width: "100%" }} onSubmit={handleSubmit}>
           <WriteWrapper>
             <PostWriter>
               <img src="" alt="profile" />
@@ -174,21 +185,6 @@ const CompanionWrite = () => {
             onChange={setContent}
             modules={modules}
           />
-
-          {/* <ReadOnly
-            type="text"
-            value="Necessary information!(Please write buttom questions.)"
-            readOnly
-          />
-          <ReadOnly type="text" value="#Where we will meet?" readOnly />
-          <InputData type="text" value={where} onChange={handleWhereChange} />
-          <ReadOnly type="text" value="#When we will meet?" readOnly />
-          <InputData type="text" value={when} onChange={handleWhenChange} />
-          <ReadOnly type="text" value="#What we will do together?" readOnly />
-          <InputData type="text" value={what} onChange={handleWhatChange} />
-          {images.map((img, idx) => (
-            <img key={idx} src={img} alt="post img" />
-          ))} */}
         </form>
       </TopWriteWrapper>
     </>

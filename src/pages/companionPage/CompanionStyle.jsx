@@ -86,15 +86,17 @@ export const FixedBtnBox = styled.div`
 
 // CompanionCard
 export const CompanionCard = styled.div`
-    display: flex;
-    flex-direction: row;
-    width: 749px;
-    height: 124px;
-    background-color: #FBFBFB;
-    justify-content: space-between;
-    align-items: center;
-    margin: 4.5px 0;
-`
+  display: flex;
+  flex-direction: row;
+  width: ${(props) => (props.handlewidth ? props.handlewidth : "749px")};
+  /* width: 749px; */
+  height: ${(props) => (props.handleheight ? props.handleheight : "124px")};
+  /* height: 124px; */
+  background-color: #fbfbfb;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4.5px 0;
+`;
 export const CompanionText = styled(Text)`
     justify-content: space-around;
 `
