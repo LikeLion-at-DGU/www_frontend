@@ -3,7 +3,6 @@ import recordImg from "../../image/record1.jpg"
 import { useNavigate } from "react-router-dom";
 
 const FriendCards = () => {
-
     const navigate = useNavigate();
 
     return (
