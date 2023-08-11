@@ -24,6 +24,7 @@ import { CommentSection } from '../../components/commentSection/CommentSection';
 import { PostWriter } from '../writePage/WriteStyle';
 import ListCards from '../recordPage/ListCards';
 import { Link } from 'react-router-dom';
+import CompanionCards from '../companionPage/CompanionCards';
 
 export default function CompanionDetail() {
   const [commentFold, setCommentFold] = useState(true);
@@ -68,9 +69,9 @@ export default function CompanionDetail() {
         </Link>
       </AnotherTitle>
       <Box2 flexdirect="column" height="460px">
-        <ListCards />
-        <ListCards />
-        <ListCards />
+        <CompanionCards/>
+        <CompanionCards />
+        <CompanionCards />
       </Box2>
     </TopWrapper>
   );

@@ -21,6 +21,7 @@ export const Box = styled.div`
 `;
 export const Box2 = styled(Box)`
   justify-content: space-evenly;
+  align-items: center;
   width: 1122px;
 `;
 export const Btn = styled(BlueBtn)`

@@ -12,8 +12,8 @@ export const Container = styled.div`
 
 export const WhiteBox = styled.div`
   display: flex;
-  width: 600px;
-  height: 650px;
+  width: 548px;
+  min-height: 80vh;
   /* 로그인 창은 크기 고정했음(상대크기X) */
   background-color: white;
   color: black;
@@ -21,11 +21,13 @@ export const WhiteBox = styled.div`
   border-radius: 20px;
   flex-direction: column;
   font-weight: bold;
+  padding-bottom: 20px;
 `;
 
 export const LogoImage = styled.img`
   width: 25%;
-  height: auto;
+  /* width: auto; */
+  /* height: 10%; */
   margin-top: 30px;
   margin-left: 40px;
 `;
@@ -39,6 +41,7 @@ export const FakeButtonWrapper = styled.div`
 `;
 
 export const Text = styled.p`
+  height: 10%;
   font-family: "Roboto Mono";
   display: flex;
   margin: 32px 0 50px 40px;
@@ -73,6 +76,9 @@ export const StartBtn = styled.button`
     top: 5px;
   }
 `;
+export const LoginBtn = styled(StartBtn)`
+  margin-top: 10vh;
+`
 
 export const SigninTxt = styled.p`
   font-family: "Roboto";
@@ -88,6 +94,7 @@ export const SignLink = styled.span`
 // detail Component 관련 styled component
 
 export const JoinWrapper = styled.div`
+  height: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -152,7 +159,15 @@ export const Profile = styled.div`
     background-color: #848484;
     color: #ffffff;
   }
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    font-size: 0.8rem;
+    background-color: yellow;
+  }
 `;
+
 export const TopWrapper = styled.div`
   display: flex;
   justify-content: space-between;

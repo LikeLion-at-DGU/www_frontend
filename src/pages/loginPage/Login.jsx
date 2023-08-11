@@ -9,6 +9,7 @@ import {
   Text,
   StartBtn,
   LoginWrapper,
+  LoginBtn,
 } from "./LoginStyle";
 
 const Login = () => {
@@ -28,9 +29,9 @@ const Login = () => {
           Everybody needs your record!
         </Text>
         <LoginWrapper>
-          <StartBtn>
+          <LoginBtn>
             <i className="fab fa-google"></i> &nbsp;sign in with google
-          </StartBtn>
+          </LoginBtn>
         </LoginWrapper>
       </WhiteBox>
     </Container>

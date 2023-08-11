@@ -89,44 +89,43 @@ const Companion = () => {
 
   return (
     <CompanionContainer>
-
       {/* 반응형으로 떠있는 nav */}
       {/* style={{ top: `${258 + scrollY * 0.5}px` }} */}
       <Continents style={{ top: `${258 + scrollY * 0.3}px` }}>
         {/* 지역별 대기환경 ~~ 했던 거처럼 params 이용 ... 하면 될 듯 ... */}
         {/* <Continent onClick={() => navigate(`/companion/${}`)}>대륙명</Continent> */}
         <Continent
-          className={activeBtn === 1 ? 'active' : ""}
+          className={activeBtn === 1 ? "active" : ""}
           onClick={() => handleBtnClick(1)}
         >
           Africa
         </Continent>
         <Continent
-          className={activeBtn === 2 ? 'active' : ""}
+          className={activeBtn === 2 ? "active" : ""}
           onClick={() => handleBtnClick(2)}
         >
           Asia
         </Continent>
         <Continent
-          className={activeBtn === 3 ? 'active' : ""}
+          className={activeBtn === 3 ? "active" : ""}
           onClick={() => handleBtnClick(3)}
         >
           Europe
         </Continent>
         <Continent
-          className={activeBtn === 4 ? 'active' : ""}
+          className={activeBtn === 4 ? "active" : ""}
           onClick={() => handleBtnClick(4)}
         >
           Oceania
         </Continent>
         <Continent
-          className={activeBtn === 5 ? 'active' : ""}
+          className={activeBtn === 5 ? "active" : ""}
           onClick={() => handleBtnClick(5)}
         >
           North America
         </Continent>
         <Continent
-          className={activeBtn === 6 ? 'active' : ""}
+          className={activeBtn === 6 ? "active" : ""}
           onClick={() => handleBtnClick(6)}
         >
           South America
@@ -135,7 +134,7 @@ const Companion = () => {
 
       {/* 화면고정 버튼 */}
       <FixedBtnBox>
-        <RegisterBtn>
+        <RegisterBtn onClick={() => navigate("/companion/write")}>
           <RegisterImg src={PenIMG} alt="pen" />
           register
         </RegisterBtn>
@@ -145,14 +144,14 @@ const Companion = () => {
         <SearchBar onClick={handleSearch} onReset={handleReset} />
         <ArrayChoices>
           <ArrayChoice
-            className={currentSort === "new" ? 'active' : ""}
+            className={currentSort === "new" ? "active" : ""}
             onClick={() => handleSort("new")}
           >
             New
           </ArrayChoice>
           <p style={{ margin: "0 5px" }}>|</p>
           <ArrayChoice
-            className={currentSort === "mostLike" ? 'active' : ""}
+            className={currentSort === "mostLike" ? "active" : ""}
             onClick={() => handleSort("mostLike")}
           >
             Most Like
@@ -160,9 +159,12 @@ const Companion = () => {
         </ArrayChoices>
         <div>
           {/* 검색 결과 표시 */}
-          {(searchTerm) && (searchResults.length === 0) ? (
+          {searchTerm && searchResults.length === 0 ? (
             <NoResult>
-              <img style={{ width: "120px", marginBottom: "20px" }} src={logo} />
+              <img
+                style={{ width: "120px", marginBottom: "20px" }}
+                src={logo}
+              />
               Sorry. No search results found.
             </NoResult>
           ) : (
@@ -173,13 +175,15 @@ const Companion = () => {
             ))
           )}
 
-          <Box2 style={{
-            width: "fit-content",
-            padding: "14px",
-            margin: "0",
-            borderLeft: "1px solid #848484"
-          }}
-            flexdirect="column">
+          <Box2
+            style={{
+              width: "fit-content",
+              padding: "14px",
+              margin: "0",
+              borderLeft: "1px solid #848484",
+            }}
+            flexdirect="column"
+          >
             <CompanionCards />
             <CompanionCards />
             <CompanionCards />
@@ -194,9 +198,7 @@ const Companion = () => {
             <CompanionCards />
           </Box2>
         </div>
-
       </CompanionList>
-
     </CompanionContainer>
   );
 };

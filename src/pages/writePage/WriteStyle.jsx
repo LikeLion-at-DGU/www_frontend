@@ -5,6 +5,7 @@ import { DetailWrapper, PostWrapper } from "../detailPage/DetailStyle";
 
 export const TopWriteWrapper = styled(DetailWrapper)`
   margin: 30px auto;
+  margin-bottom: 80px;
 `;
 export const WriteWrapper = styled(PostWrapper)`
   border-bottom: 1px solid #222;
@@ -14,7 +15,7 @@ export const WriteWrapper = styled(PostWrapper)`
 `;
 export const SaveBtn = styled(BlueBtn)`
   border-radius: 10px;
-  width: 100px;
+  width: 130px;
   height: 40px;
   font-size: 1rem;
   color: #222;

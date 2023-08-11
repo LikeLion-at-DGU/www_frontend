@@ -9,122 +9,132 @@ import {
   WriteWrapper,
   InputField,
   TitleInput,
-  WriteBody,
-  UproadImg,
-  AddCardBtn,
   TopWriteWrapper,
-  BodySection,
+  SaveBtn,
 } from "./WriteStyle";
 import PenIMG from "../../image/pen.png";
-// import axios from 'axios';
-import { useState, useEffect, useRef } from "react";
+import axios from "axios";
+import { useState, useEffect, useRef, useMemo } from "react";
+import "react-quill/dist/quill.snow.css";
+import ReactQuill from "react-quill";
 import MakeCard from "../../components/card/MakeCard";
 
 const Write = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [contentList, setContentList] = useState([]);
-  const [currentContent, setCurrentContent] = useState({
-    text: "",
-    imageURL: "",
-  });
-   const inputRef = useRef(null);
+  const [content, setContent] = useState("");
+  const [date, setDate] = useState("");
+  const [weather, setWeather] = useState("");
+  const [title, setTitle] = useState("");
+  const [user, setUser] = useState("user");
+  const [userInfo, setUserInfo] = useState("user info(Korea/incheon)");
+  const quillRef = useRef();
 
-   const handleBodySectionClick = () => {
-     inputRef.current.focus();
-   };
-
-  const handleTextChange = (event) => {
-    setCurrentContent({ ...currentContent, text: event.target.value });
+  const handledate = (event) => {
+    setDate(event.target.value);
+  };
+  const handleweather = (event) => {
+    setWeather(event.target.value);
+  };
+  const handletitle = (event) => {
+    setTitle(event.target.value);
   };
 
-  const handleImageChange = (event) => {
-    const imageURL = URL.createObjectURL(event.target.files[0]);
-    setCurrentContent({ ...currentContent, imageURL });
-  };
+  // 레코드 POST
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-  const openFilePicker = () => {
-    document.querySelector('input[type="file"]').click();
-    pushdata();
-  }
+    try {
+      const response = await axios.post("/api/records", { //레코드 POST URL
+        user,
+        userInfo,
+        date,
+        weather,
+        title,
+        content,
+      });
 
-    const pushdata = () =>{
-    if (currentContent.text || currentContent.imageURL) {
-      setContentList([...contentList, currentContent]);
-      setCurrentContent({ text: "", imageURL: "" });
+      console.log("Post created:", response.data);
+      // 새로운 레코드 생성된 후의 동작을 수행
+    } catch (error) {
+      console.error("Error creating post:", error);
     }
   };
 
-  useEffect(() => {
-    pushdata();
-  }, [currentContent.imageURL]);
+  // quill에서 사용할 모듈
+  // useMemo를 사용하여 modules가 렌더링 시 에디터가 사라지는 버그를 방지
+  const modules = useMemo(() => {
+    return {
+      toolbar: {
+        container: [
+          [{ header: [1, 2, 3, false] }],
+          ["bold", "italic", "underline", "strike"],
+          ["blockquote"],
+          [{ list: "ordered" }, { list: "bullet" }],
+          [{ color: [] }, { background: [] }],
+          [{ align: [] }, "link", "image"],
+        ],
+      },
+    };
+  }, []);
 
   return (
     <>
       <TopWriteWrapper>
         {modalOpen && <MakeCard setModalOpen={setModalOpen} />}
-        <form style={{ width: "100%" }}>
+        <form style={{ width: "100%" }} onSubmit={handleSubmit}>
+          {/* 글쓴이 , register */}
           <WriteWrapper>
             <PostWriter>
               <img src="" alt="profile" />
-              <p>smile.kmk</p>&nbsp;
-              <span>Korea/incheon</span>
+              <p>{user}</p>&nbsp;
+              <span>{userInfo}</span>
             </PostWriter>
             <BtnWrapper>
-              <UproadImg onClick={openFilePicker}>
-                <span className="material-symbols-outlined">add_a_photo</span>
-                <input
-                  type="file"
-                  name="chooseFile"
-                  accept="image/*"
-                  onChange={handleImageChange}
-                  style={{ visibility: "hidden" }}
-                />
-              </UproadImg>
-              <AddCardBtn onClick={() => setModalOpen(true)}>
+              <SaveBtn onClick={() => setModalOpen(true)}>
                 <span className="material-symbols-outlined">library_add</span>
                 <p>add card</p>
-              </AddCardBtn>
-              <RegisterBtn>
+              </SaveBtn>
+              <RegisterBtn
+                type="submit"
+                onClick={() => {
+                  console.log(content);
+                }}
+              >
                 <RegisterImg src={PenIMG} alt="pen" />
                 &nbsp;register
               </RegisterBtn>
             </BtnWrapper>
           </WriteWrapper>
+          {/* 날짜, 날씨, 타이틀 */}
           <InputField>
-            Date: <input type="date" name="date" /> &nbsp; Weather:{" "}
-            <input type="text" placeholder="input weather" />
-          </InputField>
-          <TitleInput placeholder="Title" />
-          {/* ---------------------------------------------------- */}
-          <div>
-            {contentList.map((content, index) => (
-              <div
-                key={index}
-                // contenteditable="true"
-              >
-                {content.text && <p>{content.text}</p>}
-                {content.imageURL && (
-                  <img
-                    src={content.imageURL}
-                    alt={`이미지 ${index + 1}`}
-                    style={{
-                      maxWidth: "100px",
-                      maxHeight: "100px",
-                      margin: "5px",
-                    }}
-                  />
-                )}
-              </div>
-            ))}
-          </div>
-          <BodySection onClick={handleBodySectionClick}>
-            <WriteBody
-              ref={inputRef}
-              value={currentContent.text}
-              onChange={handleTextChange}
-              // placeholder="Please enter the main content."
+            Date:{" "}
+            <input type="date" name="date" value={date} onChange={handledate} />{" "}
+            &nbsp; Weather:{" "}
+            <input
+              type="text"
+              name="weather"
+              value={weather}
+              onChange={handleweather}
+              placeholder="input weather"
             />
-          </BodySection>
+          </InputField>
+          <TitleInput
+            type="text"
+            name="title"
+            value={title}
+            onChange={handletitle}
+            placeholder="Title"
+          />
+          {/* 본문 */}
+          <ReactQuill
+            style={{ width: "100%", height: "600px", marginBottom: "60px" }}
+            placeholder="Please enter the main content"
+            theme="snow"
+            ref={quillRef}
+            value={content}
+            onChange={setContent}
+            modules={modules}
+          />
         </form>
       </TopWriteWrapper>
     </>
