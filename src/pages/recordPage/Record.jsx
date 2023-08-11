@@ -12,15 +12,20 @@ import TodayCards from "./TodayCards";
 import ListCards from "./ListCards";
 import LocalPicks from "./LocalPicks";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Record = () => {
     const navigate = useNavigate();
     const [recordList, setRecordList] = useState([]);
 
     useEffect(() => {
-      fetch("/api/records")
-      .then(response => response.json())
-      .then(data => setRecordList(data));
+      axios.get('/api/records')
+      .then(response => {
+        setRecordList(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error)
+      })
     }, []);
 
   return (
