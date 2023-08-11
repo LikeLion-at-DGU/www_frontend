@@ -51,7 +51,10 @@ const OneAndVoteAll = () => {
   };
 
   const getPercentage = (count) => {
-    const totalVotes = mockData.reduce((total, data) => total + data.count, 0);
+    const totalVotes = mockData.reduce(
+      (total, data) => total + parseInt(data.count, 10),
+      0
+    );
     const percentage = totalVotes === 0 ? 0 : (count / totalVotes) * 100;
     return Math.floor(percentage);
   };
