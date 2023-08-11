@@ -39,7 +39,7 @@ const Companion = () => {
 
     const timeoutId = setTimeout(() => {
       setScrollY(0);
-    }, 700);
+    }, 400);
     setScrollTimeout(timeoutId);
   };
 

@@ -78,9 +78,10 @@ const Detail = () => {
         <p>'s recent record!</p>
       </PostWriter>
       <Box2 flexdirect="column" height="460px">
+        {/* <ListCards />
         <ListCards />
-        <ListCards />
-        <ListCards />
+        <ListCards /> */}
+        <p>리스트 카드 올 부분</p>
       </Box2>
     </TopWrapper>
   );

@@ -16,6 +16,10 @@ export const SearchBox = styled.div`
     margin-top: 45px;
     margin-bottom: 40px;
 `
+export const Box3 = styled(Box)`
+    /* justify-content: space-between; */
+    width: 1122px;
+`
 export const SelectType = styled.select`
     width: 115px;
     height: 44px;
