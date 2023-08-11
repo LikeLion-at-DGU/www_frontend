@@ -80,6 +80,7 @@ export const TagName = styled.div`
   border: 0;
   color: #2e74b5;
   margin-left: 20px;
+  padding: 5px 10px;
 `
 export const CardModal = styled(CardWrapper)`
   position: fixed;
