@@ -1,7 +1,6 @@
 // Record.jsx
 
 import React, { useState, useEffect } from "react";
-
 import { Box, Box2, Btn, RecordContainer, SubTitle } from "./RecordStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenNib, faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -12,14 +11,14 @@ import TodayCards from "./TodayCards";
 import ListCards from "./ListCards";
 import LocalPicks from "./LocalPicks";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axiosInstance from "../../../src/api/axios";
 
 const Record = () => {
   const navigate = useNavigate();
   const [recordList, setRecordList] = useState([]);
 
   useEffect(() => {
-    axios
+    axiosInstance
       .get("/api/records")
       .then((response) => {
         setRecordList(response.data);
