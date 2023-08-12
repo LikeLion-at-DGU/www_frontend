@@ -1,12 +1,12 @@
 // Search.jsx
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SearchBar from "./SearchBar";
-import { Box, Box2, SubTitle } from "../recordPage/RecordStyle";
+import { SubTitle } from "../recordPage/RecordStyle";
 import ListCards from "../recordPage/ListCards";
-import { NoResult, SearchContainer } from "./SearchStyle";
+import { Box3, NoResult, SearchContainer } from "./SearchStyle";
 import logo from "../../image/noresult_logo.png";
-// import axios from "axios";
+import axios from "axios";
 
 const RecordSearch = () => {
 
@@ -14,12 +14,21 @@ const RecordSearch = () => {
   const [searchResults, setSearchResults] = useState([]);
   // 검색어
   const [searchTerm, setSearchTerm] = useState("");
+  // ListCard
+  const [recordList, setRecordList] = useState([]);
 
-  // // YOUR_API_URL -> 나중에 백엔드 API 입력해줄것
+  useEffect(() => {
+    axios.get('/api/records')
+    .then(response => setRecordList(response.data))
+    .catch(error => console.error('Error fetching record List:', error));
+  }, [])
+
+  // // 검색 -> 나중에 백엔드 API 입력해줄것
   // const handleSearch = async(searchTerm, searchType) => {
   //   try {
-  //     const response = await axios.get(`YOUR_API_URL?q=${searchTerm}`);
+  //     const response = await axios.get(`/api/records?q=${searchTerm}`);
   //     setSearchResults(response.data);
+  //     setSearchTerm(searchTerm);
   //   } catch (error) {
   //     console.log("ERROR: ", error);
   //   }
@@ -27,7 +36,7 @@ const RecordSearch = () => {
 
   const handleSearch = async (searchTerm, searchType) => {
     // 가상의 데이터를 활용하여 검색 결과 설정
-    // 나중에 위에 코드로 바꿔줘야 함 (include 부분 추가해서..?)
+    // 나중에 위에 코드로 바꿔줘야 함
     const virtualData = [
       {
         id: 1,
@@ -57,7 +66,7 @@ const RecordSearch = () => {
     <SearchContainer>
       <SearchBar onClick={handleSearch} />
 
-      <Box2 flexdirect="column">
+      <Box3 flexdirect="column">
         {searchTerm && (
           <div>
             <SubTitle>{`record with "${searchTerm}"`}</SubTitle>
@@ -77,17 +86,19 @@ const RecordSearch = () => {
             ))
           )}
         </ul>
-      </Box2>
+      </Box3>
 
-      <Box2 flexdirect="column" height="832px">
+      <Box3 flexdirect="column" height="832px">
         <SubTitle>Records around the world!</SubTitle>
-        {/* 나중에 '전체 글 목록'이 불러와질 수 있게 수정 */}
+        {/* <ListCards />
         <ListCards />
         <ListCards />
         <ListCards />
-        <ListCards />
-        <ListCards />
-      </Box2>
+        <ListCards /> */}
+        {recordList.slice(0, 5).map(record => (
+          <ListCards key={record.id} record={record} />
+        ))}
+      </Box3>
     </SearchContainer>
   );
 };

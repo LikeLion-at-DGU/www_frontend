@@ -9,7 +9,7 @@ const Views = (props, { record_id }) => {
   useEffect(() => {
     // API 요청을 수행하는 부분
     axios
-      .get(`/api/records/${record_id}/record_like`) // 레코드 조회수 GET URL__ API 확정 안됨
+      .get(`/api/records/${record_id}`) // 레코드 조회수 GET URL
       .then((response) => {
         setViews(response.data); // 받아온 데이터를 상태에 저장
       })

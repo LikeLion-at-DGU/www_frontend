@@ -1,5 +1,7 @@
 // Record.jsx
 
+import React, { useState, useEffect } from "react";
+
 import { Box, Box2, Btn, RecordContainer, SubTitle } from "./RecordStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenNib, faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -10,9 +12,21 @@ import TodayCards from "./TodayCards";
 import ListCards from "./ListCards";
 import LocalPicks from "./LocalPicks";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Record = () => {
     const navigate = useNavigate();
+    const [recordList, setRecordList] = useState([]);
+
+    useEffect(() => {
+      axios.get('/api/records')
+      .then(response => {
+        setRecordList(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error)
+      })
+    }, []);
 
   return (
     <RecordContainer>
@@ -40,7 +54,7 @@ const Record = () => {
 
         <Box flexdirect="column" width="561px">
           <SubTitle>
-            World of today!
+            <p>World of today!</p>
             <p
               style={{
                 color: "#848484",
@@ -57,11 +71,14 @@ const Record = () => {
       </Box>
 
       <Box2 flexdirect="column" height="832px" >
+        {/* <ListCards />
         <ListCards />
         <ListCards />
         <ListCards />
-        <ListCards />
-        <ListCards />
+        <ListCards /> */}
+        {recordList.slice(0,5).map(record => (
+          <ListCards key={record.id} record={record}></ListCards>
+        ))}
       </Box2>
 
       <Box flexdirect="column" height="832px" width="1122px">

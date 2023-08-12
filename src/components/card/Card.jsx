@@ -30,7 +30,7 @@ const Card = () => {
   }
   
   return (
-    <>
+    <div  className="custom-card">
       <CardWrapper>
         <CardBorder>
           <CardWWW>WHERE: &nbsp; </CardWWW>
@@ -58,7 +58,7 @@ const Card = () => {
           <BookMark />
         </CardInfo>
       </CardWrapper>
-    </>
+    </div>
   );
 };
 export default Card;

@@ -3,7 +3,6 @@ import recordImg from "../../image/record1.jpg"
 import { useNavigate } from "react-router-dom";
 
 const FriendCards = () => {
-
     const navigate = useNavigate();
 
     return (
@@ -15,8 +14,8 @@ const FriendCards = () => {
           <Text padding="14px" width="331px">
             <Writer>
               <p>by</p>
-              <ProfileImg></ProfileImg>
-              giogio222
+              <ProfileImg />
+              <p>giogio222</p>
               <City>Iyaly/milano</City>
             </Writer>
             <Title>Unexpected luck!!!</Title>
