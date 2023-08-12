@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { LikeStyle } from "./BtnStyle";
 import axiosInstance from "../../api/axios";
 
-const Like = ({ record_id }) => {
-  // props와 객체 분리하여 수정
+const Like = ({ record_id, handlewidth, handleheight, handlefsize }) => {
   const [like, setLike] = useState(0);
   const [mylike, setMylike] = useState(false);
 
@@ -20,13 +19,13 @@ const Like = ({ record_id }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setMylike(!mylike); // 토글 방식으로 좋아요 상태 변경
+    setMylike((prevMylike) => !prevMylike);
 
     try {
       const response = await axiosInstance.post(
         `/api/records/${record_id}/record_like`,
         {
-          mylike,
+          mylike: !mylike,
         }
       );
 
@@ -39,9 +38,9 @@ const Like = ({ record_id }) => {
   return (
     <form>
       <LikeStyle
-        handlewidth={props.handlewidth}
-        handleheight={props.handleheight}
-        handlefsize={props.handlefsize}
+        handlewidth={handlewidth}
+        handleheight={handleheight}
+        handlefsize={handlefsize}
         onClick={handleSubmit}
       >
         {mylike ? (
