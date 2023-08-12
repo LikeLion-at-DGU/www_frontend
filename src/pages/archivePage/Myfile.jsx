@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import {
-  StackedImages,
   FileContainer,
+  StackedImages,
   ClickableImage,
-  ClickableImageContainer,
   MyRecord,
   DailyRecord,
   DataCard,
@@ -19,28 +18,58 @@ import whiteDataCard from "../../image/whiteDataCard.png";
 import whiteCompanions from "../../image/whiteCompanions.png";
 
 const MyFile = () => {
+  const [selectedImage, setSelectedImage] = useState("MyRecord"); // Set default image to blueMyRecord
+
+  const handleTextClick = (text) => {
+    if (selectedImage === text) {
+      setSelectedImage(null);
+    } else {
+      setSelectedImage(text);
+    }
+  };
+
   return (
     <FileContainer>
       <StackedImages>
-        <ClickableImageContainer>
-          <ClickableImage src={blueMyRecord} alt="MyRecord" />
-          <MyRecord>My Record</MyRecord>
-        </ClickableImageContainer>
+        <ClickableImage
+          src={selectedImage === "MyRecord" ? blueMyRecord : whiteMyRecord}
+          alt="MyRecord"
+          style={{ zIndex: selectedImage === "MyRecord" ? 2 : 0 }}
+        />
+        <MyRecord onClick={() => handleTextClick("MyRecord")}>
+          My Record
+        </MyRecord>
 
-        <ClickableImageContainer>
-          <ClickableImage src={blueDailyRecord} alt="Daily" />
-          <DailyRecord>Daily Record</DailyRecord>
-        </ClickableImageContainer>
+        <ClickableImage
+          src={
+            selectedImage === "DailyRecord" ? blueDailyRecord : whiteDailyRecord
+          }
+          alt="Daily"
+          style={{ zIndex: selectedImage === "DailyRecord" ? 2 : 0 }}
+        />
+        <DailyRecord onClick={() => handleTextClick("DailyRecord")}>
+          Daily Record
+        </DailyRecord>
 
-        <ClickableImageContainer>
-          <ClickableImage src={blueDataCard} alt="DataCard" />
-          <DataCard>Data Card</DataCard>
-        </ClickableImageContainer>
+        <ClickableImage
+          src={selectedImage === "DataCard" ? blueDataCard : whiteDataCard}
+          alt="DataCard"
+          style={{ zIndex: selectedImage === "DataCard" ? 2 : 0 }}
+        />
+        <DataCard onClick={() => handleTextClick("DataCard")}>
+          Data Card
+        </DataCard>
 
-        <ClickableImageContainer>
-          <ClickableImage src={blueCompanions} alt="Companions" />
-          <Companions>Companions</Companions>
-        </ClickableImageContainer>
+        <ClickableImage
+          src={
+            selectedImage === "Companions" ? blueCompanions : whiteCompanions
+          }
+          alt="Companions"
+          style={{ zIndex: selectedImage === "Companions" ? 2 : 0 }}
+        />
+        <Companions onClick={() => handleTextClick("Companions")}>
+          Companions
+        </Companions>
       </StackedImages>
     </FileContainer>
   );

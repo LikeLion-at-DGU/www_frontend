@@ -9,7 +9,7 @@ const ProfileCard = () => {
       <ProfileBox>
         <img src={sampleprofile} alt="profile" />
         <p>username</p>
-        <span>userCoumtry/userCity</span>
+        <span>userCountry/userCity</span>
       </ProfileBox>
     </ProfileContainer>
   );

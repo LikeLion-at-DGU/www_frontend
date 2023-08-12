@@ -14,11 +14,12 @@ export const Container = styled.div`
 
 export const TopContainer = styled.div`
   display: flex;
+  margin-top: 50px;
   flex-direction: row;
+  justify-content: center;
   width: 100%;
   height: 100%;
   /* border: 3px solid orange; */
-  margin-top: 70px;
 `;
 
 //ProfileCard 디자인
@@ -75,7 +76,7 @@ export const ProfileBox = styled.div`
 export const BuddyContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 50px;
+  margin-left: 32px;
   justify-content: flex-end;
   /* border: 3px solid blue; */
 `;
@@ -221,11 +222,11 @@ export const IconContainer = styled.div`
 export const MusicContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 150px;
+  margin-left: 70px;
   /* border: 3px solid blue; */
   p {
     font-family: Roboto Mono;
-    font-size: 24px;
+    font-size: 17px;
     font-weight: 700;
     line-height: 32px;
     letter-spacing: 0em;
@@ -241,8 +242,10 @@ export const Asap = styled.img`
 
 export const PlayerContainer = styled.div`
   display: flex;
-  /* border: 3px solid limegreen; */
-  justify-content: center;
+  position: relative;
+  left: 90px;
+  /* width: 243px; */
+  justify-content: flex-end;
 `;
 
 export const Player = styled.img`
@@ -251,12 +254,18 @@ export const Player = styled.img`
   height: 272px;
 `;
 
+const spin = keyframes`
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+`;
+
 export const CdImg = styled.img`
-  position: absolute;
+  position: relative;
   width: 107px;
-  top: 200px;
-  left: 861px;
+  top: 30px;
+  left: -132px;
   height: 109px;
+  animation: ${spin} 8s linear infinite; /* spin 애니메이션 적용 */
 `;
 
 //MyFile 디자인
@@ -264,6 +273,7 @@ export const FileContainer = styled.div`
   display: flex;
   width: 100%;
   margin-top: 100px;
+  margin-bottom: 60px;
   justify-content: center;
   align-items: center;
   /* border: 3px solid yellow; */
@@ -276,10 +286,10 @@ export const StackedImages = styled.div`
   align-items: center;
   width: 947px;
   height: 406px;
-  transition: transform 0.3s ease-in-out;
+  /* transition: transform 0.3s ease-in-out;
   &:hover {
     transform: translateY(-10px);
-  }
+  } */
 `;
 
 export const ClickableImageContainer = styled.div`
