@@ -5,8 +5,8 @@ import React, { useState, useEffect } from "react";
 import { Box, Box2, Btn, RecordContainer, SubTitle } from "./RecordStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenNib, faSearch } from "@fortawesome/free-solid-svg-icons";
-import RecordMain from "../../image/record_main.png"
-import RecordSub from "../../image/record_sub.png"
+import RecordMain from "../../image/record_main.png";
+import RecordSub from "../../image/record_sub.png";
 import FriendCards from "./FriendCards";
 import TodayCards from "./TodayCards";
 import ListCards from "./ListCards";
@@ -15,22 +15,23 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Record = () => {
-    const navigate = useNavigate();
-    const [recordList, setRecordList] = useState([]);
+  const navigate = useNavigate();
+  const [recordList, setRecordList] = useState([]);
 
-    useEffect(() => {
-      axios.get('/api/records')
-      .then(response => {
+  useEffect(() => {
+    axios
+      .get("/api/records")
+      .then((response) => {
         setRecordList(response.data);
       })
-      .catch(error => {
-        console.error('Error fetching data:', error)
-      })
-    }, []);
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
 
   return (
     <RecordContainer>
-      <div style={{width: "1122px"}}>
+      <div style={{ width: "1122px" }}>
         <img style={{ margin: "56px 0 21px 0" }} src={RecordMain} />
         <br />
         <img src={RecordSub} />
@@ -70,13 +71,13 @@ const Record = () => {
         </Box>
       </Box>
 
-      <Box2 flexdirect="column" height="832px" >
+      <Box2 flexdirect="column" height="832px">
         {/* <ListCards />
         <ListCards />
         <ListCards />
         <ListCards />
         <ListCards /> */}
-        {recordList.slice(0,5).map(record => (
+        {recordList.slice(0, 5).map((record) => (
           <ListCards key={record.id} record={record}></ListCards>
         ))}
       </Box2>

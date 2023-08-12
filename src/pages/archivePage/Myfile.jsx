@@ -21,9 +21,7 @@ const MyFile = () => {
   const [selectedImage, setSelectedImage] = useState("MyRecord"); // Set default image to blueMyRecord
 
   const handleTextClick = (text) => {
-    if (selectedImage === text) {
-      setSelectedImage(null);
-    } else {
+    if (selectedImage !== text) {
       setSelectedImage(text);
     }
   };

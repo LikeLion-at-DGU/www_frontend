@@ -333,6 +333,8 @@ export const MyRecord = styled.p`
   text-align: left;
   top: 12px;
   left: 28px;
+  width: 140px;
+  height: 40px;
 `;
 
 export const DailyRecord = styled.p`
@@ -349,6 +351,8 @@ export const DailyRecord = styled.p`
   text-align: left;
   top: 12px;
   left: 208px;
+  width: 160px;
+  height: 40px;
 `;
 export const DataCard = styled.p`
   display: flex;
@@ -364,6 +368,8 @@ export const DataCard = styled.p`
   text-align: left;
   top: 12px;
   left: 420px;
+  width: 140px;
+  height: 40px;
 `;
 export const Companions = styled.p`
   display: flex;
@@ -379,4 +385,6 @@ export const Companions = styled.p`
   text-align: left;
   top: 12px;
   left: 613px;
+  width: 140px;
+  height: 40px;
 `;
