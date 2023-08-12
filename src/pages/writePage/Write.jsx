@@ -60,7 +60,7 @@ const Write = () => {
       console.error("Error creating post:", error);
     }
   };
-
+/*
   //이미지 업로드 로직
   const handleImageUpload = async (file) => {
     try {
@@ -86,7 +86,7 @@ const Write = () => {
     }
   };
   
-
+*/
   // quill에서 사용할 모듈
   // useMemo를 사용하여 modules가 렌더링 시 에디터가 사라지는 버그를 방지
   const modules = useMemo(() => {
@@ -101,17 +101,17 @@ const Write = () => {
           [{ align: [] }, "link", "image"],
           // [{ align: [] }, "link", "image", "custom-card"],
         ],
+        /*
         handlers: {
           image: handleImageUpload, // 이미지 업로드 핸들러 연결
-          /*
           "custom-card": () => {
             // 카드 업로드 핸들러 연결
             const editor = this.quillRef.getEditor(); // ReactQuill의 에디터 인스턴스 가져오기
             const range = editor.getSelection();
             editor.insertEmbed(range.index, "custom-card", true); // 커스텀 컴포넌트 삽입
           },
-          */
         },
+        */
       },
       /*
       // 커스텀 모듈 정의
