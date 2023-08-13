@@ -49,7 +49,14 @@ const Record = () => {
             </Btn>
           </Box>
           <SubTitle>My w’s recent record!</SubTitle>
-          <FriendCards />
+          {/* <FriendCards /> */}
+          {/* {recordList
+            .map((record) => (
+              <FriendCards key={record.id} record={record} />
+            ))} */}
+          {recordList.length > 0 && (
+            <FriendCards record={recordList[0]} />
+          )}
         </Box>
 
         <Box flexdirect="column" width="561px">
@@ -76,9 +83,12 @@ const Record = () => {
         <ListCards />
         <ListCards />
         <ListCards /> */}
-        {recordList.slice(0, 5).map((record) => (
-          <ListCards key={record.id} record={record}></ListCards>
-        ))}
+        {recordList
+          .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+          .slice(1, 6)
+          .map((record) => (
+            <ListCards key={record.id} record={record} />
+          ))}
       </Box2>
 
       <Box flexdirect="column" height="832px" width="1122px">

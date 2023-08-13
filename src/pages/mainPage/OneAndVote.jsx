@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+// OneAndVote.jsx
+
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   OneAndVote,
@@ -15,6 +17,7 @@ import {
 } from "./MainpageStyle";
 import FriendCards from "../recordPage/FriendCards";
 import note from "../../image/note.png";
+import axiosInstance from "../../../src/api/axios";
 
 const data = [
   { id: 1, nickname: "User1" },
@@ -32,6 +35,21 @@ const validateAccessToken = (token) => {
 };
 
 const OneAndVoteAll = () => {
+  // 레코드 리스트 불러오기 ~ ...
+  const [recordList, setRecordList] = useState([]);
+
+  useEffect(() => {
+    axiosInstance
+      .get("/api/records")
+      .then((response) => {
+        setRecordList(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
+  
   const [selectedOption, setSelectedOption] = useState(null);
 
   const handleOptionChange = (optionId) => {
@@ -90,7 +108,7 @@ const OneAndVoteAll = () => {
           <p>One and Only Record</p>
         </OneAndOnly>
         <FriendData>
-          {data.map((item) => (
+          {/* {data.map((item) => (
             <FriendCards
               key={item.id}
               item={item}
@@ -98,6 +116,12 @@ const OneAndVoteAll = () => {
                 marginLeft: "50px",
               }}
             />
+          ))} */}
+          {recordList
+          .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+          .slice(1, 6)
+          .map((record) => (
+            <FriendCards key={record.id} record={record} />
           ))}
         </FriendData>
       </OneAndOnlyContainer>
