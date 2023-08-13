@@ -23,7 +23,7 @@ const dummyData = [
   {
     id: 2,
     profileImage: "url-to-profile-image-2",
-    nickname: "miinkko",
+    nickname: "miingkko",
     country: "United States",
     city: "New York",
   },

@@ -323,7 +323,7 @@ export const MyRecord = styled.p`
   display: flex;
   position: absolute;
   font-size: 16px;
-  color: #333;
+  color: ${(props) => (props.selected ? "#333" : "#2E74B5")};
   z-index: 10;
   font-family: Roboto Mono;
   font-size: 20px;
@@ -341,7 +341,7 @@ export const DailyRecord = styled.p`
   display: flex;
   position: absolute;
   font-size: 16px;
-  color: #333;
+  color: ${(props) => (props.selected ? "#333" : "#2E74B5")};
   z-index: 10;
   font-family: Roboto Mono;
   font-size: 20px;
@@ -358,7 +358,7 @@ export const DataCard = styled.p`
   display: flex;
   position: absolute;
   font-size: 16px;
-  color: #333;
+  color: ${(props) => (props.selected ? "#333" : "#2E74B5")};
   z-index: 10;
   font-family: Roboto Mono;
   font-size: 20px;
@@ -375,7 +375,7 @@ export const Companions = styled.p`
   display: flex;
   position: absolute;
   font-size: 16px;
-  color: #333;
+  color: ${(props) => (props.selected ? "#333" : "#2E74B5")};
   z-index: 10;
   font-family: Roboto Mono;
   font-size: 20px;
