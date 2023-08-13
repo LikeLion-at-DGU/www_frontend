@@ -22,7 +22,9 @@ import axiosInstance from "../../api/axios";
 
 const Write = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [content, setContent] = useState("");
+
+  // 개별 입력값
+  const [content, setContent] = useState(""); //quill에 담기는 값
   const [date, setDate] = useState("");
   const [weather, setWeather] = useState("");
   const [title, setTitle] = useState("");
@@ -40,31 +42,8 @@ const Write = () => {
     setTitle(event.target.value);
   };
 
-  // 레코드 POST
-  /* 이게 진짜 코드임!!!!
-  const handleImageInsert  = async (event) => {
-    event.preventDefault();
-
-    try {
-      const response = await axios.post("/api/records", { //레코드 POST URL
-        user,
-        userInfo,
-        date,
-        weather,
-        title,
-        content,
-      });
-
-      console.log("Post created:", response.data);
-      // 새로운 레코드 생성된 후의 동작을 수행
-    } catch (error) {
-      console.error("Error creating post:", error);
-    }
-  };
-  */
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
+   //이건 axios 전, submit 테스트
+  const consolecheck = () => {
     console.log(
       "date : ",
       date,
@@ -76,7 +55,29 @@ const Write = () => {
       content
     );
   };
+  
+  // submit 시 로직
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
+    try {
+      const response = await axiosInstance.post("/api/records", {
+        // user: ???,
+        // userInfo: ???,
+        title: title,
+        created_at: date,
+        weather: weather,
+        body: content,
+      });
+      console.log("Post created:", response.data);
+      alert("포스트 성공!");
+      // 새로운 레코드 생성된 후의 동작을 수행
+    } catch (error) {
+      console.error("Error creating post:", error);
+    }
+  };
+
+  /* Card 컴포넌트를 quill에 추가할 경우
   const handleCardUpload = () => {
     // 여기서 Card 컴포넌트를 content에 추가하는 작업 수행
     const cardData = {
@@ -91,16 +92,17 @@ const Write = () => {
     const newContent = `${content}<Card data=${cardData} />`;
     setContent(newContent);
   };
+*/
 
-  /*
   //이미지 업로드 로직
+  /* 1번
   const handleImageUpload = async (file) => {
     try {
       const formData = new FormData();
       formData.append("image", file);
 
-      const response = await axios.post(
-        "https://api/upload-image", //이미지 업로드를 처리하는 URL
+      const response = await axiosInstance.post(
+        "/api/upload-image", //이미지 업로드를 처리하는 URL
         formData,
         {
           headers: {
@@ -117,6 +119,46 @@ const Write = () => {
     }
   };
   */
+  //  2번
+  const handleImageUpload = () => {
+    const input = document.createElement("input");
+    input.setAttribute("type", "file");
+    input.setAttribute("accept", "image/*");
+    input.click();
+
+    input.onchange = async () => {
+      const file = input.files[0];
+      if (file) {
+        const imageUrl = await uploadImageToServer(file);
+        if(imageUrl){
+           setContent(
+             content + `<img src="${imageUrl}" alt="uploaded image" />`
+           );
+        }
+        // const quill = quillRef.current.getEditor();
+        // const range = quill.getSelection();
+        // quill.insertEmbed(range.index, "image", imageUrl);
+      }
+    };
+  };
+  // 2번과 연결된 코드
+  const uploadImageToServer = async (file) => {
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+      const response = await axiosInstance.post("/api/upload-image", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      return response.data.imageURL; // 백엔드에서 이미지 URL을 전달하는 필드 이름에 맞게 수정해야 합니다.
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      // return "추가될듯";
+      return null;
+    }
+  };
 
   // quill에서 사용할 모듈
   // useMemo를 사용하여 modules가 렌더링 시 에디터가 사라지는 버그를 방지
@@ -129,13 +171,14 @@ const Write = () => {
           ["blockquote"],
           [{ list: "ordered" }, { list: "bullet" }],
           [{ color: [] }, { background: [] }],
-          [{ align: [] }, ],
+          [{ align: [] }],
+          [{ align: [] }, "image"],
           // [{ align: [] }, "image", "card"],
         ],
-        // handlers: {
-        //   image: handleImageUpload, // 이미지 업로드 핸들러 연결
-        //   card: handleCardUpload, // 카드 업로드 핸들러 연결
-        // },
+        handlers: {
+          image: handleImageUpload, // 이미지 업로드 핸들러 연결
+          //   card: handleCardUpload, // 카드 업로드 핸들러 연결
+        },
       },
     };
   }, []);
@@ -157,12 +200,7 @@ const Write = () => {
                 <span className="material-symbols-outlined">library_add</span>
                 <p>add card</p>
               </SaveBtn>
-              <RegisterBtn
-                type="submit"
-                onClick={() => {
-                  console.log(content);
-                }}
-              >
+              <RegisterBtn type="submit" onClick={consolecheck}>
                 <RegisterImg src={PenIMG} alt="pen" />
                 &nbsp;register
               </RegisterBtn>
