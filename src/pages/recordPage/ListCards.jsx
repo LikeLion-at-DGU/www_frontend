@@ -13,60 +13,72 @@ import BookMark from "../../components/index/BookMark";
 import { useNavigate } from "react-router-dom";
 
 const ListCards = ({ record }) => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    return (
-      <ListCard onClick={() => navigate(`/record/${record.id}`)}>
-        <Text padding="10px 25px" height="142px" width="980px">
-          <ListTitle>
-            {/* <p>Unexpected luck!!</p> */}
-            <p>{record.title}</p>
-            <TagBox padding="0 18px">
-              {/* <HashTag>#milano_restaurant</HashTag> */}
-              {/* <HashTag>#milano_cafe</HashTag> */}
-              {record.hashtags.map((tag, index) => (
-                <HashTag key={index}>#{tag}</HashTag>
-              ))}
-            </TagBox>
-          </ListTitle>
-          <Content fontSize="1rem">
-            {/* The definition of friendships between opposite genders becomes
+  useEffect(() => {
+    // API 요청을 수행하는 부분
+    axios
+      .get(`/api/records/${params.detailId}`) // 레코드 GET URL
+      .then((response) => {
+        setPosts(response.data); // 받아온 데이터를 상태에 저장
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []); // 빈 배열을 넣어 처음 한 번만 실행되도록 설정
+
+  return (
+    <ListCard onClick={() => navigate(`/record/${record.id}`)}>
+      <Text padding="10px 25px" height="142px" width="980px">
+        <ListTitle>
+          {/* <p>Unexpected luck!!</p> */}
+          <p>{record.title}</p>
+          <TagBox padding="0 18px">
+            {/* <HashTag>#milano_restaurant</HashTag> */}
+            {/* <HashTag>#milano_cafe</HashTag> */}
+            {record.hashtags.map((tag, index) => (
+              <HashTag key={index}>#{tag}</HashTag>
+            ))}
+          </TagBox>
+        </ListTitle>
+        <Content fontSize="1rem">
+          {/* The definition of friendships between opposite genders becomes
             somewhat ambiguous
             <br />
             depending on how we interpret the term “friend”. <br />
             It is entirely possible to be friends on a casual level, engaging in
             common hobbies... */}
-            {record.content}
-          </Content>
-          <BtnBox juscon="space-between">
-            <Views
-              handlewidth={"43px"}
-              handleheight={"18px"}
-              handlefsize={"5.4px"}
-            />
-            <Comments
-              handlewidth={"43px"}
-              handleheight={"18px"}
-              handlefsize={"5.4px"}
-            />
-            <Like
-              handlewidth={"43px"}
-              handleheight={"18px"}
-              handlefsize={"5.4px"}
-            />
-          </BtnBox>
-          <BookMark
-            handleposi={"absolute"}
-            handletop={"15px"}
-            handleright={"15px"}
+          {record.content}
+        </Content>
+        <BtnBox juscon="space-between">
+          <Views
+            handlewidth={"43px"}
+            handleheight={"18px"}
+            handlefsize={"5.4px"}
           />
-        </Text>
-        <Img width="140px" height="140px">
-          {/* <Image src={recordImg} /> */}
-          <Image src={record.imageUrl} />
-        </Img>
-      </ListCard>
-    );
+          <Comments
+            handlewidth={"43px"}
+            handleheight={"18px"}
+            handlefsize={"5.4px"}
+          />
+          <Like
+            handlewidth={"43px"}
+            handleheight={"18px"}
+            handlefsize={"5.4px"}
+          />
+        </BtnBox>
+        <BookMark
+          handleposi={"absolute"}
+          handletop={"15px"}
+          handleright={"15px"}
+        />
+      </Text>
+      <Img width="140px" height="140px">
+        {/* <Image src={recordImg} /> */}
+        <Image src={record.imageUrl} />
+      </Img>
+    </ListCard>
+  );
 };
 
 export default ListCards;

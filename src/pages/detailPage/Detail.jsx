@@ -24,15 +24,18 @@ import ListCards from "../recordPage/ListCards";
 import { PostWriter } from "../writePage/WriteStyle";
 import Reaction from "../../components/commentSection/Reaction";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const Detail = () => {
   const [commentFold, setCommentFold] = useState(true);
   const [posts,setPosts] = useState([]);
+  let params = useParams();
+  console.log();
 
   useEffect(() => {
     // API 요청을 수행하는 부분
     axios
-      .get("/api/records") // 레코드 GET URL
+      .get(`/api/records/${params.detailId}`) // 레코드 GET URL
       .then((response) => {
         setPosts(response.data); // 받아온 데이터를 상태에 저장
       })

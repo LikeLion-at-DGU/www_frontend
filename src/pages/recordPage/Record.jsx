@@ -76,7 +76,8 @@ const Record = () => {
         <ListCards />
         <ListCards />
         <ListCards /> */}
-        {recordList.slice(0,5).map(record => (
+        {recordList.map(record => ( //우선 레코드가 5개 이하일 경우를 위해서 주석처리함 - 현아
+        // {recordList.slice(0,5).map(record => ( 
           <ListCards key={record.id} record={record}></ListCards>
         ))}
       </Box2>
