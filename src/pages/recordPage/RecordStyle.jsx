@@ -52,6 +52,7 @@ export const FriendCard = styled.div`
   /* 158px */
   background-color: white;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 50;
 `;
 export const CardBox = styled.div`
   display: flex;
@@ -211,6 +212,7 @@ export const LocalPick = styled.div`
   display: flex;
   flex-direction: row;
   position: relative;
+  z-index: 50;
 `;
 export const InTagBox = styled(TagBox)`
   position: absolute;
