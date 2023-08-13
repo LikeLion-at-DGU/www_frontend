@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 // Archive Component 관련 styled component
 export const Container = styled.div`
@@ -9,16 +9,17 @@ export const Container = styled.div`
   flex-direction: column;
   height: 100%;
   margin: 0 150px;
-  border: 3px solid red;
+  /* border: 3px solid red; */
 `;
 
 export const TopContainer = styled.div`
   display: flex;
+  margin-top: 50px;
   flex-direction: row;
+  justify-content: center;
   width: 100%;
   height: 100%;
-  border: 3px solid orange;
-  margin-top: 70px;
+  /* border: 3px solid orange; */
 `;
 
 //ProfileCard 디자인
@@ -75,7 +76,7 @@ export const ProfileBox = styled.div`
 export const BuddyContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 50px;
+  margin-left: 32px;
   justify-content: flex-end;
   /* border: 3px solid blue; */
 `;
@@ -217,15 +218,173 @@ export const IconContainer = styled.div`
 `;
 
 //MusicPlayer 디자인
-export const MusicPlayer = styled.div`
+
+export const MusicContainer = styled.div`
   display: flex;
-  width: 100%;
-  height: 100%;
-  border: 3px solid red;
+  flex-direction: column;
+  margin-left: 70px;
+  /* border: 3px solid blue; */
+  p {
+    font-family: Roboto Mono;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 32px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
 `;
 
-//Myfile 디자인
-export const Image = styled.div`
+export const Asap = styled.img`
+  margin-top: 15px;
+  width: 243px;
+  height: 53px;
+`;
+
+export const PlayerContainer = styled.div`
+  display: flex;
+  position: relative;
+  left: 90px;
+  /* width: 243px; */
+  justify-content: flex-end;
+`;
+
+export const Player = styled.img`
+  margin-top: 15px;
+  width: 156px;
+  height: 272px;
+`;
+
+const spin = keyframes`
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+`;
+
+export const CdImg = styled.img`
+  position: relative;
+  width: 107px;
+  top: 30px;
+  left: -132px;
+  height: 109px;
+  animation: ${spin} 8s linear infinite; /* spin 애니메이션 적용 */
+`;
+
+//MyFile 디자인
+export const FileContainer = styled.div`
+  display: flex;
+  width: 100%;
+  margin-top: 100px;
+  margin-bottom: 60px;
+  justify-content: center;
+  align-items: center;
+  /* border: 3px solid yellow; */
+`;
+
+export const StackedImages = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 947px;
-  height: 415px;
+  height: 406px;
+  /* transition: transform 0.3s ease-in-out;
+  &:hover {
+    transform: translateY(-10px);
+  } */
+`;
+
+export const ClickableImageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ClickableImage = styled.img`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter 0.3s ease-in-out, transform 0.3s ease-in-out;
+  cursor: pointer;
+  z-index: 1;
+`;
+
+export const SelectedImage = styled.img`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter 0.3s ease-in-out, transform 0.3s ease-in-out;
+  filter: brightness(0.8);
+  transform: translateY(-10px);
+  z-index: 2;
+`;
+
+export const MyRecord = styled.p`
+  display: flex;
+  position: absolute;
+  font-size: 16px;
+  color: #333;
+  z-index: 10;
+  font-family: Roboto Mono;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: left;
+  top: 12px;
+  left: 28px;
+  width: 140px;
+  height: 40px;
+`;
+
+export const DailyRecord = styled.p`
+  display: flex;
+  position: absolute;
+  font-size: 16px;
+  color: #333;
+  z-index: 10;
+  font-family: Roboto Mono;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: left;
+  top: 12px;
+  left: 208px;
+  width: 160px;
+  height: 40px;
+`;
+export const DataCard = styled.p`
+  display: flex;
+  position: absolute;
+  font-size: 16px;
+  color: #333;
+  z-index: 10;
+  font-family: Roboto Mono;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: left;
+  top: 12px;
+  left: 420px;
+  width: 140px;
+  height: 40px;
+`;
+export const Companions = styled.p`
+  display: flex;
+  position: absolute;
+  font-size: 16px;
+  color: #333;
+  z-index: 10;
+  font-family: Roboto Mono;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: left;
+  top: 12px;
+  left: 613px;
+  width: 140px;
+  height: 40px;
 `;

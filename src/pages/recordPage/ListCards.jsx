@@ -4,31 +4,30 @@
 
 import React, { useState, useEffect } from "react";
 
-import { BtnBox, Content, HashTag, Image, Img, ListCard, ListTitle, TagBox, Text } from "./RecordStyle";
-import recordImg from "../../image/record1.jpg"
+import {
+  BtnBox,
+  Content,
+  HashTag,
+  Image,
+  Img,
+  ListCard,
+  ListTitle,
+  TagBox,
+  Text,
+} from "./RecordStyle";
+import recordImg from "../../image/record1.jpg";
 import Like from "../../components/index/Like";
 import Comments from "../../components/index/Comments";
 import Views from "../../components/index/Views";
 import BookMark from "../../components/index/BookMark";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../../src/api/axios";
 
 const ListCards = ({ record }) => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // API 요청을 수행하는 부분
-    axios
-      .get(`/api/records/${params.detailId}`) // 레코드 GET URL
-      .then((response) => {
-        setPosts(response.data); // 받아온 데이터를 상태에 저장
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, []); // 빈 배열을 넣어 처음 한 번만 실행되도록 설정
-
   return (
-    <ListCard onClick={() => navigate(`/record/${record.id}`)}>
+    <ListCard onClick={() => navigate(`/`)}>
       <Text padding="10px 25px" height="142px" width="980px">
         <ListTitle>
           {/* <p>Unexpected luck!!</p> */}
@@ -36,9 +35,10 @@ const ListCards = ({ record }) => {
           <TagBox padding="0 18px">
             {/* <HashTag>#milano_restaurant</HashTag> */}
             {/* <HashTag>#milano_cafe</HashTag> */}
-            {record.hashtags.map((tag, index) => (
-              <HashTag key={index}>#{tag}</HashTag>
-            ))}
+            {record.hashtags &&
+              record.hashtags.map((tag, index) => (
+                <HashTag key={index}>#{tag}</HashTag>
+              ))}
           </TagBox>
         </ListTitle>
         <Content fontSize="1rem">

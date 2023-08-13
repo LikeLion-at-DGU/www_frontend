@@ -1,35 +1,39 @@
-// nav
-
-import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
+import { NavLink } from "react-router-dom";
+import styled from "styled-components";
 
 export const NavContainer = styled.nav`
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 97px;
-    z-index: 1;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: #F2F2F2;
-`
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 97px;
+  z-index: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #f2f2f2;
+`;
+
 export const LogoImg = styled.img`
-    height: 65px;
-`
+  height: 65px;
+`;
+
 export const NavSection = styled(NavLink)`
-    text-decoration: none;
-    color: black;
-    font-size: 1rem;
-    /* 16px */
-    font-weight: 700;
-    width: 150px;
-    height: 42px;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    /* color: #2E74B5; */
-`
+  text-decoration: none;
+  color: black;
+  font-size: 1rem;
+  font-weight: 700;
+  width: 150px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  &.active {
+    color: #2e74b5; /* 원하는 색상으로 변경 */
+  }
+`;
+
 // export const LoginBtn = styled.div`
 //     background-color: ${props=>props.BgColor};
 //     border: 1px solid black;
