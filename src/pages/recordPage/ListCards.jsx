@@ -1,6 +1,4 @@
-// import Comments from "../../components/index/Comments";
-// import Like from "../../components/index/Like";
-// import Views from "../../components/index/Views";
+// ListCards.jsx
 
 import React, { useState, useEffect } from "react";
 
@@ -27,17 +25,19 @@ const ListCards = ({ record }) => {
   const navigate = useNavigate();
 
   return (
+    // 내 친구의 record list를 가져와야 함 ...
     <ListCard onClick={() => navigate(`/`)}>
       <Text padding="10px 25px" height="142px" width="980px">
         <ListTitle>
           {/* <p>Unexpected luck!!</p> */}
+          {/* 최대 몇자? */}
           <p>{record.title}</p>
           <TagBox padding="0 18px">
             {/* <HashTag>#milano_restaurant</HashTag> */}
             {/* <HashTag>#milano_cafe</HashTag> */}
-            {record.hashtags &&
-              record.hashtags.map((tag, index) => (
-                <HashTag key={index}>#{tag}</HashTag>
+            {record.tag &&
+              record.tag.slice(0, 3).map((hashtag, index) => (
+                <HashTag key={index}>#{hashtag}</HashTag>
               ))}
           </TagBox>
         </ListTitle>
@@ -48,7 +48,8 @@ const ListCards = ({ record }) => {
             depending on how we interpret the term “friend”. <br />
             It is entirely possible to be friends on a casual level, engaging in
             common hobbies... */}
-          {record.content}
+          {/* 최대 몇자? */}
+          {record.body}
         </Content>
         <BtnBox juscon="space-between">
           <Views
@@ -75,7 +76,10 @@ const ListCards = ({ record }) => {
       </Text>
       <Img width="140px" height="140px">
         {/* <Image src={recordImg} /> */}
-        <Image src={record.imageUrl} />
+        {/* 글 내의 첫번째 사진
+        없을 시 첫번째 카드의 첫번째 카드
+        없을 시 기본 로고 이미지 */}
+        <Image src={record.photos} />
       </Img>
     </ListCard>
   );

@@ -1,3 +1,5 @@
+// Mainpage.jsx
+
 import { useState, useRef, useEffect } from "react";
 import maintext from "../../image/maintext.png";
 import bird from "../../image/bird.png";
