@@ -27,7 +27,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 const Detail = () => {
-  const [commentFold, setCommentFold] = useState(true);
+  const [commentFold, setCommentFold] = useState(true); //댓글창 닫기
   const [posts,setPosts] = useState([]);
   let params = useParams();
   console.log();
@@ -72,7 +72,11 @@ const Detail = () => {
         요새 샐러드랑 포케에 빠졌다.. 맛있어 대망의 콜드.. 난 콜드 빠돌이다.
         높은 지분을 차지한 콜드 형님 라이브 잘하시는걸?!?!!
       </DetailWrapper>
-      {commentFold && <Reaction setCommentFold={setCommentFold} />}
+      <Reaction
+        setCommentFold={setCommentFold}
+        commentFold={commentFold}
+      />
+      {commentFold && <CommentSection />}
 
       <PostWriter>
         <img src="" alt="profile" />

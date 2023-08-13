@@ -13,12 +13,12 @@ import {
   SaveBtn,
 } from "./WriteStyle";
 import PenIMG from "../../image/pen.png";
-import axios from "axios";
 import { useState, useEffect, useRef, useMemo } from "react";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
 import MakeCard from "../../components/card/MakeCard";
 import Card from "../../components/card/Card";
+import axiosInstance from "../../api/axios";
 
 const Write = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -41,7 +41,8 @@ const Write = () => {
   };
 
   // 레코드 POST
-  const handleSubmit = async (event) => {
+  /* 이게 진짜 코드임!!!!
+  const handleImageInsert  = async (event) => {
     event.preventDefault();
 
     try {
@@ -60,7 +61,38 @@ const Write = () => {
       console.error("Error creating post:", error);
     }
   };
-/*
+  */
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(
+      "date : ",
+      date,
+      "weather : ",
+      weather,
+      "title : ",
+      title,
+      "content : ",
+      content
+    );
+  };
+
+  const handleCardUpload = () => {
+    // 여기서 Card 컴포넌트를 content에 추가하는 작업 수행
+    const cardData = {
+      id: 1,
+      where: "포케",
+      what: "요기는 식당",
+      how: "연어 먹쟈!",
+      tagname: "서울_맛집",
+      image: require("../../image/test.jpg"), // 이미지 경로를 적절히 수정해야 함
+    };
+
+    const newContent = `${content}<Card data=${cardData} />`;
+    setContent(newContent);
+  };
+
+  /*
   //이미지 업로드 로직
   const handleImageUpload = async (file) => {
     try {
@@ -68,7 +100,7 @@ const Write = () => {
       formData.append("image", file);
 
       const response = await axios.post(
-        "https://api.example.com/upload-image", //이미지 업로드를 처리하는 URL
+        "https://api/upload-image", //이미지 업로드를 처리하는 URL
         formData,
         {
           headers: {
@@ -76,7 +108,6 @@ const Write = () => {
           },
         }
       );
-
       const imageUrl = response.data.url;
       const editor = this.quillRef.getEditor(); // ReactQuill의 에디터 인스턴스 가져오기
       const range = editor.getSelection();
@@ -85,8 +116,8 @@ const Write = () => {
       console.error("Error uploading image:", error);
     }
   };
-  
-*/
+  */
+
   // quill에서 사용할 모듈
   // useMemo를 사용하여 modules가 렌더링 시 에디터가 사라지는 버그를 방지
   const modules = useMemo(() => {
@@ -98,28 +129,14 @@ const Write = () => {
           ["blockquote"],
           [{ list: "ordered" }, { list: "bullet" }],
           [{ color: [] }, { background: [] }],
-          [{ align: [] }, "link", "image"],
-          // [{ align: [] }, "link", "image", "custom-card"],
+          [{ align: [] }, ],
+          // [{ align: [] }, "image", "card"],
         ],
-        /*
-        handlers: {
-          image: handleImageUpload, // 이미지 업로드 핸들러 연결
-          "custom-card": () => {
-            // 카드 업로드 핸들러 연결
-            const editor = this.quillRef.getEditor(); // ReactQuill의 에디터 인스턴스 가져오기
-            const range = editor.getSelection();
-            editor.insertEmbed(range.index, "custom-card", true); // 커스텀 컴포넌트 삽입
-          },
-        },
-        */
+        // handlers: {
+        //   image: handleImageUpload, // 이미지 업로드 핸들러 연결
+        //   card: handleCardUpload, // 카드 업로드 핸들러 연결
+        // },
       },
-      /*
-      // 커스텀 모듈 정의
-      "custom-card": {
-        container: ".custom-card", // 커스텀 컴포넌트 렌더링할 선택자
-        component: Card, // 커스텀 컴포넌트 지정
-      },
-      */
     };
   }, []);
 
@@ -176,7 +193,7 @@ const Write = () => {
             style={{ width: "100%", height: "600px", marginBottom: "60px" }}
             placeholder="Please enter the main content"
             theme="snow"
-            ref={ quillRef }
+            ref={quillRef}
             value={content}
             onChange={setContent}
             modules={modules}
