@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { Box } from "../recordPage/RecordStyle";
+import { BigImage, Box, FriendCard, Title } from "../recordPage/RecordStyle";
 
 export const SearchContainer = styled.div`
     display: flex;
@@ -58,4 +58,20 @@ export const NoResult = styled.div`
     font-size: 1.1rem;
     font-weight: 700;
     align-items: center;
+`
+// 검색 결과 컴포넌트
+export const SearchResult = styled(FriendCard)`
+    width: 357px;
+    height: 122px;
+    display: flex;
+    flex-direction: row;
+`
+export const SmallImage = styled(BigImage)`
+    border-top-right-radius: 0px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+`
+export const SearchTitle = styled.p`
+    font-size: 20px;
+    font-weight: 500;
 `
