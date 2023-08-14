@@ -25,6 +25,7 @@ export const CardBorder = styled.div`
 `;
 
 export const ImgCardBorder = styled(CardBorder)`
+  position: relative;
   justify-content: center;
   align-items: center;
 `;
@@ -46,8 +47,9 @@ export const CardWWW = styled.div`
   font-weight: 400;
 `;
 export const CardImg = styled.img`
-  max-width: 100%;
-  max-height: 100%;
+  /* max-width: 100%;
+  max-height: 100%; */
+  width: 200px;
   padding: 15px;
 `;
 export const CardInfo = styled.div`

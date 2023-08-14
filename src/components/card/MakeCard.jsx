@@ -19,20 +19,23 @@ import {
   CardSubmit,
 } from "./CardStyle";
 import { SaveBtn, UproadImg } from "../../pages/writePage/WriteStyle";
-import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../api/axios";
 
-const MakeCard = ({setModalOpen}) => {
-  const [tag, setTag] = useState("");
+const MakeCard = ({ setModalOpen }) => {
   const [images, setImages] = useState([]);
-  const navigate = useNavigate();
+  const [where, setWhere] = useState("");
+  const [what, setWhat] = useState("");
+  const [how, setHow] = useState("");
+  const [tag, setTag] = useState("");
   const modal = useRef();
 
+  // 모달창 닫기
   const handleCloseModal = (event) => {
     if (modal.current && !modal.current.contains(event.target)) {
       setModalOpen(false);
     }
   };
-
+  // 카드 내 이미지 처리
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -40,32 +43,64 @@ const MakeCard = ({setModalOpen}) => {
       setImages([...images, imageURL]);
     }
   };
+  // 이미지 업로드 스타일 변경
   const openFilePicker = () => {
     document.querySelector('input[type="file"]').click();
-    pushdata();
   };
-  const tagHandleChange = (e) => {
-    setTag(e.target.value);
+
+  // submit 시 로직
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axiosInstance.post(
+        `/api/records/${record_id}/cards`,
+        {
+          where: where,
+          what: what,
+          how: how,
+          tag: tag,
+          card_photo_1: images[0],
+          card_photo_2: images[1],
+          card_photo_3: images[2],
+        }
+      );
+      console.log("카드 post 성공:", response.data);
+    } catch (error) {
+      console.error("Error updating like status:", error);
+    }
   };
+
   return (
     <ModalContainer onClick={handleCloseModal}>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
-      >
+      <form onSubmit={handleSubmit}>
         <CardModal ref={modal}>
           <CardBorder>
             <CardWWW>WHERE: &nbsp; </CardWWW>
-            <CardInput type="text" name="where" />
+            <CardInput
+              type="text"
+              name="where"
+              value={where}
+              onChange={(e) => setWhere(e.target.value)}
+            />
           </CardBorder>
           <CardBorder>
             <CardWWW>WHAT: &nbsp; </CardWWW>
-            <CardInput type="text" name="what" />
+            <CardInput
+              type="text"
+              name="what"
+              value={what}
+              onChange={(e) => setWhat(e.target.value)}
+            />
           </CardBorder>
           <CardBorder>
             <CardWWW>HOW(TIPS!): &nbsp; </CardWWW>
-            <CardInput type="text" name="how" />
+            <CardInput
+              type="text"
+              name="how"
+              value={how}
+              onChange={(e) => setHow(e.target.value)}
+            />
           </CardBorder>
           <ImgCardBorder>
             <UproadImg onClick={openFilePicker}>
@@ -78,7 +113,7 @@ const MakeCard = ({setModalOpen}) => {
                 style={{ visibility: "hidden" }}
               />
             </UproadImg>
-            {images.map((imageURL, index) => (
+            {images.slice(0,3).map((imageURL, index) => (
               <CardImg key={index} src={imageURL} alt="post img" />
             ))}
           </ImgCardBorder>
@@ -89,7 +124,7 @@ const MakeCard = ({setModalOpen}) => {
                 type="text"
                 name="tag"
                 value={tag}
-                onChange={tagHandleChange}
+                onChange={(e) => setTag(e.target.value)}
                 placeholder="#seoul_restaurant"
               ></HashTag>
             </Wrapper>

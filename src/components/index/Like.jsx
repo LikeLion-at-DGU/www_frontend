@@ -23,6 +23,7 @@ const Like = ({ record_id, handlewidth, handleheight, handlefsize }) => {
 
     try {
       const response = await axiosInstance.post(
+        //백에서 post 방식을 사용할지 의논 필요(현재 get 방식)
         `/api/records/${record_id}/record_like`,
         {
           mylike: !mylike,
@@ -38,6 +39,7 @@ const Like = ({ record_id, handlewidth, handleheight, handlefsize }) => {
   return (
     <form>
       <LikeStyle
+        type="submit"
         handlewidth={handlewidth}
         handleheight={handleheight}
         handlefsize={handlefsize}

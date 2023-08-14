@@ -28,6 +28,7 @@ import CompanionCards from '../companionPage/CompanionCards';
 
 export default function CompanionDetail() {
   const [commentFold, setCommentFold] = useState(true);
+  const [hide, setHide] = useState(false);
 
   return (
     <TopWrapper>
@@ -60,7 +61,8 @@ export default function CompanionDetail() {
           </p>
         </CompanionBody>
       </DetailWrapper>
-      {commentFold && <Reaction setCommentFold={setCommentFold} />}
+      <Reaction />
+      {commentFold && <CommentSection />}
 
       <AnotherTitle>
         <p>Another buddy is Waiting you!</p>

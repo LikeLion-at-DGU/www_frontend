@@ -14,11 +14,15 @@ import Like from "../index/Like";
 import FriendMark from "../index/FriendMark";
 import Mine from "../index/Mine";
 import { BtnWrapper } from "../../pages/detailPage/DetailStyle";
-import axios from "axios";
+import axiosInstance from "../../api/axios";
+import { size } from "lodash";
+import EditDeleteBtn from "../index/EditDeleteBtn";
+import { HideWrapper } from "../index/BtnStyle";
 
 
-export const CommentSection = ({ record_id }) => {
+export const CommentSection = ({ record_id, }) => {
   const [cmt, setCmt] = useState("");
+  const [hide, setHide] = useState(false);
   const [cmtList, setCmtList] = useState([
     {
       profileImg: "",
@@ -37,7 +41,7 @@ export const CommentSection = ({ record_id }) => {
   //댓글 리스트 GET
   useEffect(() => {
     // API 요청을 수행하는 부분
-    axios
+    axiosInstance
       .get(`/api/records/${record_id}/rcomments`) // 댓글 리스트 GET URL
       .then((response) => {
         setCmtList(...cmtList, response.data); // 받아온 데이터를 상태에 저장
@@ -52,8 +56,8 @@ export const CommentSection = ({ record_id }) => {
     event.preventDefault();
 
     try {
-      const response = await axios.post(
-        `/api/records/${record_id}/rcomments`, // 댓글 리스트 POST__ API 확정 안됨
+      const response = await axiosInstance.post(
+        `/api/records/${record_id}/rcomments`, // 댓글 리스트 POST
         {
           cmt,
         }
@@ -97,21 +101,28 @@ export const CommentSection = ({ record_id }) => {
         </Label>
       </form>
       <p>
+        {/* 최신순, 좋아요순 구현 전 */}
         <span>New</span> | <span>Most like</span>
       </p>
       <br />
 
       {cmtList.map((comment, idx) => (
         <CmtBox key={idx}>
-          <CmtLabel>
-            <Wrapper style={{ alignItems: "end" }}>
-              {comment.userNmae === "smaile.kmk" ? (
+          <CmtLabel style={{ alignItems: "end" }}>
+            <Wrapper>
+              {comment.userNmae === "smaile.kmk" ? ( //글쓴이인지 확인
                 <BtnWrapper>
                   <Mine />
-                  <FontAwesomeIcon
-                    icon={faEllipsisV}
-                    style={{ padding: "10px" }}
-                  />
+                  <HideWrapper onClick={() => setHide(hide ? false : true)}>
+                    <FontAwesomeIcon
+                      icon={faEllipsisV}
+                      style={{
+                        padding: "0 10px 10px 15px",
+                        fontSize: "1.3rem",
+                      }}
+                    />
+                    {hide && <EditDeleteBtn />}
+                  </HideWrapper>
                 </BtnWrapper>
               ) : (
                 <FriendMark />

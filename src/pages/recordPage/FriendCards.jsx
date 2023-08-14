@@ -9,7 +9,7 @@ const FriendCards = ({ record }) => {
     const navigate = useNavigate();
 
     return (
-      <FriendCard onClick={() => navigate("/record/1")}>
+      <FriendCard onClick={() => navigate(`/record/${record_id}`)}>
         <CardBox>
           <Img width="122px" height="100%">
             {/* <Image leftradius="20px" src={recordImg} /> */}

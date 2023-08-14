@@ -1,39 +1,12 @@
-// src/App.js
-import { useMemo, useRef, useState } from "react";
-import "react-quill/dist/quill.snow.css";
-import ReactQuill from "react-quill";
+import React from "react";
+import { useState } from "react";
 
 function Test() {
-  const quillRef = useRef();
-  const [content, setContent] = useState("");
-  // quill에서 사용할 모듈
-  // useMemo를 사용하여 modules가 렌더링 시 에디터가 사라지는 버그를 방지
-  const modules = useMemo(() => {
-    return {
-      toolbar: {
-        container: [
-          [{ header: [1, 2, 3, false] }],
-          ["bold", "italic", "underline", "strike"],
-          ["blockquote"],
-          [{ list: "ordered" }, { list: "bullet" }],
-          [{ color: [] }, { background: [] }],
-          [{ align: [] }, "link", "image"],
-        ],
-      },
-    };
-  }, []);
+  const [editorHtml, setEditorHtml] = useState('<p>이게 되면.. 어떨까...</p><p>image</p><p>엉 이건 당연히 <strong>post </strong>오류 맞고</p><p>이제 전송 보내보면 되려나..</p><p>이것저것 </p><p>넣어보기</p><ol><li>짠</li><li>짠1</li><li>짠2</li></ol><p><img src="추가될듯" alt="uploaded image"></p>');
+
   return (
-    <div style={{ margin: "50px" }}>
-      <button onClick={() => console.log(content)}>Value</button>
-      <ReactQuill
-        style={{ width: "600px", height: "600px" }}
-        placeholder="Quill Content"
-        theme="snow"
-        ref={quillRef}
-        value={content}
-        onChange={setContent}
-        modules={modules}
-      />
+    <div>
+      <div dangerouslySetInnerHTML={{ __html: editorHtml }} />
     </div>
   );
 }

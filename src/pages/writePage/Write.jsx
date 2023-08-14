@@ -13,16 +13,18 @@ import {
   SaveBtn,
 } from "./WriteStyle";
 import PenIMG from "../../image/pen.png";
-import axios from "axios";
 import { useState, useEffect, useRef, useMemo } from "react";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
 import MakeCard from "../../components/card/MakeCard";
 import Card from "../../components/card/Card";
+import axiosInstance from "../../api/axios";
 
 const Write = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [content, setContent] = useState("");
+
+  // 개별 입력값
+  const [content, setContent] = useState(""); //quill에 담기는 값
   const [date, setDate] = useState("");
   const [weather, setWeather] = useState("");
   const [title, setTitle] = useState("");
@@ -40,35 +42,67 @@ const Write = () => {
     setTitle(event.target.value);
   };
 
-  // 레코드 POST
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+   //이건 axios 전, submit 테스트
+  const consolecheck = () => {
+    console.log(
+      "date : ",
+      date,
+      "weather : ",
+      weather,
+      "title : ",
+      title,
+      "content : ",
+      content
+    );
+  };
+  
+  // submit 시 로직
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
     try {
-      const response = await axios.post("/api/records", { //레코드 POST URL
-        user,
-        userInfo,
-        date,
-        weather,
-        title,
-        content,
+      const response = await axiosInstance.post("/api/records", {
+        // user: ???,
+        // userInfo: ???,
+        title: title,
+        created_at: date,
+        weather: weather,
+        body: content,
       });
-
       console.log("Post created:", response.data);
+      alert("포스트 성공!");
       // 새로운 레코드 생성된 후의 동작을 수행
     } catch (error) {
       console.error("Error creating post:", error);
     }
   };
-/*
+
+  /* Card 컴포넌트를 quill에 추가할 경우
+  const handleCardUpload = () => {
+    // 여기서 Card 컴포넌트를 content에 추가하는 작업 수행
+    const cardData = {
+      id: 1,
+      where: "포케",
+      what: "요기는 식당",
+      how: "연어 먹쟈!",
+      tagname: "서울_맛집",
+      image: require("../../image/test.jpg"), // 이미지 경로를 적절히 수정해야 함
+    };
+
+    const newContent = `${content}<Card data=${cardData} />`;
+    setContent(newContent);
+  };
+*/
+
   //이미지 업로드 로직
+  /* 1번
   const handleImageUpload = async (file) => {
     try {
       const formData = new FormData();
       formData.append("image", file);
 
-      const response = await axios.post(
-        "https://api.example.com/upload-image", //이미지 업로드를 처리하는 URL
+      const response = await axiosInstance.post(
+        "/api/upload-image", //이미지 업로드를 처리하는 URL
         formData,
         {
           headers: {
@@ -76,7 +110,6 @@ const Write = () => {
           },
         }
       );
-
       const imageUrl = response.data.url;
       const editor = this.quillRef.getEditor(); // ReactQuill의 에디터 인스턴스 가져오기
       const range = editor.getSelection();
@@ -85,8 +118,48 @@ const Write = () => {
       console.error("Error uploading image:", error);
     }
   };
-  
-*/
+  */
+  //  2번
+  const handleImageUpload = () => {
+    const input = document.createElement("input");
+    input.setAttribute("type", "file");
+    input.setAttribute("accept", "image/*");
+    input.click();
+
+    input.onchange = async () => {
+      const file = input.files[0];
+      if (file) {
+        const imageUrl = await uploadImageToServer(file);
+        if(imageUrl){
+           setContent(
+             content + `<img src="${imageUrl}" alt="uploaded image" />`
+           );
+        }
+        // const quill = quillRef.current.getEditor();
+        // const range = quill.getSelection();
+        // quill.insertEmbed(range.index, "image", imageUrl);
+      }
+    };
+  };
+  // 2번과 연결된 코드
+  const uploadImageToServer = async (file) => {
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+      const response = await axiosInstance.post("/api/upload-image", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      return response.data.imageURL; // 백엔드에서 이미지 URL을 전달하는 필드 이름에 맞게 수정해야 합니다.
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      // return "추가될듯";
+      return null;
+    }
+  };
+
   // quill에서 사용할 모듈
   // useMemo를 사용하여 modules가 렌더링 시 에디터가 사라지는 버그를 방지
   const modules = useMemo(() => {
@@ -98,28 +171,15 @@ const Write = () => {
           ["blockquote"],
           [{ list: "ordered" }, { list: "bullet" }],
           [{ color: [] }, { background: [] }],
-          [{ align: [] }, "link", "image"],
-          // [{ align: [] }, "link", "image", "custom-card"],
+          [{ align: [] }],
+          [{ align: [] }, "image"],
+          // [{ align: [] }, "image", "card"],
         ],
-        /*
         handlers: {
           image: handleImageUpload, // 이미지 업로드 핸들러 연결
-          "custom-card": () => {
-            // 카드 업로드 핸들러 연결
-            const editor = this.quillRef.getEditor(); // ReactQuill의 에디터 인스턴스 가져오기
-            const range = editor.getSelection();
-            editor.insertEmbed(range.index, "custom-card", true); // 커스텀 컴포넌트 삽입
-          },
+          //   card: handleCardUpload, // 카드 업로드 핸들러 연결
         },
-        */
       },
-      /*
-      // 커스텀 모듈 정의
-      "custom-card": {
-        container: ".custom-card", // 커스텀 컴포넌트 렌더링할 선택자
-        component: Card, // 커스텀 컴포넌트 지정
-      },
-      */
     };
   }, []);
 
@@ -140,12 +200,7 @@ const Write = () => {
                 <span className="material-symbols-outlined">library_add</span>
                 <p>add card</p>
               </SaveBtn>
-              <RegisterBtn
-                type="submit"
-                onClick={() => {
-                  console.log(content);
-                }}
-              >
+              <RegisterBtn type="submit" onClick={consolecheck}>
                 <RegisterImg src={PenIMG} alt="pen" />
                 &nbsp;register
               </RegisterBtn>
@@ -176,7 +231,7 @@ const Write = () => {
             style={{ width: "100%", height: "600px", marginBottom: "60px" }}
             placeholder="Please enter the main content"
             theme="snow"
-            ref={ quillRef }
+            ref={quillRef}
             value={content}
             onChange={setContent}
             modules={modules}
