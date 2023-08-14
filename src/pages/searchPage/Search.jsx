@@ -7,6 +7,7 @@ import ListCards from "../recordPage/ListCards";
 import { Box3, NoResult, SearchContainer } from "./SearchStyle";
 import logo from "../../image/noresult_logo.png";
 import axios from "axios";
+import SearchResults from "./SearchResults";
 
 const RecordSearch = () => {
 
@@ -86,6 +87,7 @@ const RecordSearch = () => {
             ))
           )}
         </ul>
+        <SearchResults />
       </Box3>
 
       <Box3 flexdirect="column" height="832px">
