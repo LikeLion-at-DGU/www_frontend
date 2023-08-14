@@ -292,6 +292,19 @@ export const StackedImages = styled.div`
   } */
 `;
 
+export const SlideContainer = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  width: 947px;
+  height: 360px;
+  bottom: 0;
+  z-index: 3;
+  border: 3px solid red;
+`;
+
 export const ClickableImageContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -376,7 +389,7 @@ export const Companions = styled.p`
   position: absolute;
   font-size: 16px;
   color: ${(props) => (props.selected ? "#333" : "#2E74B5")};
-  z-index: 10;
+  z-index: 100;
   font-family: Roboto Mono;
   font-size: 20px;
   font-weight: 700;

@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { FileContainer, StackedImages, ClickableImage } from "./ArchiveStyle";
+import {
+  FileContainer,
+  StackedImages,
+  ClickableImage,
+  SlideContainer,
+} from "./ArchiveStyle";
 import MyRecord from "./MyRecord";
 import DailyRecord from "./DailyRecord";
 import DataCard from "./DataCard";
@@ -15,8 +20,19 @@ import whiteCompanions from "../../image/whiteCompanions.png";
 import FriendCards from "../recordPage/FriendCards";
 import LocalPicks from "../recordPage/LocalPicks";
 import CompanionCards from "../companionPage/CompanionCards";
-
-import axiosInstance from "../../../src/api/axios";
+import axiosInstance from "../../api/axios";
+// Import Swiper styles
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import {
+  SwiperDesign,
+  CustomPrevButton,
+  CustomNextButton,
+} from "./SwiperDesign";
 
 const MyFile = () => {
   const [selectedImage, setSelectedImage] = useState("MyRecord");
@@ -49,11 +65,12 @@ const MyFile = () => {
       writer: "sha22",
       tag: ["#서울_맛집2", "#룰루2"],
       photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
-    },,
+    },
+    ,
     {
       id: 3,
       rcommets_cnt: 20,
-      title: "테스트 Title 2!",
+      title: "테스트 Title 3!",
       weather: "테스트 날씨 2!",
       body: "테스트 본문 2!",
       created_at: "2023-08-14",
@@ -63,11 +80,12 @@ const MyFile = () => {
       writer: "sha22",
       tag: ["#서울_맛집2", "#룰루2"],
       photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
-    },,
+    },
+    ,
     {
       id: 4,
       rcommets_cnt: 20,
-      title: "테스트 Title 2!",
+      title: "테스트 Title 4!",
       weather: "테스트 날씨 2!",
       body: "테스트 본문 2!",
       created_at: "2023-08-14",
@@ -77,11 +95,12 @@ const MyFile = () => {
       writer: "sha22",
       tag: ["#서울_맛집2", "#룰루2"],
       photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
-    },,
+    },
+    ,
     {
       id: 5,
       rcommets_cnt: 20,
-      title: "테스트 Title 2!",
+      title: "테스트 Title 5!",
       weather: "테스트 날씨 2!",
       body: "테스트 본문 2!",
       created_at: "2023-08-14",
@@ -91,11 +110,12 @@ const MyFile = () => {
       writer: "sha22",
       tag: ["#서울_맛집2", "#룰루2"],
       photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
-    },,
+    },
+    ,
     {
       id: 6,
       rcommets_cnt: 20,
-      title: "테스트 Title 2!",
+      title: "테스트 Title 6!",
       weather: "테스트 날씨 2!",
       body: "테스트 본문 2!",
       created_at: "2023-08-14",
@@ -118,7 +138,6 @@ const MyFile = () => {
         console.error("Error fetching data:", error);
       });
   }, []);
-
 
   const handleTextClick = (text) => {
     setSelectedImage(text);
@@ -171,21 +190,66 @@ const MyFile = () => {
           onClick={() => handleTextClick("Companions")}
         />
 
-        {selectedImage === "DailyRecord" &&
-        recordList
-          .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-          .map((record) => (
-            <FriendCards key={record.id} record={record}
-            style={{ position: "absolute", zIndex: 3 }} />
-          ))}
-        {/* {selectedImage === "DailyRecord" && (
-          <FriendCards style={{ position: "absolute", zIndex: 3 }} />
-        )} */}
-        {selectedImage === "Companions" && (
-          <CompanionCards style={{ position: "absolute", zIndex: 3 }} />
+        {selectedImage === "DailyRecord" && (
+          <SlideContainer>
+            <div className="custom-prev">
+              <CustomPrevButton />
+            </div>
+
+            <Swiper
+              modules={[Navigation, Pagination, Scrollbar, A11y]}
+              navigation={{
+                prevEl: ".custom-prev",
+                nextEl: ".custom-next",
+              }}
+              slidesPerView={4}
+              spaceBetween={5}
+              pagination={{ clickable: true }}
+            >
+              {recordList
+                .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+                .map((record, index) => {
+                  const isEvenIndex = index % 2 === 0;
+
+                  return (
+                    <SwiperSlide key={record.id}>
+                      <div style={{ display: "flex", flexDirection: "column" }}>
+                        {isEvenIndex && (
+                          <FriendCards
+                            key={record.id}
+                            record={record}
+                            style={{ position: "absolute", zIndex: 3 }}
+                          />
+                        )}
+
+                        {isEvenIndex && recordList[index + 1] && (
+                          <FriendCards
+                            key={recordList[index + 1].id}
+                            record={recordList[index + 1]}
+                            style={{ position: "absolute", zIndex: 3 }}
+                          />
+                        )}
+                      </div>
+                    </SwiperSlide>
+                  );
+                })}
+            </Swiper>
+            <div className="custom-next">
+              <CustomNextButton />
+            </div>
+          </SlideContainer>
         )}
+
         {selectedImage === "DataCard" && (
-          <LocalPicks style={{ position: "absolute", zIndex: 3 }} />
+          <SlideContainer>
+            <LocalPicks style={{ position: "absolute", zIndex: 3 }} />
+          </SlideContainer>
+        )}
+
+        {selectedImage === "Companions" && (
+          <SlideContainer>
+            <CompanionCards style={{ position: "absolute", zIndex: 3 }} />
+          </SlideContainer>
         )}
       </StackedImages>
     </FileContainer>
