@@ -113,7 +113,7 @@ const MakeCard = ({ setModalOpen }) => {
                 style={{ visibility: "hidden" }}
               />
             </UproadImg>
-            {images.map((imageURL, index) => (
+            {images.slice(0,3).map((imageURL, index) => (
               <CardImg key={index} src={imageURL} alt="post img" />
             ))}
           </ImgCardBorder>

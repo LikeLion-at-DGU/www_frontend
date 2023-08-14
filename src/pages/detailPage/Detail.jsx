@@ -35,7 +35,7 @@ const Detail = () => {
     rcommets_cnt: 2,
     title: "테스트 Title!",
     weather: "테스트 날씨 !",
-    body: "<p>이게 되면.. 어떨까...</p><p>image</p><p>엉 이건 당연히 <strong>post </strong>오류 맞고</p><p>이제 전송 보내보면 되려나..</p><p>이것저것 </p><p>넣어보기</p><ol><li>짠</li><li>짠1</li><li>짠2</li></ol><img src='' alt='임시 이미지태그 삽입' />",
+    body: "<p>이 아래입니댜..</p><Card /><p>이게 되면.. 어떨까...</p><p>image</p><p>엉 이건 당연히 <strong>post </strong>오류 맞고</p><p>이제 전송 보내보면 되려나..</p><p>이것저것 </p><p>넣어보기</p><ol><li>짠</li><li>짠1</li><li>짠2</li></ol><img src='' alt='임시 이미지태그 삽입' />",
     created_at: "2023-08-14",
     updated_at: "2023-08-14",
     views: 13,
