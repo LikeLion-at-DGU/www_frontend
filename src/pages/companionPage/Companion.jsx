@@ -17,115 +17,114 @@ const Companion = () => {
   const location = useLocation();
 
   // 검색어
-  // const useQuery = () => {
-  //   return new URLSearchParams(useLocation().search);
-  // };
-  // let query = useQuery();
-  // const searchTerm = query.get("search");
   const searchTerm = new URLSearchParams(location.search).get("search");
 
   // 검색결과
   const [searchResults, setSearchResults] = useState([
-    {
-      id: 1,
-      // rcommets_cnt: 2,
-      title: "테스트 Title 1!",
-      weather: "테스트 날씨 !",
-      body: "테스트 본문 !",
-      created_at: "2023-08-14",
-      updated_at: "2023-08-14",
-      country: "vietnam",
-      // views: 13,
-      // likes: 5,
-      writer: "sha",
-      photos: ["testImgURL1", "testImgURL2", "testImgURL3"],
-    },
-    {
-      id: 2,
-      // rcommets_cnt: 20,
-      title: "테스트 Title 2!",
-      weather: "테스트 날씨 2!",
-      body: "테스트 본문 2!",
-      created_at: "2023-08-14",
-      updated_at: "2023-08-14",
-      country: "vietnam",
-      // views: 113,
-      // likes: 51,
-      writer: "sha22",
-      photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
-    },
-    {
-      id: 3,
-      // rcommets_cnt: 20,
-      title: "테스트 Title 3!",
-      weather: "테스트 날씨 3!",
-      body: "테스트 본문 3!",
-      created_at: "2023-08-14",
-      updated_at: "2023-08-14",
-      country: "vietnam",
-      // views: 113,
-      // likes: 51,
-      writer: "sha22",
-      photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
-    },
-    {
-      id: 4,
-      // rcommets_cnt: 20,
-      title: "테스트 Title 4!",
-      weather: "테스트 날씨 4!",
-      body: "테스트 본문 4!",
-      created_at: "2023-08-14",
-      updated_at: "2023-08-14",
-      country: "vietnam",
-      // views: 113,
-      // likes: 51,
-      writer: "sha22",
-      photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
-    },
-    {
-      id: 5,
-      // rcommets_cnt: 20,
-      title: "테스트 Title 5!",
-      weather: "테스트 날씨 5!",
-      body: "테스트 본문 5!",
-      created_at: "2023-08-14",
-      updated_at: "2023-08-14",
-      country: "vietnam",
-      // views: 113,
-      // likes: 51,
-      writer: "sha22",
-      photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
-    },
-    {
-      id: 6,
-      // rcommets_cnt: 20,
-      title: "테스트 Title 6!",
-      weather: "테스트 날씨 6!",
-      body: "테스트 본문 6!",
-      created_at: "2023-08-14",
-      updated_at: "2023-08-14",
-      country: "korea",
-      // views: 113,
-      // likes: 51,
-      writer: "sha22",
-      photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
-    },
+    // {
+    //   id: 1,
+    //   // rcommets_cnt: 2,
+    //   title: "테스트 Title 1!",
+    //   weather: "테스트 날씨 !",
+    //   body: "테스트 본문 !",
+    //   created_at: "2023-08-14",
+    //   updated_at: "2023-08-14",
+    //   country: "vietnam",
+    //   // views: 13,
+    //   // likes: 5,
+    //   writer: "sha",
+    //   photos: ["testImgURL1", "testImgURL2", "testImgURL3"],
+    // },
+    // {
+    //   id: 2,
+    //   // rcommets_cnt: 20,
+    //   title: "테스트 Title 2!",
+    //   weather: "테스트 날씨 2!",
+    //   body: "테스트 본문 2!",
+    //   created_at: "2023-08-14",
+    //   updated_at: "2023-08-14",
+    //   country: "vietnam",
+    //   // views: 113,
+    //   // likes: 51,
+    //   writer: "sha22",
+    //   photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
+    // },
+    // {
+    //   id: 3,
+    //   // rcommets_cnt: 20,
+    //   title: "테스트 Title 3!",
+    //   weather: "테스트 날씨 3!",
+    //   body: "테스트 본문 3!",
+    //   created_at: "2023-08-14",
+    //   updated_at: "2023-08-14",
+    //   country: "vietnam",
+    //   // views: 113,
+    //   // likes: 51,
+    //   writer: "sha22",
+    //   photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
+    // },
+    // {
+    //   id: 4,
+    //   // rcommets_cnt: 20,
+    //   title: "테스트 Title 4!",
+    //   weather: "테스트 날씨 4!",
+    //   body: "테스트 본문 4!",
+    //   created_at: "2023-08-14",
+    //   updated_at: "2023-08-14",
+    //   country: "vietnam",
+    //   // views: 113,
+    //   // likes: 51,
+    //   writer: "sha22",
+    //   photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
+    // },
+    // {
+    //   id: 5,
+    //   // rcommets_cnt: 20,
+    //   title: "테스트 Title 5!",
+    //   weather: "테스트 날씨 5!",
+    //   body: "테스트 본문 5!",
+    //   created_at: "2023-08-14",
+    //   updated_at: "2023-08-14",
+    //   country: "vietnam",
+    //   // views: 113,
+    //   // likes: 51,
+    //   writer: "sha22",
+    //   photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
+    // },
+    // {
+    //   id: 6,
+    //   // rcommets_cnt: 20,
+    //   title: "테스트 Title 6!",
+    //   weather: "테스트 날씨 6!",
+    //   body: "테스트 본문 6!",
+    //   created_at: "2023-08-14",
+    //   updated_at: "2023-08-14",
+    //   country: "korea",
+    //   // views: 113,
+    //   // likes: 51,
+    //   writer: "sha22",
+    //   photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
+    // },
   ]);
-  console.log(searchResults);
-  console.log(searchResults[0]);
 
-  // useEffect(() => {
-  //   if (searchTerm) {
-  //     handleSearch(searchTerm);
-  //   }
-  // }, [searchTerm]);
   useEffect(() => {
     if (searchTerm) {
       handleSearch(searchTerm);
     } else {
-      setSearchResults([]);
+      // setSearchResults([]);
+      fetchAllData();
     }
   }, [searchTerm]);
+
+  // 검색 전에도 전체 리스트 가져옴
+  const fetchAllData = async () => {
+    try {
+      const response = await axiosInstance.get("/api/companions/");
+      setSearchResults(response.data);
+    } catch (error) {
+      console.log("ERROR", error);
+    }
+  };
 
   const handleSearch = async (searchTerm) => {
     try {
@@ -250,33 +249,37 @@ const Companion = () => {
           </ArrayChoice>
         </ArrayChoices>
         <div>
-          {/* {searchResults.length > 0 ? (
-            <div>
-            {searchResults.map((result) => {
-              return (
-                <div key={result.id}>
+          {/* {searchTerm && searchResults.length === 0 ? (
+            <NoResult>
+              <img
+                style={{ width: "120px", marginBottom: "20px" }}
+                src={logo}
+              />
+              Sorry. No search results found.
+            </NoResult>
+          ) : (
+            searchResults.map((result, id) => (
+              <div key={id}>
+                <CompanionCards companion={result} />
+              </div>
+            ))
+          )} */}
+          {searchTerm ? (
+            searchResults.length === 0 ? (
+              <NoResult>
+                <img
+                  style={{ width: "120px", marginBottom: "20px" }}
+                  src={logo}
+                />
+                Sorry. No search results found.
+              </NoResult>
+            ) : (
+              searchResults.map((result, id) => (
+                <div key={id}>
                   <CompanionCards companion={result} />
                 </div>
-              );
-            })}
-          </div>
-          ) : (
-            <NoResult>
-              <img
-                style={{ width: "120px", marginBottom: "20px" }}
-                src={logo}
-              />
-              Sorry. No search results found.
-            </NoResult>
-          )} */}
-          {searchTerm && searchResults.length === 0 ? (
-            <NoResult>
-              <img
-                style={{ width: "120px", marginBottom: "20px" }}
-                src={logo}
-              />
-              Sorry. No search results found.
-            </NoResult>
+              ))
+            )
           ) : (
             searchResults.map((result, id) => (
               <div key={id}>
