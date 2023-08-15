@@ -1,8 +1,21 @@
 // FriendsCards.jsx
 
 import React from "react";
-import { CardBox, City, Content, FriendCard, HashTag, Image, Img, ProfileImg, TagBox, Text, Title, Writer } from "./RecordStyle";
-import recordImg from "../../image/record1.jpg"
+import {
+  CardBox,
+  City,
+  Content,
+  FriendCard,
+  HashTag,
+  Image,
+  Img,
+  ProfileImg,
+  TagBox,
+  Text,
+  Title,
+  Writer,
+} from "./RecordStyle";
+import recordImg from "../../image/record1.jpg";
 import { useNavigate } from "react-router-dom";
 
 const FriendCards = ({ record }) => {

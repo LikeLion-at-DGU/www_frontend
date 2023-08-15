@@ -6,62 +6,119 @@ import { SubTitle } from "../recordPage/RecordStyle";
 import ListCards from "../recordPage/ListCards";
 import { Box3, NoResult, SearchContainer } from "./SearchStyle";
 import logo from "../../image/noresult_logo.png";
-import axios from "axios";
 import SearchResults from "./SearchResults";
+import axiosInstance from "../../../src/api/axios";
 
 const RecordSearch = () => {
 
-  // 검색결과
-  const [searchResults, setSearchResults] = useState([]);
+    // 검색결과
+    const [searchResults, setSearchResults] = useState([
+      {
+        id: 1,
+        rcommets_cnt: 2,
+        title: "테스트 Title!",
+        weather: "테스트 날씨 !",
+        body: "테스트 본문 !",
+        created_at: "2023-08-14",
+        updated_at: "2023-08-14",
+        views: 13,
+        likes: 5,
+        writer: "sha",
+        tag: ["#서울_맛집", "#룰루"],
+        photos: ["testImgURL1", "testImgURL2", "testImgURL3"],
+      },
+      {
+        id: 2,
+        rcommets_cnt: 20,
+        title: "테스트 Title 2!",
+        weather: "테스트 날씨 2!",
+        body: "테스트 본문 2!",
+        created_at: "2023-08-14",
+        updated_at: "2023-08-14",
+        views: 113,
+        likes: 51,
+        writer: "sha22",
+        tag: ["#서울_맛집2", "#룰루2"],
+        photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
+      },
+      {
+        id: 3,
+        rcommets_cnt: 20,
+        title: "테스트 Title 2!",
+        weather: "테스트 날씨 2!",
+        body: "테스트 본문 2!",
+        created_at: "2023-08-14",
+        updated_at: "2023-08-14",
+        views: 113,
+        likes: 51,
+        writer: "sha22",
+        tag: ["#서울_맛집2", "#룰루2"],
+        photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
+      },
+      {
+        id: 4,
+        rcommets_cnt: 20,
+        title: "테스트 Title 2!",
+        weather: "테스트 날씨 2!",
+        body: "테스트 본문 2!",
+        created_at: "2023-08-14",
+        updated_at: "2023-08-14",
+        views: 113,
+        likes: 51,
+        writer: "sha22",
+        tag: ["#서울_맛집2", "#룰루2"],
+        photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
+      },
+      {
+        id: 5,
+        rcommets_cnt: 20,
+        title: "테스트 Title 2!",
+        weather: "테스트 날씨 2!",
+        body: "테스트 본문 2!",
+        created_at: "2023-08-14",
+        updated_at: "2023-08-14",
+        views: 113,
+        likes: 51,
+        writer: "sha22",
+        tag: ["#서울_맛집2", "#룰루2"],
+        photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
+      },
+      {
+        id: 6,
+        rcommets_cnt: 20,
+        title: "테스트 Title 2!",
+        weather: "테스트 날씨 2!",
+        body: "테스트 본문 2!",
+        created_at: "2023-08-14",
+        updated_at: "2023-08-14",
+        views: 113,
+        likes: 51,
+        writer: "sha22",
+        tag: ["#서울_맛집2", "#룰루2"],
+        photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
+      },
+    ]);
+
+    // 검색결과
+    // useEffect(() => {
+    //   axiosInstance
+    //     .get('/api/records')
+    //     .then(response => setSearchResults(response.data))
+    //     .catch(error => console.error('Error fetching record List:', error));
+    // }, [])
+
   // 검색어
   const [searchTerm, setSearchTerm] = useState("");
   // ListCard
   const [recordList, setRecordList] = useState([]);
 
+  // ListCard
   useEffect(() => {
-    axios.get('/api/records')
-    .then(response => setRecordList(response.data))
-    .catch(error => console.error('Error fetching record List:', error));
+    axiosInstance.get('/api/records')
+      .then(response => setRecordList(response.data))
+      .catch(error => console.error('Error fetching record List:', error));
   }, [])
 
-  // // 검색 -> 나중에 백엔드 API 입력해줄것
-  // const handleSearch = async(searchTerm, searchType) => {
-  //   try {
-  //     const response = await axios.get(`/api/records?q=${searchTerm}`);
-  //     setSearchResults(response.data);
-  //     setSearchTerm(searchTerm);
-  //   } catch (error) {
-  //     console.log("ERROR: ", error);
-  //   }
-  // };
-
-  const handleSearch = async (searchTerm, searchType) => {
-    // 가상의 데이터를 활용하여 검색 결과 설정
-    // 나중에 위에 코드로 바꿔줘야 함
-    const virtualData = [
-      {
-        id: 1,
-        title: "Example Result 1",
-      },
-      {
-        id: 2,
-        title: "Example Result 2",
-      },
-      {
-        id: 3,
-        title: "Example Result 3",
-      },
-    ];
-
-    const filteredResults = virtualData.filter(result =>
-      result.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-
-    // 검색결과
-    setSearchResults(filteredResults);
-    // 검색어
-    setSearchTerm(searchTerm);
-  };
 
   return (
     <SearchContainer>
@@ -76,14 +133,15 @@ const RecordSearch = () => {
         <ul>
           {(searchTerm) && (searchResults.length === 0) ? (
             <NoResult>
-              <img style={{width: "120px", marginBottom: "20px"}} src={logo} />
+              <img style={{ width: "120px", marginBottom: "20px" }} src={logo} />
               Sorry. No search results found.
             </NoResult>
           ) : (
-            searchResults.map((result, index) => (
-              <div key={index}>
-                <li>{result.title}</li>
-              </div>
+            searchResults.map((result) => (
+              // <div key={index}>
+              //   <li>{result.title}</li>
+              // </div>
+              <SearchResults key={result.id} result={result} />
             ))
           )}
         </ul>

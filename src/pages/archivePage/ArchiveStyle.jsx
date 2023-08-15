@@ -47,8 +47,10 @@ export const ProfileBox = styled.div`
   background-color: #ffffff;
   box-shadow: 0px 4px 4px 0px #00000040;
   img {
-    width: 215px;
-    height: 215px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    box-shadow: 0px 4px 4px 0px #00000040;
   }
   p {
     margin-top: 13px;
@@ -123,11 +125,13 @@ export const BuddyBlueBox = styled.div`
 export const AllData = styled.div`
   display: flex;
   flex-direction: column;
+  border: 3px solid black;
 `;
 
 export const BuddyDataContainer = styled.div`
   overflow-y: auto;
   max-height: 300px; /* 스크롤 최대 높이 설정 */
+  border: 3px solid red;
 `;
 
 export const DataContainer = styled.div`
@@ -292,6 +296,19 @@ export const StackedImages = styled.div`
   } */
 `;
 
+export const SlideContainer = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  width: 947px;
+  height: 360px;
+  bottom: 0;
+  z-index: 3;
+  border: 3px solid red;
+`;
+
 export const ClickableImageContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -376,7 +393,7 @@ export const Companions = styled.p`
   position: absolute;
   font-size: 16px;
   color: ${(props) => (props.selected ? "#333" : "#2E74B5")};
-  z-index: 10;
+  z-index: 100;
   font-family: Roboto Mono;
   font-size: 20px;
   font-weight: 700;
