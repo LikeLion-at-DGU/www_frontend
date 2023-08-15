@@ -1,16 +1,16 @@
 // Companion.jsx
 
 import React, { useEffect, useState } from "react";
-import { ArrayChoice, ArrayChoices, CompanionContainer, CompanionList, Continent, Continents, FixedBtnBox } from "./CompanionStyle";
+import { ArrayChoice, ArrayChoices, CompanionContainer, CompanionList, FixedBtnBox } from "./CompanionStyle";
 import SearchBar from "./SearchBar";
 import { useLocation, useNavigate } from "react-router-dom";
 import { NoResult } from "../searchPage/SearchStyle";
 import logo from "../../image/noresult_logo.png";
-import { Box2 } from "../recordPage/RecordStyle";
 import CompanionCards from "./CompanionCards";
 import { RegisterBtn, RegisterImg } from "../writePage/WriteStyle";
 import PenIMG from "../../image/pen.png";
 import axiosInstance from "../../../src/api/axios";
+import ContinentsNav from "./ContinentsNav";
 
 const Companion = () => {
   const navigate = useNavigate();
@@ -20,92 +20,8 @@ const Companion = () => {
   const searchTerm = new URLSearchParams(location.search).get("search");
 
   // 검색결과
-  const [searchResults, setSearchResults] = useState([
-    // {
-    //   id: 1,
-    //   // rcommets_cnt: 2,
-    //   title: "테스트 Title 1!",
-    //   weather: "테스트 날씨 !",
-    //   body: "테스트 본문 !",
-    //   created_at: "2023-08-14",
-    //   updated_at: "2023-08-14",
-    //   country: "vietnam",
-    //   // views: 13,
-    //   // likes: 5,
-    //   writer: "sha",
-    //   photos: ["testImgURL1", "testImgURL2", "testImgURL3"],
-    // },
-    // {
-    //   id: 2,
-    //   // rcommets_cnt: 20,
-    //   title: "테스트 Title 2!",
-    //   weather: "테스트 날씨 2!",
-    //   body: "테스트 본문 2!",
-    //   created_at: "2023-08-14",
-    //   updated_at: "2023-08-14",
-    //   country: "vietnam",
-    //   // views: 113,
-    //   // likes: 51,
-    //   writer: "sha22",
-    //   photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
-    // },
-    // {
-    //   id: 3,
-    //   // rcommets_cnt: 20,
-    //   title: "테스트 Title 3!",
-    //   weather: "테스트 날씨 3!",
-    //   body: "테스트 본문 3!",
-    //   created_at: "2023-08-14",
-    //   updated_at: "2023-08-14",
-    //   country: "vietnam",
-    //   // views: 113,
-    //   // likes: 51,
-    //   writer: "sha22",
-    //   photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
-    // },
-    // {
-    //   id: 4,
-    //   // rcommets_cnt: 20,
-    //   title: "테스트 Title 4!",
-    //   weather: "테스트 날씨 4!",
-    //   body: "테스트 본문 4!",
-    //   created_at: "2023-08-14",
-    //   updated_at: "2023-08-14",
-    //   country: "vietnam",
-    //   // views: 113,
-    //   // likes: 51,
-    //   writer: "sha22",
-    //   photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
-    // },
-    // {
-    //   id: 5,
-    //   // rcommets_cnt: 20,
-    //   title: "테스트 Title 5!",
-    //   weather: "테스트 날씨 5!",
-    //   body: "테스트 본문 5!",
-    //   created_at: "2023-08-14",
-    //   updated_at: "2023-08-14",
-    //   country: "vietnam",
-    //   // views: 113,
-    //   // likes: 51,
-    //   writer: "sha22",
-    //   photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
-    // },
-    // {
-    //   id: 6,
-    //   // rcommets_cnt: 20,
-    //   title: "테스트 Title 6!",
-    //   weather: "테스트 날씨 6!",
-    //   body: "테스트 본문 6!",
-    //   created_at: "2023-08-14",
-    //   updated_at: "2023-08-14",
-    //   country: "korea",
-    //   // views: 113,
-    //   // likes: 51,
-    //   writer: "sha22",
-    //   photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
-    // },
-  ]);
+  const [searchResults, setSearchResults] = useState([]);
+  console.log(searchResults);
 
   useEffect(() => {
     if (searchTerm) {
@@ -180,49 +96,9 @@ const Companion = () => {
   return (
     <CompanionContainer>
       {/* 반응형으로 떠있는 nav */}
-      {/* style={{ top: `${258 + scrollY * 0.5}px` }} */}
-      <Continents style={{ top: `${258 + scrollY * 0.3}px` }}>
-        {/* 지역별 대기환경 ~~ 했던 거처럼 params 이용 ... 하면 될 듯 ... */}
-        {/* <Continent onClick={() => navigate(`/companion/${}`)}>대륙명</Continent> */}
-        <Continent
-          className={activeBtn === 1 ? "active" : ""}
-          onClick={() => handleBtnClick(1)}
-        >
-          Africa
-        </Continent>
-        <Continent
-          className={activeBtn === 2 ? "active" : ""}
-          onClick={() => handleBtnClick(2)}
-        >
-          Asia
-        </Continent>
-        <Continent
-          className={activeBtn === 3 ? "active" : ""}
-          onClick={() => handleBtnClick(3)}
-        >
-          Europe
-        </Continent>
-        <Continent
-          className={activeBtn === 4 ? "active" : ""}
-          onClick={() => handleBtnClick(4)}
-        >
-          Oceania
-        </Continent>
-        <Continent
-          className={activeBtn === 5 ? "active" : ""}
-          onClick={() => handleBtnClick(5)}
-        >
-          North America
-        </Continent>
-        <Continent
-          className={activeBtn === 6 ? "active" : ""}
-          onClick={() => handleBtnClick(6)}
-        >
-          South America
-        </Continent>
-      </Continents>
+      <ContinentsNav activeBtn={activeBtn} handleBtnClick={handleBtnClick} />
 
-      {/* 화면고정 버튼 */}
+      {/* 화면고정 글쓰기 버튼 */}
       <FixedBtnBox>
         <RegisterBtn onClick={() => navigate("/companion/write")}>
           <RegisterImg src={PenIMG} alt="pen" />
@@ -249,21 +125,6 @@ const Companion = () => {
           </ArrayChoice>
         </ArrayChoices>
         <div>
-          {/* {searchTerm && searchResults.length === 0 ? (
-            <NoResult>
-              <img
-                style={{ width: "120px", marginBottom: "20px" }}
-                src={logo}
-              />
-              Sorry. No search results found.
-            </NoResult>
-          ) : (
-            searchResults.map((result, id) => (
-              <div key={id}>
-                <CompanionCards companion={result} />
-              </div>
-            ))
-          )} */}
           {searchTerm ? (
             searchResults.length === 0 ? (
               <NoResult>
@@ -287,17 +148,6 @@ const Companion = () => {
               </div>
             ))
           )}
-
-          {/* <Box2
-            style={{
-              width: "fit-content",
-              padding: "14px",
-              margin: "0",
-              borderLeft: "1px solid #848484",
-            }}
-            flexdirect="column"
-          >
-          </Box2> */}
         </div>
       </CompanionList>
     </CompanionContainer>
