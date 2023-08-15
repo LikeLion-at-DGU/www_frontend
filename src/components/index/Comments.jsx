@@ -2,9 +2,14 @@ import { useState, useEffect } from "react";
 import { BtnText, CommentStyle } from "./BtnStyle";
 import axios from "axios";
 
-const Comments = (props, { record_id }) => {
+const Comments = ({
+  setCommentFold,commentFold,
+  handlewidth,
+  handleheight,
+  handlefsize,
+  record_id,
+}) => {
   const [comments, setComments] = useState(0); //백에서 받을 데이터 - 댓글수
-  const [fold, setFold] = useState(props.open);
 
   //댓글수 GET
   useEffect(() => {
@@ -21,14 +26,14 @@ const Comments = (props, { record_id }) => {
 
   return (
     <CommentStyle
-      handlewidth={props.handlewidth}
-      handleheight={props.handleheight}
-      handlefsize={props.handlefsize}
-      onClick={() => setFold(fold ? false : true)}
+      handlewidth={handlewidth}
+      handleheight={handleheight}
+      handlefsize={handlefsize}
+      onClick={() => setCommentFold(commentFold ? false : true)}
     >
       <i className="fas fa-comment-alt"></i> &nbsp;
       <BtnText>{comments}</BtnText> &nbsp;
-      {fold ? (
+      {commentFold ? (
         <i className="fas fa-caret-down"></i>
       ) : (
         <i className="fas fa-caret-up"></i>

@@ -23,7 +23,7 @@ export const BlueBtn = styled.div`
     top: 5px;
   }
 `;
-export const BookMarkStyle = styled.div`
+export const BookMarkStyle = styled.button`
   width: ${(props) => (props.handlewidth ? props.handlewidth : "51px")};
   height: ${(props) => (props.handleheight ? props.handleheight : "40px")};
   font-size: ${(props) => (props.handlefsize ? props.handlefsize : "")};
@@ -126,4 +126,25 @@ export const DateStyle = styled(BookMarkStyle)`
 export const BtnText = styled.span`
   color: #222;
 `;
+export const EdDelbtnWrap = styled.div`
+  position: absolute;
+  top: -80px;
+  right: -60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+export const EdDelbtn = styled.button`  
+  width: 75px;
+  height: 35px;
+  font-size: 1.1rem;
+  background-color: #fff;
+  border: 1px solid #222;
+  border-collapse: collapse;
+  z-index: 10;
+`;
 
+export const HideWrapper = styled.div`
+  position: relative;
+`

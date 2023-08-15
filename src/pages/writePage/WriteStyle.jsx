@@ -82,11 +82,11 @@ export const TitleInput = styled.input`
   padding: 15px 0;
 `;
 export const WriteBody = styled.textarea`
-    width: 100%;
-    /* min-height: 500px; */
-    border: 0;
-    resize: none;
-`
+  width: 100%;
+  /* min-height: 500px; */
+  border: 0;
+  resize: none;
+`;
 export const AddCardBtn = styled.div`
   display: flex;
   justify-content: center;
@@ -97,8 +97,11 @@ export const AddCardBtn = styled.div`
   height: 31px;
   border-radius: 5px;
   border: 1px solid #222;
-  `;
+`;
 export const UproadImg = styled(AddCardBtn)`
+  position: absolute;
+  left: 10px;
+  top: 5px;
   width: 34px;
   margin-right: 5px;
   span {
@@ -107,7 +110,8 @@ export const UproadImg = styled(AddCardBtn)`
 `;
 export const BodySection = styled.div`
   min-height: 500px;
-`
+`;
+
 export const Table = styled.table`
   width: 100%;
   height: 80px;

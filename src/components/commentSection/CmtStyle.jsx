@@ -49,6 +49,8 @@ export const CmtLabel = styled.div`
   position: absolute;
   right: 20px;
   top: 20px;
+  display: flex;
+  flex-direction: column;
 `;
 export const CmtProfile = styled.div`
   margin-bottom: 30px;
