@@ -27,12 +27,11 @@ const Companion = () => {
     if (searchTerm) {
       handleSearch(searchTerm);
     } else {
-      // setSearchResults([]);
       fetchAllData();
     }
   }, [searchTerm]);
 
-  // 검색 전에도 전체 리스트 가져옴
+  // 전체 리스트
   const fetchAllData = async () => {
     try {
       const response = await axiosInstance.get("/api/companions/");
@@ -42,9 +41,9 @@ const Companion = () => {
     }
   };
 
+  // 검색어에 따른 리스트
   const handleSearch = async (searchTerm) => {
     try {
-      // const response = await axiosInstance.get(`/api/search?q=${searchTerm}`);
       const response = await axiosInstance.get(`/api/companions/?search=${searchTerm}`);
       setSearchResults(response.data);
     } catch (error) {
@@ -52,15 +51,43 @@ const Companion = () => {
     }
   };
 
+
+  // 좌측 nav 아이디, 대륙 매핑
+  const continentIdToName = {
+    1: "Africa",
+    2: "Asia",
+    3: "Europe",
+    4: "Oceania",
+    // 띄어쓰기 어떻게 되는지 확인해야함
+    5: "North America",
+    6: "South America",
+  }
+  const getContinentName = (continentId) => {
+    return continentIdToName[continentId];
+  }
+
   // 좌측 nav 선택, 정렬 대륙선택
   const [activeBtn, setActiveBtn] = useState(null);
   const [currentSort, setCurrentSort] = useState("new");
 
   const handleBtnClick = (btnId) => {
     setActiveBtn(btnId);
+    const continentName = getContinentName(btnId);
+    fetchContinentData(continentName);
+    navigate(`/companions/?continent=${continentName}`);
   };
   const handleSort = (sortType) => {
     setCurrentSort(sortType);
+  };
+
+  // 대륙에 따른 리스트
+  const fetchContinentData = async (continentId) => {
+    try {
+      const response = await axiosInstance.get(`/api/companions/?continent=${continentId}`);
+      setSearchResults(response.data);
+    } catch (error) {
+      console.log("ERROR", error);
+    }
   };
 
   // 좌측 nav 반응형으로 따라오게
