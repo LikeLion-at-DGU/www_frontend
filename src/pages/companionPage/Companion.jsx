@@ -3,19 +3,141 @@
 import React, { useEffect, useState } from "react";
 import { ArrayChoice, ArrayChoices, CompanionContainer, CompanionList, Continent, Continents, FixedBtnBox } from "./CompanionStyle";
 import SearchBar from "./SearchBar";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { NoResult } from "../searchPage/SearchStyle";
 import logo from "../../image/noresult_logo.png";
 import { Box2 } from "../recordPage/RecordStyle";
 import CompanionCards from "./CompanionCards";
 import { RegisterBtn, RegisterImg } from "../writePage/WriteStyle";
 import PenIMG from "../../image/pen.png";
+import axiosInstance from "../../../src/api/axios";
 
 const Companion = () => {
-
   const navigate = useNavigate();
+  const location = useLocation();
 
-  // 좌측 nav 선택, 정렬 선택
+  // 검색어
+  // const useQuery = () => {
+  //   return new URLSearchParams(useLocation().search);
+  // };
+  // let query = useQuery();
+  // const searchTerm = query.get("search");
+  const searchTerm = new URLSearchParams(location.search).get("search");
+
+  // 검색결과
+  const [searchResults, setSearchResults] = useState([
+    {
+      id: 1,
+      // rcommets_cnt: 2,
+      title: "테스트 Title 1!",
+      weather: "테스트 날씨 !",
+      body: "테스트 본문 !",
+      created_at: "2023-08-14",
+      updated_at: "2023-08-14",
+      country: "vietnam",
+      // views: 13,
+      // likes: 5,
+      writer: "sha",
+      photos: ["testImgURL1", "testImgURL2", "testImgURL3"],
+    },
+    {
+      id: 2,
+      // rcommets_cnt: 20,
+      title: "테스트 Title 2!",
+      weather: "테스트 날씨 2!",
+      body: "테스트 본문 2!",
+      created_at: "2023-08-14",
+      updated_at: "2023-08-14",
+      country: "vietnam",
+      // views: 113,
+      // likes: 51,
+      writer: "sha22",
+      photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
+    },
+    {
+      id: 3,
+      // rcommets_cnt: 20,
+      title: "테스트 Title 3!",
+      weather: "테스트 날씨 3!",
+      body: "테스트 본문 3!",
+      created_at: "2023-08-14",
+      updated_at: "2023-08-14",
+      country: "vietnam",
+      // views: 113,
+      // likes: 51,
+      writer: "sha22",
+      photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
+    },
+    {
+      id: 4,
+      // rcommets_cnt: 20,
+      title: "테스트 Title 4!",
+      weather: "테스트 날씨 4!",
+      body: "테스트 본문 4!",
+      created_at: "2023-08-14",
+      updated_at: "2023-08-14",
+      country: "vietnam",
+      // views: 113,
+      // likes: 51,
+      writer: "sha22",
+      photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
+    },
+    {
+      id: 5,
+      // rcommets_cnt: 20,
+      title: "테스트 Title 5!",
+      weather: "테스트 날씨 5!",
+      body: "테스트 본문 5!",
+      created_at: "2023-08-14",
+      updated_at: "2023-08-14",
+      country: "vietnam",
+      // views: 113,
+      // likes: 51,
+      writer: "sha22",
+      photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
+    },
+    {
+      id: 6,
+      // rcommets_cnt: 20,
+      title: "테스트 Title 6!",
+      weather: "테스트 날씨 6!",
+      body: "테스트 본문 6!",
+      created_at: "2023-08-14",
+      updated_at: "2023-08-14",
+      country: "korea",
+      // views: 113,
+      // likes: 51,
+      writer: "sha22",
+      photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
+    },
+  ]);
+  console.log(searchResults);
+  console.log(searchResults[0]);
+
+  // useEffect(() => {
+  //   if (searchTerm) {
+  //     handleSearch(searchTerm);
+  //   }
+  // }, [searchTerm]);
+  useEffect(() => {
+    if (searchTerm) {
+      handleSearch(searchTerm);
+    } else {
+      setSearchResults([]);
+    }
+  }, [searchTerm]);
+
+  const handleSearch = async (searchTerm) => {
+    try {
+      // const response = await axiosInstance.get(`/api/search?q=${searchTerm}`);
+      const response = await axiosInstance.get(`/api/companions/?search=${searchTerm}`);
+      setSearchResults(response.data);
+    } catch (error) {
+      console.log("ERROR", error);
+    }
+  };
+
+  // 좌측 nav 선택, 정렬 대륙선택
   const [activeBtn, setActiveBtn] = useState(null);
   const [currentSort, setCurrentSort] = useState("new");
 
@@ -55,37 +177,6 @@ const Companion = () => {
     setActiveBtn(null);
     setCurrentSort("new");
   }
-
-  // 검색결과
-  const [searchResults, setSearchResults] = useState([]);
-  // 검색어
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const handleSearch = async (searchTerm) => {
-    // 가상의 데이터를 활용하여 검색 결과 설정
-    // 나중에 백엔드 API 입력해줄것
-    const virtualData = [
-      {
-        id: 1,
-        title: "Result 1",
-      },
-      {
-        id: 2,
-        title: "Result 2",
-      },
-      {
-        id: 3,
-        title: "Result 3",
-      },
-    ];
-
-    const filteredResults = virtualData.filter(result =>
-      result.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-
-    // 검색 결과를 상태로 설정
-    setSearchResults(filteredResults);
-  };
 
   return (
     <CompanionContainer>
@@ -140,6 +231,7 @@ const Companion = () => {
         </RegisterBtn>
       </FixedBtnBox>
 
+      {/* 검색창 ~ 리스트 */}
       <CompanionList>
         <SearchBar onClick={handleSearch} onReset={handleReset} />
         <ArrayChoices>
@@ -158,7 +250,25 @@ const Companion = () => {
           </ArrayChoice>
         </ArrayChoices>
         <div>
-          {/* 검색 결과 표시 */}
+          {/* {searchResults.length > 0 ? (
+            <div>
+            {searchResults.map((result) => {
+              return (
+                <div key={result.id}>
+                  <CompanionCards companion={result} />
+                </div>
+              );
+            })}
+          </div>
+          ) : (
+            <NoResult>
+              <img
+                style={{ width: "120px", marginBottom: "20px" }}
+                src={logo}
+              />
+              Sorry. No search results found.
+            </NoResult>
+          )} */}
           {searchTerm && searchResults.length === 0 ? (
             <NoResult>
               <img
@@ -168,14 +278,14 @@ const Companion = () => {
               Sorry. No search results found.
             </NoResult>
           ) : (
-            searchResults.map((result, index) => (
-              <div key={index}>
-                <li>{result.title}</li>
+            searchResults.map((result, id) => (
+              <div key={id}>
+                <CompanionCards companion={result} />
               </div>
             ))
           )}
 
-          <Box2
+          {/* <Box2
             style={{
               width: "fit-content",
               padding: "14px",
@@ -184,19 +294,7 @@ const Companion = () => {
             }}
             flexdirect="column"
           >
-            <CompanionCards />
-            <CompanionCards />
-            <CompanionCards />
-            <CompanionCards />
-            <CompanionCards />
-            <CompanionCards />
-            <CompanionCards />
-            <CompanionCards />
-            <CompanionCards />
-            <CompanionCards />
-            <CompanionCards />
-            <CompanionCards />
-          </Box2>
+          </Box2> */}
         </div>
       </CompanionList>
     </CompanionContainer>

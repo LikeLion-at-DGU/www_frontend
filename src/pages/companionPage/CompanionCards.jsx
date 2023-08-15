@@ -1,3 +1,5 @@
+// CompanionCards.jsx
+
 import React from 'react'
 import { CompanionCard, CompanionText, CompanionTitle } from './CompanionStyle'
 import { BtnBox, Content, Image, Img } from '../recordPage/RecordStyle'
@@ -12,31 +14,30 @@ import Like from '../../components/index/Like'
 import { useNavigate } from 'react-router-dom'
 
 
-function CompanionCards(handlewidth, handleheight) {
+const CompanionCards = ({ companion }) => {
   const navigate = useNavigate();
 
   return (
-    <CompanionCard
-      handlewidth=""
-      handleheight=""
-      onClick={() => navigate("/companion/1")}
-    >
+    <CompanionCard onClick={() => navigate(`/companion/${companion.id}`)}>
       <CompanionText width="626px" height="124px" padding="10px 20px">
         <CompanionTitle>
-          <p>Today Hanoi nightscape!!</p>
+          {/* <p>Today Hanoi nightscape!!</p> */}
+          <p>{companion.title}</p>
+          {/* 현재시간 - 글쓴시간 */}
           <p style={{ color: "#848484", fontSize: "0.8rem" }}>23m ago</p>
         </CompanionTitle>
 
         <WwwBox>
-          <CountryName handleheight="20px" handlefsize="0.8rem" />
+          {/* <CountryName handleheight="20px" handlefsize="0.8rem" />
           <CityName handleheight="20px" handlefsize="0.8rem" />
-          <DateName handleheight="20px" handlefsize="0.8rem" />
+          <DateName handleheight="20px" handlefsize="0.8rem" /> */}
         </WwwBox>
         <Content>
-          <p>Let’s play together in Hanoi nightscape festival!</p>
+          {/* <p>Let’s play together in Hanoi nightscape festival!</p> */}
+          <p>{companion.body}</p>
         </Content>
         <BtnBox juscon="space-between">
-          <Views
+          {/* <Views
             handlewidth={"43px"}
             handleheight={"18px"}
             handlefsize={"4.7px"}
@@ -50,11 +51,12 @@ function CompanionCards(handlewidth, handleheight) {
             handlewidth={"43px"}
             handleheight={"18px"}
             handlefsize={"4.7px"}
-          />
+          /> */}
         </BtnBox>
       </CompanionText>
       <Img width="122px" height="122px">
-        <Image src={CompanionImg} />
+        {/* <Image src={CompanionImg} /> */}
+        <Image src={companion.photos} />
       </Img>
     </CompanionCard>
   );

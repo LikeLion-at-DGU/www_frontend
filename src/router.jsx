@@ -41,15 +41,15 @@ const Router = createBrowserRouter([
         element: <Record />,
       },
       {
-        path: "companion/write",
+        path: "companions/write",
         element: <CompanionWrite />,
       },
       {
-        path: "companion/:detailId",
+        path: "companions/:detailId",
         element: <CompanionDetail />,
       },
       {
-        path: "companion",
+        path: "companions",
         element: <Companion />,
       },
       {

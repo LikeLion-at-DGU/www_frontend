@@ -16,7 +16,7 @@ export const Nav = () => {
         <br />
         Daily Record
       </NavSection>
-      <NavSection to={"companion"}>
+      <NavSection to={"companions"}>
         Find
         <br />
         My Companion

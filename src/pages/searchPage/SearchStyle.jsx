@@ -1,5 +1,6 @@
 import { styled } from "styled-components";
 import { BigImage, Box, FriendCard, Title } from "../recordPage/RecordStyle";
+import { PostWriter } from "../writePage/WriteStyle";
 
 export const SearchContainer = styled.div`
     display: flex;
@@ -74,4 +75,25 @@ export const SmallImage = styled(BigImage)`
 export const SearchTitle = styled.p`
     font-size: 20px;
     font-weight: 500;
+    padding: 5px 0 15px 0;
+`
+export const RecordWriter = styled(PostWriter)`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: 500;
+    img {
+        width: 23px;
+        height: 23px;
+        border-radius: 15px;
+        border: 1px solid #222;
+        background-color: #3ebd6b;
+        margin-right: 10px;
+    }
+    span {
+        color: #8e44ad;
+        font-size: 10px;
+        padding-left: 39px;
+    }
 `

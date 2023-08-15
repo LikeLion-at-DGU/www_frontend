@@ -88,10 +88,10 @@ export const FixedBtnBox = styled.div`
 export const CompanionCard = styled.div`
   display: flex;
   flex-direction: row;
-  width: ${(props) => (props.handlewidth ? props.handlewidth : "749px")};
-  /* width: 749px; */
-  height: ${(props) => (props.handleheight ? props.handleheight : "124px")};
-  /* height: 124px; */
+  /* width: ${(props) => (props.handlewidth ? props.handlewidth : "749px")}; */
+  width: 749px;
+  /* height: ${(props) => (props.handleheight ? props.handleheight : "124px")}; */
+  height: 124px;
   background-color: #fbfbfb;
   justify-content: space-between;
   align-items: center;
