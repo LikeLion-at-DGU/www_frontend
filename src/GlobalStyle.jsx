@@ -1,6 +1,13 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
+@font-face {
+		font-family: 'Pretendard-Regular';
+		src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+		font-weight: 400;
+		font-style: normal;
+	}
+
 	html, body, div, span, applet, object, iframe,
 	h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 	a, abbr, acronym, address, big, cite, code,
@@ -21,6 +28,10 @@ export const GlobalStyle = createGlobalStyle`
 		font: inherit;
 		vertical-align: baseline;
         font-family: 'Roboto Mono', monospace;
+        font-family: 'Pretendard-Regular';
+		/* font-family: ${({ isKorean }) =>
+      isKorean ? "Pretendard-Regular" : "'Roboto Mono', monospace"}; */
+		
 	}
 	/* HTML5 display-role reset for older browsers */
 	article, aside, details, figcaption, figure, 

@@ -22,12 +22,15 @@ import { SaveBtn, UproadImg } from "../../pages/writePage/WriteStyle";
 import axiosInstance from "../../api/axios";
 
 const MakeCard = ({ setModalOpen }) => {
+  // const MakeCard = ({ setModalOpen, record }) => {
   const [images, setImages] = useState([]);
   const [where, setWhere] = useState("");
   const [what, setWhat] = useState("");
   const [how, setHow] = useState("");
   const [tag, setTag] = useState("");
   const modal = useRef();
+
+  // .record_cards => id,record,where,what,how,card_photo_1,2,3,tag,tag_field
 
   // 모달창 닫기
   const handleCloseModal = (event) => {
@@ -38,10 +41,14 @@ const MakeCard = ({ setModalOpen }) => {
   // 카드 내 이미지 처리
   const handleImageChange = (event) => {
     const file = event.target.files[0];
+    console.log("file은 이거야.. ",file);
     if (file) {
-      const imageURL = URL.createObjectURL(file);
-      setImages([...images, imageURL]);
+      // const imageURL = URL.createObjectURL(file);
+      // console.log("imageURL 이거야.. ", imageURL);
+      // setImages([...images, imageURL]);
+      setImages([...images, file]);
     }
+    console.log("images은 이거야.. ", images);
   };
   // 이미지 업로드 스타일 변경
   const openFilePicker = () => {
@@ -52,20 +59,50 @@ const MakeCard = ({ setModalOpen }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // try {
+    //   const response = await axiosInstance.post(
+    //     "/api/records/2/cards/",
+    //     // `/api/records/${record}/cards/`,
+    //     {
+    //       where: where,
+    //       what: what,
+    //       how: how,
+    //       tag_field: tag,
+    //       card_photo_1: images[0],
+    //       // card_photo_2: images[1],
+    //       // card_photo_3: images[2],
+    //       record: 2
+    //     }
+    //   );
     try {
+      const formData = new FormData();
+      formData.append("where", where);
+      formData.append("what", what);
+      formData.append("how", how);
+      formData.append("tag_field", tag);
+      formData.append("record", "2"); // 문자열로 전달
+
+      if (images.length > 0) {
+        formData.append("card_photo_1", images[0]);
+      }
+
       const response = await axiosInstance.post(
-        `/api/records/${record_id}/cards`,
+        "/api/records/2/cards/",
+        formData,
         {
-          where: where,
-          what: what,
-          how: how,
-          tag: tag,
-          card_photo_1: images[0],
-          card_photo_2: images[1],
-          card_photo_3: images[2],
+          headers: {
+            "Content-Type": "multipart/form-data", // 필수 설정
+          },
         }
       );
+      /*
+      const response = await axiosInstance.post(
+        "/api/records/2/cards/",
+        formData
+      );
+      */
       console.log("카드 post 성공:", response.data);
+      alert("카드 post 성공");
     } catch (error) {
       console.error("Error updating like status:", error);
     }
@@ -113,7 +150,7 @@ const MakeCard = ({ setModalOpen }) => {
                 style={{ visibility: "hidden" }}
               />
             </UproadImg>
-            {images.slice(0,3).map((imageURL, index) => (
+            {images.slice(0, 3).map((imageURL, index) => (
               <CardImg key={index} src={imageURL} alt="post img" />
             ))}
           </ImgCardBorder>
@@ -128,7 +165,8 @@ const MakeCard = ({ setModalOpen }) => {
                 placeholder="#seoul_restaurant"
               ></HashTag>
             </Wrapper>
-            <CardSubmit type="submit" onClick={() => setModalOpen(false)}>
+            <CardSubmit type="submit">
+              {/* <CardSubmit type="submit" onClick={() => setModalOpen(false)}> */}
               save
             </CardSubmit>
           </CardInfo>

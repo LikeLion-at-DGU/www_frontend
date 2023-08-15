@@ -12,6 +12,7 @@ import {
   PostWrapper,
   BtnWrapper,
   AnotherTitle,
+  Margin,
 } from "../detailPage/DetailStyle";
 import { ProfileImg, City, Box2 } from "../recordPage/RecordStyle";
 import { Wrapper } from '../../components/WrapStyle';
@@ -64,6 +65,7 @@ export default function CompanionDetail() {
       <Reaction />
       {commentFold && <CommentSection />}
 
+      <Margin />
       <AnotherTitle>
         <p>Another buddy is Waiting you!</p>
         <Link to="/companion">

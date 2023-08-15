@@ -23,35 +23,43 @@ import { useState, useEffect } from "react";
 import ListCards from "../recordPage/ListCards";
 import { PostWriter } from "../writePage/WriteStyle";
 import Reaction from "../../components/commentSection/Reaction";
-import axios from "axios";
 import { useParams } from "react-router-dom";
+import axiosInstance from "../../api/axios";
 
 const Detail = () => {
   let params = useParams();
-  console.log();
+  console.log(params.detailId);
   const [commentFold, setCommentFold] = useState(true); //댓글창 닫기
-  const [post, setPost] = useState({
-    id: 1,
-    rcommets_cnt: 2,
-    title: "테스트 Title!",
-    weather: "테스트 날씨 !",
-    body: "<p>이 아래입니댜..</p><Card /><p>이게 되면.. 어떨까...</p><p>image</p><p>엉 이건 당연히 <strong>post </strong>오류 맞고</p><p>이제 전송 보내보면 되려나..</p><p>이것저것 </p><p>넣어보기</p><ol><li>짠</li><li>짠1</li><li>짠2</li></ol><img src='' alt='임시 이미지태그 삽입' />",
-    created_at: "2023-08-14",
-    updated_at: "2023-08-14",
-    views: 13,
-    likes: 5,
-    writer: "sha",
-    tag: ["#서울_맛집", "#룰루"],
-    photos: ["testImgURL1", "testImgURL2", "testImgURL3"],
-  });
-  
+  const [post, setPost] = useState(
+    {}
+    //   {
+    //   id: 1,
+    //   rcommets_cnt: 2,
+    //   title: "테스트 Title!",
+    //   weather: "테스트 날씨 !",
+    //   body: '<p>아아아아아아</p><p><span style="background-color: rgb(255, 153, 0);">아아아아</span></p><p>가나다라마바사아자차카타파하</p><p>가나다라마바사아자차카타파하</p><h1><em>가나다라마바사아자차카타파하</em></h1><p><strong>가나다라마바사아자차카타파하</strong></p><ol><li>가나다라마바사아자차카타파하</li><li>가나다라마바사아자차카타파하</li><li>가나다라마바사아자차카타파하</li></ol><p>가나다라마바사아자차카타파하</p><ul><li>가나다라마바사아자차카타파하</li><li>가나다라마바사아자차카타파하</li><li>가나다라마바사아자차카타파하</li><li>가나다라마바사아자차카타파하</li></ul><p>가나다라마바사아자차카타파하</p><p><span style="color: rgb(230, 0, 0);">가나다라마바사아자차카타파하</span></p><p>가나다라마바사아자차카타파하</p>',
+    //   created_at: "2023-08-14",
+    //   updated_at: "2023-08-14",
+    //   views: 13,
+    //   likes: 5,
+    //   writer: "sha",
+    //   tag: ["#서울_맛집", "#룰루"],
+    //   photos: ["testImgURL1", "testImgURL2", "testImgURL3"],
+    // }
+  );
+
+  // const dateSlice = (date) => {
+  //   return date.slice(0,10);
+  // }
 
   useEffect(() => {
     // API 요청을 수행하는 부분
-    axios
-      .get(`/api/records/${params.detailId}`) // 레코드 GET URL
+    axiosInstance
+      .get(`/api/records/${params.detailId}/`) // 레코드 GET URL
+      // .get("/api/records/1") // 레코드 GET URL
       .then((response) => {
         setPost(response.data); // 받아온 데이터를 상태에 저장
+        console.log(response.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -69,8 +77,8 @@ const Detail = () => {
         </CenterWriter>
         <BorderBottom>
           <Wrapper>
-            <PostSubTitle>Date: {post.created_at}</PostSubTitle>{" "}
-            {/* <PostSubTitle>Date: 2023,3,August</PostSubTitle>{" "} */}
+            {/* <PostSubTitle>Date: {dateSlice(post.created_at)}</PostSubTitle>{" "} */}
+            <PostSubTitle>Date: 2023,3,August</PostSubTitle>{" "}
             <PostSubTitle>Weather: {post.weather}</PostSubTitle>
             {/* <PostSubTitle>Weather: 너무 더워</PostSubTitle> */}
           </Wrapper>
@@ -80,13 +88,24 @@ const Detail = () => {
           {/* <PostTitle>Title: 리스펙트 어짜구</PostTitle> */}
         </BorderBottom>
         {/* -------본문------ */}
-        <Card record_id={params.detailId} />
+        <Card
+          record_cards={{
+            id: 1,
+            where: "포케",
+            what: "요기는 식당",
+            how: "연어 먹쟈!",
+            tag: ["#서울_맛집", "#2"],
+            images: ["TestIMG1", "TestIMG2", "TestIMG3"],
+            record: 1,
+          }}
+        />
+        {/* <Card record_cards={post.record_cards} /> */}
         <div
           dangerouslySetInnerHTML={{ __html: post.body }}
           style={{
             width: "100%",
             fontFamily: "Roboto Flex",
-            fontSize: "1.5rem",
+            fontSize: "1.3rem",
           }}
         />
         {/* 🎶1일차(2022.08.27) ​바뀐 mbti검사를 해보니 esfj가 나왔다 s랑 f는
@@ -100,6 +119,7 @@ const Detail = () => {
       <Reaction setCommentFold={setCommentFold} commentFold={commentFold} />
       {commentFold && <CommentSection />}
 
+      <Margin />
       <PostWriter>
         <img src="" alt="profile" />
         <p>{post.writer}</p>&nbsp;

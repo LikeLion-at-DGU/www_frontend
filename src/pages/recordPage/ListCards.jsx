@@ -22,11 +22,31 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../../src/api/axios";
 
 const ListCards = ({ record }) => {
+  /*
+//여기부터는 임의 데이터입니당 - 현아
+const ListCards = () => {
+  const record = {
+    id: 1,
+    rcommets_cnt: 2,
+    title: "테스트 Title ListCard!",
+    weather: "테스트 날씨 !",
+    body: "테스트 본문 !",
+    created_at: "2023-08-14",
+    updated_at: "2023-08-14",
+    views: 13,
+    likes: 5,
+    writer: "sha",
+    tag: ["#서울_맛집", "#룰루"],
+    photos: ["testImgURL1", "testImgURL2", "testImgURL3"],
+  };
+  //여기까지 임의 데이터입니당 - 현아
+  */
+
   const navigate = useNavigate();
 
   return (
     // 내 친구의 record list를 가져와야 함 ...
-    <ListCard onClick={() => navigate(`/`)}>
+    <ListCard onClick={() => navigate(`/record/${record.id}`)}>
       <Text padding="10px 25px" height="142px" width="980px">
         <ListTitle>
           {/* <p>Unexpected luck!!</p> */}
@@ -36,9 +56,11 @@ const ListCards = ({ record }) => {
             {/* <HashTag>#milano_restaurant</HashTag> */}
             {/* <HashTag>#milano_cafe</HashTag> */}
             {record.tag &&
-              record.tag.slice(0, 3).map((hashtag, index) => (
-                <HashTag key={index}>#{hashtag}</HashTag>
-              ))}
+              record.tag
+                .slice(0, 3)
+                .map((hashtag, index) => (
+                  <HashTag key={index}>#{hashtag}</HashTag>
+                ))}
           </TagBox>
         </ListTitle>
         <Content fontSize="1rem">

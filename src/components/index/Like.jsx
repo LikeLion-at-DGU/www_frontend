@@ -8,7 +8,8 @@ const Like = ({ record_id, handlewidth, handleheight, handlefsize }) => {
 
   useEffect(() => {
     axiosInstance
-      .get(`/api/records/${record_id}/record_like`)
+      .get(`/api/records/1/record_like`)
+      // .get(`/api/records/${record_id}/record_like`)
       .then((response) => {
         setLike(response.data);
       })

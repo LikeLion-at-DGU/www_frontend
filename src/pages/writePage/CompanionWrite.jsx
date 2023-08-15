@@ -18,7 +18,7 @@ import PenIMG from "../../image/pen.png";
 import { useState, useRef, useMemo } from "react";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
-import axios from "axios";
+import axiosInstance from "../../api/axios"
 
 const CompanionWrite = () => {
   const dateRef = useRef();
@@ -26,6 +26,7 @@ const CompanionWrite = () => {
 
   const [user, setUser] = useState("user");
   const [userInfo, setUserInfo] = useState("user info(Korea/incheon)");
+  const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [continent, setContinent] = useState("");
   const [country, setCountry] = useState("");
@@ -36,36 +37,24 @@ const CompanionWrite = () => {
 #When we will meet?<br/><br/><br/>            
 #What we will do together?<br/><br/>.`);
 
-  const handleDateChange = (event) => {
-    setDate(event.target.value);
-  };
-  const handleContinentChange = (event) => {
-    setContinent(event.target.value);
-  };
-  const handleCountryChange = (event) => {
-    setCountry(event.target.value);
-  };
-  const handleCityChange = (event) => {
-    setCity(event.target.value);
-  };
-
   // 동행 글 POST
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const response = await axios.post("/api/records", {
+      const response = await axiosInstance.post("/api/companions/", {
         //동행글 POST URL __확정 안됨
-        user,
-        userInfo,
-        date,
-        continent,
-        country,
-        city,
-        content,
+        title: title,
+        writer: 1,
+        body: content,
+        date: date,
+        continent: continent,
+        country: country,
+        city: city,
       });
 
       console.log("Post created:", response.data);
+      alert("동행글 포스트 완료!")
       // 새로운 레코드 생성된 후의 동작을 수행
     } catch (error) {
       console.error("Error creating post:", error);
@@ -83,7 +72,7 @@ const CompanionWrite = () => {
           ["blockquote"],
           [{ list: "ordered" }, { list: "bullet" }],
           [{ color: [] }, { background: [] }],
-          [{ align: [] }, "link", "image"],
+          [{ align: [] }, "link"],
         ],
       },
     };
@@ -132,7 +121,7 @@ const CompanionWrite = () => {
                     type="date"
                     name="date"
                     value={date}
-                    onChange={handleDateChange}
+                    onChange={(e) => setDate(e.target.value)}
                   />
                 </td>
                 <td>Continent: </td>
@@ -140,7 +129,7 @@ const CompanionWrite = () => {
                   <select
                     name="continent"
                     value={continent}
-                    onChange={handleContinentChange}
+                    onChange={(e) => setContinent(e.target.value)}
                   >
                     <option value="none">--continent--</option>
                     <option value="asia">Asia</option>
@@ -155,11 +144,11 @@ const CompanionWrite = () => {
                   <select
                     name="country"
                     value={country}
-                    onChange={handleCountryChange}
+                    onChange={(e) => setCountry(e.target.value)}
                   >
                     <option value="none">--country--</option>
-                    <option value="republic of korea">republic of korea</option>
-                    <option value="republic of korea">republic of korea</option>
+                    <option value="korea">republic of korea</option>
+                    <option value="korea">republic of korea</option>
                   </select>
                 </td>
                 <td>City: </td>
@@ -168,14 +157,19 @@ const CompanionWrite = () => {
                     type="text"
                     name="city"
                     value={city}
-                    onChange={handleCityChange}
+                    onChange={(e) => setCity(e.target.value)}
                     placeholder="--city--"
                   />
                 </td>
               </tr>
             </tbody>
           </Table>
-          <TitleInput placeholder="Title" name="title" />
+          <TitleInput
+            onChange={(e) => setTitle(e.target.value)}
+            value={title}
+            placeholder="Title"
+            name="title"
+          />
           {/* ----------------- body ----------------- */}
           <ReactQuill
             style={{ width: "100%", height: "600px", marginBottom: "60px" }}
