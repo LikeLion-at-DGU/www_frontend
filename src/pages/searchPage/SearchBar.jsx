@@ -4,14 +4,20 @@ import React, { useState } from "react";
 import { SearchBox, SearchBtn, SearchInput, SelectType } from "./SearchStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = ({onClick}) => {
+    const navigate = useNavigate();
     const [searchType, setSearchType] = useState("word");
-    const [searchTerm, setSearchTerm] = useState("");
+    const [searchValue, setSearchValue] = useState("");
 
     const handleSearchType = (type) => {
         setSearchType(type);
-        setSearchTerm("");
+        setSearchValue("");
+    };
+    const handleChange = (e) => {
+        setSearchValue(e.target.value);
+        navigate(`/search?q=${e.target.value}`);
     };
 
     return (
@@ -23,10 +29,11 @@ const SearchBar = ({onClick}) => {
             <SearchInput
                 type="text"
                 placeholder={searchType === "word" ? "type a words." : "#city_keyword  please use this form!"}
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                value={searchValue}
+                // onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={handleChange}
             />
-            <SearchBtn onClick={() => onClick(searchTerm, searchType)} >
+            <SearchBtn onClick={() => onClick(searchValue, searchType)} >
                 <FontAwesomeIcon icon={faSearch} />
             </SearchBtn>
         </SearchBox>
