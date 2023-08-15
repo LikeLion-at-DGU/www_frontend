@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axiosInstance from "../../api/axios";
 import {
   FileContainer,
   StackedImages,
@@ -20,7 +21,7 @@ import whiteCompanions from "../../image/whiteCompanions.png";
 import FriendCards from "../recordPage/FriendCards";
 import LocalPicks from "../recordPage/LocalPicks";
 import CompanionCards from "../companionPage/CompanionCards";
-import axiosInstance from "../../api/axios";
+
 // Import Swiper styles
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";

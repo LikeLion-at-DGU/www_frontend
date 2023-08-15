@@ -47,8 +47,10 @@ export const ProfileBox = styled.div`
   background-color: #ffffff;
   box-shadow: 0px 4px 4px 0px #00000040;
   img {
-    width: 215px;
-    height: 215px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    box-shadow: 0px 4px 4px 0px #00000040;
   }
   p {
     margin-top: 13px;
@@ -123,11 +125,13 @@ export const BuddyBlueBox = styled.div`
 export const AllData = styled.div`
   display: flex;
   flex-direction: column;
+  border: 3px solid black;
 `;
 
 export const BuddyDataContainer = styled.div`
   overflow-y: auto;
   max-height: 300px; /* 스크롤 최대 높이 설정 */
+  border: 3px solid red;
 `;
 
 export const DataContainer = styled.div`
@@ -297,7 +301,7 @@ export const SlideContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 10px;
   width: 947px;
   height: 360px;
   bottom: 0;
