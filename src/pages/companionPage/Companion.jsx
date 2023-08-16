@@ -1,19 +1,7 @@
 // Companion.jsx
 
 import React, { useEffect, useState } from "react";
-<<<<<<< HEAD
-import {
-  ArrayChoice,
-  ArrayChoices,
-  CompanionContainer,
-  CompanionList,
-  Continent,
-  Continents,
-  FixedBtnBox,
-} from "./CompanionStyle";
-=======
 import { ArrayChoice, ArrayChoices, CompanionContainer, CompanionList, FixedBtnBox } from "./CompanionStyle";
->>>>>>> 332e4ef57a6714daf6eeed539ac788058e8b1912
 import SearchBar from "./SearchBar";
 import { useLocation, useNavigate } from "react-router-dom";
 import { NoResult } from "../searchPage/SearchStyle";
@@ -33,10 +21,7 @@ const Companion = () => {
 
   // 검색결과
   const [searchResults, setSearchResults] = useState([]);
-<<<<<<< HEAD
-=======
   console.log(searchResults);
->>>>>>> 332e4ef57a6714daf6eeed539ac788058e8b1912
 
   useEffect(() => {
     if (searchTerm) {
@@ -202,3 +187,4 @@ const Companion = () => {
 };
 
 export default Companion;
+ 
