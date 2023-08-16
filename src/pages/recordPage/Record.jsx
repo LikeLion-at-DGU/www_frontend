@@ -47,9 +47,9 @@ const Record = () => {
     {
       id: 3,
       rcommets_cnt: 20,
-      title: "테스트 Title 2!",
-      weather: "테스트 날씨 2!",
-      body: "테스트 본문 2!",
+      title: "테스트 Title 3!",
+      weather: "테스트 날씨 3!",
+      body: "테스트 본문 3!",
       created_at: "2023-08-14",
       updated_at: "2023-08-14",
       views: 113,
@@ -61,9 +61,9 @@ const Record = () => {
     {
       id: 4,
       rcommets_cnt: 20,
-      title: "테스트 Title 2!",
-      weather: "테스트 날씨 2!",
-      body: "테스트 본문 2!",
+      title: "테스트 Title 4!",
+      weather: "테스트 날씨 4!",
+      body: "테스트 본문 4!",
       created_at: "2023-08-14",
       updated_at: "2023-08-14",
       views: 113,
@@ -75,9 +75,9 @@ const Record = () => {
     {
       id: 5,
       rcommets_cnt: 20,
-      title: "테스트 Title 2!",
-      weather: "테스트 날씨 2!",
-      body: "테스트 본문 2!",
+      title: "테스트 Title 5!",
+      weather: "테스트 날씨 5!",
+      body: "테스트 본문 5!",
       created_at: "2023-08-14",
       updated_at: "2023-08-14",
       views: 113,
@@ -89,9 +89,9 @@ const Record = () => {
     {
       id: 6,
       rcommets_cnt: 20,
-      title: "테스트 Title 2!",
-      weather: "테스트 날씨 2!",
-      body: "테스트 본문 2!",
+      title: "테스트 Title 6!",
+      weather: "테스트 날씨 6!",
+      body: "테스트 본문 6!",
       created_at: "2023-08-14",
       updated_at: "2023-08-14",
       views: 113,
@@ -139,9 +139,7 @@ const Record = () => {
             .map((record) => (
               <FriendCards key={record.id} record={record} />
             ))} */}
-          {recordList.length > 0 && (
-            <FriendCards record={recordList[0]} />
-          )}
+          {recordList.length > 0 && <FriendCards record={recordList[0]} />}
         </Box>
 
         <Box flexdirect="column" width="561px">

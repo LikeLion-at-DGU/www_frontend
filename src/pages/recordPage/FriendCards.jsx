@@ -19,10 +19,28 @@ import recordImg from "../../image/record1.jpg";
 import { useNavigate } from "react-router-dom";
 
 const FriendCards = ({ record }) => {
+/*//여기부터는 임의 데이터입니당 - 현아
+const FriendCards = () => {
   const navigate = useNavigate();
+  const record = {
+    id: 1,
+    rcommets_cnt: 2,
+    title: "테스트 Title FriendCard!",
+    weather: "테스트 날씨 !",
+    body: "테스트 본문 !",
+    created_at: "2023-08-14",
+    updated_at: "2023-08-14",
+    views: 13,
+    likes: 5,
+    writer: "sha",
+    tag: ["#서울_맛집", "#룰루"],
+    photos: ["testImgURL1", "testImgURL2", "testImgURL3"],
+  };
+  //여기까지 임의 데이터입니당 - 현아
+  */
 
   return (
-    <FriendCard onClick={() => navigate(`/record/${record_id}`)}>
+    <FriendCard onClick={() => navigate(`/record/${record.id}`)}>
       <CardBox>
         <Img width="122px" height="100%">
           {/* <Image leftradius="20px" src={recordImg} /> */}

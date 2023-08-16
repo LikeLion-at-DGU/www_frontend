@@ -36,6 +36,7 @@ const Companion = () => {
     try {
       const response = await axiosInstance.get("/api/companions/");
       setSearchResults(response.data);
+      console.log(searchResults);
     } catch (error) {
       console.log("ERROR", error);
     }
@@ -118,7 +119,7 @@ const Companion = () => {
   const handleReset = () => {
     setActiveBtn(null);
     setCurrentSort("new");
-  }
+  };
 
   return (
     <CompanionContainer>
@@ -127,7 +128,7 @@ const Companion = () => {
 
       {/* 화면고정 글쓰기 버튼 */}
       <FixedBtnBox>
-        <RegisterBtn onClick={() => navigate("/companion/write")}>
+        <RegisterBtn onClick={() => navigate("/companions/write")}>
           <RegisterImg src={PenIMG} alt="pen" />
           register
         </RegisterBtn>
@@ -169,10 +170,14 @@ const Companion = () => {
               ))
             )
           ) : (
-            searchResults.map((result, id) => (
-              <div key={id}>
+            // <CompanionCards
+            //   companion={{resul}}
+            // />
+            // )
+            searchResults.map((result) => (
+              <>
                 <CompanionCards companion={result} />
-              </div>
+              </>
             ))
           )}
         </div>
@@ -182,3 +187,4 @@ const Companion = () => {
 };
 
 export default Companion;
+ 

@@ -61,11 +61,10 @@ const Write = () => {
     e.preventDefault();
 
     try {
-      const response = await axiosInstance.post("/api/records", {
-        // user: ???,
-        // userInfo: ???,
+      const response = await axiosInstance.post("/api/records/", {
+        date: date,
+        writer: 1, //글쓴이가 있냐없냐 boolean 필드 느낌임?? 여튼 1
         title: title,
-        created_at: date,
         weather: weather,
         body: content,
       });
@@ -147,12 +146,12 @@ const Write = () => {
     formData.append("image", file);
 
     try {
-      const response = await axiosInstance.post("/api/upload-image", formData, {
+      const response = await axiosInstance.post("/api/upload_image/", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      return response.data.imageURL; // 백엔드에서 이미지 URL을 전달하는 필드 이름에 맞게 수정해야 합니다.
+      return response.data.url; // 백엔드에서 이미지 URL
     } catch (error) {
       console.error("Error uploading image:", error);
       // return "추가될듯";
@@ -186,7 +185,7 @@ const Write = () => {
   return (
     <>
       <TopWriteWrapper>
-        {modalOpen && <MakeCard setModalOpen={setModalOpen} />}
+        {modalOpen && <MakeCard setModalOpen={setModalOpen} record={2} />}
         <form style={{ width: "100%" }} onSubmit={handleSubmit}>
           {/* 글쓴이 , register */}
           <WriteWrapper>
