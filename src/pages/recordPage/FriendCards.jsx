@@ -44,7 +44,7 @@ const FriendCards = () => {
       <CardBox>
         <Img width="122px" height="100%">
           {/* <Image leftradius="20px" src={recordImg} /> */}
-          <Image src={record.photos} />
+          <Image leftradius="20px" src={record.photos} />
         </Img>
         <Text padding="14px" width="331px">
           <Writer>
@@ -72,7 +72,7 @@ const FriendCards = () => {
         {record.tag &&
           record.tag
             .slice(0, 3)
-            .map((hashtag, index) => <HashTag key={index}>#{hashtag}</HashTag>)}
+            .map((hashtag, index) => <HashTag key={index}>{hashtag}</HashTag>)}
       </TagBox>
     </FriendCard>
   );

@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import { Test, TravelBox, IndexBox, WwwBox, BuddyTitle } from "./MainpageStyle";
 import Like from "../../components/index/Like";
-import CountryName from "../../components/index/Country";
-import CityName from "../../components/index/CityName";
-import DateName from "../../components/index/DateName";
+// import CountryName from "../../components/index/Country";
+// import CityName from "../../components/index/CityName";
+// import DateName from "../../components/index/DateName";
 import useScrollFadeIn from "./useScroll";
 import { Link } from "react-router-dom";
+import DateName from "./buddyBtn/DateName";
+import CountryName from "./buddyBtn/CountryName";
+import CityName from "./buddyBtn/CityName";
 
 const BuddyStyle = styled(Test)`
   ${(props) =>
@@ -14,6 +17,17 @@ const BuddyStyle = styled(Test)`
     css`
       justify-content: flex-end;
     `}
+`;
+
+const TravelBoxChange = styled(TravelBox)`
+  ${(props) =>
+    props.isEven
+      ? css`
+          border-bottom-right-radius: 0;
+        `
+      : css`
+          border-bottom-left-radius: 0;
+        `}
 `;
 
 const Buddy = ({ data, isEven }) => {
@@ -54,23 +68,25 @@ const Buddy = ({ data, isEven }) => {
         style={fadeIn.style}
       >
         <Link to={"companion"}>
-          <TravelBox>
+          <TravelBoxChange isEven={isEven}>
             <IndexBox>
               <WwwBox>
-                <DateName handlefsize={"14px"} />
-                <CountryName handlefsize={"14px"} />
-                <CityName handlefsize={"14px"} />
+                <DateName result={data.date} />
+                <CountryName result={data.country} />
+                <CityName result={data.city} />
               </WwwBox>
               <Like
                 handlewidth={"43px"}
                 handleheight={"24px"}
                 handlefsize={"14px"}
+                result={data.like_count}
               />
             </IndexBox>
             <BuddyTitle>
-              {truncatedText || "Today Hanoi nightscape!!"}
+              {/* {truncatedText || "Today Hanoi nightscape!!"} */}
+              {truncatedText.title}
             </BuddyTitle>
-          </TravelBox>
+          </TravelBoxChange>
         </Link>
       </Test>
     </BuddyStyle>

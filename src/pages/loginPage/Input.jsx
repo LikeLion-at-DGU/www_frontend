@@ -14,6 +14,7 @@ import {
   Profile,
   TopWrapper,
 } from "./LoginStyle";
+import axiosInstance from "../../../src/api/axios";
 
 const Input = () => {
   const navigate = useNavigate();
@@ -36,32 +37,48 @@ const Input = () => {
     console.log(country);
   };
 
-// 필수요소 체크
-  const inputCheck = () => {
+  // 회원가입 폼 제출을 처리하는 함수
+  const inputCheck = async () => {
     if (
       join.country.value === "none" ||
       join.city.value === "" ||
       join.nickname.value === ""
     ) {
-      alert("필수 입력 항목을 전부 입력하세요!");
-      return false;
-    } else {
-      // alert("회원가입 성공");
-      navigate("/");
-      return true;
+      alert("필수 입력 항목을 모두 입력하세요!");
+      return;
+    }
+
+    try {
+      const response = await axiosInstance.put("/accounts/save_user", {
+        country: "ㄹ",
+        city: "ㅇ",
+        nickname: "ㅇ",
+      });
+
+      if (response.status === 200) {
+        alert("회원가입 성공!");
+        navigate("/");
+      } else {
+        alert("회원가입 실패. 다시 시도해주세요.");
+      }
+    } catch (error) {
+      console.error("회원가입 중 오류 발생:", error);
+      alert("오류가 발생했습니다. 다시 시도해주세요.");
     }
   };
+
   // 프로필 이미지 변경
-    const handleImageChange = (event) => {
-      const file = event.target.files[0];
-      if (file) {
-        const imageURL = URL.createObjectURL(file);
-        setImage(imageURL);
-      }
-    };
-    const openFilePicker = () => {
-      document.querySelector('input[type="file"]').click();
-    };
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const imageURL = URL.createObjectURL(file);
+      setImage(imageURL);
+    }
+  };
+  const openFilePicker = () => {
+    document.querySelector('input[type="file"]').click();
+  };
+
   return (
     <Container>
       <WhiteBox>
