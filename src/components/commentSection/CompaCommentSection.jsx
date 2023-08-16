@@ -19,8 +19,7 @@ import { size } from "lodash";
 import EditDeleteBtn from "../index/EditDeleteBtn";
 import { HideWrapper } from "../index/BtnStyle";
 
-
-export const CompCommentSection = ({ compenionId }) => {
+export const CompaCommentSection = ({ companion_id }) => {
   const [cmt, setCmt] = useState("");
   const [hide, setHide] = useState(false);
   const [cmtList, setCmtList] = useState([
@@ -42,49 +41,41 @@ export const CompCommentSection = ({ compenionId }) => {
   useEffect(() => {
     // API 요청을 수행하는 부분
     axiosInstance
-      .get(`/api/records/${compenionId}/rcomments`) // 댓글 리스트 GET URL
+      .get(`/api/companions/${companion_id}/cocomments/`) // 댓글 리스트 GET URL
       .then((response) => {
-        setCmtList(...cmtList, response.data); // 받아온 데이터를 상태에 저장
+        setCmtList(response.data); // 받아온 데이터를 상태에 저장
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, [cmtList]); // cmtList 값이 변경될 때마다 실행(댓글 추가 될 때마다)
+  }, []); // cmtList 값이 변경될 때마다 실행(댓글 추가 될 때마다)
 
   //댓글 리스트 POST
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setCmt("");
 
     try {
       const response = await axiosInstance.post(
-        `/api/records/${record_id}/rcomments`, // 댓글 리스트 POST
+        `/api/companions/${companion_id}/cocomments/`, // 댓글 리스트 POST
         {
-          cmt,
+          writer: 1,
+          content: cmt,
         }
       );
-      console.log("Post created:", response.data);
+      axiosInstance
+        .get(`/api/companions/${companion_id}/cocomments/`) // 댓글 리스트 GET URL
+        .then((response) => {
+          setCmtList(response.data); // 받아온 데이터를 상태에 저장
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
       // 추가 동작
     } catch (error) {
       console.error("Error creating post:", error);
     }
   };
-
-  const cmtHandleChange = (e) => {
-    setCmt(e.target.value);
-  };
-  /* 백연결
-  const addCmtList = () => {
-    setCmtList(() => [
-      ...cmtList,
-      {
-        profileImg: "",
-        userNmae: "smaile.kmk",
-        nation: "Italy/milano",
-        comment: cmt,
-      },
-    ]);
-  };
-*/
 
   return (
     <>
@@ -94,7 +85,7 @@ export const CompCommentSection = ({ compenionId }) => {
             type="text"
             placeholder="Please enter a comment."
             value={cmt}
-            onChange={cmtHandleChange}
+            onChange={(e) => setCmt(e.target.value)}
           />
           <ApplyBtn type="submit">apply</ApplyBtn>
           {/* <ApplyBtn onClick={addCmtList}>apply</ApplyBtn> */}
@@ -106,11 +97,11 @@ export const CompCommentSection = ({ compenionId }) => {
       </p>
       <br />
 
-      {cmtList.map((comment, idx) => (
-        <CmtBox key={idx}>
+      {cmtList.map((comment) => (
+        <CmtBox key={comment.id}>
           <CmtLabel style={{ alignItems: "end" }}>
             <Wrapper>
-              {comment.userNmae === "smaile.kmk" ? ( //글쓴이인지 확인
+              {comment.writer === "smaile.kmk" ? ( //글쓴이인지 확인
                 <BtnWrapper>
                   <Mine />
                   <HideWrapper onClick={() => setHide(hide ? false : true)}>
@@ -131,13 +122,16 @@ export const CompCommentSection = ({ compenionId }) => {
             <Like handlewidth={"69px"} handleheight={"32px"} />
           </CmtLabel>
           <CmtProfile>
-            <img alt="profile img" src={comment.profileImg} />
+            <img alt="profile img" src="" />
+            {/* <img alt="profile img" src={comment.profileImg} /> */}
             <div>
-              <p>{comment.userNmae}</p>
-              <span>{comment.nation}</span>
+              <p>{comment.writer}</p>
+              {/* <p>{comment.userNmae}</p> */}
+              <span>korea</span>
+              {/* <span>{comment.nation}</span> */}
             </div>
           </CmtProfile>
-          {comment.comment}
+          {comment.content}
         </CmtBox>
       ))}
     </>

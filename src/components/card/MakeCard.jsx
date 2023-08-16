@@ -21,13 +21,12 @@ import {
 import { SaveBtn, UproadImg } from "../../pages/writePage/WriteStyle";
 import axiosInstance from "../../api/axios";
 
-const MakeCard = ({ setModalOpen }) => {
-  // const MakeCard = ({ setModalOpen, record }) => {
+const MakeCard = ({ setModalOpen, setCardInfo }) => {
   const [images, setImages] = useState([]);
   const [where, setWhere] = useState("");
   const [what, setWhat] = useState("");
   const [how, setHow] = useState("");
-  const [tag, setTag] = useState("");
+  const [tag, setTag] = useState([]);
   const modal = useRef();
 
   // .record_cards => id,record,where,what,how,card_photo_1,2,3,tag,tag_field
@@ -41,20 +40,43 @@ const MakeCard = ({ setModalOpen }) => {
   // 카드 내 이미지 처리
   const handleImageChange = (event) => {
     const file = event.target.files[0];
-    console.log("file은 이거야.. ",file);
+    console.log("file은 이거야.. ", file);
     if (file) {
-      // const imageURL = URL.createObjectURL(file);
-      // console.log("imageURL 이거야.. ", imageURL);
-      // setImages([...images, imageURL]);
-      setImages([...images, file]);
+      const imageURL = URL.createObjectURL(file);
+      console.log("imageURL 이거야.. ", imageURL);
+      setImages([...images, imageURL]);
+      // setImages([...images, file]);
     }
-    console.log("images은 이거야.. ", images);
+    // console.log("images은 이거야.. ", images);
   };
-  // 이미지 업로드 스타일 변경
+
+  // 이미지 업로드 선택
   const openFilePicker = () => {
     document.querySelector('input[type="file"]').click();
   };
 
+  //카드 데이터 전달
+  const handleSubmit = (e) => {
+    // if (images.length > 0) {
+    //   formData.append("card_photo_1", images[0]);
+    //   if(images[1]) formData.append("card_photo_2", images[1]);
+    //   if(images[2]) formData.append("card_photo_3", images[2]);
+    // }
+
+    // if (response.data) {
+    const cardInformation = {
+      where: where,
+      what: what,
+      how: how,
+      tag_field: tag,
+      images: images,
+    };
+    setCardInfo(cardInformation);
+
+    setModalOpen(false);
+  };
+
+  /*
   // submit 시 로직
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -80,37 +102,34 @@ const MakeCard = ({ setModalOpen }) => {
       formData.append("what", what);
       formData.append("how", how);
       formData.append("tag_field", tag);
-      formData.append("record", "2"); // 문자열로 전달
+      formData.append("record", String(record)); // 문자열로 전달
 
       if (images.length > 0) {
         formData.append("card_photo_1", images[0]);
       }
 
-      const response = await axiosInstance.post(
-        "/api/records/2/cards/",
-        formData,
-        {
+      const response = await axiosInstance.post("/api/records/2/cards/",formData,{
           headers: {
             "Content-Type": "multipart/form-data", // 필수 설정
           },
         }
       );
-      /*
-      const response = await axiosInstance.post(
-        "/api/records/2/cards/",
-        formData
+      // const response = await axiosInstance.post(
+      //   "/api/records/2/cards/",
+      //   formData
       );
-      */
       console.log("카드 post 성공:", response.data);
       alert("카드 post 성공");
     } catch (error) {
       console.error("Error updating like status:", error);
     }
   };
+*/
 
   return (
     <ModalContainer onClick={handleCloseModal}>
-      <form onSubmit={handleSubmit}>
+      {/* <form onSubmit={handleSubmit}> */}
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         <CardModal ref={modal}>
           <CardBorder>
             <CardWWW>WHERE: &nbsp; </CardWWW>
@@ -151,7 +170,13 @@ const MakeCard = ({ setModalOpen }) => {
               />
             </UproadImg>
             {images.slice(0, 3).map((imageURL, index) => (
-              <CardImg key={index} src={imageURL} alt="post img" />
+              <CardImg
+                key={index}
+                src={imageURL}
+                // src={URL.createObjectURL(imageURL)}
+                alt="post img"
+              />
+              // <CardImg key={index} src={imageURL} alt="post img" />안되면 이것도 해봐
             ))}
           </ImgCardBorder>
           <CardInfo>
@@ -165,12 +190,11 @@ const MakeCard = ({ setModalOpen }) => {
                 placeholder="#seoul_restaurant"
               ></HashTag>
             </Wrapper>
-            <CardSubmit type="submit">
-              {/* <CardSubmit type="submit" onClick={() => setModalOpen(false)}> */}
-              save
-            </CardSubmit>
+            <CardSubmit onClick={handleSubmit}>save</CardSubmit>
+            {/* <CardSubmit type="submit">save</CardSubmit> */}
           </CardInfo>
         </CardModal>
+        {/* </form> */}
       </form>
     </ModalContainer>
   );

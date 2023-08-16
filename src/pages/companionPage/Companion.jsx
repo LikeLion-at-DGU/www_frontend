@@ -187,4 +187,3 @@ const Companion = () => {
 };
 
 export default Companion;
- 

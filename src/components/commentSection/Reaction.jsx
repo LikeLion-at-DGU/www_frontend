@@ -12,24 +12,25 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 
 // 조회수, 댓글, 좋아요, 북마크 컴포넌트
-const Reaction = ({ record_id, setCommentFold, commentFold }) => {
+const Reaction = ({ record, setCommentFold, commentFold }) => {
   const [hide, setHide] = useState(false);
+  console.log(record);
   return (
     <>
       <PostWrapper>
         <BtnWrapper>
-          <Views record_id={record_id} />
+          <Views record={record} />
           &nbsp;
           <div onClick={() => setCommentFold(commentFold ? false : true)}>
             <Comments
-              record_id={record_id}
+              record={record}
               setCommentFold={setCommentFold}
               commentFold={commentFold}
             />
           </div>
         </BtnWrapper>
         <BtnWrapper>
-          <Like record_id={record_id} />
+          <Like record={record} />
           &nbsp;
           {"smaile.kmk" === "smaile.kmk" ? ( //글쓴이인지 확인
             // {record_id.userNmae === "smaile.kmk" ? ( //글쓴이인지 확인
@@ -44,16 +45,10 @@ const Reaction = ({ record_id, setCommentFold, commentFold }) => {
               {hide && <EditDeleteBtn />}
             </HideWrapper>
           ) : (
-            <BookMark record_id={record_id} />
+            <BookMark record={record} />
           )}
         </BtnWrapper>
       </PostWrapper>
-      {/* {setCommentFold && (
-        <>
-          <CommentSection record_id={record_id} setHide={setHide} />
-          <Margin />
-        </>
-      )} */}
     </>
   );
 };
