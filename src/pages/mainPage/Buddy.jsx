@@ -16,6 +16,17 @@ const BuddyStyle = styled(Test)`
     `}
 `;
 
+const TravelBoxChange = styled(TravelBox)`
+  ${(props) =>
+    props.isEven
+      ? css`
+          border-bottom-right-radius: 0;
+        `
+      : css`
+          border-bottom-left-radius: 0;
+        `}
+`;
+
 const Buddy = ({ data, isEven }) => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -54,7 +65,7 @@ const Buddy = ({ data, isEven }) => {
         style={fadeIn.style}
       >
         <Link to={"companion"}>
-          <TravelBox>
+          <TravelBoxChange isEven={isEven}>
             <IndexBox>
               <WwwBox>
                 <DateName handlefsize={"14px"} />
@@ -68,9 +79,10 @@ const Buddy = ({ data, isEven }) => {
               />
             </IndexBox>
             <BuddyTitle>
-              {truncatedText || "Today Hanoi nightscape!!"}
+              {/* {truncatedText || "Today Hanoi nightscape!!"} */}
+              {truncatedText.title}
             </BuddyTitle>
-          </TravelBox>
+          </TravelBoxChange>
         </Link>
       </Test>
     </BuddyStyle>

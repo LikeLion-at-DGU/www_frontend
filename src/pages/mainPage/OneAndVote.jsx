@@ -36,7 +36,161 @@ const validateAccessToken = (token) => {
 
 const OneAndVoteAll = () => {
   // 레코드 리스트 불러오기 ~ ...
-  const [recordList, setRecordList] = useState([]);
+  // const [recordList, setRecordList] = useState([]);
+
+  // 레코드 리스트 예시 (나중에 삭제하면 될듯)
+  const [recordList, setRecordList] = useState([
+    {
+      id: 1,
+      rcommets_cnt: 2,
+      title: "테스트 Title 1!",
+      weather: "테스트 날씨 1!",
+      date: "2023-07-13",
+      body: "테스트 본문 1!",
+      created_at: "2023-07-13T08:13:09.251272Z",
+      updated_at: "2023-07-13T08:13:09.251272Z",
+      views: 13,
+      rlike_count: 5,
+      where: "1 where",
+      what: "1 what",
+      how: "1 how",
+      tag_field: "#우와",
+      card_photo_1: null,
+      card_photo_2: null,
+      card_photo_3: null,
+      writer: "sha",
+      rlike: [],
+      photos: [],
+      record_scrap: [],
+      tag: ["#서울_맛집", "#룰루"],
+      card_scrap: [],
+    },
+    {
+      id: 2,
+      rcommets_cnt: 2,
+      title: "테스트 Title 2!",
+      weather: "테스트 날씨 2!",
+      date: "2023-07-19",
+      body: "테스트 본문 2!",
+      created_at: "2023-07-19T08:13:09.251272Z",
+      updated_at: "2023-07-19T08:13:09.251272Z",
+      views: 10,
+      rlike_count: 2,
+      where: "2 where",
+      what: "2 what",
+      how: "2 how",
+      tag_field: "#우와",
+      card_photo_1: null,
+      card_photo_2: null,
+      card_photo_3: null,
+      writer: "miingkko",
+      rlike: [],
+      photos: [],
+      record_scrap: [],
+      tag: ["#서울_맛집", "#룰루2"],
+      card_scrap: [],
+    },
+    {
+      id: 3,
+      rcommets_cnt: 3,
+      title: "테스트 Title 3!",
+      weather: "테스트 날씨 3!",
+      date: "2023-07-11",
+      body: "테스트 본문 3!",
+      created_at: "2023-07-11T08:13:09.251272Z",
+      updated_at: "2023-07-11T08:13:09.251272Z",
+      views: 11,
+      rlike_count: 1,
+      where: "3 where",
+      what: "3 what",
+      how: "3 how",
+      tag_field: "#우와",
+      card_photo_1: null,
+      card_photo_2: null,
+      card_photo_3: null,
+      writer: "kickcha",
+      rlike: [],
+      photos: [],
+      record_scrap: [],
+      tag: ["#서울_맛집", "#룰루3"],
+      card_scrap: [],
+    },
+    {
+      id: 4,
+      rcommets_cnt: 4,
+      title: "테스트 Title 4!",
+      weather: "테스트 날씨 4!",
+      date: "2023-08-06",
+      body: "테스트 본문 4!",
+      created_at: "2023-08-06T08:13:09.251272Z",
+      updated_at: "2023-08-06T08:13:09.251272Z",
+      views: 7,
+      rlike_count: 7,
+      where: "4 where",
+      what: "4 what",
+      how: "4 how",
+      tag_field: "#우와",
+      card_photo_1: null,
+      card_photo_2: null,
+      card_photo_3: null,
+      writer: "smilekmk",
+      rlike: [],
+      photos: [],
+      record_scrap: [],
+      tag: ["#서울_맛집", "#룰루4"],
+      card_scrap: [],
+    },
+    {
+      id: 5,
+      rcommets_cnt: 5,
+      title: "테스트 Title 5!",
+      weather: "테스트 날씨 5!",
+      date: "2023-07-12",
+      body: "테스트 본문 5!",
+      created_at: "2023-07-12T08:13:09.251272Z",
+      updated_at: "2023-07-12T08:13:09.251272Z",
+      views: 8,
+      rlike_count: 15,
+      where: "5 where",
+      what: "5 what",
+      how: "5 how",
+      tag_field: "#우와",
+      card_photo_1: null,
+      card_photo_2: null,
+      card_photo_3: null,
+      writer: "j_00bh",
+      rlike: [],
+      photos: [],
+      record_scrap: [],
+      tag: ["#서울_맛집", "#룰루5"],
+      card_scrap: [],
+    },
+    {
+      id: 6,
+      rcommets_cnt: 6,
+      title: "테스트 Title 6!",
+      weather: "테스트 날씨 6!",
+      date: "2023-07-13",
+      body: "테스트 본문 6!",
+      created_at: "2023-07-17T08:13:09.251272Z",
+      updated_at: "2023-07-17T08:13:09.251272Z",
+      views: 17,
+      rlike_count: 0,
+      where: "6 where",
+      what: "6 what",
+      how: "6 how",
+      tag_field: "#우와",
+      card_photo_1: null,
+      card_photo_2: null,
+      card_photo_3: null,
+      writer: "seng_ho_ho",
+      rlike: [],
+      photos: [],
+      record_scrap: [],
+      tag: ["#서울_맛집", "#룰루6"],
+      card_scrap: [],
+    },
+  ]);
 
   useEffect(() => {
     axiosInstance
@@ -108,18 +262,15 @@ const OneAndVoteAll = () => {
           <p>One and Only Record</p>
         </OneAndOnly>
         <FriendData>
-          {/* {data.map((item) => (
-            <FriendCards
-              key={item.id}
-              item={item}
-              style={{
-                marginLeft: "50px",
-              }}
-            />
+          {/* {recordList
+          .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+          .slice(1, 6)
+          .map((record) => (
+            <FriendCards key={record.id} record={record} />
           ))} */}
           {recordList
           .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-          .slice(1, 6)
+          .slice(0, 2)
           .map((record) => (
             <FriendCards key={record.id} record={record} />
           ))}
