@@ -26,7 +26,7 @@ const CompanionCards = () => {
       <CompanionText width="626px" height="124px" padding="10px 20px">
         <CompanionTitle>
           {/* <p>Today Hanoi nightscape!!</p> */}
-          <p>{companion.id}</p>
+          <p>{companion.title}</p>
           {/* 현재시간 - 글쓴시간 */}
           <p style={{ color: "#848484", fontSize: "0.8rem" }}>23m ago</p>
         </CompanionTitle>

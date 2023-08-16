@@ -70,7 +70,7 @@ export const OneAndOnlyContainer = styled.div`
   display: flex;
   margin-top: 30px;
   width: 510px;
-  height: 455px;
+  height: 445px;
   flex-wrap: wrap;
   /* border: 3px solid yellow; */
 `;
@@ -346,6 +346,8 @@ export const TravelBox = styled.div`
   border-radius: 30px;
   background-color: #92d3f5;
   box-shadow: 0px 5px 5px 0px #00000040;
+  border-bottom-left-radius: ${props => props.chatLradius};
+  border-bottom-right-radius:  ${props => props.chatRradius};
   /* border: 3px solid red; */
 `;
 
@@ -359,7 +361,7 @@ export const IndexBox = styled.div`
 export const WwwBox = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 220px;
+  width: 250px;
 `;
 
 export const RecordCard = styled.div`

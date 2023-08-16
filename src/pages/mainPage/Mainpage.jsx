@@ -16,6 +16,7 @@ import {
 } from "./MainpageStyle";
 import Buddy from "./Buddy";
 import OneAndVoteAll from "./OneAndVote";
+import axiosInstance from "../../../src/api/axios";
 
 const data = [
   { id: 1, nickname: "User1" },
@@ -23,17 +24,31 @@ const data = [
 ];
 
 const Mainpage = () => {
-  const buddyDataArray = [
-    { id: 1, text: "Data for Buddy 1" },
-    { id: 2, text: "Data for Buddy 2" },
-    { id: 3, text: "Data for Buddy 3" },
-    { id: 4, text: "Data for Buddy 4" },
-  ];
+  // const buddyDataArray = [
+  //   { id: 1, text: "Data for Buddy 1" },
+  //   { id: 2, text: "Data for Buddy 2" },
+  //   { id: 3, text: "Data for Buddy 3" },
+  //   { id: 4, text: "Data for Buddy 4" },
+  // ];
+
+    // 버디리스트 담기
+    const [buddyResults, setBuddyResults] = useState([]);
+    // 버디리스트 불러오기
+    const buddyDataArray = async () => {
+      try {
+        const response = await axiosInstance.get("/api/companions/");
+        setBuddyResults(response.data);
+      } catch (error) {
+        console.log("ERROR", error);
+      }
+    };
 
   const [isInViewport, setIsInViewport] = useState(false);
   const ref = useRef(null);
 
   useEffect(() => {
+    buddyDataArray();
+
     if (!ref.current) return;
 
     const callback = (entries) => {
@@ -68,10 +83,10 @@ const Mainpage = () => {
             <img src={bird} alt="bird" />
             <p>Finding Travel buddy</p>
           </TravelTitle>
-          {buddyDataArray.map((item, index) => (
+          {buddyResults.map((item, index) => (
             <Buddy
               key={item.id}
-              data={item.text}
+              data={item}
               isEven={index === 1 || index === 3}
             />
           ))}
