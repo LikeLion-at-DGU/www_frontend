@@ -13,13 +13,13 @@ import Comments from "../../components/index/Comments";
 import Like from "../../components/index/Like";
 import { useNavigate } from "react-router-dom";
 
-const CompanionCards = () => {
+const CompanionCards = ({ companion }) => {
   // const CompanionCards = ({ companion }) => {
   const navigate = useNavigate();
-  const companion = {
-    id: 1,
-    body: "dddddddddddjdkdjkdjdlssddkjdsl",
-  };
+  // const companion = {
+  //   id: 1,
+  //   body: "dddddddddddjdkdjkdjdlssddkjdsl",
+  // };
 
   return (
     <CompanionCard onClick={() => navigate(`/companions/${companion.id}`)}>

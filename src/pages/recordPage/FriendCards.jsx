@@ -19,9 +19,9 @@ import recordImg from "../../image/record1.jpg";
 import { useNavigate } from "react-router-dom";
 
 const FriendCards = ({ record }) => {
-/*//여기부터는 임의 데이터입니당 - 현아
-const FriendCards = () => {
   const navigate = useNavigate();
+  /*//여기부터는 임의 데이터입니당 - 현아
+const FriendCards = () => {
   const record = {
     id: 1,
     rcommets_cnt: 2,

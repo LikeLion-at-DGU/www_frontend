@@ -14,77 +14,58 @@ import Like from "../index/Like";
 import FriendMark from "../index/FriendMark";
 import Mine from "../index/Mine";
 import { BtnWrapper } from "../../pages/detailPage/DetailStyle";
-import axiosInstance from "../../api/axios";
 import { size } from "lodash";
 import EditDeleteBtn from "../index/EditDeleteBtn";
 import { HideWrapper } from "../index/BtnStyle";
+import axiosInstance from "../../api/axios"
 
-
-export const CommentSection = ({ record_id }) => {
+// export const CommentSection = () => {
+//   const record_id=1;
+export const CommentSection = ({ record }) => {
   const [cmt, setCmt] = useState("");
   const [hide, setHide] = useState(false);
-  const [cmtList, setCmtList] = useState([
-    {
-      profileImg: "",
-      userNmae: "smaile.kmk",
-      nation: "Italy/milano",
-      comment: "I think it is absolutely possible.",
-    },
-    {
-      profileImg: "",
-      userNmae: "giogio222",
-      nation: "Republic of Korea/seoul",
-      comment: "I think it is absolutely possible????!?!?!?!",
-    },
-  ]);
+  const [cmtList, setCmtList] = useState(record.record_comments);
 
   //댓글 리스트 GET
   useEffect(() => {
     // API 요청을 수행하는 부분
     axiosInstance
-      .get(`/api/records/${record_id}/rcomments`) // 댓글 리스트 GET URL
+      .get(`/api/records/${record.id}/`) // 댓글 리스트 GET URL
       .then((response) => {
-        setCmtList(...cmtList, response.data); // 받아온 데이터를 상태에 저장
+        setCmtList(response.data.record_comments); // 받아온 데이터를 상태에 저장
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, [cmtList]); // cmtList 값이 변경될 때마다 실행(댓글 추가 될 때마다)
+  }, []); // cmtList 값이 변경될 때마다 실행(댓글 추가 될 때마다)
 
   //댓글 리스트 POST
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setCmt("");
 
     try {
       const response = await axiosInstance.post(
-        `/api/records/${record_id}/rcomments`, // 댓글 리스트 POST
+        `/api/records/${record.id}/rcomments/`, // 댓글 리스트 POST
         {
-          cmt,
+          writer: 1,
+          content: cmt,
         }
       );
+      axiosInstance
+      .get(`/api/records/${record.id}/`) // 댓글 리스트 GET URL
+      .then((response) => {
+        setCmtList(response.data.record_comments); // 받아온 데이터를 상태에 저장
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
       console.log("Post created:", response.data);
       // 추가 동작
     } catch (error) {
       console.error("Error creating post:", error);
     }
   };
-
-  const cmtHandleChange = (e) => {
-    setCmt(e.target.value);
-  };
-  /* 백연결
-  const addCmtList = () => {
-    setCmtList(() => [
-      ...cmtList,
-      {
-        profileImg: "",
-        userNmae: "smaile.kmk",
-        nation: "Italy/milano",
-        comment: cmt,
-      },
-    ]);
-  };
-*/
 
   return (
     <>
@@ -94,7 +75,7 @@ export const CommentSection = ({ record_id }) => {
             type="text"
             placeholder="Please enter a comment."
             value={cmt}
-            onChange={cmtHandleChange}
+            onChange={(e) => setCmt(e.target.value)}
           />
           <ApplyBtn type="submit">apply</ApplyBtn>
           {/* <ApplyBtn onClick={addCmtList}>apply</ApplyBtn> */}
@@ -110,7 +91,7 @@ export const CommentSection = ({ record_id }) => {
         <CmtBox key={idx}>
           <CmtLabel style={{ alignItems: "end" }}>
             <Wrapper>
-              {comment.userNmae === "smaile.kmk" ? ( //글쓴이인지 확인
+              {comment.writer === "smaile.kmk" ? ( //글쓴이인지 확인
                 <BtnWrapper>
                   <Mine />
                   <HideWrapper onClick={() => setHide(hide ? false : true)}>
@@ -131,13 +112,15 @@ export const CommentSection = ({ record_id }) => {
             <Like handlewidth={"69px"} handleheight={"32px"} />
           </CmtLabel>
           <CmtProfile>
-            <img alt="profile img" src={comment.profileImg} />
+            <img alt="profile img" src={""} />
             <div>
-              <p>{comment.userNmae}</p>
-              <span>{comment.nation}</span>
+              <p>{comment.writer}</p>
+              {/* <p>{comment.userNmae}</p> */}
+              <span>korea</span>
+              {/* <span>{comment.nation}</span> */}
             </div>
           </CmtProfile>
-          {comment.comment}
+          {comment.content}
         </CmtBox>
       ))}
     </>

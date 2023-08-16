@@ -17,19 +17,17 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
 import MakeCard from "../../components/card/MakeCard";
-import Card from "../../components/card/Card";
 import axiosInstance from "../../api/axios";
 
 const Write = () => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [cardInfo, setCardInfo] = useState(null);
 
   // 개별 입력값
   const [content, setContent] = useState(""); //quill에 담기는 값
   const [date, setDate] = useState("");
   const [weather, setWeather] = useState("");
   const [title, setTitle] = useState("");
-  const [user, setUser] = useState("user");
-  const [userInfo, setUserInfo] = useState("user info(Korea/incheon)");
   const quillRef = useRef(null);
 
   const handledate = (event) => {
@@ -59,14 +57,22 @@ const Write = () => {
   // submit 시 로직
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("cardInfo: ", cardInfo);
 
     try {
       const response = await axiosInstance.post("/api/records/", {
-        date: date,
-        writer: 1, //글쓴이가 있냐없냐 boolean 필드 느낌임?? 여튼 1
         title: title,
         weather: weather,
+        date: date,
+        writer: 1, //글쓴이가 있냐없냐 boolean 필드 느낌임?? 여튼 1
         body: content,
+        where: cardInfo.where,
+        what: cardInfo.what,
+        how: cardInfo.how,
+        tag_field: cardInfo.tag_field,
+        card_photo_1: cardInfo.images[0],
+        card_photo_2: cardInfo.images[1],
+        card_photo_3: cardInfo.images[2],
       });
       console.log("Post created:", response.data);
       alert("포스트 성공!");
@@ -76,48 +82,6 @@ const Write = () => {
     }
   };
 
-  /* Card 컴포넌트를 quill에 추가할 경우
-  const handleCardUpload = () => {
-    // 여기서 Card 컴포넌트를 content에 추가하는 작업 수행
-    const cardData = {
-      id: 1,
-      where: "포케",
-      what: "요기는 식당",
-      how: "연어 먹쟈!",
-      tagname: "서울_맛집",
-      image: require("../../image/test.jpg"), // 이미지 경로를 적절히 수정해야 함
-    };
-
-    const newContent = `${content}<Card data=${cardData} />`;
-    setContent(newContent);
-  };
-*/
-
-  //이미지 업로드 로직
-  /* 1번
-  const handleImageUpload = async (file) => {
-    try {
-      const formData = new FormData();
-      formData.append("image", file);
-
-      const response = await axiosInstance.post(
-        "/api/upload-image", //이미지 업로드를 처리하는 URL
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      const imageUrl = response.data.url;
-      const editor = this.quillRef.getEditor(); // ReactQuill의 에디터 인스턴스 가져오기
-      const range = editor.getSelection();
-      editor.insertEmbed(range.index, "image", imageUrl);
-    } catch (error) {
-      console.error("Error uploading image:", error);
-    }
-  };
-  */
   //  2번
   const handleImageUpload = () => {
     const input = document.createElement("input");
@@ -181,18 +145,26 @@ const Write = () => {
       },
     };
   }, []);
+  useEffect(() => {
+    console.log(cardInfo);
+  }, [cardInfo]);
 
   return (
     <>
       <TopWriteWrapper>
-        {modalOpen && <MakeCard setModalOpen={setModalOpen} record={2} />}
+        {modalOpen && (
+          <MakeCard
+            setModalOpen={setModalOpen}
+            setCardInfo={setCardInfo}
+          />
+        )}
         <form style={{ width: "100%" }} onSubmit={handleSubmit}>
           {/* 글쓴이 , register */}
           <WriteWrapper>
             <PostWriter>
               <img src="" alt="profile" />
-              <p>{user}</p>&nbsp;
-              <span>{userInfo}</span>
+              <p>사용자 이름 자리</p>&nbsp;
+              <span>사용자 국가정보 자리</span>
             </PostWriter>
             <BtnWrapper>
               <SaveBtn onClick={() => setModalOpen(true)}>

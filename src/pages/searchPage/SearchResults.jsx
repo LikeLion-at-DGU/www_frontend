@@ -1,13 +1,18 @@
 // SearchResults.jsx
 
-import React from 'react'
-import { RecordWriter, SearchResult, SearchTitle, SmallImage } from './SearchStyle'
-import recordImg from "../../image/record1.jpg"
-import { HashTag, Image, Img, TagBox, Text } from '../recordPage/RecordStyle'
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import {
+  RecordWriter,
+  SearchResult,
+  SearchTitle,
+  SmallImage,
+} from "./SearchStyle";
+import recordImg from "../../image/record1.jpg";
+import { HashTag, Image, Img, TagBox, Text } from "../recordPage/RecordStyle";
+import { useNavigate } from "react-router-dom";
 
 const SearchResults = ({ record }) => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
     return (
         <SearchResult onClick={() => navigate(`/record/${record.id}`)}>
@@ -33,4 +38,4 @@ const SearchResults = ({ record }) => {
     )
 }
 
-export default SearchResults
+export default SearchResults;

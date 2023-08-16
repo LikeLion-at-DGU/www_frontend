@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 
 // const LocalPicks = ({ record_cards }) => {
 //여기부터는 임의 데이터입니당 - 현아
-const LocalPicks = () => {
+const LocalPicks = ({ card }) => {
   const record_cards = {
     id: 1,
     record: 1,
@@ -42,22 +42,22 @@ const LocalPicks = () => {
 
   return (
     <LocalPick
-      onClick={() => navigate(`/record/${record_cards.record}`)}
+      onClick={() => navigate(`/record/${card.id}`)}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <Img width="262px" height="245px">
-        <Image radius="20px" src={record_cards.card_photo_1} />
+        {/* <Image radius="20px" src={record_cards.card_photo_1} /> */}
         <InTagBox>
-          {record_cards.tag.map((tag) => (
-            <HashTag>{tag}</HashTag>
+          {record_cards.tag.map(() => (
+            // <HashTag>{card.tag}</HashTag>
+            <HashTag>london_restaurant</HashTag>
           ))}
-          {/* <HashTag>#london_restaurant</HashTag> */}
         </InTagBox>
       </Img>
       <HoverOverlay2 isHovered={isHovered}>
-        {record_cards.where}
-        {/* Five guys Tower Bridge */}
+        {/* {cards.where} */}
+        Five guys Tower Bridge
       </HoverOverlay2>
     </LocalPick>
   );
