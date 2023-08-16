@@ -145,6 +145,36 @@ const MyFile = () => {
     setSelectedImage(text);
   };
 
+  // 레코드 스크랩
+  const [scrapRecord, setScrapRecord] = useState([]);
+  // 레코드 스크랩 리스트
+  useEffect(() => {
+    axiosInstance
+      .get("/api/recordlist/scrap_list/")
+      .then((response) => setScrapRecord(response.data))
+      .catch((error) => console.error("Error fetching record List:", error));
+  }, []);
+
+  // 로컬픽 스크랩
+  const [scrapCard, setScrapCard] = useState([]);
+  // 로컬픽 스크랩 리스트
+  useEffect(() => {
+    axiosInstance
+      .get("/api/cardlist/scrap_list")
+      .then((response) => setScrapCard(response.data))
+      .catch((error) => console.error("Error fetching record List:", error));
+  }, []);
+
+  // 동행 스크랩
+  const [companion, setCompanion] = useState([]);
+  // 동행 스크랩 리스트
+  useEffect(() => {
+    axiosInstance
+      .get("/api/companionlist/scrap_list/")
+      .then((response) => setCompanion(response.data))
+      .catch((error) => console.error("Error fetching record List:", error));
+  }, []);
+
   return (
     <FileContainer>
       <StackedImages>
@@ -201,21 +231,28 @@ const MyFile = () => {
 그리고 마이레코드 데이터 불러오는 로직이 필요함 */}
         {selectedImage === "DailyRecord" && (
           <SlideContainer>
-            <SearchResults style={{ position: "absolute", zIndex: 3 }} />
+            <SearchResults
+              style={{ position: "absolute", zIndex: 3 }}
+              record={scrapRecord}
+            />
           </SlideContainer>
         )}
 
         {selectedImage === "DataCard" && (
           <SlideContainer>
-            <LocalPicks style={{ position: "absolute", zIndex: 3 }} />
+            <LocalPicks
+              style={{ position: "absolute", zIndex: 3 }}
+              card={scrapCard}
+            />
           </SlideContainer>
         )}
 
         {selectedImage === "Companions" && (
           <SlideContainer>
             <CompanionCards
-              companion={1}
+              // companion={1}
               style={{ position: "absolute", zIndex: 3 }}
+              companion={companion}
             />
           </SlideContainer>
         )}

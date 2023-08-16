@@ -50,7 +50,7 @@ const Input = () => {
 
     try {
       const response = await axiosInstance.put("/accounts/save_user", {
-        country: "ㄹ",
+        country: 1,
         city: "ㅇ",
         nickname: "ㅇ",
       });
