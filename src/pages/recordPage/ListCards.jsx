@@ -75,22 +75,26 @@ const ListCards = () => {
         </Content>
         <BtnBox juscon="space-between">
           <Views
+            record={record}
             handlewidth={"43px"}
             handleheight={"18px"}
             handlefsize={"5.4px"}
           />
           <Comments
+            record={record}
             handlewidth={"43px"}
             handleheight={"18px"}
             handlefsize={"5.4px"}
           />
           <Like
+            record={record}
             handlewidth={"43px"}
             handleheight={"18px"}
             handlefsize={"5.4px"}
           />
         </BtnBox>
         <BookMark
+          record={record}
           handleposi={"absolute"}
           handletop={"15px"}
           handleright={"15px"}

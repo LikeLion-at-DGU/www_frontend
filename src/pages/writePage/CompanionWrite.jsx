@@ -41,6 +41,7 @@ const CompanionWrite = () => {
 
     try {
       const response = await axiosInstance.post("/api/companions/", {
+        writer: 1,
         title: title,
         body: content,
         date: date,

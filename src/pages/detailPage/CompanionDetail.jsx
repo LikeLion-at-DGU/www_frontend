@@ -8,22 +8,13 @@ import {
   PostSubTitle,
   PostTitle,
   CompanionBody,
-  BodyGuide,
-  PostWrapper,
-  BtnWrapper,
   AnotherTitle,
   Margin,
 } from "../detailPage/DetailStyle";
 import { ProfileImg, City, Box2 } from "../recordPage/RecordStyle";
 import { Wrapper } from '../../components/WrapStyle';
-import Views from '../../components/index/Views';
-import Comments from '../../components/index/Comments';
-import Like from '../../components/index/Like';
-import BookMark from '../../components/index/BookMark';
-import CompenionReaction from "../../components/commentSection/CompenionReaction";
-import { CompCommentSection } from "../../components/commentSection/CompCommentSection";
-import { PostWriter } from '../writePage/WriteStyle';
-import ListCards from '../recordPage/ListCards';
+import CompanionReaction from "../../components/commentSection/CompaReaction";
+import { CompaCommentSection } from "../../components/commentSection/CompaCommentSection";
 import { Link, useParams } from 'react-router-dom';
 import CompanionCards from '../companionPage/CompanionCards';
 import axiosInstance from "../../api/axios"
@@ -78,8 +69,12 @@ export default function CompanionDetail() {
           <div dangerouslySetInnerHTML={{ __html: data.body }} />
         </CompanionBody>
       </DetailWrapper>
-      <CompenionReaction compenionId={params.detailId} />
-      {commentFold && <CompCommentSection compenionId={params.detailId} />}
+      <CompanionReaction
+        companion_id={params.detailId}
+        commentFold={commentFold}
+        setCommentFold={setCommentFold}
+      />
+      {commentFold && <CompaCommentSection companion_id={params.detailId} />}
 
       <Margin />
       <AnotherTitle>
