@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import { Test, TravelBox, IndexBox, WwwBox, BuddyTitle } from "./MainpageStyle";
 import Like from "../../components/index/Like";
-import CountryName from "../../components/index/Country";
-import CityName from "../../components/index/CityName";
-import DateName from "../../components/index/DateName";
+// import CountryName from "../../components/index/Country";
+// import CityName from "../../components/index/CityName";
+// import DateName from "../../components/index/DateName";
 import useScrollFadeIn from "./useScroll";
 import { Link } from "react-router-dom";
+import DateName from "./buddyBtn/DateName";
+import CountryName from "./buddyBtn/CountryName";
+import CityName from "./buddyBtn/CityName";
 
 const BuddyStyle = styled(Test)`
   ${(props) =>
@@ -68,14 +71,15 @@ const Buddy = ({ data, isEven }) => {
           <TravelBoxChange isEven={isEven}>
             <IndexBox>
               <WwwBox>
-                <DateName handlefsize={"14px"} />
-                <CountryName handlefsize={"14px"} />
-                <CityName handlefsize={"14px"} />
+                <DateName result={data.date} />
+                <CountryName result={data.country} />
+                <CityName result={data.city} />
               </WwwBox>
               <Like
                 handlewidth={"43px"}
                 handleheight={"24px"}
                 handlefsize={"14px"}
+                result={data.like_count}
               />
             </IndexBox>
             <BuddyTitle>

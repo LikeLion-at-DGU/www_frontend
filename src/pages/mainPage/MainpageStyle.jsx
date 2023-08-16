@@ -361,7 +361,7 @@ export const IndexBox = styled.div`
 export const WwwBox = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 220px;
+  width: 250px;
 `;
 
 export const RecordCard = styled.div`
