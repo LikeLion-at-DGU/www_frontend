@@ -148,15 +148,18 @@ const MyFile = () => {
   return (
     <FileContainer>
       <StackedImages>
+        {/* 스택이미지는 폴더 파란색 흰색 이미지가 쌓인 부분-승민 */}
         <ClickableImage
           src={selectedImage === "MyRecord" ? blueMyRecord : whiteMyRecord}
           alt="MyRecord"
           style={{ zIndex: selectedImage === "MyRecord" ? 2 : 0 }}
         />
+        {/* 클리커블이미지는 텍스트를 눌렀을 때 이미지 색이 바뀌느 부분 - 승민 */}
         <MyRecord
           selected={selectedImage === "MyRecord"}
           onClick={() => handleTextClick("MyRecord")}
         />
+        {/* 이건 그냥 마이레코드 불러오는 부분인데 사실 좀 겹치는 것 같긴 함 그치만 지울 필욘없음 여긴 문제 없음 */}
 
         <ClickableImage
           src={
@@ -192,53 +195,13 @@ const MyFile = () => {
           onClick={() => handleTextClick("Companions")}
         />
 
+        {/* 여기서부터 스와이퍼를 디자인 하기 위한 부분, 
+이미지가 선택됐을 때 스와이퍼 안에 콘텐츠 카드들을 넣으려고 했음
+여기서 SearchResults 데이터가 안 불러와지는 중
+그리고 마이레코드 데이터 불러오는 로직이 필요함 */}
         {selectedImage === "DailyRecord" && (
           <SlideContainer>
-            <div className="custom-prev">
-              <CustomPrevButton />
-            </div>
-
-            <Swiper
-              modules={[Navigation, Pagination, Scrollbar, A11y]}
-              navigation={{
-                prevEl: ".custom-prev",
-                nextEl: ".custom-next",
-              }}
-              slidesPerView={4}
-              spaceBetween={5}
-              pagination={{ clickable: true }}
-            >
-              {recordList
-                .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-                .map((record, index) => {
-                  const isEvenIndex = index % 2 === 0;
-
-                  return (
-                    <SwiperSlide key={record.id}>
-                      <div style={{ display: "flex", flexDirection: "column" }}>
-                        {isEvenIndex && (
-                          <SearchResults
-                            key={record.id}
-                            record={record}
-                            style={{ position: "absolute", zIndex: 3 }}
-                          />
-                        )}
-
-                        {isEvenIndex && recordList[index + 1] && (
-                          <SearchResults
-                            key={recordList[index + 1].id}
-                            record={recordList[index + 1]}
-                            style={{ position: "absolute", zIndex: 3 }}
-                          />
-                        )}
-                      </div>
-                    </SwiperSlide>
-                  );
-                })}
-            </Swiper>
-            <div className="custom-next">
-              <CustomNextButton />
-            </div>
+            <SearchResults style={{ position: "absolute", zIndex: 3 }} />
           </SlideContainer>
         )}
 
@@ -250,7 +213,10 @@ const MyFile = () => {
 
         {selectedImage === "Companions" && (
           <SlideContainer>
-            <CompanionCards style={{ position: "absolute", zIndex: 3 }} />
+            <CompanionCards
+              companion={1}
+              style={{ position: "absolute", zIndex: 3 }}
+            />
           </SlideContainer>
         )}
       </StackedImages>

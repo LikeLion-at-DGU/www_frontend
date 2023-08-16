@@ -1,21 +1,25 @@
 // CompanionCards.jsx
 
-import React from 'react'
-import { CompanionCard, CompanionText, CompanionTitle } from './CompanionStyle'
-import { BtnBox, Content, Image, Img } from '../recordPage/RecordStyle'
-import CompanionImg from "../../image/companion.png"
-import CountryName from '../../components/index/Country'
-import CityName from '../../components/index/CityName'
-import DateName from '../../components/index/DateName'
-import { WwwBox } from '../mainPage/MainpageStyle'
-import Views from '../../components/index/Views'
-import Comments from '../../components/index/Comments'
-import Like from '../../components/index/Like'
-import { useNavigate } from 'react-router-dom'
+import React from "react";
+import { CompanionCard, CompanionText, CompanionTitle } from "./CompanionStyle";
+import { BtnBox, Content, Image, Img } from "../recordPage/RecordStyle";
+import CompanionImg from "../../image/companion.png";
+import CountryName from "../../components/index/Country";
+import CityName from "../../components/index/CityName";
+import DateName from "../../components/index/DateName";
+import { WwwBox } from "../mainPage/MainpageStyle";
+import Views from "../../components/index/Views";
+import Comments from "../../components/index/Comments";
+import Like from "../../components/index/Like";
+import { useNavigate } from "react-router-dom";
 
-
-const CompanionCards = ({ companion }) => {
+const CompanionCards = () => {
+  // const CompanionCards = ({ companion }) => {
   const navigate = useNavigate();
+  const companion = {
+    id: 1,
+    body: "dddddddddddjdkdjkdjdlssddkjdsl",
+  };
 
   return (
     <CompanionCard onClick={() => navigate(`/companions/${companion.id}`)}>
@@ -64,4 +68,4 @@ const CompanionCards = ({ companion }) => {
   );
 };
 
-export default CompanionCards
+export default CompanionCards;
