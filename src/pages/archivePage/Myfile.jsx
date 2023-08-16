@@ -18,7 +18,7 @@ import whiteMyRecord from "../../image/whiteMyRecord.png";
 import whiteDailyRecord from "../../image/whiteDailyRecord.png";
 import whiteDataCard from "../../image/whiteDataCard.png";
 import whiteCompanions from "../../image/whiteCompanions.png";
-import FriendCards from "../recordPage/FriendCards";
+import SearchResults from "../searchPage/SearchResults";
 import LocalPicks from "../recordPage/LocalPicks";
 import CompanionCards from "../companionPage/CompanionCards";
 
@@ -34,6 +34,7 @@ import {
   CustomPrevButton,
   CustomNextButton,
 } from "./SwiperDesign";
+import { SearchResult } from "../searchPage/SearchStyle";
 
 const MyFile = () => {
   const [selectedImage, setSelectedImage] = useState("MyRecord");
@@ -216,7 +217,7 @@ const MyFile = () => {
                     <SwiperSlide key={record.id}>
                       <div style={{ display: "flex", flexDirection: "column" }}>
                         {isEvenIndex && (
-                          <FriendCards
+                          <SearchResults
                             key={record.id}
                             record={record}
                             style={{ position: "absolute", zIndex: 3 }}
@@ -224,7 +225,7 @@ const MyFile = () => {
                         )}
 
                         {isEvenIndex && recordList[index + 1] && (
-                          <FriendCards
+                          <SearchResults
                             key={recordList[index + 1].id}
                             record={recordList[index + 1]}
                             style={{ position: "absolute", zIndex: 3 }}

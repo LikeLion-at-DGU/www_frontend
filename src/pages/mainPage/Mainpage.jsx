@@ -61,7 +61,7 @@ const Mainpage = () => {
         <img src={maintext} alt="maintext" />
       </TextImage>
       <Contents>
-        <OneAndVoteAll></OneAndVoteAll>
+        <OneAndVoteAll />
 
         <TravelContainer>
           <TravelTitle>

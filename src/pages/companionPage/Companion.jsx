@@ -1,6 +1,7 @@
 // Companion.jsx
 
 import React, { useEffect, useState } from "react";
+<<<<<<< HEAD
 import {
   ArrayChoice,
   ArrayChoices,
@@ -10,15 +11,18 @@ import {
   Continents,
   FixedBtnBox,
 } from "./CompanionStyle";
+=======
+import { ArrayChoice, ArrayChoices, CompanionContainer, CompanionList, FixedBtnBox } from "./CompanionStyle";
+>>>>>>> 332e4ef57a6714daf6eeed539ac788058e8b1912
 import SearchBar from "./SearchBar";
 import { useLocation, useNavigate } from "react-router-dom";
 import { NoResult } from "../searchPage/SearchStyle";
 import logo from "../../image/noresult_logo.png";
-import { Box2 } from "../recordPage/RecordStyle";
 import CompanionCards from "./CompanionCards";
 import { RegisterBtn, RegisterImg } from "../writePage/WriteStyle";
 import PenIMG from "../../image/pen.png";
 import axiosInstance from "../../../src/api/axios";
+import ContinentsNav from "./ContinentsNav";
 
 const Companion = () => {
   const navigate = useNavigate();
@@ -29,17 +33,20 @@ const Companion = () => {
 
   // 검색결과
   const [searchResults, setSearchResults] = useState([]);
+<<<<<<< HEAD
+=======
+  console.log(searchResults);
+>>>>>>> 332e4ef57a6714daf6eeed539ac788058e8b1912
 
   useEffect(() => {
     if (searchTerm) {
       handleSearch(searchTerm);
     } else {
-      // setSearchResults([]);
       fetchAllData();
     }
   }, [searchTerm]);
 
-  // 검색 전에도 전체 리스트 가져옴
+  // 전체 리스트
   const fetchAllData = async () => {
     try {
       const response = await axiosInstance.get("/api/companions/");
@@ -50,17 +57,30 @@ const Companion = () => {
     }
   };
 
+  // 검색어에 따른 리스트
   const handleSearch = async (searchTerm) => {
     try {
-      // const response = await axiosInstance.get(`/api/search?q=${searchTerm}`);
-      const response = await axiosInstance.get(
-        `/api/companions/?search=${searchTerm}`
-      );
+      const response = await axiosInstance.get(`/api/companions/?search=${searchTerm}`);
       setSearchResults(response.data);
     } catch (error) {
       console.log("ERROR", error);
     }
   };
+
+
+  // 좌측 nav 아이디, 대륙 매핑
+  const continentIdToName = {
+    1: "Africa",
+    2: "Asia",
+    3: "Europe",
+    4: "Oceania",
+    // 띄어쓰기 어떻게 되는지 확인해야함
+    5: "North America",
+    6: "South America",
+  }
+  const getContinentName = (continentId) => {
+    return continentIdToName[continentId];
+  }
 
   // 좌측 nav 선택, 정렬 대륙선택
   const [activeBtn, setActiveBtn] = useState(null);
@@ -68,9 +88,22 @@ const Companion = () => {
 
   const handleBtnClick = (btnId) => {
     setActiveBtn(btnId);
+    const continentName = getContinentName(btnId);
+    fetchContinentData(continentName);
+    navigate(`/companions/?continent=${continentName}`);
   };
   const handleSort = (sortType) => {
     setCurrentSort(sortType);
+  };
+
+  // 대륙에 따른 리스트
+  const fetchContinentData = async (continentId) => {
+    try {
+      const response = await axiosInstance.get(`/api/companions/?continent=${continentId}`);
+      setSearchResults(response.data);
+    } catch (error) {
+      console.log("ERROR", error);
+    }
   };
 
   // 좌측 nav 반응형으로 따라오게
@@ -106,49 +139,9 @@ const Companion = () => {
   return (
     <CompanionContainer>
       {/* 반응형으로 떠있는 nav */}
-      {/* style={{ top: `${258 + scrollY * 0.5}px` }} */}
-      <Continents style={{ top: `${258 + scrollY * 0.3}px` }}>
-        {/* 지역별 대기환경 ~~ 했던 거처럼 params 이용 ... 하면 될 듯 ... */}
-        {/* <Continent onClick={() => navigate(`/companion/${}`)}>대륙명</Continent> */}
-        <Continent
-          className={activeBtn === 1 ? "active" : ""}
-          onClick={() => handleBtnClick(1)}
-        >
-          Africa
-        </Continent>
-        <Continent
-          className={activeBtn === 2 ? "active" : ""}
-          onClick={() => handleBtnClick(2)}
-        >
-          Asia
-        </Continent>
-        <Continent
-          className={activeBtn === 3 ? "active" : ""}
-          onClick={() => handleBtnClick(3)}
-        >
-          Europe
-        </Continent>
-        <Continent
-          className={activeBtn === 4 ? "active" : ""}
-          onClick={() => handleBtnClick(4)}
-        >
-          Oceania
-        </Continent>
-        <Continent
-          className={activeBtn === 5 ? "active" : ""}
-          onClick={() => handleBtnClick(5)}
-        >
-          North America
-        </Continent>
-        <Continent
-          className={activeBtn === 6 ? "active" : ""}
-          onClick={() => handleBtnClick(6)}
-        >
-          South America
-        </Continent>
-      </Continents>
+      <ContinentsNav activeBtn={activeBtn} handleBtnClick={handleBtnClick} />
 
-      {/* 화면고정 버튼 */}
+      {/* 화면고정 글쓰기 버튼 */}
       <FixedBtnBox>
         <RegisterBtn onClick={() => navigate("/companions/write")}>
           <RegisterImg src={PenIMG} alt="pen" />
@@ -175,21 +168,6 @@ const Companion = () => {
           </ArrayChoice>
         </ArrayChoices>
         <div>
-          {/* {searchTerm && searchResults.length === 0 ? (
-            <NoResult>
-              <img
-                style={{ width: "120px", marginBottom: "20px" }}
-                src={logo}
-              />
-              Sorry. No search results found.
-            </NoResult>
-          ) : (
-            searchResults.map((result, id) => (
-              <div key={id}>
-                <CompanionCards companion={result} />
-              </div>
-            ))
-          )} */}
           {searchTerm ? (
             searchResults.length === 0 ? (
               <NoResult>
@@ -217,17 +195,6 @@ const Companion = () => {
               </>
             ))
           )}
-
-          {/* <Box2
-            style={{
-              width: "fit-content",
-              padding: "14px",
-              margin: "0",
-              borderLeft: "1px solid #848484",
-            }}
-            flexdirect="column"
-          >
-          </Box2> */}
         </div>
       </CompanionList>
     </CompanionContainer>
