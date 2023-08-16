@@ -18,11 +18,11 @@ const CompanionCards = ({ companion }) => {
   const navigate = useNavigate();
 
   return (
-    <CompanionCard onClick={() => navigate(`/companion/${companion.id}`)}>
+    <CompanionCard onClick={() => navigate(`/companions/${companion.id}`)}>
       <CompanionText width="626px" height="124px" padding="10px 20px">
         <CompanionTitle>
           {/* <p>Today Hanoi nightscape!!</p> */}
-          <p>{companion.title}</p>
+          <p>{companion.id}</p>
           {/* 현재시간 - 글쓴시간 */}
           <p style={{ color: "#848484", fontSize: "0.8rem" }}>23m ago</p>
         </CompanionTitle>
@@ -34,7 +34,9 @@ const CompanionCards = ({ companion }) => {
         </WwwBox>
         <Content>
           {/* <p>Let’s play together in Hanoi nightscape festival!</p> */}
-          <p>{companion.body}</p>
+          <div
+            dangerouslySetInnerHTML={{ __html: companion.body.slice(191, 250) }}
+          />
         </Content>
         <BtnBox juscon="space-between">
           {/* <Views
@@ -60,6 +62,6 @@ const CompanionCards = ({ companion }) => {
       </Img>
     </CompanionCard>
   );
-}
+};
 
 export default CompanionCards

@@ -1,7 +1,15 @@
 // Companion.jsx
 
 import React, { useEffect, useState } from "react";
-import { ArrayChoice, ArrayChoices, CompanionContainer, CompanionList, Continent, Continents, FixedBtnBox } from "./CompanionStyle";
+import {
+  ArrayChoice,
+  ArrayChoices,
+  CompanionContainer,
+  CompanionList,
+  Continent,
+  Continents,
+  FixedBtnBox,
+} from "./CompanionStyle";
 import SearchBar from "./SearchBar";
 import { useLocation, useNavigate } from "react-router-dom";
 import { NoResult } from "../searchPage/SearchStyle";
@@ -20,92 +28,7 @@ const Companion = () => {
   const searchTerm = new URLSearchParams(location.search).get("search");
 
   // 검색결과
-  const [searchResults, setSearchResults] = useState([
-    // {
-    //   id: 1,
-    //   // rcommets_cnt: 2,
-    //   title: "테스트 Title 1!",
-    //   weather: "테스트 날씨 !",
-    //   body: "테스트 본문 !",
-    //   created_at: "2023-08-14",
-    //   updated_at: "2023-08-14",
-    //   country: "vietnam",
-    //   // views: 13,
-    //   // likes: 5,
-    //   writer: "sha",
-    //   photos: ["testImgURL1", "testImgURL2", "testImgURL3"],
-    // },
-    // {
-    //   id: 2,
-    //   // rcommets_cnt: 20,
-    //   title: "테스트 Title 2!",
-    //   weather: "테스트 날씨 2!",
-    //   body: "테스트 본문 2!",
-    //   created_at: "2023-08-14",
-    //   updated_at: "2023-08-14",
-    //   country: "vietnam",
-    //   // views: 113,
-    //   // likes: 51,
-    //   writer: "sha22",
-    //   photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
-    // },
-    // {
-    //   id: 3,
-    //   // rcommets_cnt: 20,
-    //   title: "테스트 Title 3!",
-    //   weather: "테스트 날씨 3!",
-    //   body: "테스트 본문 3!",
-    //   created_at: "2023-08-14",
-    //   updated_at: "2023-08-14",
-    //   country: "vietnam",
-    //   // views: 113,
-    //   // likes: 51,
-    //   writer: "sha22",
-    //   photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
-    // },
-    // {
-    //   id: 4,
-    //   // rcommets_cnt: 20,
-    //   title: "테스트 Title 4!",
-    //   weather: "테스트 날씨 4!",
-    //   body: "테스트 본문 4!",
-    //   created_at: "2023-08-14",
-    //   updated_at: "2023-08-14",
-    //   country: "vietnam",
-    //   // views: 113,
-    //   // likes: 51,
-    //   writer: "sha22",
-    //   photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
-    // },
-    // {
-    //   id: 5,
-    //   // rcommets_cnt: 20,
-    //   title: "테스트 Title 5!",
-    //   weather: "테스트 날씨 5!",
-    //   body: "테스트 본문 5!",
-    //   created_at: "2023-08-14",
-    //   updated_at: "2023-08-14",
-    //   country: "vietnam",
-    //   // views: 113,
-    //   // likes: 51,
-    //   writer: "sha22",
-    //   photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
-    // },
-    // {
-    //   id: 6,
-    //   // rcommets_cnt: 20,
-    //   title: "테스트 Title 6!",
-    //   weather: "테스트 날씨 6!",
-    //   body: "테스트 본문 6!",
-    //   created_at: "2023-08-14",
-    //   updated_at: "2023-08-14",
-    //   country: "korea",
-    //   // views: 113,
-    //   // likes: 51,
-    //   writer: "sha22",
-    //   photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
-    // },
-  ]);
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     if (searchTerm) {
@@ -121,6 +44,7 @@ const Companion = () => {
     try {
       const response = await axiosInstance.get("/api/companions/");
       setSearchResults(response.data);
+      console.log(searchResults);
     } catch (error) {
       console.log("ERROR", error);
     }
@@ -129,7 +53,9 @@ const Companion = () => {
   const handleSearch = async (searchTerm) => {
     try {
       // const response = await axiosInstance.get(`/api/search?q=${searchTerm}`);
-      const response = await axiosInstance.get(`/api/companions/?search=${searchTerm}`);
+      const response = await axiosInstance.get(
+        `/api/companions/?search=${searchTerm}`
+      );
       setSearchResults(response.data);
     } catch (error) {
       console.log("ERROR", error);
@@ -175,7 +101,7 @@ const Companion = () => {
   const handleReset = () => {
     setActiveBtn(null);
     setCurrentSort("new");
-  }
+  };
 
   return (
     <CompanionContainer>
@@ -224,7 +150,7 @@ const Companion = () => {
 
       {/* 화면고정 버튼 */}
       <FixedBtnBox>
-        <RegisterBtn onClick={() => navigate("/companion/write")}>
+        <RegisterBtn onClick={() => navigate("/companions/write")}>
           <RegisterImg src={PenIMG} alt="pen" />
           register
         </RegisterBtn>
@@ -281,10 +207,14 @@ const Companion = () => {
               ))
             )
           ) : (
-            searchResults.map((result, id) => (
-              <div key={id}>
+            // <CompanionCards
+            //   companion={{resul}}
+            // />
+            // )
+            searchResults.map((result) => (
+              <>
                 <CompanionCards companion={result} />
-              </div>
+              </>
             ))
           )}
 

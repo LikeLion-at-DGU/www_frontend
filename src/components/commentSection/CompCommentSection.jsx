@@ -20,7 +20,7 @@ import EditDeleteBtn from "../index/EditDeleteBtn";
 import { HideWrapper } from "../index/BtnStyle";
 
 
-export const CommentSection = ({ record_id }) => {
+export const CompCommentSection = ({ compenionId }) => {
   const [cmt, setCmt] = useState("");
   const [hide, setHide] = useState(false);
   const [cmtList, setCmtList] = useState([
@@ -42,7 +42,7 @@ export const CommentSection = ({ record_id }) => {
   useEffect(() => {
     // API 요청을 수행하는 부분
     axiosInstance
-      .get(`/api/records/${record_id}/rcomments`) // 댓글 리스트 GET URL
+      .get(`/api/records/${compenionId}/rcomments`) // 댓글 리스트 GET URL
       .then((response) => {
         setCmtList(...cmtList, response.data); // 받아온 데이터를 상태에 저장
       })

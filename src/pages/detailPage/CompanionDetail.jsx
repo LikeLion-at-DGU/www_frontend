@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from "react";
 import {
   CenterWriter,
@@ -20,16 +20,33 @@ import Views from '../../components/index/Views';
 import Comments from '../../components/index/Comments';
 import Like from '../../components/index/Like';
 import BookMark from '../../components/index/BookMark';
-import Reaction from '../../components/commentSection/Reaction';
-import { CommentSection } from '../../components/commentSection/CommentSection';
+import CompenionReaction from "../../components/commentSection/CompenionReaction";
+import { CompCommentSection } from "../../components/commentSection/CompCommentSection";
 import { PostWriter } from '../writePage/WriteStyle';
 import ListCards from '../recordPage/ListCards';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import CompanionCards from '../companionPage/CompanionCards';
+import axiosInstance from "../../api/axios"
 
 export default function CompanionDetail() {
+  let params = useParams();
+  console.log(params.detailId);
+  const [data, setData] = useState({});
   const [commentFold, setCommentFold] = useState(true);
   const [hide, setHide] = useState(false);
+
+  useEffect(() => {
+    // API 요청을 수행하는 부분
+    axiosInstance
+      .get(`/api/companions/${params.detailId}/`) 
+      .then((response) => {
+        setData(response.data); // 받아온 데이터를 상태에 저장
+        console.log("get : ", response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []); // 빈 배열을 넣어 처음 한 번만 실행되도록 설정
 
   return (
     <TopWrapper>
@@ -37,33 +54,32 @@ export default function CompanionDetail() {
         <CenterWriter>
           <p>by</p>
           <ProfileImg></ProfileImg>
+          {/* {data.writer} */}
           giogio222
           <City>Iyaly/milano</City>
         </CenterWriter>
         <BorderBottom>
           <Wrapper>
-            <PostSubTitle>Date: 9th,Sep</PostSubTitle>
-            <PostSubTitle>Continent: Asia</PostSubTitle>
-            <PostSubTitle>Country: vietnam</PostSubTitle>
-            <PostSubTitle>City: Hanoi</PostSubTitle>
+            <PostSubTitle>Date: {data.date}</PostSubTitle>
+            {/* <PostSubTitle>Date: 9th,Sep</PostSubTitle> */}
+            <PostSubTitle>Continent: {data.continent}</PostSubTitle>
+            {/* <PostSubTitle>Continent: Asia</PostSubTitle> */}
+            <PostSubTitle>Country: {data.country}</PostSubTitle>
+            {/* <PostSubTitle>Country: vietnam</PostSubTitle> */}
+            <PostSubTitle>City: {data.city}</PostSubTitle>
+            {/* <PostSubTitle>City: Hanoi</PostSubTitle> */}
           </Wrapper>
         </BorderBottom>
         <BorderBottom>
-          <PostTitle>Title: Today Hanoi nightscape!!</PostTitle>
+          <PostTitle>Title: {data.title}</PostTitle>
+          {/* <PostTitle>Title: Today Hanoi nightscape!!</PostTitle> */}
         </BorderBottom>
         <CompanionBody>
-          <BodyGuide>#Where we will meet?</BodyGuide>
-          <p>Dong Kinh Nghia Thuc Square</p>
-          <BodyGuide>#When we will meet?</BodyGuide>
-          <p>6pm!!</p>
-          <BodyGuide>#What we will do together?</BodyGuide>
-          <p>
-            eat dinner together and feel the atmosphere of Hanoi with nightscape
-          </p>
+          <div dangerouslySetInnerHTML={{ __html: data.body }} />
         </CompanionBody>
       </DetailWrapper>
-      <Reaction />
-      {commentFold && <CommentSection />}
+      <CompenionReaction compenionId={params.detailId} />
+      {commentFold && <CompCommentSection compenionId={params.detailId} />}
 
       <Margin />
       <AnotherTitle>
@@ -73,9 +89,9 @@ export default function CompanionDetail() {
         </Link>
       </AnotherTitle>
       <Box2 flexdirect="column" height="460px">
-        <CompanionCards/>
+        {/* <CompanionCards /> 다른 사람 글 띄우기
         <CompanionCards />
-        <CompanionCards />
+        <CompanionCards /> */}
       </Box2>
     </TopWrapper>
   );

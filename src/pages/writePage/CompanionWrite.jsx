@@ -31,11 +31,9 @@ const CompanionWrite = () => {
   const [continent, setContinent] = useState("");
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
-  const [content, setContent] =
-    useState(`Necessary information!(Please write buttom questions.)<br/>
-#Where we will meet?<br/><br/><br/>
-#When we will meet?<br/><br/><br/>            
-#What we will do together?<br/><br/>.`);
+  const [content, setContent] = useState(
+    `<h2><span style="color: rgb(136, 136, 136);">Necessary information!(Please write buttom questions.)</span></h2><h2><span style="color: rgb(136, 136, 136);">#Where we will meet?</span></h2><p><br></p><h2><br></h2><h2><br></h2><h2><span style="color: rgb(136, 136, 136);">#When we will meet?</span></h2><h2><br></h2><h2><br></h2><h2><span style="color: rgb(136, 136, 136);">#What we will do together?</span></h2><p><br></p><p>.</p>`
+  );
 
   // 동행 글 POST
   const handleSubmit = async (event) => {
@@ -43,9 +41,7 @@ const CompanionWrite = () => {
 
     try {
       const response = await axiosInstance.post("/api/companions/", {
-        //동행글 POST URL __확정 안됨
         title: title,
-        writer: 1,
         body: content,
         date: date,
         continent: continent,
@@ -102,7 +98,7 @@ const CompanionWrite = () => {
                     "city : ",
                     city,
                     "content : ",
-                    content
+                    content,                    
                   );
                 }}
               >
@@ -122,6 +118,7 @@ const CompanionWrite = () => {
                     name="date"
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
+                    required
                   />
                 </td>
                 <td>Continent: </td>
@@ -130,6 +127,7 @@ const CompanionWrite = () => {
                     name="continent"
                     value={continent}
                     onChange={(e) => setContinent(e.target.value)}
+                    required
                   >
                     <option value="none">--continent--</option>
                     <option value="asia">Asia</option>
@@ -145,6 +143,7 @@ const CompanionWrite = () => {
                     name="country"
                     value={country}
                     onChange={(e) => setCountry(e.target.value)}
+                    required
                   >
                     <option value="none">--country--</option>
                     <option value="korea">republic of korea</option>
@@ -159,6 +158,7 @@ const CompanionWrite = () => {
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
                     placeholder="--city--"
+                    required
                   />
                 </td>
               </tr>
@@ -169,6 +169,7 @@ const CompanionWrite = () => {
             value={title}
             placeholder="Title"
             name="title"
+            required
           />
           {/* ----------------- body ----------------- */}
           <ReactQuill
