@@ -18,24 +18,32 @@ import { useNavigate } from "react-router-dom";
 const TodayCards = () => {
 
   const record = {
-    id: "3w_record",
-    rcommets_cnt: 20,
-    title: "London life",
-    weather: "good!",
-    body: `The definition of friendships between opposite genders becomes
-            somewhat ambiguous depending on how we interpret the term “friend”.
-            It is entirely possible to be friends on a casual level, engaging in
-            common hobbies, academic pursuits, or daily activities. However, as
-            the level of intimacy deepens, it may become increasingly difficult
-            to distinguish between platonic feelings and romantic emotions, and`,
-    created_at: "2023-08-14",
-    updated_at: "2023-08-14",
-    views: 113,
-    likes: 51,
-    writer: "harry.lena",
-    tag: ["#서울_맛집2", "#룰루2"],
-    photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
-  };
+        "id": 1,
+        "rcomments_cnt": 4,
+        "title": "d",
+        "weather": "좋다..",
+        "date": "2023-08-17",
+        "body": "<p>d</p>",
+        "created_at": "2023-08-16T16:42:48.027801Z",
+        "updated_at": "2023-08-16T22:19:50.805409Z",
+        "views": 119,
+        "rlike_count": 0,
+        "where": "수잔나의앞치마",
+        "what": "아메리카노",
+        "how": "정말맛있다",
+        "tag_field": "#충무로_카페",
+        "card_photo_1": null,
+        "card_photo_2": null,
+        "card_photo_3": null,
+        "writer": 1,
+        "rlike": [],
+        "photos": [],
+        "record_scrap": [],
+        "tag": [
+            1
+        ],
+        "card_scrap": []
+    };
 
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
@@ -62,7 +70,8 @@ const TodayCards = () => {
         />
       </Img>
       <TitleBox padding="18px" juscon="space-between" isHovered={isHovered}>
-        <TodayTitle>{record.title}</TodayTitle>
+        <TodayTitle>London life</TodayTitle>
+        {/* <TodayTitle>{record.title}</TodayTitle> */}
         <Writer>
           <p>by</p>
           <ProfileImg></ProfileImg>
@@ -72,7 +81,8 @@ const TodayCards = () => {
         </Writer>
       </TitleBox>
       <HoverOverlay isHovered={isHovered}>
-        <TodayTitle>{record.title}</TodayTitle>
+        <TodayTitle>London life</TodayTitle>
+        {/* <TodayTitle>{record.title}</TodayTitle> */}
         <Writer>
           <p>by</p>
           <ProfileImg></ProfileImg>
@@ -80,14 +90,13 @@ const TodayCards = () => {
           <City>England/london</City>
         </Writer>
         <p>
-          {record.body}
-          {/* The definition of friendships between opposite genders becomes
-            somewhat ambiguous depending on how we interpret the term “friend”.
-            It is entirely possible to be friends on a casual level, engaging in
-            common hobbies, academic pursuits, or daily activities. However, as
-            the level of intimacy deepens, it may become increasingly difficult
-            to distinguish between platonic feelings and romantic emotions, and
-            ... */}
+          <div dangerouslySetInnerHTML={{ __html: record.body }} />
+          The definition of friendships between opposite genders becomes
+          somewhat ambiguous depending on how we interpret the term “friend”. It
+          is entirely possible to be friends on a casual level, engaging in
+          common hobbies, academic pursuits, or daily activities. However, as
+          the level of intimacy deepens, it may become increasingly difficult to
+          distinguish between platonic feelings and romantic emotions, and ...
         </p>
       </HoverOverlay>
     </TodayCard>

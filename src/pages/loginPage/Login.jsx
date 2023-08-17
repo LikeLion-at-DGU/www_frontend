@@ -10,6 +10,7 @@ import {
   StartBtn,
   LoginWrapper,
   LoginBtn,
+  InputForm2,
 } from "./LoginStyle";
 import axiosInstance from "../../../src/api/axios";
 

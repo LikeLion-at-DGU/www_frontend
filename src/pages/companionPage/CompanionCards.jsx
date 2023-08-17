@@ -39,7 +39,7 @@ const CompanionCards = ({ companion }) => {
         <Content>
           {/* <p>Let’s play together in Hanoi nightscape festival!</p> */}
           <div
-            dangerouslySetInnerHTML={{ __html: companion.body.slice(191, 250) }}
+            dangerouslySetInnerHTML={{ __html: companion.body.slice(192, 250) }}
           />
         </Content>
         <BtnBox juscon="space-between">
