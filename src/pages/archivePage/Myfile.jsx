@@ -146,7 +146,92 @@ const MyFile = () => {
   };
 
   // 레코드 스크랩
-  const [scrapRecord, setScrapRecord] = useState([]);
+  const [scrapRecord, setScrapRecord] = useState([
+    {
+      id: 1,
+      rcommets_cnt: 2,
+      title: "테스트 Title!",
+      weather: "테스트 날씨 !",
+      body: "테스트 본문 !",
+      created_at: "2023-08-14",
+      updated_at: "2023-08-14",
+      views: 13,
+      likes: 5,
+      writer: "sha",
+      tag: ["#서울_맛집", "#룰루"],
+      photos: ["testImgURL1", "testImgURL2", "testImgURL3"],
+    },
+    {
+      id: 2,
+      rcommets_cnt: 20,
+      title: "테스트 Title 2!",
+      weather: "테스트 날씨 2!",
+      body: "테스트 본문 2!",
+      created_at: "2023-08-14",
+      updated_at: "2023-08-14",
+      views: 113,
+      likes: 51,
+      writer: "sha22",
+      tag: ["#서울_맛집2", "#룰루2"],
+      photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
+    },
+    {
+      id: 3,
+      rcommets_cnt: 20,
+      title: "테스트 Title 2!",
+      weather: "테스트 날씨 2!",
+      body: "테스트 본문 2!",
+      created_at: "2023-08-14",
+      updated_at: "2023-08-14",
+      views: 113,
+      likes: 51,
+      writer: "sha22",
+      tag: ["#서울_맛집2", "#룰루2"],
+      photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
+    },
+    {
+      id: 4,
+      rcommets_cnt: 20,
+      title: "테스트 Title 2!",
+      weather: "테스트 날씨 2!",
+      body: "테스트 본문 2!",
+      created_at: "2023-08-14",
+      updated_at: "2023-08-14",
+      views: 113,
+      likes: 51,
+      writer: "sha22",
+      tag: ["#서울_맛집2", "#룰루2"],
+      photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
+    },
+    {
+      id: 5,
+      rcommets_cnt: 20,
+      title: "테스트 Title 2!",
+      weather: "테스트 날씨 2!",
+      body: "테스트 본문 2!",
+      created_at: "2023-08-14",
+      updated_at: "2023-08-14",
+      views: 113,
+      likes: 51,
+      writer: "sha22",
+      tag: ["#서울_맛집2", "#룰루2"],
+      photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
+    },
+    {
+      id: 6,
+      rcommets_cnt: 20,
+      title: "테스트 Title 2!",
+      weather: "테스트 날씨 2!",
+      body: "테스트 본문 2!",
+      created_at: "2023-08-14",
+      updated_at: "2023-08-14",
+      views: 113,
+      likes: 51,
+      writer: "sha22",
+      tag: ["#서울_맛집2", "#룰루2"],
+      photos: ["2testImgURL1", "2testImgURL2", "2testImgURL3"],
+    },
+  ]);
   // 레코드 스크랩 리스트
   useEffect(() => {
     axiosInstance
@@ -229,14 +314,15 @@ const MyFile = () => {
 이미지가 선택됐을 때 스와이퍼 안에 콘텐츠 카드들을 넣으려고 했음
 여기서 SearchResults 데이터가 안 불러와지는 중
 그리고 마이레코드 데이터 불러오는 로직이 필요함 */}
-        {selectedImage === "DailyRecord" && (
-          <SlideContainer>
-            <SearchResults
-              style={{ position: "absolute", zIndex: 3 }}
-              record={scrapRecord}
-            />
-          </SlideContainer>
-        )}
+        {selectedImage === "DailyRecord" &&
+          scrapRecord.map((record) => {
+            <SlideContainer>
+              <SearchResults
+                style={{ position: "absolute", zIndex: 3 }}
+                record={record}
+              />
+            </SlideContainer>;
+          })}
 
         {selectedImage === "DataCard" && (
           <SlideContainer>

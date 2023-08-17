@@ -203,7 +203,6 @@ const OneAndVoteAll = () => {
       });
   }, []);
 
-  
   const [selectedOption, setSelectedOption] = useState(null);
 
   const handleOptionChange = (optionId) => {
@@ -269,11 +268,11 @@ const OneAndVoteAll = () => {
             <FriendCards key={record.id} record={record} />
           ))} */}
           {recordList
-          .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-          .slice(0, 2)
-          .map((record) => (
-            <FriendCards key={record.id} record={record} />
-          ))}
+            .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+            .slice(0, 2)
+            .map((record) => (
+              <FriendCards key={record.id} record={record} />
+            ))}
         </FriendData>
       </OneAndOnlyContainer>
 
