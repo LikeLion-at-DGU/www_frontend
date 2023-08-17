@@ -6,7 +6,7 @@ import Like from "../../components/index/Like";
 // import CityName from "../../components/index/CityName";
 // import DateName from "../../components/index/DateName";
 import useScrollFadeIn from "./useScroll";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import DateName from "./buddyBtn/DateName";
 import CountryName from "./buddyBtn/CountryName";
 import CityName from "./buddyBtn/CityName";
@@ -32,6 +32,7 @@ const TravelBoxChange = styled(TravelBox)`
 
 const Buddy = ({ data, isEven }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const navigate = useNavigate();
 
   const truncatedText =
     data && data.length > 30 ? data.slice(0, 30) + "..." : data;
@@ -61,7 +62,10 @@ const Buddy = ({ data, isEven }) => {
   }, []);
 
   return (
-    <BuddyStyle isEven={isEven}>
+    <BuddyStyle
+      onClick={() => navigate(`/companions/${data.id}/`)}
+      isEven={isEven}
+    >
       <Test
         className={`visible-trigger ${isVisible ? "visible" : ""}`}
         ref={fadeIn.ref}

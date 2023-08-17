@@ -22,23 +22,70 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../../src/api/axios";
 
 const ListCards = ({ record }) => {
+  console.log("리수투카드", record.record_comments||"없다");
   /*
 //여기부터는 임의 데이터입니당 - 현아
 const ListCards = () => {
-  const record = {
-    id: 1,
-    rcommets_cnt: 2,
-    title: "테스트 Title ListCard!",
-    weather: "테스트 날씨 !",
-    body: "테스트 본문 !",
-    created_at: "2023-08-14",
-    updated_at: "2023-08-14",
-    views: 13,
-    likes: 5,
-    writer: "sha",
-    tag: ["#서울_맛집", "#룰루"],
-    photos: ["testImgURL1", "testImgURL2", "testImgURL3"],
-  };
+  const record =      "id": 1,
+    "record_comments": [
+        {
+            "id": 1,
+            "record": "d",
+            "content": "ddd",
+            "rcomment_like_count": 0,
+            "writer": 1,
+            "rcomment_like": []
+        },
+        {
+            "id": 2,
+            "record": "d",
+            "content": "ddd",
+            "rcomment_like_count": 0,
+            "writer": 1,
+            "rcomment_like": []
+        },
+        {
+            "id": 3,
+            "record": "d",
+            "content": "hyhhh",
+            "rcomment_like_count": 0,
+            "writer": 1,
+            "rcomment_like": []
+        },
+        {
+            "id": 4,
+            "record": "d",
+            "content": "ddd",
+            "rcomment_like_count": 0,
+            "writer": 1,
+            "rcomment_like": []
+        }
+    ],
+    "card_photo_1": null,
+    "card_photo_2": null,
+    "card_photo_3": null,
+    "title": "d",
+    "weather": "좋다..",
+    "date": "2023-08-17",
+    "body": "<p>d</p>",
+    "created_at": "2023-08-16T16:42:48.027801Z",
+    "updated_at": "2023-08-17T09:45:31.731808Z",
+    "views": 134,
+    "rlike_count": 0,
+    "where": "수잔나의앞치마",
+    "what": "아메리카노",
+    "how": "정말맛있다",
+    "tag_field": "#충무로_카페",
+    "writer": 1,
+    "rlike": [],
+    "photos": [],
+    "record_scrap": [],
+    "tag": [
+        1
+    ],
+    "card_scrap": []
+}
+
   //여기까지 임의 데이터입니당 - 현아
   */
 
@@ -46,7 +93,7 @@ const ListCards = () => {
 
   return (
     // 내 친구의 record list를 가져와야 함 ...
-    <ListCard onClick={() => navigate(`/record/${record.id}`)}>
+    <ListCard onClick={() => navigate(`/records/${record.id}`)}>
       <Text padding="10px 25px" height="142px" width="980px">
         <ListTitle>
           {/* <p>Unexpected luck!!</p> */}
@@ -57,9 +104,9 @@ const ListCards = () => {
             {/* <HashTag>#milano_cafe</HashTag> */}
             {record.tag &&
               record.tag
-                .slice(0, 3)
+                // .slice(0, 3)
                 .map((hashtag, index) => (
-                  <HashTag key={index}>#{hashtag}</HashTag>
+                  <HashTag key={index}>{hashtag}</HashTag>
                 ))}
           </TagBox>
         </ListTitle>
@@ -71,7 +118,7 @@ const ListCards = () => {
             It is entirely possible to be friends on a casual level, engaging in
             common hobbies... */}
           {/* 최대 몇자? */}
-          {record.body}
+        <div dangerouslySetInnerHTML={{ __html: record.body }} />
         </Content>
         <BtnBox juscon="space-between">
           <Views
@@ -101,11 +148,10 @@ const ListCards = () => {
         />
       </Text>
       <Img width="140px" height="140px">
-        {/* <Image src={recordImg} /> */}
         {/* 글 내의 첫번째 사진
         없을 시 첫번째 카드의 첫번째 카드
         없을 시 기본 로고 이미지 */}
-        <Image src={record.photos} />
+        <Image src={record.card_photo_1} />
       </Img>
     </ListCard>
   );

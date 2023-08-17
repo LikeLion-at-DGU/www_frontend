@@ -14,6 +14,7 @@ import Search from "./pages/searchPage/Search";
 import CompanionDetail from "./pages/detailPage/CompanionDetail";
 import CompanionWrite from "./pages/writePage/CompanionWrite";
 import Test from "./pages/Test";
+import TestLogin from "./pages/loginPage/TestLogin";
 
 const Router = createBrowserRouter([
   {
@@ -72,6 +73,10 @@ const Router = createBrowserRouter([
   {
     path: "input",
     element: <Input />,
+  },
+  {
+    path: "testlogin",
+    element: <TestLogin />,
   },
 ]);
 

@@ -54,10 +54,12 @@ export const LoginWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   height: 60%;
 `;
-
+export const TestLoginWrapper = styled(LoginWrapper)`
+  height: 40vh;
+`
 export const StartBtn = styled.button`
   font-family: "Roboto Mono";
   width: 385px;
