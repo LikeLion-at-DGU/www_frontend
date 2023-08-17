@@ -60,8 +60,8 @@ const Companion = () => {
     3: "Europe",
     4: "Oceania",
     // 띄어쓰기 어떻게 되는지 확인해야함
-    5: "North America",
-    6: "South America",
+    5: "NorthAmerica",
+    6: "SouthAmerica",
   }
   const getContinentName = (continentId) => {
     return continentIdToName[continentId];
@@ -170,10 +170,6 @@ const Companion = () => {
               ))
             )
           ) : (
-            // <CompanionCards
-            //   companion={{resul}}
-            // />
-            // )
             searchResults.map((result) => (
               <>
                 <CompanionCards companion={result} />

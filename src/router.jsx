@@ -25,19 +25,19 @@ const Router = createBrowserRouter([
         element: <Mainpage />,
       },
       {
-        path: "record/write",
+        path: "records/write",
         element: <Write />,
       },
       {
-        path: "record/:detailId",
+        path: "records/:detailId",
         element: <Detail />,
       },
       {
-        path: "record/search",
+        path: "records/search",
         element: <Search />,
       },
       {
-        path: "record",
+        path: "records",
         element: <Record />,
       },
       {

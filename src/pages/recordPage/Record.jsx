@@ -94,11 +94,11 @@ const Record = () => {
       <Box flexdirect="row" margin="20px 0 50px 0" width="1122px">
         <Box flexdirect="column" width="561px">
           <Box flexdirect="column" height="155px">
-            <Btn onClick={() => navigate("/record/write")} bgcol="#92D3F5">
+            <Btn onClick={() => navigate("/records/write")} bgcol="#92D3F5">
               <FontAwesomeIcon icon={faPenNib} />
               <p style={{ margin: "0 10px" }}>record daily life</p>
             </Btn>
-            <Btn onClick={() => navigate("/record/search")} bgcol="#F2C94C">
+            <Btn onClick={() => navigate("/records/search")} bgcol="#F2C94C">
               <FontAwesomeIcon icon={faSearch} />
               <p style={{ margin: "0 10px" }}>search daily life</p>
             </Btn>
@@ -121,7 +121,7 @@ const Record = () => {
                 margin: "0 15px",
                 fontSize: "1.25rem",
               }}
-              onClick={() => navigate("/record/search")}
+              onClick={() => navigate("/records/search")}
             >
               + view more
             </p>

@@ -11,7 +11,7 @@ export const Nav = () => {
       <Link to={"/"}>
         <LogoImg src={logo} alt="logo" />
       </Link>
-      <NavSection to={"record"}>
+      <NavSection to={"records"}>
         World's
         <br />
         Daily Record
