@@ -15,17 +15,19 @@ const SearchBar = ({ onClick }) => {
         setSearchType(type);
         setSearchValue("");
     };
-    const handleChange = (e) => {
-        setSearchValue(e.target.value);
-        navigate(`/search?q=${e.target.value}`);
-    };
+    // const handleChange = (e) => {
+    //     setSearchValue(e.target.value);
+    //     navigate(`/search?q=${e.target.value}`);
+    // };
 
     // url에 검색어추가
     const handleSearchURL = () => {
         if (searchValue) {
             onClick(searchValue);
+            // setSearchValue("");
             // handleReset();
             navigate(`/records/?search=${searchValue}`)
+            // navigate(`/search?q=${searchValue}`);
         }
     }
 

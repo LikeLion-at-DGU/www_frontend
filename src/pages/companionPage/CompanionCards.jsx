@@ -23,7 +23,7 @@ const CompanionCards = ({ companion }) => {
 
   return (
     <CompanionCard onClick={() => navigate(`/companions/${companion.id}`)}>
-      <CompanionText width="626px" height="124px" padding="10px 20px">
+      <CompanionText width="748px" height="124px" padding="10px 20px">
         <CompanionTitle>
           {/* <p>Today Hanoi nightscape!!</p> */}
           <p>{companion.title}</p>
@@ -60,10 +60,6 @@ const CompanionCards = ({ companion }) => {
           /> */}
         </BtnBox>
       </CompanionText>
-      <Img width="122px" height="122px">
-        {/* <Image src={CompanionImg} /> */}
-        <Image src={companion.photos} />
-      </Img>
     </CompanionCard>
   );
 };
