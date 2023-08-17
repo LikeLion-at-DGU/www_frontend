@@ -83,7 +83,9 @@ const Mainpage = () => {
             <img src={bird} alt="bird" />
             <p>Finding Travel buddy</p>
           </TravelTitle>
-          {buddyResults.map((item, index) => (
+          {buddyResults
+          .slice(0, 4)
+          .map((item, index) => (
             <Buddy
               key={item.id}
               data={item}
