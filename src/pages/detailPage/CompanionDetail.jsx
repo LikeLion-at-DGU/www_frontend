@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-import { useState } from "react";
+import React, { useEffect, useState } from 'react'
 import {
   CenterWriter,
   DetailWrapper,
@@ -25,11 +24,13 @@ export default function CompanionDetail() {
   const [data, setData] = useState({});
   const [commentFold, setCommentFold] = useState(true);
   const [hide, setHide] = useState(false);
+  // 맨아래 리스트
+  const [companionList, setCompanionList] = useState([]);
 
   useEffect(() => {
     // API 요청을 수행하는 부분
     axiosInstance
-      .get(`/api/companions/${params.detailId}/`) 
+      .get(`/api/companions/${params.detailId}/`)
       .then((response) => {
         setData(response.data); // 받아온 데이터를 상태에 저장
         console.log("get : ", response.data);
@@ -37,7 +38,21 @@ export default function CompanionDetail() {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, []); // 빈 배열을 넣어 처음 한 번만 실행되도록 설정
+
+    // 맨아래 리스트
+    axiosInstance
+      .get('/api/companions/')
+      .then((response) => {
+        // 현재 글 빼고 보이게
+        const filteredCompanions = response.data.filter(companion => companion.id !== params.detailId);
+        const firstFiveCompanions = filteredCompanions.slice(0, 5);
+        setCompanionList(firstFiveCompanions);
+      })
+      .catch((error) => {
+        console.error("Error fetching related data:", error);
+      });
+  }, [params.detailId]);
+  // }, []); // 빈 배열을 넣어 처음 한 번만 실행되도록 설정
 
   return (
     <TopWrapper>
@@ -83,10 +98,14 @@ export default function CompanionDetail() {
           <p>+ back to list</p>
         </Link>
       </AnotherTitle>
-      <Box2 flexdirect="column" height="460px">
+      <Box2 flexdirect="column">
+      {/* height="460px" */}
         {/* <CompanionCards /> 다른 사람 글 띄우기
         <CompanionCards />
         <CompanionCards /> */}
+        {companionList.map((companion) => (
+          <CompanionCards key={companion.id} companion={companion} />
+        ))}
       </Box2>
     </TopWrapper>
   );
