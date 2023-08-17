@@ -58,7 +58,7 @@ const TodayCards = () => {
 
   return (
     <TodayCard
-      onClick={() => navigate(`/record/${record.id}`)}
+      onClick={() => navigate(`/records/${record.id}`)}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

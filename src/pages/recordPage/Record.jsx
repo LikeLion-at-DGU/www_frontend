@@ -19,7 +19,7 @@ const Record = () => {
     {
         id: 1,
         rcomments_cnt: 4,
-        title: "d",
+        title: "이건 가짜야!!",
         weather: "좋다..",
         date: "2023-08-17",
         body: "<p>d</p>",
@@ -46,7 +46,7 @@ const Record = () => {
     {
         id: 2,
         rcomments_cnt: 0,
-        title: "레코드 해낼거당",
+        title: "얘도 가짜야!!",
         weather: "굳ㄱ두",
         date: "2023-08-16",
         body: "냐냐냐",

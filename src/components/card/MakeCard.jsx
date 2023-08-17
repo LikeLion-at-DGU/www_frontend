@@ -29,27 +29,33 @@ const MakeCard = ({ setModalOpen, setCardInfo }) => {
   const [tag, setTag] = useState([]);
   const modal = useRef();
 
-  // .record_cards => id,record,where,what,how,card_photo_1,2,3,tag,tag_field
-
   // 모달창 닫기
   const handleCloseModal = (event) => {
     if (modal.current && !modal.current.contains(event.target)) {
       setModalOpen(false);
     }
   };
+  const formData = new FormData();
   // 카드 내 이미지 처리
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     console.log("file은 이거야.. ", file);
 
+    //
+    formData.append("img",file);
+    formData.append("enctype","multipart/form-data");
+    //
+/*
     if (file) {
       const imageURL = URL.createObjectURL(file);
       console.log("imageURL 이거야.. ", imageURL);
-      setImages([...images, imageURL]);
+      setImages((prevImages) => [...prevImages, imageURL]);
+      // setImages([...images, imageURL]);
       // setImages([...images, file]);
       console.log("setImages 이거야.. ", images);
     }
     // console.log("images은 이거야.. ", images);
+*/
   };
 
   // 이미지 업로드 선택
@@ -57,7 +63,8 @@ const MakeCard = ({ setModalOpen, setCardInfo }) => {
     document.querySelector('input[type="file"]').click();
   };
 
-  //카드 데이터 전달
+  /*
+  //카드 데이터 전달 - formData형식
   const handleSubmit = () => {
     const formData = new FormData();
 
@@ -74,7 +81,23 @@ const MakeCard = ({ setModalOpen, setCardInfo }) => {
       setCardInfo(formData);
       setModalOpen(false);
     };
+  */
 
+  //카드 데이터 전달
+  const handleSubmit = () => {
+    const cardData = {
+      where: where,
+      what: what,
+      how: how,
+      tag_field: tag,
+      card_photo_1: images[0] || "",
+      card_photo_2: images[1] || "",
+      card_photo_3: images[2] || "",
+    };
+    setCardInfo(formData);
+    // setCardInfo(cardData);
+    setModalOpen(false);
+  };
 
   /*
   // submit 시 로직
@@ -130,74 +153,74 @@ const MakeCard = ({ setModalOpen, setCardInfo }) => {
     <ModalContainer onClick={handleCloseModal}>
       {/* <form onSubmit={handleSubmit}> */}
       {/* <form onSubmit={handleSubmit} encType="multipart/form-data"> */}
-        <CardModal ref={modal}>
-          <CardBorder>
-            <CardWWW>WHERE: &nbsp; </CardWWW>
-            <CardInput
-              type="text"
-              name="where"
-              value={where}
-              onChange={(e) => setWhere(e.target.value)}
-              required
+      <CardModal ref={modal}>
+        <CardBorder>
+          <CardWWW>WHERE: &nbsp; </CardWWW>
+          <CardInput
+            type="text"
+            name="where"
+            value={where}
+            onChange={(e) => setWhere(e.target.value)}
+            required
+          />
+        </CardBorder>
+        <CardBorder>
+          <CardWWW>WHAT: &nbsp; </CardWWW>
+          <CardInput
+            type="text"
+            name="what"
+            value={what}
+            onChange={(e) => setWhat(e.target.value)}
+            required
+          />
+        </CardBorder>
+        <CardBorder>
+          <CardWWW>HOW(TIPS!): &nbsp; </CardWWW>
+          <CardInput
+            type="text"
+            name="how"
+            value={how}
+            onChange={(e) => setHow(e.target.value)}
+            required
+          />
+        </CardBorder>
+        <ImgCardBorder>
+          <UproadImg onClick={openFilePicker}>
+            <span className="material-symbols-outlined">add_a_photo</span>
+            <input
+              type="file"
+              name="image"
+              accept="image/*"
+              onChange={handleImageChange}
+              style={{ visibility: "hidden" }}
             />
-          </CardBorder>
-          <CardBorder>
-            <CardWWW>WHAT: &nbsp; </CardWWW>
-            <CardInput
-              type="text"
-              name="what"
-              value={what}
-              onChange={(e) => setWhat(e.target.value)}
-              required
+          </UproadImg>
+          {images.slice(0, 3).map((imageURL, index) => (
+            <CardImg
+              key={index}
+              src={imageURL}
+              // src={URL.createObjectURL(imageURL)}
+              alt="post img"
             />
-          </CardBorder>
-          <CardBorder>
-            <CardWWW>HOW(TIPS!): &nbsp; </CardWWW>
-            <CardInput
+          ))}
+        </ImgCardBorder>
+        <CardInfo>
+          <Wrapper>
+            <PenImg src={PenIMG} alt="pen" />
+            <HashTag
               type="text"
-              name="how"
-              value={how}
-              onChange={(e) => setHow(e.target.value)}
+              name="tag"
+              value={tag}
+              onChange={(e) => setTag(e.target.value)}
+              placeholder="#seoul_restaurant"
               required
-            />
-          </CardBorder>
-          <ImgCardBorder>
-            <UproadImg onClick={openFilePicker}>
-              <span className="material-symbols-outlined">add_a_photo</span>
-              <input
-                type="file"
-                name="image"
-                accept="image/*"
-                onChange={handleImageChange}
-                style={{ visibility: "hidden" }}
-              />
-            </UproadImg>
-            {images.slice(0, 3).map((imageURL, index) => (
-              <CardImg
-                key={index}
-                src={imageURL}
-                // src={URL.createObjectURL(imageURL)}
-                alt="post img"
-              />
-            ))}
-          </ImgCardBorder>
-          <CardInfo>
-            <Wrapper>
-              <PenImg src={PenIMG} alt="pen" />
-              <HashTag
-                type="text"
-                name="tag"
-                value={tag}
-                onChange={(e) => setTag(e.target.value)}
-                placeholder="#seoul_restaurant"
-                required
-              ></HashTag>
-            </Wrapper>
-            <CardSubmit onClick={handleSubmit}>save</CardSubmit>
-            {/* <CardSubmit type="submit">save</CardSubmit> */}
-          </CardInfo>
-        </CardModal>
-        {/* </form> */}
+            ></HashTag>
+          </Wrapper>
+          <CardSubmit onClick={handleSubmit}>save</CardSubmit>
+          {/* <CardSubmit type="submit">save</CardSubmit> */}
+        </CardInfo>
+      </CardModal>
+      {/* </form> */}
       {/* </form> */}
     </ModalContainer>
   );

@@ -107,7 +107,7 @@ const [post, setPost] = useState({
         setCommentFold={setCommentFold}
         commentFold={commentFold}
       />
-      {commentFold && <CommentSection record={post} />}
+      {commentFold && <CommentSection record_id={post.id} />}
 
       <Margin />
       <PostWriter>

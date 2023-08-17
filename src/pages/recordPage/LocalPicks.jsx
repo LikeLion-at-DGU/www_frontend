@@ -42,7 +42,7 @@ const LocalPicks = ({ card }) => {
 
   return (
     <LocalPick
-      onClick={() => navigate(`/record/${card.id}`)}
+      onClick={() => navigate(`/records/${card.id}`)}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
