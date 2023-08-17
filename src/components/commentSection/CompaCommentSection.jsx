@@ -59,7 +59,6 @@ export const CompaCommentSection = ({ companion_id }) => {
       const response = await axiosInstance.post(
         `/api/companions/${companion_id}/cocomments/`, // 댓글 리스트 POST
         {
-          writer: 1,
           content: cmt,
         }
       );

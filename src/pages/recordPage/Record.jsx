@@ -143,6 +143,12 @@ const Record = () => {
       <Box flexdirect="column" height="832px" width="1122px">
         <SubTitle>The secret of locals!</SubTitle>
         <Box style={{ flexWrap: "wrap" }} height="750px" juscon="space-between">
+          {/* {recordList
+            .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+            .slice(1, Math.min(recordList.length, 3))
+            .map((record) => (
+              <LocalPicks key={record.id} record={record} />
+            ))} */}
           <LocalPicks />
           <LocalPicks />
           <LocalPicks />

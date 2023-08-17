@@ -18,8 +18,20 @@ import { Margin } from "../detailPage/DetailStyle";
 
 const TestLogin = () => {
   let navigate = useNavigate();
-  const [id,setId] = useState("");
-  const [pw,setPw] = useState("");
+  const [id, setId] = useState("");
+  const [pw, setPw] = useState("");
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axiosInstance.post(
+        "/accounts/testlogin"
+      );
+      console.log("updated:", response.data);
+    } catch (error) {
+      console.error("Error updating:", error);
+    }
+  };
 
   return (
     <Container>
@@ -35,25 +47,27 @@ const TestLogin = () => {
           Everybody needs your record!
         </Text>
         <TestLoginWrapper>
-          <InputForm2
-            type="text"
-            name="id"
-            value={id}
-            onChange={(e) => setId(e.target.value)}
-            placeholder="input test ID"
-          />
-          <InputForm2
-            type="password"
-            name="pw"
-            value={pw}
-            onChange={(e) => setPw(e.target.value)}
-            placeholder="input test PW"
-          />
-          <StartBtn onClick={()=>navigate("/")}>
-            {/* <LoginBtn onClick={handleGoogleLogin}> */}
-            {/* <LoginBtn onClick={() => window.location.href(url)}> */}
-            Test now!
-          </StartBtn>
+          <form onSubmit={handleSubmit}>
+            {/* <InputForm2
+              type="text"
+              name="id"
+              value={id}
+              onChange={(e) => setId(e.target.value)}
+              placeholder="input test ID"
+            />
+            <InputForm2
+              type="password"
+              name="pw"
+              value={pw}
+              onChange={(e) => setPw(e.target.value)}
+              placeholder="input test PW"
+            /> */}
+            <StartBtn type="submit" >
+              {/* <LoginBtn onClick={handleGoogleLogin}> */}
+              {/* <LoginBtn onClick={() => window.location.href(url)}> */}
+              Test now!
+            </StartBtn>
+          </form>
         </TestLoginWrapper>
       </WhiteBox>
     </Container>

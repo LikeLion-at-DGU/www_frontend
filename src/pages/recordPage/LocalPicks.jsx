@@ -12,19 +12,8 @@ import { useNavigate } from "react-router-dom";
 
 // const LocalPicks = ({ record_cards }) => {
 //여기부터는 임의 데이터입니당 - 현아
-const LocalPicks = ({ card }) => {
-  const record_cards = {
-    id: 1,
-    record: 1,
-    where: "1 where",
-    what: "1 what",
-    how: "how",
-    card_photo_1: "photo1",
-    card_photo_2: "photo2",
-    card_photo_3: "photo3",
-    tag: ["tag1", "tag2", "tag3"],
-    tag_field: "tag field",
-  };
+const LocalPicks = ({ record }) => {
+  console.log(record);
 
   //여기까지 임의 데이터입니당 - 현아
   const navigate = useNavigate();
