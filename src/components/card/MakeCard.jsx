@@ -35,15 +35,15 @@ const MakeCard = ({ setModalOpen, setCardInfo }) => {
       setModalOpen(false);
     }
   };
-  const formData = new FormData();
   // 카드 내 이미지 처리
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     console.log("file은 이거야.. ", file);
-
+    
     //
-    formData.append("img",file);
-    formData.append("enctype","multipart/form-data");
+    // const formData = new FormData();
+    // formData.append("img",file);
+    // formData.append("enctype","multipart/form-data");
     //
 /*
     if (file) {
@@ -94,8 +94,8 @@ const MakeCard = ({ setModalOpen, setCardInfo }) => {
       card_photo_2: images[1] || "",
       card_photo_3: images[2] || "",
     };
-    setCardInfo(formData);
-    // setCardInfo(cardData);
+    // setCardInfo(formData);
+    setCardInfo(cardData);
     setModalOpen(false);
   };
 

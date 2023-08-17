@@ -15,62 +15,31 @@ import axiosInstance from "../../../src/api/axios";
 
 const Record = () => {
   const navigate = useNavigate();
-  const [recordList, setRecordList] = useState([
+  const [local, setLocal] = useState([
     {
-        id: 1,
-        rcomments_cnt: 4,
-        title: "이건 가짜야!!",
-        weather: "좋다..",
-        date: "2023-08-17",
-        body: "<p>d</p>",
-        created_at: "2023-08-16T16:42:48.027801Z",
-        updated_at: "2023-08-16T22:19:50.805409Z",
-        views: 119,
-        rlike_count: 0,
-        where: "수잔나의앞치마",
-        what: "아메리카노",
-        how: "정말맛있다",
-        tag_field: "#충무로_카페",
-        card_photo_1: null,
-        card_photo_2: null,
-        card_photo_3: null,
-        writer: 1,
-        rlike: [],
-        photos: [],
-        record_scrap: [],
-        tag: [
-            1
-        ],
-        card_scrap: []
+      where: "김강민",
+      what: "김강민",
+      how: "김강민",
+      tag_field: "김강민",
+      tag: [],
+      card_photo_1: null,
+      card_photo_2: null,
+      card_photo_3: null,
+      card_scrap: [],
     },
     {
-        id: 2,
-        rcomments_cnt: 0,
-        title: "얘도 가짜야!!",
-        weather: "굳ㄱ두",
-        date: "2023-08-16",
-        body: "냐냐냐",
-        created_at: "2023-08-16T18:37:35.208313Z",
-        updated_at: "2023-08-16T22:01:42.149224Z",
-        views: 267,
-        rlike_count: 1,
-        where: "어디",
-        what: "뭐를",
-        how: "어캐",
-        tag_field: "#집 #가고싶다",
-        card_photo_1: "http://127.0.0.1:8000/media/None/CSS.png",
-        card_photo_2: "http://127.0.0.1:8000/media/None/django.png",
-        card_photo_3: "http://127.0.0.1:8000/media/None/flask.png",
-        writer: 1,
-        rlike: [
-            1
-        ],
-        photos: [],
-        record_scrap: [],
-        tag: [],
-        card_scrap: []
+      where: "수잔나의앞치마",
+      what: "아메리카노",
+      how: "정말맛있다",
+      tag_field: "#충무로_카페",
+      tag: ["충무로_카페"],
+      card_photo_1: null,
+      card_photo_2: null,
+      card_photo_3: null,
+      card_scrap: [],
     },
-  ]);
+  ]); 
+  const [recordList, setRecordList] = useState([]);
 
   useEffect(() => {
     axiosInstance
@@ -79,10 +48,20 @@ const Record = () => {
         let result = response.data;
         setRecordList(result);
         console.log("data", response.data);
-        console.log("레코드", recordList);
-      }
-      
-      )
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    axiosInstance
+      .get("/api/card/")
+      .then((response) => {
+        let result = response.data;
+        setLocal(result);
+        console.log("로컬픽", response.data);
+      })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
@@ -149,14 +128,14 @@ const Record = () => {
             .map((record) => (
               <LocalPicks key={record.id} record={record} />
             ))} */}
-          <LocalPicks />
-          <LocalPicks />
-          <LocalPicks />
+          <LocalPicks card={local[0]}/>
+          {/* <LocalPicks />
+          <LocalPicks /> */}
         </Box>
         <Box style={{ flexWrap: "wrap" }} height="750px" juscon="space-between">
+          {/* <LocalPicks />
           <LocalPicks />
-          <LocalPicks />
-          <LocalPicks />
+          <LocalPicks /> */}
         </Box>
       </Box>
     </RecordContainer>
