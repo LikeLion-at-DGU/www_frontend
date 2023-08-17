@@ -43,9 +43,10 @@ export default function CompanionDetail() {
     axiosInstance
       .get('/api/companions/')
       .then((response) => {
-        const allCompanionList = response.data;
-        const fiveCompanionList = allCompanionList.slice(0.5);
-        setCompanionList(fiveCompanionList);
+        // 현재 글 빼고 보이게
+        const filteredCompanions = response.data.filter(companion => companion.id !== params.detailId);
+        const firstFiveCompanions = filteredCompanions.slice(0, 5);
+        setCompanionList(firstFiveCompanions);
       })
       .catch((error) => {
         console.error("Error fetching related data:", error);
