@@ -40,7 +40,7 @@ const FriendCards = () => {
   */
 
   return (
-    <FriendCard onClick={() => navigate(`/record/${record.id}`)}>
+    <FriendCard onClick={() => navigate(`/records/${record.id}`)}>
       <CardBox>
         <Img width="122px" height="100%">
           {/* <Image leftradius="20px" src={recordImg} /> */}
