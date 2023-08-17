@@ -81,7 +81,7 @@ const Write = () => {
       console.error("Error creating post:", error);
     }
   };
-
+/*
   //  2번
   const handleImageUpload = () => {
     const input = document.createElement("input");
@@ -122,7 +122,7 @@ const Write = () => {
       return null;
     }
   };
-
+*/
   // quill에서 사용할 모듈
   // useMemo를 사용하여 modules가 렌더링 시 에디터가 사라지는 버그를 방지
   const modules = useMemo(() => {
@@ -135,16 +135,19 @@ const Write = () => {
           [{ list: "ordered" }, { list: "bullet" }],
           [{ color: [] }, { background: [] }],
           [{ align: [] }],
-          [{ align: [] }, "image"],
+          // [{ align: [] }, "image"],
           // [{ align: [] }, "image", "card"],
         ],
+        /*
         handlers: {
           image: handleImageUpload, // 이미지 업로드 핸들러 연결
           //   card: handleCardUpload, // 카드 업로드 핸들러 연결
         },
+        */
       },
     };
   }, []);
+  
   useEffect(() => {
     console.log(cardInfo);
   }, [cardInfo]);
@@ -153,12 +156,14 @@ const Write = () => {
     <>
       <TopWriteWrapper>
         {modalOpen && (
-          <MakeCard
-            setModalOpen={setModalOpen}
-            setCardInfo={setCardInfo}
-          />
+          <MakeCard setModalOpen={setModalOpen} setCardInfo={setCardInfo} />
         )}
-        <form style={{ width: "100%" }} onSubmit={handleSubmit}>
+        <form
+          style={{ width: "100%" }}
+          method="post"
+          onSubmit={handleSubmit}
+          enctype="multipart/form-data"
+        >
           {/* 글쓴이 , register */}
           <WriteWrapper>
             <PostWriter>

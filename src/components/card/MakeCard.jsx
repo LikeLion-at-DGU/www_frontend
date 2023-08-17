@@ -41,11 +41,13 @@ const MakeCard = ({ setModalOpen, setCardInfo }) => {
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     console.log("file은 이거야.. ", file);
+
     if (file) {
       const imageURL = URL.createObjectURL(file);
       console.log("imageURL 이거야.. ", imageURL);
       setImages([...images, imageURL]);
       // setImages([...images, file]);
+      console.log("setImages 이거야.. ", images);
     }
     // console.log("images은 이거야.. ", images);
   };
@@ -56,25 +58,23 @@ const MakeCard = ({ setModalOpen, setCardInfo }) => {
   };
 
   //카드 데이터 전달
-  const handleSubmit = (e) => {
-    // if (images.length > 0) {
-    //   formData.append("card_photo_1", images[0]);
-    //   if(images[1]) formData.append("card_photo_2", images[1]);
-    //   if(images[2]) formData.append("card_photo_3", images[2]);
-    // }
+  const handleSubmit = () => {
+    const formData = new FormData();
 
-    // if (response.data) {
-    const cardInformation = {
-      where: where,
-      what: what,
-      how: how,
-      tag_field: tag,
-      images: images,
+    if (images.length > 0) {
+      formData.append("card_photo_1", images[0]);
+      if(images[1]) formData.append("card_photo_2", images[1]);
+      if(images[2]) formData.append("card_photo_3", images[2]);
+    }
+      formData.append("where", where);
+      formData.append("what", what);
+      formData.append("how", how);
+      formData.append("tag_field", tag);
+
+      setCardInfo(formData);
+      setModalOpen(false);
     };
-    setCardInfo(cardInformation);
 
-    setModalOpen(false);
-  };
 
   /*
   // submit 시 로직
@@ -129,7 +129,7 @@ const MakeCard = ({ setModalOpen, setCardInfo }) => {
   return (
     <ModalContainer onClick={handleCloseModal}>
       {/* <form onSubmit={handleSubmit}> */}
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
+      {/* <form onSubmit={handleSubmit} encType="multipart/form-data"> */}
         <CardModal ref={modal}>
           <CardBorder>
             <CardWWW>WHERE: &nbsp; </CardWWW>
@@ -138,6 +138,7 @@ const MakeCard = ({ setModalOpen, setCardInfo }) => {
               name="where"
               value={where}
               onChange={(e) => setWhere(e.target.value)}
+              required
             />
           </CardBorder>
           <CardBorder>
@@ -147,6 +148,7 @@ const MakeCard = ({ setModalOpen, setCardInfo }) => {
               name="what"
               value={what}
               onChange={(e) => setWhat(e.target.value)}
+              required
             />
           </CardBorder>
           <CardBorder>
@@ -156,6 +158,7 @@ const MakeCard = ({ setModalOpen, setCardInfo }) => {
               name="how"
               value={how}
               onChange={(e) => setHow(e.target.value)}
+              required
             />
           </CardBorder>
           <ImgCardBorder>
@@ -176,7 +179,6 @@ const MakeCard = ({ setModalOpen, setCardInfo }) => {
                 // src={URL.createObjectURL(imageURL)}
                 alt="post img"
               />
-              // <CardImg key={index} src={imageURL} alt="post img" />안되면 이것도 해봐
             ))}
           </ImgCardBorder>
           <CardInfo>
@@ -188,6 +190,7 @@ const MakeCard = ({ setModalOpen, setCardInfo }) => {
                 value={tag}
                 onChange={(e) => setTag(e.target.value)}
                 placeholder="#seoul_restaurant"
+                required
               ></HashTag>
             </Wrapper>
             <CardSubmit onClick={handleSubmit}>save</CardSubmit>
@@ -195,7 +198,7 @@ const MakeCard = ({ setModalOpen, setCardInfo }) => {
           </CardInfo>
         </CardModal>
         {/* </form> */}
-      </form>
+      {/* </form> */}
     </ModalContainer>
   );
 };

@@ -32,12 +32,12 @@ const CompanionWrite = () => {
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
   const [content, setContent] = useState(
-    `<h2><span style="color: rgb(136, 136, 136);">Necessary information!(Please write buttom questions.)</span></h2><h2><span style="color: rgb(136, 136, 136);">#Where we will meet?</span></h2><p><br></p><h2><br></h2><h2><br></h2><h2><span style="color: rgb(136, 136, 136);">#When we will meet?</span></h2><h2><br></h2><h2><br></h2><h2><span style="color: rgb(136, 136, 136);">#What we will do together?</span></h2><p><br></p><p>.</p>`
+    `<h2><span style="color: rgb(136, 136, 136);">Necessary information!(Please write buttom questions.)</span></h2><h2><span style="color: rgb(136, 136, 136);">#Where we will meet?</span></h2><h2><br></h2><h2><br></h2><h2><br></h2><h2><span style="color: rgb(136, 136, 136);">#When we will meet?</span></h2><h2><br></h2><h2><br></h2><h2><span style="color: rgb(136, 136, 136);">#What we will do together?</span></h2><h2><br></h2><h2>.</h2>`
   );
 
   // 동행 글 POST
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    // event.preventDefault();
 
     try {
       const response = await axiosInstance.post("/api/companions/", {
@@ -99,7 +99,7 @@ const CompanionWrite = () => {
                     "city : ",
                     city,
                     "content : ",
-                    content,                    
+                    content
                   );
                 }}
               >
@@ -131,9 +131,12 @@ const CompanionWrite = () => {
                     required
                   >
                     <option value="none">--continent--</option>
-                    <option value="asia">Asia</option>
-                    <option value="asia">Asia</option>
-                    <option value="asia">Asia</option>
+                    <option value="Africa">Africa</option>
+                    <option value="Asia">Asia</option>
+                    <option value="Europe">Europe</option>
+                    <option value="NorthAmerica">North America</option>
+                    <option value="Oceania">Oceania</option>
+                    <option value="SouthAmerica">South America</option>
                   </select>
                 </td>
               </tr>
@@ -147,8 +150,46 @@ const CompanionWrite = () => {
                     required
                   >
                     <option value="none">--country--</option>
-                    <option value="korea">republic of korea</option>
-                    <option value="korea">republic of korea</option>
+                    <option value="RepublicOfKorea">republic of korea</option>
+                    <option value="Ghana">Ghana</option>
+                    <option value="Greece">Greece</option>
+                    <option value="Nigeria">Nigeria</option>
+                    <option value="SouthAfrica">South Africa</option>
+                    <option value="Netherlands">Netherlands</option>
+                    <option value="Denmark">Denmark</option>
+                    <option value="Germany">Germany</option>
+                    <option value="Laos">Laos</option>
+                    <option value="Russia">Russia</option>
+                    <option value="Romania">Romania</option>
+                    <option value="Mexico">Mexico</option>
+                    <option value="Maldives">Maldives</option>
+                    <option value="Mongolia">Mongolia</option>
+                    <option value="USA">USA</option>
+                    <option value="Vietnam">Vietnam</option>
+                    <option value="Belgium">Belgium</option>
+                    <option value="Brazil">Brazil</option>
+                    <option value="SaudiArabia">Saudi Arabia</option>
+                    <option value="Sweden">Sweden</option>
+                    <option value="Swiss">Swiss</option>
+                    <option value="Spain">Spain</option>
+                    <option value="Argentina">Argentina</option>
+                    <option value="Iceland">Iceland</option>
+                    <option value="Ireland">Ireland</option>
+                    <option value="UK">UK</option>
+                    <option value="Austria">Austria</option>
+                    <option value="Egypt">Egypt</option>
+                    <option value="Italia">Italia</option>
+                    <option value="India">India</option>
+                    <option value="Japan">Japan</option>
+                    <option value="China">China</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Thailand">Thailand</option>
+                    <option value="Portugal">Portugal</option>
+                    <option value="Poland">Poland</option>
+                    <option value="France">France</option>
+                    <option value="Philippines">Philippines</option>
+                    <option value="Hungary">Hungary</option>
+                    <option value="Australia">Australia</option>
                   </select>
                 </td>
                 <td>City: </td>

@@ -14,6 +14,7 @@ import Search from "./pages/searchPage/Search";
 import CompanionDetail from "./pages/detailPage/CompanionDetail";
 import CompanionWrite from "./pages/writePage/CompanionWrite";
 import Test from "./pages/Test";
+import TestLogin from "./pages/loginPage/TestLogin";
 
 const Router = createBrowserRouter([
   {
@@ -25,19 +26,19 @@ const Router = createBrowserRouter([
         element: <Mainpage />,
       },
       {
-        path: "record/write",
+        path: "records/write",
         element: <Write />,
       },
       {
-        path: "record/:detailId",
+        path: "records/:detailId",
         element: <Detail />,
       },
       {
-        path: "record/search",
+        path: "records/search",
         element: <Search />,
       },
       {
-        path: "record",
+        path: "records",
         element: <Record />,
       },
       {
@@ -72,6 +73,10 @@ const Router = createBrowserRouter([
   {
     path: "input",
     element: <Input />,
+  },
+  {
+    path: "testlogin",
+    element: <TestLogin />,
   },
 ]);
 

@@ -60,15 +60,11 @@ const FriendCards = () => {
           <Content fontSize="0.75rem">
             {/* The definition of friendships between opposite genders becomes
               somewhat ambiguous depending on how we.. */}
-            {record.body}
+            <div dangerouslySetInnerHTML={{ __html: record.body }} />
           </Content>
         </Text>
       </CardBox>
       <TagBox>
-        {/* <HashTag>#milano_restaurant</HashTag> */}
-        {/* <HashTag>#milano_cafe</HashTag> */}
-        {/* <HashTag>#milano_park</HashTag> */}
-        {/* 해시태그 없을 시 없어져야 함 ... */}
         {record.tag &&
           record.tag
             .slice(0, 3)

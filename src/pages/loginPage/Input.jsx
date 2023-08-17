@@ -50,9 +50,9 @@ const Input = () => {
 
     try {
       const response = await axiosInstance.put("/accounts/save_user", {
-        country: 1,
-        city: "ㅇ",
-        nickname: "ㅇ",
+        country: country,
+        city: city,
+        nickname: nickname,
       });
 
       if (response.status === 200) {
@@ -129,9 +129,46 @@ const Input = () => {
               onChange={countryhandleChange}
             >
               <option value="none">Country</option>
-              <option value="rKorea">republic of korea</option>
-              <option value="rKorea">republic of korea</option>
-              <option value="rKorea">republic of korea</option>
+              <option value="republic of korea">republic of korea</option>
+              <option value="Ghana">Ghana</option>
+              <option value="Greece">Greece</option>
+              <option value="Nigeria">Nigeria</option>
+              <option value="South Africa">South Africa</option>
+              <option value="Netherlands">Netherlands</option>
+              <option value="Denmark">Denmark</option>
+              <option value="Germany">Germany</option>
+              <option value="Laos">Laos</option>
+              <option value="Russia">Russia</option>
+              <option value="Romania">Romania</option>
+              <option value="Mexico">Mexico</option>
+              <option value="Maldives">Maldives</option>
+              <option value="Mongolia">Mongolia</option>
+              <option value="USA">USA</option>
+              <option value="Vietnam">Vietnam</option>
+              <option value="Belgium">Belgium</option>
+              <option value="Brazil">Brazil</option>
+              <option value="Saudi Arabia">Saudi Arabia</option>
+              <option value="Sweden">Sweden</option>
+              <option value="Swiss">Swiss</option>
+              <option value="Spain">Spain</option>
+              <option value="Argentina">Argentina</option>
+              <option value="Iceland">Iceland</option>
+              <option value="Ireland">Ireland</option>
+              <option value="UK">UK</option>
+              <option value="Austria">Austria</option>
+              <option value="Egypt">Egypt</option>
+              <option value="Italia">Italia</option>
+              <option value="India">India</option>
+              <option value="Japan">Japan</option>
+              <option value="China">China</option>
+              <option value="Canada">Canada</option>
+              <option value="Thailand">Thailand</option>
+              <option value="Portugal">Portugal</option>
+              <option value="Poland">Poland</option>
+              <option value="France">France</option>
+              <option value="Philippines">Philippines</option>
+              <option value="Hungary">Hungary</option>
+              <option value="Australia">Australia</option>
             </InputForm>
             <InputForm2
               type="text"
