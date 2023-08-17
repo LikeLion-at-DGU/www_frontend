@@ -108,7 +108,7 @@ const Record = () => {
               <p style={{ margin: "0 10px" }}>search daily life</p>
             </Btn>
           </Box>
-          <SubTitle>My w’s recent record!</SubTitle>
+          <SubTitle>My&nbsp;<p style={{ fontFamily: "Bungee Shade" }}>W</p>&nbsp;’s recent record!</SubTitle>
           {recordList.length > 0 && <FriendCards record={recordList[0]} />}
         </Box>
 
