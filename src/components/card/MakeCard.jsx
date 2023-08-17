@@ -45,7 +45,7 @@ const MakeCard = ({ setModalOpen, setCardInfo }) => {
     if (file) {
       const imageURL = URL.createObjectURL(file);
       console.log("imageURL 이거야.. ", imageURL);
-      setImages([...images, imageURL]);
+      setImages(prevImages =>[...prevImages, imageURL]);
       // setImages([...images, file]);
       console.log("setImages 이거야.. ", images);
     }

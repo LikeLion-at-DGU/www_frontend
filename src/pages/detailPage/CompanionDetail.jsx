@@ -94,7 +94,7 @@ export default function CompanionDetail() {
       <Margin />
       <AnotherTitle>
         <p>Another buddy is Waiting you!</p>
-        <Link to="/companions">
+        <Link to="/companion">
           <p>+ back to list</p>
         </Link>
       </AnotherTitle>

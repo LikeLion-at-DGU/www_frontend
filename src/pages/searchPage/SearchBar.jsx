@@ -26,7 +26,7 @@ const SearchBar = ({ onClick }) => {
             onClick(searchValue);
             // setSearchValue("");
             // handleReset();
-            navigate(`/records/?search=${searchValue}`)
+            navigate(`/records/search/?search=${searchValue}`)
             // navigate(`/search?q=${searchValue}`);
         }
     }

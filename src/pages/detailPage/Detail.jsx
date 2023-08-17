@@ -24,33 +24,35 @@ import axiosInstance from "../../api/axios";
 
 const Detail = () => {
   let params = useParams();
-  console.log("디테일의 params:",params.detailId);
+  console.log("디테일의 params:", params.detailId);
   const [commentFold, setCommentFold] = useState(true); //댓글창 닫기
-const [post, setPost] = useState({
-  id: 1,
-  record_comments: [],
-  card_photo_1: null,
-  card_photo_2: null,
-  card_photo_3: null,
-  title: "d",
-  weather: "좋다..",
-  date: "2023-08-17",
-  body: "<p>d</p>",
-  created_at: "2023-08-16T16:42:48.027801Z",
-  updated_at: "2023-08-16T21:51:26.891745Z",
-  views: 55,
-  rlike_count: 0,
-  where: "수잔나의앞치마",
-  what: "아메리카노",
-  how: "정말맛있다",
-  tag_field: "#충무로_카페",
-  writer: 1,
-  rlike: [],
-  photos: [],
-  record_scrap: [],
-  tag: [1],
-  card_scrap: [],
-});
+  const [post, setPost] = useState({
+    id: 1,
+    record_comments: [],
+    card_photo_1: null,
+    card_photo_2: null,
+    card_photo_3: null,
+    title: "d",
+    weather: "좋다..",
+    date: "2023-08-17",
+    body: "<p>d</p>",
+    created_at: "2023-08-16T16:42:48.027801Z",
+    updated_at: "2023-08-16T21:51:26.891745Z",
+    views: 55,
+    rlike_count: 0,
+    where: "수잔나의앞치마",
+    what: "아메리카노",
+    how: "정말맛있다",
+    tag_field: "#충무로_카페",
+    writer: 1,
+    rlike: [],
+    photos: [],
+    record_scrap: [],
+    tag: [1],
+    card_scrap: [],
+  });
+  // 맨아래 리스트
+  const [recordList, setRecordList] = useState([]);
 
   // const dateSlice = (date) => {
   //   return date.slice(0,10);
@@ -62,13 +64,27 @@ const [post, setPost] = useState({
       .get(`/api/records/${params.detailId}/`) // 레코드 GET URL
       .then((response) => {
         setPost(response.data); // 받아온 데이터를 상태에 저장
-        console.log("디테일 data댱",response.data);
+        console.log("디테일 data댱", response.data);
         console.log("디테일 post", post);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, []); // 빈 배열을 넣어 처음 한 번만 실행되도록 설정
+
+    // 맨아래 리스트
+    axiosInstance
+      .get('/api/records/')
+      .then((response) => {
+        // 현재 글 빼고 보이게
+        const filteredRecords = response.data.filter(record => record.id !== parseInt(params.detailId));
+        const firstFiveRecords = filteredRecords.slice(0, 5);
+        setRecordList(firstFiveRecords);
+      })
+      .catch((error) => {
+        console.error("Error fetching related data:", error);
+      });
+  }, [params.detailId]);
+  // }, []); // 빈 배열을 넣어 처음 한 번만 실행되도록 설정
 
   return (
     <TopWrapper>
@@ -116,11 +132,15 @@ const [post, setPost] = useState({
         <span>Korea/incheon</span>
         <p>'s recent record!</p>
       </PostWriter>
-      <Box2 flexdirect="column" height="460px">
+      <Box2 flexdirect="column">
+        {/*  height="460px" */}
         {/* <ListCards />
         <ListCards />
         <ListCards /> */}
-        <p>리스트 카드 올 부분</p>
+        {/* <p>리스트 카드 올 부분</p> */}
+        {recordList.map((record) => (
+          <ListCards key={record.id} record={record} />
+        ))}
       </Box2>
     </TopWrapper>
   );
