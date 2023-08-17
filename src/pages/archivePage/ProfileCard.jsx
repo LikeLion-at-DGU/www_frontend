@@ -1,26 +1,29 @@
 import { ProfileContainer, ProfileBox } from "./ArchiveStyle";
-import logo from "../../image/logo.png";
-import sampleprofile from "../../image/sampleprofile.png";
+import { useState, useEffect } from "react";
+import axiosInstance from "../../../src/api/axios";
 
-const ProfileCard = ({ userData }) => {
-  const dummyUserData = {
-    username: "tang_huru",
-    userCountry: "Japan",
-    userCity: "Tokyo",
-    profileImage: sampleprofile,
-  };
+const ProfileCard = () => {
+  const [userData, setUserData] = useState({});
 
-  const userImage = userData?.profileImage || dummyUserData.profileImage; // 더미 데이터에서 이미지 경로 사용
+  useEffect(() => {
+    axiosInstance
+      .get("/accounts/profile")
+      .then((response) => {
+        setUserData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
 
   return (
     <ProfileContainer>
       <p>My Profile</p>
       <ProfileBox>
-        <img src={userImage} alt="profile" />
-        <p>{userData?.username || dummyUserData.username}</p>
+        <img src={userData.profile_img} alt="profile" />
+        <p>{userData.nickname}</p>
         <span>
-          {userData?.userCountry || dummyUserData.userCountry}/
-          {userData?.userCity || dummyUserData.userCity}
+          {userData.country}/{userData.city}
         </span>
       </ProfileBox>
     </ProfileContainer>

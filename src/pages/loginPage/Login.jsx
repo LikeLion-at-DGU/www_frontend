@@ -12,7 +12,6 @@ import {
   LoginBtn,
 } from "./LoginStyle";
 import axiosInstance from "../../../src/api/axios";
-import instance from "../../../src/api/axios";
 
 const Login = () => {
   let navigate = useNavigate();
