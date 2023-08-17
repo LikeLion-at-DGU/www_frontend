@@ -60,20 +60,40 @@ const Write = () => {
     console.log("cardInfo: ", cardInfo);
 
     try {
-      const response = await axiosInstance.post("/api/records/", {
-        title: title,
-        weather: weather,
-        date: date,
-        writer: 1, //글쓴이가 있냐없냐 boolean 필드 느낌임?? 여튼 1
-        body: content,
-        where: cardInfo.where,
-        what: cardInfo.what,
-        how: cardInfo.how,
-        tag_field: cardInfo.tag_field,
-        card_photo_1: cardInfo.images[0],
-        card_photo_2: cardInfo.images[1],
-        card_photo_3: cardInfo.images[2],
-      });
+      const response = await axiosInstance.post(
+        "/api/records/",
+        {
+          // title: "title",
+          // weather: "weather",
+          // date: "date",
+          // writer: 1, //글쓴이가 있냐없냐 boolean 필드 느낌임?? 여튼 1
+          // body: "content",
+          // where: "cardInfo.where",
+          // what: "cardInfo.what",
+          // how: "cardInfo.how",
+          // tag_field: "cardInfo.tag_field",
+          // card_photo_1: cardInfo,
+          // card_photo_2: cardInfo.card_photo_2 || "",
+          // card_photo_3: cardInfo.card_photo_3 || "",
+          title: title,
+          weather: weather,
+          date: date,
+          writer: 1, //글쓴이가 있냐없냐 boolean 필드 느낌임?? 여튼 1
+          body: content,
+          where: cardInfo.where,
+          what: cardInfo.what,
+          how: cardInfo.how,
+          tag_field: cardInfo.tag_field,
+          card_photo_1: cardInfo.card_photo_1 || "",
+          card_photo_2: cardInfo.card_photo_2 || "",
+          card_photo_3: cardInfo.card_photo_3 || "",
+        },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       console.log("Post created:", response.data);
       alert("포스트 성공!");
       // 새로운 레코드 생성된 후의 동작을 수행
@@ -160,8 +180,8 @@ const Write = () => {
         )}
         <form
           style={{ width: "100%" }}
-          method="post"
           onSubmit={handleSubmit}
+          method="post"
           enctype="multipart/form-data"
         >
           {/* 글쓴이 , register */}

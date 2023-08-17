@@ -7,6 +7,7 @@ const Like = ({ record, handlewidth, handleheight, handlefsize }) => {
   const [mylike, setMylike] = useState(false);
 
   const handleSubmit = async (event) => {
+    console.log("좋아요:",record.id);
     event.preventDefault();
     setMylike((prevMylike) => !prevMylike);
 
