@@ -44,7 +44,7 @@ const FriendCards = () => {
       <CardBox>
         <Img width="122px" height="100%">
           {/* <Image leftradius="20px" src={recordImg} /> */}
-          <Image leftradius="20px" src={record.photos} />
+          <Image leftradius="20px" src={record.card_photo_1} />
         </Img>
         <Text padding="14px" width="331px">
           <Writer>

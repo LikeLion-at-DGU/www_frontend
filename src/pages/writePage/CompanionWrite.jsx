@@ -37,7 +37,7 @@ const CompanionWrite = () => {
 
   // 동행 글 POST
   const handleSubmit = async (event) => {
-    // event.preventDefault();
+    event.preventDefault();
 
     try {
       const response = await axiosInstance.post("/api/companions/", {

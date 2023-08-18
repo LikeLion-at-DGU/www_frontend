@@ -10,7 +10,7 @@ const SmallLike = ({ result, handlewidth, handleheight, handlefsize }) => {
             handlefsize={handlefsize}
         >
             <i className="fas fa-heart"></i> &nbsp;
-            <BtnText>{result.like_count}</BtnText>
+            {/* <BtnText>{result.like_count}</BtnText> */}
         </LikeStyle>
     );
 };
