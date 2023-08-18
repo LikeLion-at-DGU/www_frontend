@@ -31,6 +31,13 @@ const SearchBar = ({ onClick }) => {
         }
     }
 
+    // 엔터키 검색
+    const handleEnterKey = (e) => {
+        if (e.key === "Enter") {
+            handleSearchURL();
+        }
+    }
+
     return (
         <SearchBox>
             <SelectType value={searchType} onChange={(e) => handleSearchType(e.target.value)}>
@@ -42,6 +49,7 @@ const SearchBar = ({ onClick }) => {
                 placeholder={searchType === "word" ? "type a words." : "#city_keyword  please use this form!"}
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
+                onKeyDown={handleEnterKey}
                 // onChange={handleChange}
             />
             {/* <SearchBtn onClick={() => onClick(searchValue, searchType)} > */}

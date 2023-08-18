@@ -44,7 +44,7 @@ export default function CompanionDetail() {
       .get('/api/companions/')
       .then((response) => {
         // 현재 글 빼고 보이게
-        const filteredCompanions = response.data.filter(companion => companion.id !== params.detailId);
+        const filteredCompanions = response.data.filter(companion => companion.id !== parseInt(params.detailId));
         const firstFiveCompanions = filteredCompanions.slice(0, 5);
         setCompanionList(firstFiveCompanions);
       })

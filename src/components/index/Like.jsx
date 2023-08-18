@@ -34,8 +34,8 @@ const Like = ({ record, handlewidth, handleheight, handlefsize }) => {
           <i className="far fa-heart"></i>
         )}
         &nbsp;
-        {like}
-        {/* {record.rlike_count} */}
+        {/* {like} */}
+        {/* {record.like_count} */}
       </LikeStyle>
     </form>
   );

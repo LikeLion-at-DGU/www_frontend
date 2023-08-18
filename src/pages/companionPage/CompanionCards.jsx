@@ -8,10 +8,13 @@ import CountryName from "../../components/index/Country";
 import CityName from "../../components/index/CityName";
 import DateName from "../../components/index/DateName";
 import { WwwBox } from "../mainPage/MainpageStyle";
-import Views from "../../components/index/Views";
-import Comments from "../../components/index/Comments";
-import Like from "../../components/index/Like";
+// import Views from "../../components/index/Views";
+// import Comments from "../../components/index/Comments";
+// import Like from "../../components/index/Like";
 import { useNavigate } from "react-router-dom";
+import SmallViews from "../../components/index/smallBtn/SmallViews";
+import SmallComments from "../../components/index/smallBtn/SmallComents";
+import SmallLike from "../../components/index/smallBtn/SmallLike";
 
 const CompanionCards = ({ companion }) => {
   // const CompanionCards = ({ companion }) => {
@@ -32,9 +35,10 @@ const CompanionCards = ({ companion }) => {
         </CompanionTitle>
 
         <WwwBox>
-          {/* <CountryName handleheight="20px" handlefsize="0.8rem" />
-          <CityName handleheight="20px" handlefsize="0.8rem" />
-          <DateName handleheight="20px" handlefsize="0.8rem" /> */}
+          <CountryName result={companion.country} />
+          <CityName result={companion.city} />
+          <DateName result={companion.date} />
+          {/* handleheight="20px" handlefsize="0.8rem" */}
         </WwwBox>
         <Content>
           {/* <p>Let’s play together in Hanoi nightscape festival!</p> */}
@@ -43,21 +47,24 @@ const CompanionCards = ({ companion }) => {
           />
         </Content>
         <BtnBox juscon="space-between">
-          {/* <Views
+          <SmallViews
             handlewidth={"43px"}
             handleheight={"18px"}
             handlefsize={"4.7px"}
+            result={companion}
           />
-          <Comments
+          <SmallComments
             handlewidth={"43px"}
             handleheight={"18px"}
             handlefsize={"4.7px"}
+            result={companion}
           />
-          <Like
+          <SmallLike
             handlewidth={"43px"}
             handleheight={"18px"}
             handlefsize={"4.7px"}
-          /> */}
+            result={companion}
+          />
         </BtnBox>
       </CompanionText>
     </CompanionCard>

@@ -1,28 +1,28 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import { CountryStyle } from "./BtnStyle";
 
-function CountryName(props) {
-  const [userCountryName, setUserCountryName] = useState("Korea");
+const CountryName =({result}) => {
+  // const [userCountryName, setUserCountryName] = useState("Korea");
 
-  // 백에서 받아올 데이터 예시 코드
-  useEffect(() => {
-    fetch("/api/getUserCountry")
-      .then((response) => response.json())
-      .then((data) => {
-        setUserCountryName(data.country);
-      })
-      .catch((error) => {
-        console.error("Error fetching user country:", error);
-      });
-  }, []);
+  // // 백에서 받아올 데이터 예시 코드
+  // useEffect(() => {
+  //   fetch("/api/getUserCountry")
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setUserCountryName(data.country);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching user country:", error);
+  //     });
+  // }, []);
 
   return (
     <CountryStyle
-      handlewidth={props.handlewidth}
-      handleheight={props.handleheight}
-      handlefsize={props.handlefsize}
+    handlewidth="max-content"
+    handleheight="20px"
+    handlefsize="0.8rem"
     >
-      {userCountryName}
+      {result}
     </CountryStyle>
   );
 }

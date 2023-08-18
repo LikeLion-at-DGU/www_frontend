@@ -81,13 +81,8 @@ const Write = () => {
     formData.append("how", cardInfo.how);
     formData.append("tag_field", cardInfo.tag_field);
     formData.append("card_photo_1", cardInfo.card_photo_1);
-    if (cardInfo.card_photo_2) {
-      formData.append("card_photo_2", cardInfo.card_photo_2);
-    }
-
-    if (cardInfo.card_photo_3) {
-      formData.append("card_photo_3", cardInfo.card_photo_3);
-    }
+    if (cardInfo.card_photo_2) formData.append("card_photo_2", cardInfo.card_photo_2);
+    if (cardInfo.card_photo_3) formData.append("card_photo_3", cardInfo.card_photo_3);
     try {
       const accessToken = localStorage.getItem('accessToken'); // access token 가져오기
       const response = await axiosInstance.post("/api/records/", formData, {
@@ -132,6 +127,11 @@ const Write = () => {
         <form
           style={{ width: "100%" }}
           onSubmit={handleSubmit}
+<<<<<<< HEAD
+=======
+        // method="post"
+        // enctype="multipart/form-data"
+>>>>>>> e3fe1b3a6d5376bbc5e8d9277555674c158a91fc
         >
           {/* 글쓴이 , register */}
           <WriteWrapper>
