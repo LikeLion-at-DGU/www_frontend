@@ -25,7 +25,6 @@ import SmallComments from "../../components/index/smallBtn/SmallComents";
 import SmallViews from "../../components/index/smallBtn/SmallViews";
 
 const ListCards = ({ record }) => {
-  console.log("리수투카드", record.record_comments || "없다");
   /*
 //여기부터는 임의 데이터입니당 - 현아
 const ListCards = () => {
