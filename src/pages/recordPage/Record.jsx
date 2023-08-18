@@ -38,7 +38,8 @@ const Record = () => {
       card_photo_3: null,
       card_scrap: [],
     },
-  ]); 
+  ]);
+  // const [local, setLocal] = useState([])
   const [recordList, setRecordList] = useState([]);
 
   useEffect(() => {
@@ -47,7 +48,7 @@ const Record = () => {
       .then((response) => {
         let result = response.data;
         setRecordList(result);
-        console.log("data", response.data);
+        // console.log("data", response.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -60,7 +61,7 @@ const Record = () => {
       .then((response) => {
         let result = response.data;
         setLocal(result);
-        console.log("로컬픽", response.data);
+        // console.log("로컬픽", response.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -116,26 +117,19 @@ const Record = () => {
           .map((record) => (
             <ListCards key={record.id} record={record} />
           ))}
-        {/* <ListCards /> */}
       </Box2>
 
       <Box flexdirect="column" height="832px" width="1122px">
         <SubTitle>The secret of locals!</SubTitle>
         <Box style={{ flexWrap: "wrap" }} height="750px" juscon="space-between">
-          {/* {recordList
-            .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-            .slice(1, Math.min(recordList.length, 3))
-            .map((record) => (
-              <LocalPicks key={record.id} record={record} />
-            ))} */}
-          <LocalPicks card={local[0]}/>
-          {/* <LocalPicks />
-          <LocalPicks /> */}
-        </Box>
-        <Box style={{ flexWrap: "wrap" }} height="750px" juscon="space-between">
-          {/* <LocalPicks />
-          <LocalPicks />
-          <LocalPicks /> */}
+          {/* <LocalPicks data={local[0]}/> */}
+          {/* <LocalPicks data={local[1]}/> */}
+          {/* <LocalPicks data={local[2]}/> */}
+          {local
+          .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+          .map((result) => (
+            <LocalPicks key={result.id} data={result} />
+          ))}
         </Box>
       </Box>
     </RecordContainer>

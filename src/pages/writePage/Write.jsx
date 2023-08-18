@@ -79,8 +79,8 @@ const Write = () => {
     formData.append("how", cardInfo.how);
     formData.append("tag_field", cardInfo.tag_field);
     formData.append("card_photo_1", cardInfo.card_photo_1);
-    formData.append("card_photo_2", cardInfo.card_photo_2);
-    formData.append("card_photo_3", cardInfo.card_photo_3);
+    if (cardInfo.card_photo_2) formData.append("card_photo_2", cardInfo.card_photo_2);
+    if (cardInfo.card_photo_3) formData.append("card_photo_3", cardInfo.card_photo_3);
     try {
       const response = await axiosInstance.post("/api/records/", formData, {
         headers: { "Content-Type": "multipart/form-data" },
@@ -173,8 +173,8 @@ const Write = () => {
         <form
           style={{ width: "100%" }}
           onSubmit={handleSubmit}
-          // method="post"
-          // enctype="multipart/form-data"
+        // method="post"
+        // enctype="multipart/form-data"
         >
           {/* 글쓴이 , register */}
           <WriteWrapper>

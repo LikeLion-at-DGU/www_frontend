@@ -87,7 +87,7 @@ export const FixedBtnBox = styled.div`
 // CompanionCard
 export const CompanionCard = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   /* width: ${(props) => (props.handlewidth ? props.handlewidth : "749px")}; */
   width: 749px;
   /* height: ${(props) => (props.handleheight ? props.handleheight : "124px")}; */
