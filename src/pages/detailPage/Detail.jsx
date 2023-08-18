@@ -24,7 +24,6 @@ import axiosInstance from "../../api/axios";
 
 const Detail = () => {
   let params = useParams();
-  console.log("디테일의 params:", params.detailId);
   const [commentFold, setCommentFold] = useState(true); //댓글창 닫기
   const [post, setPost] = useState({
     id: 1,
@@ -53,6 +52,7 @@ const Detail = () => {
   });
   // 맨아래 리스트
   const [recordList, setRecordList] = useState([]);
+  console.log(post);
 
   // const dateSlice = (date) => {
   //   return date.slice(0,10);
@@ -92,8 +92,10 @@ const Detail = () => {
         <CenterWriter>
           <p>by</p>
           <ProfileImg></ProfileImg>
-          {post.writer}
-          <City>Iyaly/milano</City>
+          {/* {post.writer.nickname} */}
+          {/* {post.writer} */}
+          {/* <City>{post.writer.country}/{post.writer.city}</City> */}
+          {/* <City>Iyaly/milano</City> */}
         </CenterWriter>
         <BorderBottom>
           <Wrapper>

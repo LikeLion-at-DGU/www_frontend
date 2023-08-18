@@ -58,7 +58,7 @@ export const LoginWrapper = styled.div`
   height: 60%;
 `;
 export const TestLoginWrapper = styled(LoginWrapper)`
-  height: 40vh;
+  height: 35vh;
 `
 export const StartBtn = styled.button`
   font-family: "Roboto Mono";

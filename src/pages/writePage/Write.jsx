@@ -70,7 +70,6 @@ const Write = () => {
   // submit 시 로직
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("cardInfo: ", cardInfo);
     const formData = new FormData();
     formData.append("title", title);
     formData.append("weather", weather);
@@ -115,10 +114,6 @@ const Write = () => {
     };
   }, []);
 
-  useEffect(() => {
-    console.log(cardInfo);
-  }, [cardInfo]);
-
   return (
     <>
       <TopWriteWrapper>
@@ -133,8 +128,8 @@ const Write = () => {
           <WriteWrapper>
             <PostWriter>
               <img src="" alt="profile" />
-              <p>사용자 이름 자리</p>&nbsp;
-              <span>사용자 국가정보 자리</span>
+              <p>writer</p>&nbsp;
+              <span>country / city</span>
             </PostWriter>
             <BtnWrapper>
               <SaveBtn onClick={() => setModalOpen(true)}>

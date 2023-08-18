@@ -2,20 +2,25 @@
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSetRecoilState, useRecoilValue } from 'recoil'; // useRecoilValue 추가
+import { userState } from "../../context/userState";
 import {
   Container,
   WhiteBox,
   LogoImage,
   Text,
   StartBtn,
-  LoginWrapper,
+  TestLoginWrapper,
   LoginBtn,
   InputForm2,
 } from "./LoginStyle";
 import axiosInstance from "../../../src/api/axios";
 
 const Login = () => {
+  const setUser = useSetRecoilState(userState);
+  const user = useRecoilValue(userState); // userState 값 가져오기
   let navigate = useNavigate();
+
   // const [loggedIn, setLoggedIn] = useState(false);
 
   const url = "http://likelionwww.com/accounts/google/login/";
@@ -40,6 +45,24 @@ const Login = () => {
     // }
   };
 
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axiosInstance.post("/accounts/testlogin");
+      console.log("updated:", response.data);
+
+      const userData = response.data.user; // 사용자 데이터 추출
+      setUser(userData); // Recoil 상태 업데이트
+
+      // access token을 localStorage에 저장
+      const accessToken = response.data.token.access;
+      localStorage.setItem("accessToken", accessToken);
+      navigate("/")
+    } catch (error) {
+      console.error("Error updating:", error);
+    }
+  };
+
   return (
     <Container>
       <WhiteBox>
@@ -49,16 +72,18 @@ const Login = () => {
           alt="logo"
         />
         <Text>
-          Welcome Back!
+          Welcome!
           <br />
           Everybody needs your record!
         </Text>
-        <LoginWrapper>
+          <form onSubmit={handleLogin}>
+        <TestLoginWrapper>
           <LoginBtn onClick={handleGoogleLogin}>
-            {/* <LoginBtn onClick={() => window.location.href(url)}> */}
             <i className="fab fa-google"></i> &nbsp;sign in with google
           </LoginBtn>
-        </LoginWrapper>
+            <StartBtn type="submit">Test now!</StartBtn>
+        </TestLoginWrapper>
+          </form>
       </WhiteBox>
     </Container>
   );
