@@ -22,7 +22,7 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../../src/api/axios";
 
 const ListCards = ({ record }) => {
-  console.log("리수투카드", record.record_comments || "없다");
+  // console.log("리수투카드", record.record_comments || "없다");
   /*
 //여기부터는 임의 데이터입니당 - 현아
 const ListCards = () => {

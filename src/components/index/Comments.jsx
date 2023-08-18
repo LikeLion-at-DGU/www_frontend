@@ -20,7 +20,7 @@ const Comments = ({
     }
   }
     const cnt = CommentsLength(record);
-    console.log("여기: ", record);
+    // console.log("여기: ", record);
   
   useEffect(() => {
     axiosInstance
@@ -28,8 +28,8 @@ const Comments = ({
       .then((response) => {
         let result = response.data.length;
         setComments(result);
-        console.log("댓글리스트겟", response.data);
-        console.log("겟댓글수", comments);
+        // console.log("댓글리스트겟", response.data);
+        // console.log("겟댓글수", comments);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);

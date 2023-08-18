@@ -19,8 +19,11 @@ import ReactQuill from "react-quill";
 import MakeCard from "../../components/card/MakeCard";
 import axiosInstance from "../../api/axios";
 import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from 'recoil';
+import { userState } from '../../context/userState';
 
 const Write = () => {
+  const user = useRecoilValue(userState);
   const navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
   const [cardInfo, setCardInfo] = useState(null);
@@ -72,69 +75,34 @@ const Write = () => {
     formData.append("title", title);
     formData.append("weather", weather);
     formData.append("date", date);
-    formData.append("writer", 1);
     formData.append("body", content);
     formData.append("where", cardInfo.where);
     formData.append("what", cardInfo.what);
     formData.append("how", cardInfo.how);
     formData.append("tag_field", cardInfo.tag_field);
     formData.append("card_photo_1", cardInfo.card_photo_1);
-    formData.append("card_photo_2", cardInfo.card_photo_2);
-    formData.append("card_photo_3", cardInfo.card_photo_3);
+    if (cardInfo.card_photo_2) {
+      formData.append("card_photo_2", cardInfo.card_photo_2);
+    }
+
+    if (cardInfo.card_photo_3) {
+      formData.append("card_photo_3", cardInfo.card_photo_3);
+    }
     try {
+      const accessToken = localStorage.getItem('accessToken'); // access token 가져오기
       const response = await axiosInstance.post("/api/records/", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
+        headers: { 
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${accessToken}`, // 헤더에 access token 추가
+         },
       });
       console.log("Post created:", response.data);
-      alert("포스트 성공!");
-      // 새로운 레코드 생성된 후의 동작을 수행
       navigate("/records");
     } catch (error) {
       console.error("Error creating post:", error);
     }
   };
-  /*
-  //  2번
-  const handleImageUpload = () => {
-    const input = document.createElement("input");
-    input.setAttribute("type", "file");
-    input.setAttribute("accept", "image/*");
-    input.click();
 
-    input.onchange = async () => {
-      const file = input.files[0];
-      if (file) {
-        const imageUrl = await uploadImageToServer(file);
-        if(imageUrl){
-           setContent(
-             content + `<img src="${imageUrl}" alt="uploaded image" />`
-           );
-        }
-        // const quill = quillRef.current.getEditor();
-        // const range = quill.getSelection();
-        // quill.insertEmbed(range.index, "image", imageUrl);
-      }
-    };
-  };
-  // 2번과 연결된 코드
-  const uploadImageToServer = async (file) => {
-    const formData = new FormData();
-    formData.append("image", file);
-
-    try {
-      const response = await axiosInstance.post("/api/upload_image/", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      return response.data.url; // 백엔드에서 이미지 URL
-    } catch (error) {
-      console.error("Error uploading image:", error);
-      // return "추가될듯";
-      return null;
-    }
-  };
-*/
   // quill에서 사용할 모듈
   // useMemo를 사용하여 modules가 렌더링 시 에디터가 사라지는 버그를 방지
   const modules = useMemo(() => {
@@ -142,20 +110,11 @@ const Write = () => {
       toolbar: {
         container: [
           [{ header: [1, 2, 3, false] }],
-          ["bold", "italic", "underline", "strike"],
           ["blockquote"],
           [{ list: "ordered" }, { list: "bullet" }],
           [{ color: [] }, { background: [] }],
           [{ align: [] }],
-          // [{ align: [] }, "image"],
-          // [{ align: [] }, "image", "card"],
         ],
-        /*
-        handlers: {
-          image: handleImageUpload, // 이미지 업로드 핸들러 연결
-          //   card: handleCardUpload, // 카드 업로드 핸들러 연결
-        },
-        */
       },
     };
   }, []);
@@ -173,8 +132,6 @@ const Write = () => {
         <form
           style={{ width: "100%" }}
           onSubmit={handleSubmit}
-          // method="post"
-          // enctype="multipart/form-data"
         >
           {/* 글쓴이 , register */}
           <WriteWrapper>
