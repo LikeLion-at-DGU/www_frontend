@@ -1,9 +1,9 @@
-// SmallComments.jsx
-// 동행
+// SmallComments2.jsx
+// 레코드
 
 import { BtnText, CommentStyle } from "../BtnStyle";
 
-const SmallComments = ({ result, handlewidth, handleheight, handlefsize }) => {
+const SmallComments2 = ({ result, handlewidth, handleheight, handlefsize }) => {
     return (
         <CommentStyle
             handlewidth={handlewidth}
@@ -11,9 +11,9 @@ const SmallComments = ({ result, handlewidth, handleheight, handlefsize }) => {
             handlefsize={handlefsize}
         >
             <i className="fas fa-comment-alt"></i> &nbsp;
-            <BtnText>{result.comments_count}</BtnText>
+            <BtnText>{result.rcomments_cnt}</BtnText>
         </CommentStyle>
     );
 };
 
-export default SmallComments;
+export default SmallComments2;
