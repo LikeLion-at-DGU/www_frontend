@@ -1,28 +1,28 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import { CityStyle } from "./BtnStyle";
 
-function CityName(props) {
-  const [userCityName, setUserCityName] = useState("Seoul");
+const CityName = ({result}) => {
+  // const [userCityName, setUserCityName] = useState("Seoul");
 
-  // 백에서 받아올 데이터 예시 코드
-  useEffect(() => {
-    fetch("/api/getUserCityName")
-      .then((response) => response.json())
-      .then((data) => {
-        setUserCityName(data.city);
-      })
-      .catch((error) => {
-        console.error("Error fetching user city:", error);
-      });
-  }, []);
+  // // 백에서 받아올 데이터 예시 코드
+  // useEffect(() => {
+  //   fetch("/api/getUserCityName")
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setUserCityName(data.city);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching user city:", error);
+  //     });
+  // }, []);
 
   return (
     <CityStyle
-      handlewidth={props.handlewidth}
-      handleheight={props.handleheight}
-      handlefsize={props.handlefsize}
+    handlewidth="max-content"
+    handleheight="20px"
+    handlefsize="0.8rem"
     >
-      {userCityName}
+      {result}
     </CityStyle>
   );
 }
