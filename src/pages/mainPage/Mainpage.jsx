@@ -17,23 +17,11 @@ import {
 import Buddy from "./Buddy";
 import OneAndVoteAll from "./OneAndVote";
 import axiosInstance from "../../../src/api/axios";
-import { useLocation } from "react-router-dom";
-
-const location = useLocation();
 
 // const data = [
 //   { id: 1, nickname: "User1" },
 //   { id: 2, nickname: "User2" },
 // ];
-
-const handleCopyClipBoard = async (text) => {
-  try {
-    await navigator.clipboard.writeText(text);
-    alert("클립보드에 링크가 복사되었어요.");
-  } catch (err) {
-    console.log(err);
-  }
-};
 
 const Mainpage = ({}) => {
   // 버디리스트 담기
@@ -108,12 +96,7 @@ const Mainpage = ({}) => {
         // Render MobileLandingBox for mobile screens
         <>
           <MobileLandingBox />
-          <div
-            className="button-container"
-            onClick={() =>
-              handleCopyClipBoard(`${baseUrl}${location.pathname}`)
-            }
-          ></div>
+
           <p>http://likelionwww.com</p>
         </>
       ) : (
@@ -125,37 +108,40 @@ const Mainpage = ({}) => {
           <Contents>
             <OneAndVoteAll />
 
-        <TravelContainer>
-          <TravelTitle>
-            <img src={bird} alt="bird" />
-            <p>Finding Travel buddy</p>
-          </TravelTitle>
-          {buddyResults
-            .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-            .slice(0, 4)
-            .map((item, index) => (
-              <Buddy
-                key={item.id}
-                data={item}
-                isEven={index === 1 || index === 3}
-              />
-            ))}
-        </TravelContainer>
-        <Local>
-          <LocalTitle>
-            <img src={flag} alt="flag" />
-            <p>The secret of locals!</p>
-          </LocalTitle>
-          <span>
-          {localPicks
-              .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-              .map((result) => (
-                <LocalPicks key={result.id} data={result} />
-              ))}
-          </span>
-        </Local>
-      </Contents>
-      </WebRender>
+            <TravelContainer>
+              <TravelTitle>
+                <img src={bird} alt="bird" />
+                <p>Finding Travel buddy</p>
+              </TravelTitle>
+              {buddyResults
+                .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+                .slice(0, 4)
+                .map((item, index) => (
+                  <Buddy
+                    key={item.id}
+                    data={item}
+                    isEven={index === 1 || index === 3}
+                  />
+                ))}
+            </TravelContainer>
+            <Local>
+              <LocalTitle>
+                <img src={flag} alt="flag" />
+                <p>The secret of locals!</p>
+              </LocalTitle>
+              <span>
+                {localPicks
+                  .sort(
+                    (a, b) => new Date(b.created_at) - new Date(a.created_at)
+                  )
+                  .map((result) => (
+                    <LocalPicks key={result.id} data={result} />
+                  ))}
+              </span>
+            </Local>
+          </Contents>
+        </WebRender>
+      )}
     </MainContainer>
   );
 };
