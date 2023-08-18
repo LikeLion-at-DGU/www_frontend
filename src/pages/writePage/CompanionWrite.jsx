@@ -18,9 +18,11 @@ import PenIMG from "../../image/pen.png";
 import { useState, useRef, useMemo } from "react";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
-import axiosInstance from "../../api/axios"
+import axiosInstance from "../../api/axios";
+import { useNavigate } from "react-router-dom";
 
 const CompanionWrite = () => {
+  const navigate = useNavigate();
   const dateRef = useRef();
   const quillRef = useRef();
 
@@ -51,11 +53,12 @@ const CompanionWrite = () => {
       });
 
       console.log("Post created:", response.data);
-      alert("동행글 포스트 완료!")
+      alert("동행글 포스트 완료!");
       // 새로운 레코드 생성된 후의 동작을 수행
     } catch (error) {
       console.error("Error creating post:", error);
     }
+    navigate("/companions");
   };
 
   // quill에서 사용할 모듈
@@ -65,7 +68,7 @@ const CompanionWrite = () => {
       toolbar: {
         container: [
           [{ header: [1, 2, 3, false] }],
-          ["bold", "italic", "underline", "strike"],
+          // ["bold", "italic", "underline", "strike"],
           ["blockquote"],
           [{ list: "ordered" }, { list: "bullet" }],
           [{ color: [] }, { background: [] }],
