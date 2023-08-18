@@ -2,9 +2,6 @@ import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import { Test, TravelBox, IndexBox, WwwBox, BuddyTitle } from "./MainpageStyle";
 import Like from "../../components/index/Like";
-// import CountryName from "../../components/index/Country";
-// import CityName from "../../components/index/CityName";
-// import DateName from "../../components/index/DateName";
 import useScrollFadeIn from "./useScroll";
 import { Link, useNavigate } from "react-router-dom";
 import DateName from "./buddyBtn/DateName";
@@ -63,7 +60,7 @@ const Buddy = ({ data, isEven }) => {
 
   return (
     <BuddyStyle
-      onClick={() => navigate(`/companions/${data.id}/`)}
+      // onClick={() => navigate(`/companions/${data.id}/`)}
       isEven={isEven}
     >
       <Test
@@ -87,8 +84,7 @@ const Buddy = ({ data, isEven }) => {
               />
             </IndexBox>
             <BuddyTitle>
-              {/* {truncatedText || "Today Hanoi nightscape!!"} */}
-              {truncatedText.title}
+              {truncatedText.title.slice(0,18)}
             </BuddyTitle>
           </TravelBoxChange>
         </Link>

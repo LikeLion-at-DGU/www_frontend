@@ -39,17 +39,8 @@ const Mainpage = () => {
   // 로컬픽 담기
   const [localPicks, setLocalPicks] = useState([]);
   // 로컬픽 불러오기
-  // const localPickArray = async () => {
-  //   try {
-  //     const response = await axiosInstance.get("/api/card/");
-  //     setLocalPicks(response.data);
-  //   } catch (error) {
-  //     console.log("ERROR", error);
-  //   }
-  // }
   useEffect(() => {
     axiosInstance
-      // .get("/api/card/{record_id}")
       .get("/api/card/")
       .then((response) => {
         let result = response.data;
@@ -59,6 +50,21 @@ const Mainpage = () => {
         console.error("Error fetching data:", error);
       });
   }, []);
+
+  // // 로컬픽 카드의 본문 글 담기
+  // const [originRecord, setOriginRecord] = useState([]);
+  // // 로컬픽 카드의 본문 글 불러오기
+  // useEffect(() => {
+  //   axiosInstance
+  //     .get("/api/records/")
+  //     .then((response) => {
+  //       let result = response.data;
+  //       setOriginRecord(result);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching data:", error);
+  //     });
+  // }, []);
 
   const [isInViewport, setIsInViewport] = useState(false);
   const ref = useRef(null);
@@ -117,12 +123,6 @@ const Mainpage = () => {
             <p>The secret of locals!</p>
           </LocalTitle>
           <span>
-            {/* <LocalPicks data={localPicks[0]} /> */}
-            {/* <LocalPicks data={localPicks[1]} /> */}
-            {/* <LocalPicks data={localPicks[2]} /> */}
-            {/* <LocalPicks data={localPicks[3]} /> */}
-            {/* <LocalPicks data={localPicks[4]} /> */}
-            {/* <LocalPicks data={localPicks[5]} /> */}
             {localPicks
               .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
               .map((result) => (
