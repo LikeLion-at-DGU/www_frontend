@@ -19,7 +19,6 @@ import {
   CardSubmit,
 } from "./CardStyle";
 import { SaveBtn, UproadImg } from "../../pages/writePage/WriteStyle";
-import axiosInstance from "../../api/axios";
 
 const MakeCard = ({ setModalOpen, setCardInfo }) => {
   const [images, setImages] = useState([]);
@@ -38,50 +37,20 @@ const MakeCard = ({ setModalOpen, setCardInfo }) => {
   // 카드 내 이미지 처리
   const handleImageChange = (event) => {
     const file = event.target.files[0];
-    console.log("file은 이거야.. ", file);
-    
-    //
-    // const formData = new FormData();
-    // formData.append("img",file);
-    // formData.append("enctype","multipart/form-data");
-    //
-/*
     if (file) {
-      const imageURL = URL.createObjectURL(file);
-      console.log("imageURL 이거야.. ", imageURL);
-      setImages((prevImages) => [...prevImages, imageURL]);
-      // setImages([...images, imageURL]);
-      // setImages([...images, file]);
-      console.log("setImages 이거야.. ", images);
+      setImages([...images, file]);
+    } else {
+      console.log("??");
+      setImages(null);
     }
-    // console.log("images은 이거야.. ", images);
-*/
+
+    console.log("file은 이거야.. ", file);
   };
 
   // 이미지 업로드 선택
   const openFilePicker = () => {
     document.querySelector('input[type="file"]').click();
   };
-
-  /*
-  //카드 데이터 전달 - formData형식
-  const handleSubmit = () => {
-    const formData = new FormData();
-
-    if (images.length > 0) {
-      formData.append("card_photo_1", images[0]);
-      if(images[1]) formData.append("card_photo_2", images[1]);
-      if(images[2]) formData.append("card_photo_3", images[2]);
-    }
-      formData.append("where", where);
-      formData.append("what", what);
-      formData.append("how", how);
-      formData.append("tag_field", tag);
-
-      setCardInfo(formData);
-      setModalOpen(false);
-    };
-  */
 
   //카드 데이터 전달
   const handleSubmit = () => {
@@ -90,9 +59,9 @@ const MakeCard = ({ setModalOpen, setCardInfo }) => {
       what: what,
       how: how,
       tag_field: tag,
-      card_photo_1: images[0] || "",
-      card_photo_2: images[1] || "",
-      card_photo_3: images[2] || "",
+      card_photo_1: images[0] || null,
+      card_photo_2: images[1] || null,
+      card_photo_3: images[2] || null,
     };
     // setCardInfo(formData);
     setCardInfo(cardData);
@@ -151,8 +120,6 @@ const MakeCard = ({ setModalOpen, setCardInfo }) => {
 
   return (
     <ModalContainer onClick={handleCloseModal}>
-      {/* <form onSubmit={handleSubmit}> */}
-      {/* <form onSubmit={handleSubmit} encType="multipart/form-data"> */}
       <CardModal ref={modal}>
         <CardBorder>
           <CardWWW>WHERE: &nbsp; </CardWWW>
@@ -198,11 +165,14 @@ const MakeCard = ({ setModalOpen, setCardInfo }) => {
           {images.slice(0, 3).map((imageURL, index) => (
             <CardImg
               key={index}
-              src={imageURL}
-              // src={URL.createObjectURL(imageURL)}
+              // src={imageURL}
+              src={URL.createObjectURL(imageURL)}
               alt="post img"
             />
           ))}
+          {/* {images && (
+            <CardImg src={URL.createObjectURL(images)} alt="card img" />
+          )} */}
         </ImgCardBorder>
         <CardInfo>
           <Wrapper>
@@ -217,7 +187,6 @@ const MakeCard = ({ setModalOpen, setCardInfo }) => {
             ></HashTag>
           </Wrapper>
           <CardSubmit onClick={handleSubmit}>save</CardSubmit>
-          {/* <CardSubmit type="submit">save</CardSubmit> */}
         </CardInfo>
       </CardModal>
       {/* </form> */}
