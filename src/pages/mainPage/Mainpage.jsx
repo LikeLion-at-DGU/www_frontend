@@ -1,5 +1,3 @@
-// Mainpage.jsx
-
 import { useState, useRef, useEffect } from "react";
 import maintext from "../../image/maintext.png";
 import bird from "../../image/bird.png";
@@ -13,6 +11,8 @@ import {
   TravelTitle,
   Local,
   LocalTitle,
+  MobileLandingBox,
+  WebRender,
 } from "./MainpageStyle";
 import Buddy from "./Buddy";
 import OneAndVoteAll from "./OneAndVote";
@@ -23,7 +23,7 @@ import axiosInstance from "../../../src/api/axios";
 //   { id: 2, nickname: "User2" },
 // ];
 
-const Mainpage = () => {
+const Mainpage = ({}) => {
   // 버디리스트 담기
   const [buddyResults, setBuddyResults] = useState([]);
   // 버디리스트 불러오기
@@ -50,21 +50,6 @@ const Mainpage = () => {
         console.error("Error fetching data:", error);
       });
   }, []);
-
-  // // 로컬픽 카드의 본문 글 담기
-  // const [originRecord, setOriginRecord] = useState([]);
-  // // 로컬픽 카드의 본문 글 불러오기
-  // useEffect(() => {
-  //   axiosInstance
-  //     .get("/api/records/")
-  //     .then((response) => {
-  //       let result = response.data;
-  //       setOriginRecord(result);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching data:", error);
-  //     });
-  // }, []);
 
   const [isInViewport, setIsInViewport] = useState(false);
   const ref = useRef(null);
@@ -93,13 +78,26 @@ const Mainpage = () => {
     };
   }, []);
 
+  // 모바일화면 구현
+  const isMobile = window.innerWidth <= 460;
+
   return (
     <MainContainer>
-      <TextImage className={isInViewport ? "frame-in" : ""} ref={ref}>
-        <img src={maintext} alt="maintext" />
-      </TextImage>
-      <Contents>
-        <OneAndVoteAll />
+      {isMobile ? (
+        // Render MobileLandingBox for mobile screens
+        <>
+          <MobileLandingBox />
+
+          <p>http://likelionwww.com</p>
+        </>
+      ) : (
+        // Render the normal content for other screen sizes
+        <WebRender>
+          <TextImage className={isInViewport ? "frame-in" : ""} ref={ref}>
+            <img src={maintext} alt="maintext" />
+          </TextImage>
+          <Contents>
+            <OneAndVoteAll />
 
         <TravelContainer>
           <TravelTitle>
@@ -131,6 +129,8 @@ const Mainpage = () => {
           </span>
         </Local>
       </Contents>
+      </WebRender>
+      )}
     </MainContainer>
   );
 };

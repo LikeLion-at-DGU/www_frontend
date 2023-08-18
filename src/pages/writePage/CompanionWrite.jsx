@@ -20,14 +20,15 @@ import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
 import axiosInstance from "../../api/axios";
 import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from 'recoil';
+import { userState } from '../../context/userState';
 
 const CompanionWrite = () => {
+  const user = useRecoilValue(userState);
   const navigate = useNavigate();
   const dateRef = useRef();
   const quillRef = useRef();
 
-  const [user, setUser] = useState("user");
-  const [userInfo, setUserInfo] = useState("user info(Korea/incheon)");
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [continent, setContinent] = useState("");
@@ -42,19 +43,21 @@ const CompanionWrite = () => {
     event.preventDefault();
 
     try {
+      const accessToken = localStorage.getItem('accessToken'); // access token 가져오기
       const response = await axiosInstance.post("/api/companions/", {
-        writer: 1,
         title: title,
         body: content,
         date: date,
         continent: continent,
         country: country,
         city: city,
+      },{
+        headers: { 
+          Authorization: `Bearer ${accessToken}`, // 헤더에 access token 추가
+         },
       });
 
       console.log("Post created:", response.data);
-      alert("동행글 포스트 완료!");
-      // 새로운 레코드 생성된 후의 동작을 수행
     } catch (error) {
       console.error("Error creating post:", error);
     }
@@ -68,7 +71,6 @@ const CompanionWrite = () => {
       toolbar: {
         container: [
           [{ header: [1, 2, 3, false] }],
-          // ["bold", "italic", "underline", "strike"],
           ["blockquote"],
           [{ list: "ordered" }, { list: "bullet" }],
           [{ color: [] }, { background: [] }],
@@ -199,6 +201,7 @@ const CompanionWrite = () => {
                 <td>
                   <input
                     type="text"
+                    pattern="[A-Za-z]*"
                     name="city"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}

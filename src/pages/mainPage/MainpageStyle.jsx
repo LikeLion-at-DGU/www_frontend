@@ -2,6 +2,29 @@
 
 import { styled, keyframes, css } from "styled-components";
 
+export const MobileLandingBox = styled.div`
+  @media all and (max-width: 460px) {
+    background-image: url(/src/image/mediaquery.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 400px;
+    height: 700px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+`;
+
+export const WebRender = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @media all and (max-width: 460px) {
+    display: none;
+  }
+`;
+
 export const MainContainer = styled.nav`
   display: flex;
   position: relative;
@@ -346,8 +369,8 @@ export const TravelBox = styled.div`
   border-radius: 30px;
   background-color: #92d3f5;
   box-shadow: 0px 5px 5px 0px #00000040;
-  border-bottom-left-radius: ${props => props.chatLradius};
-  border-bottom-right-radius:  ${props => props.chatRradius};
+  border-bottom-left-radius: ${(props) => props.chatLradius};
+  border-bottom-right-radius: ${(props) => props.chatRradius};
   /* border: 3px solid red; */
 `;
 
