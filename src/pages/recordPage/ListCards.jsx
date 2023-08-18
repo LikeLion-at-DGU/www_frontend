@@ -21,8 +21,8 @@ import BookMark from "../../components/index/BookMark";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../../src/api/axios";
 import SmallViews from "../../components/index/smallBtn/SmallViews";
-import SmallComments2 from "../../components/index/smallBtn/smallComments2";
 import SmallLike2 from "../../components/index/smallBtn/SmallLike2";
+import SmallComments from "../../components/index/smallBtn/SmallComents";
 
 const ListCards = ({ record }) => {
   const navigate = useNavigate();
@@ -52,7 +52,7 @@ const ListCards = ({ record }) => {
             handleheight={"18px"}
             handlefsize={"5.4px"}
           />
-          <SmallComments2
+          <smallComments2
             result={record}
             handlewidth={"43px"}
             handleheight={"18px"}
