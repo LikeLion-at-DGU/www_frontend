@@ -36,7 +36,7 @@ function App() {
       {/* Added curly braces */}
       {!isMobile && <Nav />}
       <Outlet />
-    </>
+      </>
   );
 }
 

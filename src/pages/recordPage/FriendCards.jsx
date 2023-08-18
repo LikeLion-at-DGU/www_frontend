@@ -20,7 +20,6 @@ import { useNavigate } from "react-router-dom";
 
 const FriendCards = ({ record }) => {
   const navigate = useNavigate();
-  console.log("카드", record);
 
   return (
     <FriendCard onClick={() => navigate(`/records/${record.id}`)}>
