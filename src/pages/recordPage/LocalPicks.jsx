@@ -7,25 +7,9 @@ import {
   InTagBox,
   LocalPick,
 } from "./RecordStyle";
-import recordImg from "../../image/record3.png";
 import { useNavigate } from "react-router-dom";
 
-// const LocalPicks = ({ card }) => {
-  // console.log(card);
-  // const LocalPicks = ({ record_cards }) => {
-  //여기부터는 임의 데이터입니당 - 현아
-  const LocalPicks = ({data}) => {
-    // const card ={
-    //     where: "김강민",
-    //     what: "김강민",
-    //     how: "김강민",
-    //     tag: ["test1","test2"],
-    //     "card_photo_1": null,
-    //     "card_photo_2": null,
-    //     "card_photo_3": null,
-    // }
-
-  //여기까지 임의 데이터입니당 - 현아
+const LocalPicks = ({ data }) => {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
 
@@ -39,7 +23,7 @@ import { useNavigate } from "react-router-dom";
 
   return (
     <LocalPick
-      onClick={() => navigate(`/records/1`)} //레코드 아이디 달라고 하기
+      onClick={() => navigate(`/records/${data.id}`)} //레코드 아이디 달라고 하기
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
