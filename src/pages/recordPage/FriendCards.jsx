@@ -68,7 +68,7 @@ const FriendCards = () => {
         {record.tag &&
           record.tag
             .slice(0, 3)
-            .map((hashtag, index) => <HashTag key={index}>{hashtag}</HashTag>)}
+            .map((hashtag, index) => <HashTag key={index}># {hashtag}</HashTag>)}
       </TagBox>
     </FriendCard>
   );

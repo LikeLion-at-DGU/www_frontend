@@ -106,7 +106,7 @@ const ListCards = () => {
               record.tag
                 // .slice(0, 3)
                 .map((hashtag, index) => (
-                  <HashTag key={index}>{hashtag}</HashTag>
+                  <HashTag key={index}># {hashtag}</HashTag>
                 ))}
           </TagBox>
         </ListTitle>

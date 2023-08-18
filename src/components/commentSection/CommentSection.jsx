@@ -21,23 +21,51 @@ import axiosInstance from "../../api/axios"
 
 // export const CommentSection = () => {
 //   const record_id=1;
-export const CommentSection = ({ record }) => {
+export const CommentSection = ({ record_id }) => {
   const [cmt, setCmt] = useState("");
   const [hide, setHide] = useState(false);
-  const [cmtList, setCmtList] = useState(record.record_comments);
+  const [cmtList, setCmtList] = useState([
+    {
+      id: 1,
+      record: "0818",
+      content: "멍청이",
+      rcomment_like_count: 0,
+      writer: 1,
+      rcomment_like: [],
+    },
+    {
+      id: 2,
+      record: "0818",
+      content: "ㅇㅇㅇ",
+      rcomment_like_count: 0,
+      writer: 1,
+      rcomment_like: [],
+    },
+  ]);
 
   //댓글 리스트 GET
   useEffect(() => {
     // API 요청을 수행하는 부분
     axiosInstance
-      .get(`/api/records/${record.id}/`) // 댓글 리스트 GET URL
+      .get(`/api/records/${record_id}/rcomments/`) // 댓글 리스트 GET URL
       .then((response) => {
-        setCmtList(response.data.record_comments); // 받아온 데이터를 상태에 저장
+        setCmtList(response.data); // 받아온 데이터를 상태에 저장
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, []); // cmtList 값이 변경될 때마다 실행(댓글 추가 될 때마다)
+  }, [record_id]); // cmtList 값이 변경될 때마다 실행(댓글 추가 될 때마다)
+  // useEffect(() => {
+  //   // API 요청을 수행하는 부분
+  //   axiosInstance
+  //     .get(`/api/records/${record.id}/`) // 댓글 리스트 GET URL
+  //     .then((response) => {
+  //       setCmtList(response.data.record_comments); // 받아온 데이터를 상태에 저장
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching data:", error);
+  //     });
+  // }, []); // cmtList 값이 변경될 때마다 실행(댓글 추가 될 때마다)
 
   //댓글 리스트 POST
   const handleSubmit = async (event) => {
@@ -46,22 +74,21 @@ export const CommentSection = ({ record }) => {
 
     try {
       const response = await axiosInstance.post(
-        `/api/records/${record.id}/rcomments/`, // 댓글 리스트 POST
+        `/api/records/${record_id}/rcomments/`, // 댓글 리스트 POST
         {
           writer: 1,
           content: cmt,
         }
       );
+      
       axiosInstance
-      .get(`/api/records/${record.id}/`) // 댓글 리스트 GET URL
-      .then((response) => {
-        setCmtList(response.data.record_comments); // 받아온 데이터를 상태에 저장
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-      console.log("Post created:", response.data);
-      // 추가 동작
+        .get(`/api/records/${record_id}/rcomments/`) // 댓글 리스트 GET URL
+        .then((response) => {
+          setCmtList(response.data); // 받아온 데이터를 상태에 저장
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
     } catch (error) {
       console.error("Error creating post:", error);
     }
@@ -87,8 +114,8 @@ export const CommentSection = ({ record }) => {
       </p>
       <br />
 
-      {cmtList.map((comment, idx) => (
-        <CmtBox key={idx}>
+      {cmtList.map((comment) => (
+        <CmtBox key={comment.id}>
           <CmtLabel style={{ alignItems: "end" }}>
             <Wrapper>
               {comment.writer === "smaile.kmk" ? ( //글쓴이인지 확인
