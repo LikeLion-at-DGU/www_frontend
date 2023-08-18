@@ -22,7 +22,7 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../../src/api/axios";
 import SmallViews from "../../components/index/smallBtn/SmallViews";
 import SmallLike2 from "../../components/index/smallBtn/SmallLike2";
-import SmallComments from "../../components/index/smallBtn/SmallComents";
+// import SmallComments from "../../components/index/smallBtn/SmallComents";
 
 const ListCards = ({ record }) => {
   const navigate = useNavigate();
@@ -43,7 +43,7 @@ const ListCards = ({ record }) => {
           </TagBox>
         </ListTitle>
         <Content fontSize="1rem" style={{width: "850px", height: "50px"}}>
-          <div dangerouslySetInnerHTML={{ __html: record.body.slice(0, 65) }} />
+          <div dangerouslySetInnerHTML={{ __html: record.body.slice(30, 65) }} />
         </Content>
         <BtnBox juscon="space-between">
           <SmallViews
@@ -52,12 +52,12 @@ const ListCards = ({ record }) => {
             handleheight={"18px"}
             handlefsize={"5.4px"}
           />
-          <smallComments2
+          {/* <SmallComments2
             result={record}
             handlewidth={"43px"}
             handleheight={"18px"}
             handlefsize={"5.4px"}
-          />
+          /> */}
           <SmallLike2
             result={record}
             handlewidth={"43px"}
