@@ -84,6 +84,7 @@ const Mainpage = () => {
             <p>Finding Travel buddy</p>
           </TravelTitle>
           {buddyResults
+          .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
           .slice(0, 4)
           .map((item, index) => (
             <Buddy

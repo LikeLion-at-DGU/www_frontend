@@ -163,14 +163,18 @@ const Companion = () => {
                 Sorry. No search results found.
               </NoResult>
             ) : (
-              searchResults.map((result, id) => (
+              searchResults
+              .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+              .map((result, id) => (
                 <div key={id}>
                   <CompanionCards companion={result} />
                 </div>
               ))
             )
           ) : (
-            searchResults.map((result) => (
+            searchResults
+            .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+            .map((result) => (
               <>
                 <CompanionCards companion={result} />
               </>
