@@ -222,7 +222,7 @@ const RecordSearch = () => {
   // ]);
   const fetchAllData = async () => {
     try {
-      const response = await axiosInstance.get("/api/records");
+      const response = await axiosInstance.get("/api/records/");
       setSearchResults(response.data);
       console.log(searchResults);
     } catch (error) {
