@@ -22,7 +22,7 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../../src/api/axios";
 
 const ListCards = ({ record }) => {
-  console.log("리수투카드", record.record_comments||"없다");
+  console.log("리수투카드", record.record_comments || "없다");
   /*
 //여기부터는 임의 데이터입니당 - 현아
 const ListCards = () => {
@@ -118,7 +118,7 @@ const ListCards = () => {
             It is entirely possible to be friends on a casual level, engaging in
             common hobbies... */}
           {/* 최대 몇자? */}
-        <div dangerouslySetInnerHTML={{ __html: record.body }} />
+          <div dangerouslySetInnerHTML={{ __html: record.body.slice(0, 65) }} />
         </Content>
         <BtnBox juscon="space-between">
           <Views
