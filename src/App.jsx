@@ -1,25 +1,40 @@
-//App.jsx
+import React, { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import Nav from "./components/nav/Nav";
+import Mainpage from "./pages/mainPage/Mainpage";
 import { GlobalStyle } from "./GlobalStyle";
-import mainbg from "./image/mainbg.png"; //승민이 배경이미지 코드 복붙
+import mainbg from "./image/mainbg.png";
 import { BackgroundImage } from "./components/background/Backgroundstyle";
+import { NavContainer } from "./components/nav/NavStyle";
 
 function App() {
-  /*
-  // 브라우저에서 사용자의 기본 언어를 가져옵니다.
-  const userLanguage = navigator.language;
+  const [isMobile, setIsMobile] = useState(false);
 
-  // 언어가 한국어인지 판별합니다.
-  const isKorean = userLanguage.startsWith("ko");
-  */
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 460); // Adjusted threshold
+    };
+
+    // Initial check and setup
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup event listener on unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <>
-      {/* <GlobalStyle isKorean={isKorean} /> */}
       <GlobalStyle />
-      <BackgroundImage src={mainbg} alt="background-image" />
-      <Nav />
+      {!isMobile && (
+        <BackgroundImage src={mainbg} alt="background-image" />
+      )}{" "}
+      {/* Added curly braces */}
+      {!isMobile && <Nav />}
       <Outlet />
     </>
   );

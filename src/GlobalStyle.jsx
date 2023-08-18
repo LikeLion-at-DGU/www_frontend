@@ -1,5 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-
 export const GlobalStyle = createGlobalStyle`
 @font-face {
 		font-family: 'Pretendard-Regular';
@@ -40,7 +39,7 @@ export const GlobalStyle = createGlobalStyle`
         font-family: 'Roboto Mono', monospace;
 	}
 	*{
-        font-family: 'Roboto Mono', monospace;
+    font-family: 'Roboto Mono', monospace;
 		box-sizing: border-box;
 	}
 	body {
@@ -50,6 +49,9 @@ export const GlobalStyle = createGlobalStyle`
 		color: #222222;
 		/* nav바 높이만큼 내림 */
 		margin-top: 97px;
+		@media all and (max-width: 460px) {
+			margin: 0;
+		}
 	}
 	ol, ul {
 		list-style: none;

@@ -33,6 +33,13 @@
   }
 }
 
+@media all and (max-width: 767px) {
+  body {
+    width: 100vh;
+    height: 100vh;
+  }
+}
+
 .card {
   padding: 2em;
 }
