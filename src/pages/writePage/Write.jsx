@@ -18,8 +18,10 @@ import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
 import MakeCard from "../../components/card/MakeCard";
 import axiosInstance from "../../api/axios";
+import { useNavigate } from "react-router-dom";
 
 const Write = () => {
+  const navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
   const [cardInfo, setCardInfo] = useState(null);
 
@@ -40,7 +42,7 @@ const Write = () => {
     setTitle(event.target.value);
   };
 
-   //이건 axios 전, submit 테스트
+  //이건 axios 전, submit 테스트
   const consolecheck = () => {
     console.log(
       "date : ",
@@ -50,38 +52,48 @@ const Write = () => {
       "title : ",
       title,
       "content : ",
-      content
+      content,
+      "where : ",
+      cardInfo.where,
+      "what : ",
+      cardInfo.what,
+      "how : ",
+      cardInfo.how,
+      "img : ",
+      cardInfo.card_photo_1
     );
   };
-  
+
   // submit 시 로직
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("cardInfo: ", cardInfo);
-
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("weather", weather);
+    formData.append("date", date);
+    formData.append("writer", 1);
+    formData.append("body", content);
+    formData.append("where", cardInfo.where);
+    formData.append("what", cardInfo.what);
+    formData.append("how", cardInfo.how);
+    formData.append("tag_field", cardInfo.tag_field);
+    formData.append("card_photo_1", cardInfo.card_photo_1);
+    if (cardInfo.card_photo_2) formData.append("card_photo_2", cardInfo.card_photo_2);
+    if (cardInfo.card_photo_3) formData.append("card_photo_3", cardInfo.card_photo_3);
     try {
-      const response = await axiosInstance.post("/api/records/", {
-        title: title,
-        weather: weather,
-        date: date,
-        writer: 1, //글쓴이가 있냐없냐 boolean 필드 느낌임?? 여튼 1
-        body: content,
-        where: cardInfo.where,
-        what: cardInfo.what,
-        how: cardInfo.how,
-        tag_field: cardInfo.tag_field,
-        card_photo_1: cardInfo.images[0],
-        card_photo_2: cardInfo.images[1],
-        card_photo_3: cardInfo.images[2],
+      const response = await axiosInstance.post("/api/records/", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
       });
       console.log("Post created:", response.data);
       alert("포스트 성공!");
       // 새로운 레코드 생성된 후의 동작을 수행
+      navigate("/records");
     } catch (error) {
       console.error("Error creating post:", error);
     }
   };
-/*
+  /*
   //  2번
   const handleImageUpload = () => {
     const input = document.createElement("input");
@@ -147,7 +159,7 @@ const Write = () => {
       },
     };
   }, []);
-  
+
   useEffect(() => {
     console.log(cardInfo);
   }, [cardInfo]);
@@ -160,9 +172,9 @@ const Write = () => {
         )}
         <form
           style={{ width: "100%" }}
-          method="post"
           onSubmit={handleSubmit}
-          enctype="multipart/form-data"
+        // method="post"
+        // enctype="multipart/form-data"
         >
           {/* 글쓴이 , register */}
           <WriteWrapper>

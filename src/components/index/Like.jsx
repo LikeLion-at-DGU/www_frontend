@@ -7,6 +7,7 @@ const Like = ({ record, handlewidth, handleheight, handlefsize }) => {
   const [mylike, setMylike] = useState(false);
 
   const handleSubmit = async (event) => {
+    console.log("좋아요:",record.id);
     event.preventDefault();
     setMylike((prevMylike) => !prevMylike);
 
@@ -33,8 +34,8 @@ const Like = ({ record, handlewidth, handleheight, handlefsize }) => {
           <i className="far fa-heart"></i>
         )}
         &nbsp;
-        {like}
-        {/* {record.rlike_count} */}
+        {/* {like} */}
+        {/* {record.like_count} */}
       </LikeStyle>
     </form>
   );

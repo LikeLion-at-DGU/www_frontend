@@ -26,8 +26,15 @@ const SearchBar = ({ onClick }) => {
             onClick(searchValue);
             // setSearchValue("");
             // handleReset();
-            navigate(`/records/?search=${searchValue}`)
+            navigate(`/records/search/?search=${searchValue}`)
             // navigate(`/search?q=${searchValue}`);
+        }
+    }
+
+    // 엔터키 검색
+    const handleEnterKey = (e) => {
+        if (e.key === "Enter") {
+            handleSearchURL();
         }
     }
 
@@ -42,6 +49,7 @@ const SearchBar = ({ onClick }) => {
                 placeholder={searchType === "word" ? "type a words." : "#city_keyword  please use this form!"}
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
+                onKeyDown={handleEnterKey}
                 // onChange={handleChange}
             />
             {/* <SearchBtn onClick={() => onClick(searchValue, searchType)} > */}

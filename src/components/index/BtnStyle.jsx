@@ -96,7 +96,7 @@ export const CountryStyle = styled(BookMarkStyle)`
   border: 2px solid #222;
   color: #ffffff;
   font-weight: 400;
-  padding: 8px;
+  padding: 10px 8px;
 `;
 
 export const CityStyle = styled(BookMarkStyle)`
@@ -108,7 +108,7 @@ export const CityStyle = styled(BookMarkStyle)`
   border: 2px solid #222;
   color: #ffffff;
   font-weight: 400;
-  padding: 8px;
+  padding: 10px 8px;
 `;
 
 export const DateStyle = styled(BookMarkStyle)`
@@ -120,7 +120,7 @@ export const DateStyle = styled(BookMarkStyle)`
   border: 2px solid #222;
   color: #ffffff;
   font-weight: 400;
-  padding: 8px;
+  padding: 10px 8px;
 `;
 
 export const BtnText = styled.span`

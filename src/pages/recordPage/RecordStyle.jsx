@@ -182,7 +182,7 @@ export const ListCard = styled.div`
   background-color: #fbfbfb;
   justify-content: space-between;
   align-items: center;
-  margin: 0;
+  margin: 5px 0;
 `;
 export const ListTitle = styled.div`
   display: flex;

@@ -14,15 +14,18 @@ import {
   Text,
 } from "./RecordStyle";
 import recordImg from "../../image/record1.jpg";
-import Like from "../../components/index/Like";
-import Comments from "../../components/index/Comments";
-import Views from "../../components/index/Views";
+// import Like from "../../components/index/Like";
+// import Comments from "../../components/index/Comments";
+// import Views from "../../components/index/Views";
 import BookMark from "../../components/index/BookMark";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../../src/api/axios";
+import SmallLike from "../../components/index/smallBtn/SmallLike";
+import SmallComments from "../../components/index/smallBtn/SmallComents";
+import SmallViews from "../../components/index/smallBtn/SmallViews";
 
 const ListCards = ({ record }) => {
-  console.log("리수투카드", record.record_comments||"없다");
+  console.log("리수투카드", record.record_comments || "없다");
   /*
 //여기부터는 임의 데이터입니당 - 현아
 const ListCards = () => {
@@ -98,7 +101,7 @@ const ListCards = () => {
         <ListTitle>
           {/* <p>Unexpected luck!!</p> */}
           {/* 최대 몇자? */}
-          <p>{record.title}</p>
+          {record.title}
           <TagBox padding="0 18px">
             {/* <HashTag>#milano_restaurant</HashTag> */}
             {/* <HashTag>#milano_cafe</HashTag> */}
@@ -106,11 +109,11 @@ const ListCards = () => {
               record.tag
                 // .slice(0, 3)
                 .map((hashtag, index) => (
-                  <HashTag key={index}>{hashtag}</HashTag>
+                  <HashTag key={index}># {hashtag}</HashTag>
                 ))}
           </TagBox>
         </ListTitle>
-        <Content fontSize="1rem">
+        <Content fontSize="1rem" style={{width: "850px", height: "50px"}}>
           {/* The definition of friendships between opposite genders becomes
             somewhat ambiguous
             <br />
@@ -118,23 +121,23 @@ const ListCards = () => {
             It is entirely possible to be friends on a casual level, engaging in
             common hobbies... */}
           {/* 최대 몇자? */}
-        <div dangerouslySetInnerHTML={{ __html: record.body }} />
+          <div dangerouslySetInnerHTML={{ __html: record.body.slice(0, 65) }} />
         </Content>
         <BtnBox juscon="space-between">
-          <Views
-            record={record}
+          <SmallViews
+            result={record}
             handlewidth={"43px"}
             handleheight={"18px"}
             handlefsize={"5.4px"}
           />
-          <Comments
-            record={record}
+          <SmallComments
+            result={record}
             handlewidth={"43px"}
             handleheight={"18px"}
             handlefsize={"5.4px"}
           />
-          <Like
-            record={record}
+          <SmallLike
+            result={record}
             handlewidth={"43px"}
             handleheight={"18px"}
             handlefsize={"5.4px"}

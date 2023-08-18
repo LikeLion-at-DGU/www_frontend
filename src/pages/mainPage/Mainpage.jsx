@@ -21,10 +21,10 @@ import { useLocation } from "react-router-dom";
 
 const location = useLocation();
 
-const data = [
-  { id: 1, nickname: "User1" },
-  { id: 2, nickname: "User2" },
-];
+// const data = [
+//   { id: 1, nickname: "User1" },
+//   { id: 2, nickname: "User2" },
+// ];
 
 const handleCopyClipBoard = async (text) => {
   try {
@@ -47,6 +47,30 @@ const Mainpage = ({}) => {
       console.log("ERROR", error);
     }
   };
+
+  // 로컬픽 담기
+  const [localPicks, setLocalPicks] = useState([]);
+  // 로컬픽 불러오기
+  // const localPickArray = async () => {
+  //   try {
+  //     const response = await axiosInstance.get("/api/card/");
+  //     setLocalPicks(response.data);
+  //   } catch (error) {
+  //     console.log("ERROR", error);
+  //   }
+  // }
+  useEffect(() => {
+    axiosInstance
+      // .get("/api/card/{record_id}")
+      .get("/api/card/")
+      .then((response) => {
+        let result = response.data;
+        setLocalPicks(result);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
 
   const [isInViewport, setIsInViewport] = useState(false);
   const ref = useRef(null);
@@ -101,33 +125,37 @@ const Mainpage = ({}) => {
           <Contents>
             <OneAndVoteAll />
 
-            <TravelContainer>
-              <TravelTitle>
-                <img src={bird} alt="bird" />
-                <p>Finding Travel buddy</p>
-              </TravelTitle>
-              {buddyResults.map((item, index) => (
-                <Buddy
-                  key={item.id}
-                  data={item}
-                  isEven={index === 1 || index === 3}
-                />
+        <TravelContainer>
+          <TravelTitle>
+            <img src={bird} alt="bird" />
+            <p>Finding Travel buddy</p>
+          </TravelTitle>
+          {buddyResults
+            .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+            .slice(0, 4)
+            .map((item, index) => (
+              <Buddy
+                key={item.id}
+                data={item}
+                isEven={index === 1 || index === 3}
+              />
+            ))}
+        </TravelContainer>
+        <Local>
+          <LocalTitle>
+            <img src={flag} alt="flag" />
+            <p>The secret of locals!</p>
+          </LocalTitle>
+          <span>
+          {localPicks
+              .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+              .map((result) => (
+                <LocalPicks key={result.id} data={result} />
               ))}
-            </TravelContainer>
-            <Local>
-              <LocalTitle>
-                <img src={flag} alt="flag" />
-                <p>The secret of locals!</p>
-              </LocalTitle>
-              <span>
-                <LocalPicks />
-                <LocalPicks />
-                <LocalPicks />
-              </span>
-            </Local>
-          </Contents>
-        </WebRender>
-      )}
+          </span>
+        </Local>
+      </Contents>
+      </WebRender>
     </MainContainer>
   );
 };

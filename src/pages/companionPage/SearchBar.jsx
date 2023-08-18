@@ -7,7 +7,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { SearchBox, SearchBtn, SearchInput } from "../searchPage/SearchStyle";
 import { SearchType } from "./CompanionStyle";
 
-const SearchBar = ({onClick, onReset}) => {
+const SearchBar = ({ onClick, onReset }) => {
     const [searchTerm, setSearchTerm] = useState("");
     const navigate = useNavigate();
 
@@ -22,7 +22,15 @@ const SearchBar = ({onClick, onReset}) => {
             onClick(searchTerm);
             handleReset();
             navigate(`/companions/?search=${searchTerm}`)
-    }}
+        }
+    }
+
+    // 엔터키 검색
+    const handleEnterKey = (e) => {
+        if (e.key === "Enter") {
+            handleSearchURL();
+        }
+    }
 
     return (
         <SearchBox>
@@ -32,6 +40,7 @@ const SearchBar = ({onClick, onReset}) => {
                 placeholder="type a country."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
+                onKeyDown={handleEnterKey}
             />
             <SearchBtn onClick={handleSearchURL} >
                 <FontAwesomeIcon icon={faSearch} />
