@@ -124,6 +124,7 @@ const Record = () => {
         <Box style={{ flexWrap: "wrap" }} height="750px" juscon="space-between">
           {local
           .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+          .slice(0,3)
           .map((result) => (
             <LocalPicks key={result.id} data={result} />
           ))}

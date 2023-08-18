@@ -69,7 +69,7 @@ const Mainpage = ({}) => {
       });
     };
 
-    const options = { root: null, rootMargin: "290px", threshold: 0 };
+    const options = { root: null, rootMargin: "500px", threshold: 0.1 };
     const observer = new IntersectionObserver(callback, options);
     observer.observe(ref.current);
 
