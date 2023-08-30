@@ -15,7 +15,6 @@ import {
 } from "./LoginStyle";
 import axiosInstance from "../../api/axios";
 import instance from "../../api/axios";
-import { Margin } from "../detailPage/DetailStyle";
 
 const TestLogin = () => {
   const setUser = useSetRecoilState(userState);

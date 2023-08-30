@@ -1,6 +1,7 @@
 import { ProfileContainer, ProfileBox } from "./ArchiveStyle";
 import { useState, useEffect } from "react";
 import axiosInstance from "../../../src/api/axios";
+import TestPro from "../../image/sampleprofile.png"
 
 const ProfileCard = () => {
   const [userData, setUserData] = useState({});
@@ -20,10 +21,13 @@ const ProfileCard = () => {
     <ProfileContainer>
       <p>My Profile</p>
       <ProfileBox>
-        <img src={userData.profile_img} alt="profile" />
-        <p>{userData.nickname}</p>
+        <img src={TestPro} alt="profile" />
+        {/* <img src={userData.profile_img} alt="profile" /> */}
+        <p>sha_ppy02</p>
+        {/* <p>{userData.nickname}</p> */}
         <span>
-          {userData.country}/{userData.city}
+          Korea/Bucheon
+          {/* {userData.country}/{userData.city} */}
         </span>
       </ProfileBox>
     </ProfileContainer>

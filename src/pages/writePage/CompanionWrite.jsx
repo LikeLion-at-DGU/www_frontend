@@ -87,8 +87,8 @@ const CompanionWrite = () => {
           <WriteWrapper>
             <PostWriter>
               <img src="" alt="profile" />
-              <p>smile.kmk</p>&nbsp;
-              <span>Korea/incheon</span>
+              <p>writer</p>&nbsp;
+              <span>country / city</span>
             </PostWriter>
             <BtnWrapper>
               <RegisterBtn

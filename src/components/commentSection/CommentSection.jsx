@@ -24,25 +24,15 @@ import axiosInstance from "../../api/axios"
 export const CommentSection = ({ record_id }) => {
   const [cmt, setCmt] = useState("");
   const [hide, setHide] = useState(false);
-  const [cmtList, setCmtList] = useState([
-    {
-      id: 1,
-      record: "0818",
-      content: "멍청이",
-      rcomment_like_count: 0,
-      writer: 1,
-      rcomment_like: [],
-    },
-    {
-      id: 2,
-      record: "0818",
-      content: "ㅇㅇㅇ",
-      rcomment_like_count: 0,
-      writer: 1,
-      rcomment_like: [],
-    },
-  ]);
+  const [cmtList, setCmtList] = useState([]);
 
+
+  const addCmtList = () =>{
+    setCmtList([...cmtList,cmt]);
+    setCmt("")
+  }
+
+  /*
   //댓글 리스트 GET
   useEffect(() => {
     // API 요청을 수행하는 부분
@@ -55,6 +45,7 @@ export const CommentSection = ({ record_id }) => {
         console.error("Error fetching data:", error);
       });
   }, [record_id]); // cmtList 값이 변경될 때마다 실행(댓글 추가 될 때마다)
+
   // useEffect(() => {
   //   // API 요청을 수행하는 부분
   //   axiosInstance
@@ -76,7 +67,7 @@ export const CommentSection = ({ record_id }) => {
       const response = await axiosInstance.post(
         `/api/records/${record_id}/rcomments/`, // 댓글 리스트 POST
         {
-          writer: 1,
+          // writer: 1,
           content: cmt,
         }
       );
@@ -93,29 +84,31 @@ export const CommentSection = ({ record_id }) => {
       console.error("Error creating post:", error);
     }
   };
+*/
+
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <Label>
-          <ApplyInput
-            type="text"
-            placeholder="Please enter a comment."
-            value={cmt}
-            onChange={(e) => setCmt(e.target.value)}
-          />
-          <ApplyBtn type="submit">apply</ApplyBtn>
-          {/* <ApplyBtn onClick={addCmtList}>apply</ApplyBtn> */}
-        </Label>
-      </form>
+      {/* <form onSubmit={handleSubmit}> */}
+      <Label>
+        <ApplyInput
+          type="text"
+          placeholder="Please enter a comment."
+          value={cmt}
+          onChange={(e) => setCmt(e.target.value)}
+        />
+        <ApplyBtn type="submit">apply</ApplyBtn>
+        <ApplyBtn onClick={addCmtList}>apply</ApplyBtn>
+      </Label>
+      {/* </form> */}
       <p>
         {/* 최신순, 좋아요순 구현 전 */}
         <span>New</span> | <span>Most like</span>
       </p>
       <br />
 
-      {cmtList.map((comment) => (
-        <CmtBox key={comment.id}>
+      {cmtList.map((comment, idx) => (
+        <CmtBox key={idx}>
           <CmtLabel style={{ alignItems: "end" }}>
             <Wrapper>
               {comment.writer === "smaile.kmk" ? ( //글쓴이인지 확인
@@ -139,15 +132,13 @@ export const CommentSection = ({ record_id }) => {
             <Like handlewidth={"69px"} handleheight={"32px"} />
           </CmtLabel>
           <CmtProfile>
-            <img alt="profile img" src={""} />
+            <img alt="" src={""} />
             <div>
-              <p>{comment.writer}</p>
-              {/* <p>{comment.userNmae}</p> */}
-              <span>korea</span>
-              {/* <span>{comment.nation}</span> */}
+              <p>user</p>
+              <span>korea / seol</span>
             </div>
           </CmtProfile>
-          {comment.content}
+          {comment}
         </CmtBox>
       ))}
     </>

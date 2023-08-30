@@ -60,8 +60,11 @@ export default function CompanionDetail() {
         <CenterWriter>
           <p>by</p>
           <ProfileImg></ProfileImg>
-          {/* {data.writer} */}
+          {data.writer.nickname}
           giogio222
+          <City>
+            {data.writer.country}/{data.writer.city}
+          </City>
           <City>Iyaly/milano</City>
         </CenterWriter>
         <BorderBottom>
@@ -94,12 +97,12 @@ export default function CompanionDetail() {
       <Margin />
       <AnotherTitle>
         <p>Another buddy is Waiting you!</p>
-        <Link to="/companion">
+        <Link to="/companions">
           <p>+ back to list</p>
         </Link>
       </AnotherTitle>
       <Box2 flexdirect="column">
-      {/* height="460px" */}
+        {/* height="460px" */}
         {/* <CompanionCards /> 다른 사람 글 띄우기
         <CompanionCards />
         <CompanionCards /> */}
