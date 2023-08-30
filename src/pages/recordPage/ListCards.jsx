@@ -43,7 +43,8 @@ const ListCards = ({ record }) => {
           </TagBox>
         </ListTitle>
         <Content fontSize="1rem" style={{width: "850px", height: "50px"}}>
-          <div dangerouslySetInnerHTML={{ __html: record.body.slice(30, 65) }} />
+          <div dangerouslySetInnerHTML={{ __html: record.body }} />
+          {/* <div dangerouslySetInnerHTML={{ __html: record.body.slice(30, 65) }} /> */}
         </Content>
         <BtnBox juscon="space-between">
           <SmallViews

@@ -8,21 +8,24 @@ import CountryName from "../../components/index/Country";
 import CityName from "../../components/index/CityName";
 import DateName from "../../components/index/DateName";
 import { WwwBox } from "../mainPage/MainpageStyle";
-// import Views from "../../components/index/Views";
-// import Comments from "../../components/index/Comments";
-// import Like from "../../components/index/Like";
 import { useNavigate } from "react-router-dom";
 import SmallViews from "../../components/index/smallBtn/SmallViews";
 import SmallComments from "../../components/index/smallBtn/SmallComents";
 import SmallLike from "../../components/index/smallBtn/SmallLike";
 
-const CompanionCards = ({ companion }) => {
-  // const CompanionCards = ({ companion }) => {
+// const CompanionCards = ({ companion }) => {
+//   const navigate = useNavigate();
+
+const CompanionCards = () => {
   const navigate = useNavigate();
-  // const companion = {
-  //   id: 1,
-  //   body: "dddddddddddjdkdjkdjdlssddkjdsl",
-  // };
+  const companion = {
+    id: 1,
+    title: "서울 여행 동행자 찾아요!",
+    country: "Korea",
+    city: "Seoul",
+    date: "2023-08-30",
+    body: "오랜만에 서울로 여행 왔어요, 같이 서울 구경하실 분이 있을까요?",
+  };
 
   return (
     <CompanionCard onClick={() => navigate(`/companions/${companion.id}`)}>
@@ -43,7 +46,8 @@ const CompanionCards = ({ companion }) => {
         <Content>
           {/* <p>Let’s play together in Hanoi nightscape festival!</p> */}
           <div
-            dangerouslySetInnerHTML={{ __html: companion.body.slice(192, 250) }}
+            dangerouslySetInnerHTML={{ __html: companion.body }}
+            // dangerouslySetInnerHTML={{ __html: companion.body.slice(192, 250) }}
           />
         </Content>
         <BtnBox juscon="space-between">

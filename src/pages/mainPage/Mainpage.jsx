@@ -99,37 +99,40 @@ const Mainpage = ({}) => {
           <Contents>
             <OneAndVoteAll />
 
-        <TravelContainer>
-          <TravelTitle>
-            <img src={bird} alt="bird" />
-            <p>Finding Travel buddy</p>
-          </TravelTitle>
-          {buddyResults
-            .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-            .slice(0, 4)
-            .map((item, index) => (
-              <Buddy
-                key={item.id}
-                data={item}
-                isEven={index === 1 || index === 3}
-              />
-            ))}
-        </TravelContainer>
-        <Local>
-          <LocalTitle>
-            <img src={flag} alt="flag" />
-            <p>The secret of locals!</p>
-          </LocalTitle>
-          <span>
-            {localPicks
-              .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-              .map((result) => (
-                <LocalPicks key={result.id} data={result} />
-              ))}
-          </span>
-        </Local>
-      </Contents>
-      </WebRender>
+            <TravelContainer>
+              <TravelTitle>
+                <img src={bird} alt="bird" />
+                <p>Finding Travel buddy</p>
+              </TravelTitle>
+              {buddyResults
+                .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+                .slice(0, 4)
+                .map((item, index) => (
+                  <Buddy
+                    key={item.id}
+                    data={item}
+                    isEven={index === 1 || index === 3}
+                  />
+                ))}
+            </TravelContainer>
+            <Local>
+              <LocalTitle>
+                <img src={flag} alt="flag" />
+                <p>The secret of locals!</p>
+              </LocalTitle>
+              <span>
+                {localPicks
+                  .sort(
+                    (a, b) => new Date(b.created_at) - new Date(a.created_at)
+                  )
+                  .slice(0, 3)
+                  .map((result) => (
+                    <LocalPicks key={result.id} data={result} />
+                  ))}
+              </span>
+            </Local>
+          </Contents>
+        </WebRender>
       )}
     </MainContainer>
   );
