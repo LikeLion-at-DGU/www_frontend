@@ -31,7 +31,7 @@ const CompanionCards = ({ companion }) => {
           {/* <p>Today Hanoi nightscape!!</p> */}
           <p>{companion.title}</p>
           {/* 현재시간 - 글쓴시간 */}
-          <p style={{ color: "#848484", fontSize: "0.8rem" }}>23m ago</p>
+          {/* <p style={{ color: "#848484", fontSize: "0.8rem" }}>23m ago</p> */}
         </CompanionTitle>
 
         <WwwBox>
